@@ -43,8 +43,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  /* 老眼・長文読みやすさ：行間をやや広く */
+  line-height: 1.7;
 }
 
 html {
   scroll-behavior: smooth;
+  /* ブラウザ既定 16px 想定で約 18px 相当。見出し・ボタンも同率で少し大きくなる */
+  font-size: 112.5%;
 }

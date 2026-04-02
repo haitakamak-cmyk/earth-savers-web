@@ -4,98 +4,68 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "メンバー紹介 | 財団法人 地球防衛群",
   description:
-    "財団法人 地球防衛群の理事会・事務局・評議員会、およびクラウドファンディング・アンバサダーをご紹介します。",
+    "財団法人 地球防衛群の理事会・監事・評議員、およびアンバサダーランクをご紹介します。",
 };
 
-type MemberCardData = {
-  role: string;
-  name: string;
-  description: string;
-  image: string | null;
-};
-
-const boardMembers: MemberCardData[] = [
-  {
-    role: "代表理事",
-    name: "杉山 孔太",
-    description:
-      "財団設立発起人。水源保全と里山再生をライフワークとする。",
-    image: "/images/photos/representative.jpg",
-  },
-  {
-    role: "理事",
-    name: "（就任予定）",
-    description: "",
-    image: null,
-  },
-  {
-    role: "監事",
-    name: "（就任予定）",
-    description: "",
-    image: null,
-  },
+/** 理事会・監事（役職・氏名のみ） */
+const boardRows: { role: string; name: string }[] = [
+  { role: "代表理事", name: "杉山 孔太" },
+  { role: "理事・事務局長", name: "小野 誠" },
+  { role: "理事", name: "西尾 直哉" },
+  { role: "理事", name: "森川 保幸" },
+  { role: "理事", name: "藤原 治" },
+  { role: "理事", name: "近藤 さよ" },
+  { role: "理事", name: "東川 恵里子" },
+  { role: "監事", name: "玉置 みわ" },
 ];
 
-const office: MemberCardData[] = [
-  {
-    role: "事務局長",
-    name: "小野 誠",
-    description: "各活動や関係各所との連絡・調整、事務局業務を担当。",
-    image: "/images/photos/ono-makoto.png",
-  },
+const councilRows: { role: string; name: string }[] = [
+  { role: "評議員", name: "杉山 公紀" },
+  { role: "評議員", name: "杉山 麻衣子" },
+  { role: "評議員", name: "瀬戸山 裕一" },
 ];
 
-const councilMembers = [
-  { role: "評議員", name: "（就任予定）", description: "" },
+/** アンバサダー：七世代の大使 → … → 水の守人の順（名前はランクごとに追記） */
+const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
+  { rank: "七世代の大使", reading: "ななせだいのたいし", names: [] },
+  { rank: "山の守護者", reading: "やまのしゅごしゃ", names: [] },
+  { rank: "森の番人", reading: "もりのばんにん", names: [] },
+  { rank: "水の守人", reading: "みずのもりびと", names: [] },
 ];
 
-const ambassadors: { name: string }[] = [];
-
-function MemberCard({
-  name,
-  role,
-  description,
-  image,
-}: {
-  name: string;
-  role: string;
-  description: string;
-  image: string | null;
-}) {
+function RosterTable({ rows }: { rows: { role: string; name: string }[] }) {
   return (
-    <div className="rounded-2xl border border-border bg-white p-6 text-center shadow-sm sm:p-8">
-      {image ? (
-        <Image
-          src={image}
-          alt={name}
-          width={120}
-          height={120}
-          className="mx-auto h-[120px] w-[120px] rounded-full object-cover object-top shadow-md"
-        />
-      ) : (
-        <div className="mx-auto flex h-[120px] w-[120px] items-center justify-center rounded-full bg-wakakusa-light">
-          <svg
-            className="h-12 w-12 text-wakakusa"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-        </div>
-      )}
-      <h3 className="mt-4 text-lg font-bold text-text-primary">{name}</h3>
-      <p className="text-sm font-medium text-wakakusa">{role}</p>
-      {description ? (
-        <p className="mt-3 text-left text-sm leading-relaxed text-text-secondary">
-          {description}
-        </p>
-      ) : null}
+    <div className="overflow-x-auto rounded-2xl border border-border bg-white shadow-sm">
+      <table className="w-full min-w-[280px] text-left text-sm sm:text-base">
+        <thead>
+          <tr className="border-b border-border bg-ivory-warm">
+            <th
+              scope="col"
+              className="whitespace-nowrap px-4 py-3 font-bold text-text-primary sm:px-6"
+            >
+              役職
+            </th>
+            <th
+              scope="col"
+              className="px-4 py-3 font-bold text-text-primary sm:px-6"
+            >
+              氏名
+            </th>
+          </tr>
+        </thead>
+        <tbody className="text-foreground">
+          {rows.map((r, i) => (
+            <tr key={`${r.role}-${r.name}-${i}`} className="border-b border-border last:border-0">
+              <td className="whitespace-nowrap px-4 py-3 font-medium sm:px-6">
+                {r.role}
+              </td>
+              <td className="px-4 py-3 font-semibold sm:px-6">
+                {r.name}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -106,7 +76,7 @@ export default function MembersPage() {
       <section className="relative h-64 overflow-hidden sm:h-80">
         <Image
           src="/images/photos/members-hero-group.png"
-          alt="里山活動に参加するメンバー（後列の男性陣を中心に）"
+          alt="里山活動に参加するメンバーの集合"
           fill
           priority
           sizes="100vw"
@@ -124,84 +94,71 @@ export default function MembersPage() {
       </section>
 
       <section id="board" className="bg-ivory py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
-            理事会
+            理事会・監事
           </h2>
-          <p className="mt-3 text-center text-text-muted">
-            代表理事・理事・監事
+          <p className="mt-3 text-center text-sm text-text-secondary">
+            代表理事、理事・事務局長、理事、監事
           </p>
-          <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {boardMembers.map((m) => (
-              <MemberCard key={`${m.role}-${m.name}`} {...m} />
-            ))}
+          <div className="mt-10">
+            <RosterTable rows={boardRows} />
           </div>
         </div>
       </section>
 
-      <section id="office" className="border-y border-border bg-ivory-warm py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
-            事務局
-          </h2>
-          <div className="mx-auto mt-10 grid max-w-md grid-cols-1 gap-8">
-            {office.map((m) => (
-              <MemberCard key={m.name} {...m} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="council" className="bg-ivory py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <section id="council" className="border-y border-border bg-ivory-warm py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
             評議員会
           </h2>
-          <p className="mt-3 text-center text-text-muted">評議員</p>
-          <ul className="mt-10 divide-y divide-border rounded-2xl border border-border bg-white shadow-sm">
-            {councilMembers.map((c) => (
-              <li
-                key={c.name}
-                className="flex flex-wrap items-center justify-between gap-2 px-5 py-4 sm:px-6"
-              >
-                <span className="font-bold text-text-primary">{c.name}</span>
-                <span className="text-sm text-wakakusa">{c.role}</span>
-                {c.description ? (
-                  <p className="w-full text-sm text-text-secondary">
-                    {c.description}
-                  </p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-3 text-center text-sm text-text-secondary">評議員</p>
+          <div className="mt-10">
+            <RosterTable rows={councilRows} />
+          </div>
         </div>
       </section>
 
-      <section id="ambassadors" className="bg-ivory-warm py-16 sm:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <section id="ambassadors" className="bg-ivory py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
             アンバサダー
           </h2>
-          <p className="mt-3 text-center text-text-muted">
-            クラウドファンディングでアンバサダーとしてご支援いただいた方
+          <p className="mt-3 text-center text-sm leading-relaxed text-text-secondary">
+            財団の活動にご賛同いただいたメンバーの方々です。
           </p>
 
-          {ambassadors.length === 0 ? (
-            <p className="mx-auto mt-10 max-w-xl text-center text-sm leading-relaxed text-text-secondary">
-              クラウドファンディングでアンバサダーとして支援いただいた方のお名前を掲載予定です。
-            </p>
-          ) : (
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {ambassadors.map((a) => (
-                <span
-                  key={a.name}
-                  className="rounded-full border border-wakakusa/30 bg-wakakusa-light px-4 py-2.5 text-center text-sm font-medium text-wakakusa-dark"
-                >
-                  {a.name}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="mt-10 flex flex-col gap-6">
+            {ambassadorRanks.map((tier) => (
+              <div
+                key={tier.rank}
+                className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-3">
+                  <h3 className="text-lg font-bold text-wakakusa-dark">
+                    {tier.rank}
+                  </h3>
+                  <span className="text-sm text-text-secondary">（{tier.reading}）</span>
+                </div>
+                {tier.names.length > 0 ? (
+                  <ul className="mt-4 flex flex-col gap-2 border-t border-border pt-4 sm:flex-row sm:flex-wrap sm:gap-x-6">
+                    {tier.names.map((n) => (
+                      <li
+                        key={n}
+                        className="font-medium text-text-primary"
+                      >
+                        {n}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-4 border-t border-border pt-4 text-sm text-text-secondary">
+                    （掲載予定）
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>
