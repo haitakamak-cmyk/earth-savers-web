@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f5;
+  --foreground: #2d3a2e;
+  --wakakusa: #6db56d;
+  --wakakusa-dark: #4a8f4a;
+  --wakakusa-light: #e8f5e8;
+  --aqua: #5ba4c9;
+  --aqua-dark: #3d7fa3;
+  --aqua-light: #e3f2fa;
+  --ivory: #faf8f5;
+  --ivory-warm: #f5f0e8;
+  --accent-gold: #c9a84c;
+  --coral: #e07060;
+  --text-primary: #2d3a2e;
+  --text-secondary: #5a6b5c;
+  --text-muted: #8a9a8c;
+  --border: #d4ddd4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-wakakusa: var(--wakakusa);
+  --color-wakakusa-dark: var(--wakakusa-dark);
+  --color-wakakusa-light: var(--wakakusa-light);
+  --color-aqua: var(--aqua);
+  --color-aqua-dark: var(--aqua-dark);
+  --color-aqua-light: var(--aqua-light);
+  --color-ivory: var(--ivory);
+  --color-ivory-warm: var(--ivory-warm);
+  --color-accent-gold: var(--accent-gold);
+  --color-coral: var(--coral);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-zen-maru);
+  --font-serif: var(--font-noto-serif-jp);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
