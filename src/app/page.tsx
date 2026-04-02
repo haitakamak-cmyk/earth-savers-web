@@ -12,7 +12,7 @@ export default function Home() {
       {/* ===== News Ticker ===== */}
       <section className="bg-wakakusa-light border-y border-wakakusa/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-4 overflow-hidden">
-          <span className="shrink-0 bg-wakakusa text-white text-xs font-bold px-3 py-1 rounded-full">
+          <span className="shrink-0 bg-wakakusa text-white text-xs font-semibold px-3 py-1 rounded-full">
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
@@ -60,7 +60,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-bold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
                   水源保全
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -102,7 +102,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-bold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
                   生態系復活
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -144,7 +144,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-bold text-wakakusa bg-wakakusa-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-wakakusa bg-wakakusa-light px-2.5 py-1 rounded-full">
                   大地の再生
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -186,7 +186,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-bold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
                   530運動
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -228,7 +228,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-bold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
                   環境教育
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -285,7 +285,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-bold text-white bg-coral/90 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full">
                     外からの脅威
                   </span>
                 </div>
@@ -313,7 +313,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-bold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
                     内なる崩壊
                   </span>
                 </div>
@@ -355,7 +355,7 @@ export default function Home() {
                 この当たり前の循環が、今まさに壊されようとしています。
                 私たちは「不退転」の覚悟で、この問題に取り組みます。
               </p>
-              <p className="mt-4 text-sm font-bold text-text-primary">
+              <p className="mt-4 text-sm font-semibold text-text-primary">
                 代表理事　杉山 孔太
               </p>
               <Link
@@ -491,7 +491,7 @@ export default function Home() {
           </p>
           <Link
             href="/contact#helpdesk"
-            className="mt-6 inline-flex items-center px-8 py-3.5 bg-aqua hover:bg-aqua-dark text-white font-bold rounded-full text-base transition-colors shadow-lg"
+            className="mt-6 inline-flex items-center px-8 py-3.5 bg-aqua hover:bg-aqua-dark text-white font-semibold rounded-full text-base transition-colors shadow-lg"
           >
             相談窓口はこちら
             <svg

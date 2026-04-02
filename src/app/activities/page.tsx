@@ -197,7 +197,7 @@ export default function ActivitiesPage() {
                 {/* Text */}
                 <div className="w-full md:w-1/2">
                   <span
-                    className={`text-xs font-bold px-3 py-1 rounded-full ${activity.tagColor}`}
+                    className={`text-xs font-semibold px-3 py-1 rounded-full ${activity.tagColor}`}
                   >
                     {activity.tag}
                   </span>
@@ -215,7 +215,7 @@ export default function ActivitiesPage() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                          className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
                         >
                           {link.label}
                         </a>
@@ -261,13 +261,13 @@ export default function ActivitiesPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/join#volunteer"
-              className="px-8 py-3.5 bg-wakakusa hover:bg-wakakusa-dark text-white font-bold rounded-full transition-colors shadow-sm"
+              className="px-8 py-3.5 bg-wakakusa hover:bg-wakakusa-dark text-white font-semibold rounded-full transition-colors shadow-sm"
             >
               ボランティアに参加する
             </a>
             <a
               href="/join"
-              className="px-8 py-3.5 bg-white hover:bg-gray-50 text-wakakusa-dark font-bold rounded-full transition-colors border border-wakakusa/30"
+              className="px-8 py-3.5 bg-white hover:bg-gray-50 text-wakakusa-dark font-semibold rounded-full transition-colors border border-wakakusa/30"
             >
               支援する
             </a>

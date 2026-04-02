@@ -47,13 +47,13 @@ export function ContactForm() {
         className="rounded-xl border border-wakakusa/30 bg-wakakusa-light/50 px-4 py-8 text-center"
         role="status"
       >
-        <p className="font-bold text-text-primary">
+        <p className="font-semibold text-text-primary">
           お問い合わせを受け付けました。担当者よりご連絡いたします。
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm font-bold text-wakakusa-dark underline"
+          className="mt-6 text-sm font-semibold text-wakakusa-dark underline"
         >
           続けて送信する
         </button>
@@ -141,7 +141,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-wakakusa py-3 font-bold text-white shadow-sm transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
+        className="w-full rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
       >
         {status === "submitting" ? "送信中…" : "送信する"}
       </button>

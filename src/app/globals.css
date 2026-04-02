@@ -14,7 +14,7 @@
   --accent-gold: #c9a84c;
   --coral: #e07060;
   --text-primary: #2d3a2e;
-  --text-secondary: #5a6b5c;
+  --text-secondary: #4a5a4c;
   --text-muted: #8a9a8c;
   --border: #d4ddd4;
 }
@@ -45,6 +45,14 @@ body {
   color: var(--foreground);
   /* 老眼・長文読みやすさ：行間をやや広く */
   line-height: 1.7;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+strong,
+b {
+  font-weight: 700;
 }
 
 html {

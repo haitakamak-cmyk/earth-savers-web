@@ -82,7 +82,7 @@ export default function ContactPage() {
                     <h2 className="text-lg font-bold text-text-primary">
                       駆け込み寺（環境トラブル相談）
                     </h2>
-                    <span className="rounded-full bg-aqua/10 px-2 py-0.5 text-xs font-bold text-aqua">
+                    <span className="rounded-full bg-aqua/10 px-2 py-0.5 text-xs font-semibold text-aqua">
                       準備中
                     </span>
                   </div>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 <p className="text-4xl" aria-hidden>
                   🛡️
                 </p>
-                <p className="font-bold text-text-primary">
+                <p className="font-semibold text-text-primary">
                   現在、体制を整えています
                 </p>
                 <p className="mx-auto max-w-sm text-sm leading-relaxed text-text-secondary">

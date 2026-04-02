@@ -77,13 +77,13 @@ export default function HeroSlider() {
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Link
             href="/join"
-            className="rounded-full bg-wakakusa px-8 py-3.5 text-base font-bold text-white shadow-lg transition-colors hover:bg-wakakusa-dark"
+            className="rounded-full bg-wakakusa px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-colors hover:bg-wakakusa-dark"
           >
             今すぐ支援する
           </Link>
           <Link
             href="/about"
-            className="rounded-full border border-white/30 bg-white/20 px-8 py-3.5 text-base font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/30"
+            className="rounded-full border border-white/30 bg-white/20 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/30"
           >
             私たちについて
           </Link>

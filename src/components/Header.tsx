@@ -45,7 +45,7 @@ export function Header() {
             ))}
             <Link
               href="/join"
-              className="ml-2 px-5 py-2.5 text-sm font-bold text-white bg-wakakusa hover:bg-wakakusa-dark rounded-full transition-colors shadow-sm"
+              className="ml-2 px-5 py-2.5 text-sm font-semibold text-white bg-wakakusa hover:bg-wakakusa-dark rounded-full transition-colors shadow-sm"
             >
               支援する
             </Link>
@@ -100,7 +100,7 @@ export function Header() {
             <Link
               href="/join"
               onClick={() => setIsOpen(false)}
-              className="block mx-4 mt-3 py-3 text-center font-bold text-white bg-wakakusa hover:bg-wakakusa-dark rounded-full transition-colors"
+              className="block mx-4 mt-3 py-3 text-center font-semibold text-white bg-wakakusa hover:bg-wakakusa-dark rounded-full transition-colors"
             >
               支援する
             </Link>

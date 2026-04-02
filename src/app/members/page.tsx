@@ -41,13 +41,13 @@ function RosterTable({ rows }: { rows: { role: string; name: string }[] }) {
           <tr className="border-b border-border bg-ivory-warm">
             <th
               scope="col"
-              className="whitespace-nowrap px-4 py-3 font-bold text-text-primary sm:px-6"
+              className="whitespace-nowrap px-4 py-3 font-semibold text-text-primary sm:px-6"
             >
               役職
             </th>
             <th
               scope="col"
-              className="px-4 py-3 font-bold text-text-primary sm:px-6"
+              className="px-4 py-3 font-semibold text-text-primary sm:px-6"
             >
               氏名
             </th>

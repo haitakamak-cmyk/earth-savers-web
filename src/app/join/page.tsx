@@ -179,14 +179,14 @@ export default function JoinPage() {
                 }`}
               >
                 {plan.highlight && (
-                  <span className="inline-block bg-wakakusa text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                  <span className="inline-block bg-wakakusa text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
                     おすすめ
                   </span>
                 )}
                 <h3 className="text-xl font-bold text-text-primary">
                   {plan.name}
                 </h3>
-                <p className="mt-1 text-2xl font-bold text-wakakusa">
+                <p className="mt-1 text-2xl font-semibold text-wakakusa">
                   {plan.amount}
                 </p>
                 <p className="mt-3 text-sm text-text-secondary">
@@ -219,7 +219,7 @@ export default function JoinPage() {
                   href={APP_DONATE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full py-3 font-bold transition-colors ${
+                  className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full py-3 font-semibold transition-colors ${
                     plan.highlight
                       ? "bg-wakakusa text-white shadow-sm hover:bg-wakakusa-dark"
                       : "bg-wakakusa-light text-wakakusa-dark hover:bg-wakakusa/20"
@@ -245,7 +245,7 @@ export default function JoinPage() {
       {/* Crowdfunding */}
       <section className="py-12 sm:py-16 bg-accent-gold/10 border-y border-accent-gold/20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-block bg-accent-gold text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+          <span className="inline-block bg-accent-gold text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
             クラウドファンディング実施中
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary font-serif">
@@ -258,7 +258,7 @@ export default function JoinPage() {
           </p>
           <a
             href="#"
-            className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-white font-bold rounded-full transition-colors shadow-sm"
+            className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-sm"
           >
             クラウドファンディングを見る
             <svg
@@ -310,7 +310,7 @@ export default function JoinPage() {
                   href={APP_CLUBS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-2.5 text-sm font-bold text-white transition-colors hover:bg-wakakusa-dark"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-2.5 text-sm font-semibold text-white transition-colors hover:bg-wakakusa-dark"
                 >
                   <AppClubIcon className="h-5 w-5 shrink-0" />
                   アプリで参加する

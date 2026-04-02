@@ -97,7 +97,7 @@ export default function AboutPage() {
                 height={200}
                 className="rounded-full shadow-lg"
               />
-              <p className="mt-4 text-center text-sm font-bold text-text-primary">
+              <p className="mt-4 text-center text-sm font-semibold text-text-primary">
                 代表理事　杉山 孔太
               </p>
             </div>
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <p>
                 七世代先の子どもたちが、安心してきれいな水を飲み、豊かな森で遊べる未来。その未来を、今ここから一緒につくりましょう。
               </p>
-              <p className="font-bold text-text-primary">
+              <p className="font-semibold text-text-primary">
                 「不退転」の覚悟で、水と森の未来を守ります。
               </p>
             </div>
@@ -196,7 +196,7 @@ export default function AboutPage() {
                 key={item.icon}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-border hover:border-wakakusa/30 transition-colors"
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 bg-wakakusa text-white text-sm font-bold rounded-full">
+                <span className="inline-flex items-center justify-center w-10 h-10 bg-wakakusa text-white text-sm font-semibold rounded-full">
                   {item.icon}
                 </span>
                 <h3 className="mt-4 text-base font-bold text-text-primary">
