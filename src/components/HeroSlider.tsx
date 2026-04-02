@@ -13,8 +13,9 @@ const slides = [
   {
     src: "/images/photos/hero-pool-waterfall.png",
     alt: "森の中の清らかな湧水と小さな滝",
-    // 滝・流れ落ちる水は写真の上側 → 縦位置をやや上寄り（% 大きめ）で枠に収める
-    imageClassName: "object-cover object-[center_56%] sm:object-[center_52%]",
+    // 滝は写真の上側。縦の % は小さいほど上が見える（大きいと下寄りで滝が枠外に出る）
+    imageClassName:
+      "object-cover object-[center_30%] sm:object-[center_26%] md:object-[center_22%]",
   },
   {
     src: "/images/photos/hero-forest-sun.png",

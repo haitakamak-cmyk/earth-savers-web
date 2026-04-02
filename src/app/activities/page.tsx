@@ -1,13 +1,47 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "活動内容 | 財団法人 地球防衛群",
   description:
-    "水源地の保全、生態系復活プロジェクト、大地の再生、530運動、環境教育など、地球防衛群の活動をご紹介します。",
+    "水源地の保全、生態系復活プロジェクト、大地の再生、530運動、ばら撒くっ種、環境教育など、地球防衛群の活動をご紹介します。",
 };
 
-const activities = [
+/** `public` 直下のサブディレクトリ（例: images/ばら撒くっ種）に置いた画像を URL 一覧にする */
+function listPublicImageUrls(subdirUnderPublic: string): string[] {
+  const abs = path.join(process.cwd(), "public", subdirUnderPublic);
+  if (!fs.existsSync(abs)) return [];
+  return fs
+    .readdirSync(abs)
+    .filter(
+      (name) =>
+        !name.startsWith(".") &&
+        /\.(jpe?g|png|webp|gif)$/i.test(name)
+    )
+    .sort((a, b) => a.localeCompare(b, "ja"))
+    .map((name) => {
+      const prefix = subdirUnderPublic.split(path.sep).join("/");
+      return `/${prefix}/${name}`;
+    });
+}
+
+type Activity = {
+  id: string;
+  tag: string;
+  tagColor: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  /** 指定時、`public` 内の画像を列挙して表示（空なら `image` を使用） */
+  imageDir?: string;
+  links?: { href: string; label: string }[];
+};
+
+const activities: Activity[] = [
   {
     id: "conservation",
     tag: "水源保全",
@@ -47,6 +81,23 @@ const activities = [
       "地域のゴミ拾いや衆楽園の池そうじ、在来種の種のシェアなど、誰でも気軽に参加できるボランティア活動を行っています。雨の日も風の日も、みんなで楽しくゴミを拾い、お花を植え、街をきれいにする。小さな一歩が、大きな変化を生み出します。",
     image: "/images/photos/pond-cleanup.jpeg",
     imageAlt: "530運動 衆楽園池そうじの集合写真",
+  },
+  {
+    id: "baramaku",
+    tag: "種のシェア",
+    tagColor: "text-accent-gold bg-amber-50",
+    title: "ばら撒くっ種",
+    description:
+      "在来種や野草の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
+    image: "/images/photos/pond-cleanup.jpeg",
+    imageAlt: "ばら撒くっ種・種のシェアと地域の緑を広げる活動",
+    imageDir: "images/ばら撒くっ種",
+    links: [
+      {
+        href: "https://www.facebook.com/groups/baramaku.seed",
+        label: "Facebookグループを開く",
+      },
+    ],
   },
   {
     id: "prevention",
@@ -108,50 +159,93 @@ export default function ActivitiesPage() {
       </section>
 
       {/* Activity Sections */}
-      {activities.map((activity, index) => (
-        <section
-          key={activity.id}
-          id={activity.id}
-          className={`py-16 sm:py-20 ${
-            index % 2 === 0 ? "bg-ivory" : "bg-ivory-warm"
-          }`}
-        >
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div
-              className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } gap-8 md:gap-12 items-center`}
-            >
-              {/* Image */}
-              <div className="w-full md:w-1/2">
-                <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md">
-                  <Image
-                    src={activity.image}
-                    alt={activity.imageAlt}
-                    fill
-                    className="object-cover"
-                  />
+      {activities.map((activity, index) => {
+        const dirImages = activity.imageDir
+          ? listPublicImageUrls(activity.imageDir)
+          : [];
+        const mainSrc = dirImages[0] ?? activity.image;
+        const gallerySrcs = dirImages.slice(1);
+
+        return (
+          <section
+            key={activity.id}
+            id={activity.id}
+            className={`py-16 sm:py-20 ${
+              index % 2 === 0 ? "bg-ivory" : "bg-ivory-warm"
+            }`}
+          >
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+              <div
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } gap-8 md:gap-12 items-center`}
+              >
+                {/* Image */}
+                <div className="w-full md:w-1/2">
+                  <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md">
+                    <Image
+                      src={mainSrc}
+                      alt={activity.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+
+                {/* Text */}
+                <div className="w-full md:w-1/2">
+                  <span
+                    className={`text-xs font-bold px-3 py-1 rounded-full ${activity.tagColor}`}
+                  >
+                    {activity.tag}
+                  </span>
+                  <h2 className="mt-4 text-xl sm:text-2xl font-bold text-text-primary font-serif leading-relaxed">
+                    {activity.title}
+                  </h2>
+                  <p className="mt-4 text-text-secondary leading-relaxed">
+                    {activity.description}
+                  </p>
+                  {activity.links && activity.links.length > 0 ? (
+                    <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+                      {activity.links.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
-              {/* Text */}
-              <div className="w-full md:w-1/2">
-                <span
-                  className={`text-xs font-bold px-3 py-1 rounded-full ${activity.tagColor}`}
-                >
-                  {activity.tag}
-                </span>
-                <h2 className="mt-4 text-xl sm:text-2xl font-bold text-text-primary font-serif leading-relaxed">
-                  {activity.title}
-                </h2>
-                <p className="mt-4 text-text-secondary leading-relaxed">
-                  {activity.description}
-                </p>
-              </div>
+              {gallerySrcs.length > 0 ? (
+                <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4">
+                  {gallerySrcs.map((src, gi) => (
+                    <div
+                      key={src}
+                      className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-sm"
+                    >
+                      <Image
+                        src={src}
+                        alt={`${activity.title}（${gi + 2}枚目）`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
 
       {/* CTA */}
       <section className="py-16 sm:py-20 bg-wakakusa-light">

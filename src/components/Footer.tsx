@@ -17,6 +17,7 @@ const footerLinks = [
       { label: "水源地の保全", href: "/activities#conservation" },
       { label: "水質浄化", href: "/activities#water" },
       { label: "里山再生", href: "/activities#satoyama" },
+      { label: "ばら撒くっ種", href: "/activities#baramaku" },
       { label: "環境教育", href: "/activities#education" },
     ],
   },
