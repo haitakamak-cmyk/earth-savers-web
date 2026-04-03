@@ -9,7 +9,18 @@ export const metadata: Metadata = {
     "公益財団法人地球防衛群への一般お問い合わせ、寄付・取材のご相談はフォームから。メガソーラー・乱開発の相談窓口（駆け込み寺）は準備中。よくある質問（FAQ）もご覧ください。",
 };
 
-export default function ContactPage() {
+const BANK_DONATION_MESSAGE = `都度寄付（銀行振込・郵便振替）の振込先案内を希望します。
+
+氏名（フリガナ）：
+希望寄付額（目安）：`;
+
+type ContactPageProps = {
+  searchParams: Promise<{ intent?: string }>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const { intent } = await searchParams;
+  const isBankDonation = intent === "bank-donation";
   return (
     <>
       {/* Hero */}
@@ -54,7 +65,11 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <ContactForm />
+              <ContactForm
+                initialCategory={isBankDonation ? "donation" : undefined}
+                initialMessage={isBankDonation ? BANK_DONATION_MESSAGE : undefined}
+                submitIntent={isBankDonation ? "bank-donation" : undefined}
+              />
             </div>
 
             {/* Help Desk — 準備中 */}

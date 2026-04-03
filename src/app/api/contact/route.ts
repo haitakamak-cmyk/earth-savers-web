@@ -6,8 +6,7 @@ import { SITE_URL } from "@/lib/site";
  * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
  * 環境変数 RESEND_FROM に認証済みアドレスを必ず設定すること。
  */
-const DEFAULT_FROM =
-  "地球防衛群 お問い合わせ <onboarding@resend.dev>";
+const DEFAULT_FROM = "地球防衛群 <info@earth-savers.org>";
 const DEFAULT_TO = "info@earth-savers.org";
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -81,12 +80,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
   }
 
-  const { name, email, category, message } = body as Record<string, unknown>;
+  const { name, email, category, message, intent } = body as Record<
+    string,
+    unknown
+  >;
 
   const nameStr = typeof name === "string" ? name.trim() : "";
   const emailStr = typeof email === "string" ? email.trim() : "";
   const messageStr = typeof message === "string" ? message.trim() : "";
   const categoryStr = typeof category === "string" ? category.trim() : "";
+  const intentStr = typeof intent === "string" ? intent.trim() : "";
 
   if (!nameStr || !emailStr || !messageStr) {
     return NextResponse.json(
@@ -128,38 +131,91 @@ export async function POST(req: NextRequest) {
     console.info("[contact] Resend accepted staff email id:", data.id, "to:", to);
   }
 
-  const autoReplyText = `${nameStr} 様
+  const isBankDonationFlow =
+    intentStr === "bank-donation" && categoryStr === "donation";
 
-この度は財団法人 地球防衛群（earth savers foundation）へお問い合わせいただき、ありがとうございます。
-お問い合わせを受け付けました。
+  const bankDetails = process.env.BANK_TRANSFER_DETAILS?.trim();
+  const bankSubject =
+    process.env.BANK_DONATION_REPLY_SUBJECT?.trim() ||
+    "【地球防衛群】都度寄付（銀行振込・郵便振替）のご案内";
+
+  const bankIntro =
+    process.env.BANK_DONATION_REPLY_INTRO?.trim() ||
+    `この度は公益財団法人 地球防衛群へ、都度寄付（銀行振込・郵便振替）のお申し出をいただき、ありがとうございます。
+以下の口座へお振込みください。`;
+
+  const bankFooter =
+    process.env.BANK_DONATION_REPLY_FOOTER?.trim() ||
+    `※ 振込名義は、できるだけご登録のお名前と同一でお願いいたします。
+※ 寄付金受領証明書が必要な場合は、お振込後に事務局までご連絡ください。
+
+---
+ご不明な点は、本メールにそのままご返信いただくか、
+${to} までお問い合わせください。
+
+一般財団法人 地球防衛群
+岡山県津山市小田中1403
+${SITE_URL}`;
+
+  let applicantSubject: string;
+  let applicantBody: string;
+
+  if (isBankDonationFlow && bankDetails) {
+    applicantSubject = bankSubject;
+    applicantBody = `${nameStr} 様
+
+${bankIntro}
+
+【振込先】
+${bankDetails}
+
+${bankFooter}
+`;
+  } else {
+    if (isBankDonationFlow && !bankDetails) {
+      console.warn(
+        "[contact] bank-donation だが BANK_TRANSFER_DETAILS 未設定。一般の受付メールを送ります。",
+      );
+    }
+    applicantSubject = "【地球防衛群】お問い合わせを受け付けました";
+    applicantBody = `${nameStr} 様
+
+この度は一般財団法人 地球防衛群（earth savers foundation）へお問い合わせいただき、誠にありがとうございます。
+以下の内容でお問い合わせを受け付けました。
 
 【お問い合わせ種別】${categoryLabel}
 
-担当より追ってご連絡いたします。しばらくお待ちください。
+担当より追ってご連絡いたしますので、恐れ入りますが今しばらくお待ちくださいませ。
 
 ---
-※本メールは自動送信です。
-ご返信・お問い合わせは ${to} までお願いいたします。
+※ご不明な点などがございましたら、本メールにそのままご返信いただくか、
+${to} までお問い合わせください。
 
-財団法人 地球防衛群
+一般財団法人 地球防衛群
+岡山県津山市小田中1403
 ${SITE_URL}
 `;
+  }
 
   const { error: autoReplyError } = await resend.emails.send({
     from,
     to: emailStr,
     replyTo: to,
-    subject: "【地球防衛群】お問い合わせを受け付けました",
-    text: autoReplyText,
+    subject: applicantSubject,
+    text: applicantBody,
   });
 
   if (autoReplyError) {
     console.error(
-      "[contact] auto-reply failed:",
+      "[contact] applicant auto-reply failed:",
       JSON.stringify(autoReplyError, null, 2),
     );
   } else {
-    console.info("[contact] auto-reply sent to:", emailStr);
+    console.info(
+      "[contact] applicant email sent to:",
+      emailStr,
+      isBankDonationFlow && bankDetails ? "(bank template)" : "(generic)",
+    );
   }
 
   return NextResponse.json({ ok: true });

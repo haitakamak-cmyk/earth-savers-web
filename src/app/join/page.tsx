@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
+const BANK_DONATION_CONTACT_HREF = "/contact?intent=bank-donation";
 
 function ExternalLinkIcon({ className }: { className?: string }) {
   return (
@@ -49,31 +50,41 @@ function AppClubIcon({ className }: { className?: string }) {
   );
 }
 
-const supportPlans = [
-  {
-    name: "マンスリーサポーター",
-    amount: "月額 1,000円〜",
-    description: "毎月の継続支援で、活動を安定的に支えてくださる方",
-    features: [
-      "活動報告メールマガジン",
-      "年次活動報告書の送付",
-      "サポーター限定イベントへのご招待",
-      "公式アプリでの活動報告閲覧",
-    ],
-    highlight: true,
-  },
-  {
-    name: "都度寄付",
-    amount: "1,000円〜",
-    description: "ご都合の良いタイミングで、お好きな金額をご支援",
-    features: [
-      "活動報告メールマガジン",
-      "寄付金受領証明書の発行",
-      "使途のご報告",
-    ],
-    highlight: false,
-  },
+const monthlyPlan = {
+  name: "マンスリーサポーター",
+  amount: "月額 1,000円〜",
+  description: "毎月の継続支援で、活動を安定的に支えてくださる方",
+  features: [
+    "活動報告メールマガジン",
+    "年次活動報告書の送付",
+    "サポーター限定イベントへのご招待",
+    "公式アプリでの活動報告閲覧",
+  ],
+};
+
+const oneTimeBankFeatures = [
+  "活動報告メールマガジン",
+  "寄付金受領証明書の発行",
+  "使途のご報告",
 ];
+
+function ArrowCircleIcon({ className }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-text-primary text-white ${className ?? ""}`}
+      aria-hidden
+    >
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </span>
+  );
+}
 
 const volunteerActivities = [
   {
@@ -168,72 +179,117 @@ export default function JoinPage() {
             あなたのご支援が、活動を支えます
           </p>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {supportPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-2 transition-colors ${
-                  plan.highlight
-                    ? "border-wakakusa"
-                    : "border-border hover:border-wakakusa/30"
-                }`}
-              >
-                {plan.highlight && (
-                  <span className="inline-block bg-wakakusa text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                    おすすめ
-                  </span>
-                )}
-                <h3 className="text-xl font-bold text-text-primary">
-                  {plan.name}
-                </h3>
-                <p className="mt-1 text-2xl font-semibold text-wakakusa">
-                  {plan.amount}
-                </p>
-                <p className="mt-3 text-sm text-text-secondary">
-                  {plan.description}
-                </p>
-                <ul className="mt-5 space-y-2.5">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-2 text-sm text-text-secondary"
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {/* マンスリー → アプリ */}
+            <div className="rounded-2xl border-2 border-wakakusa bg-white p-6 shadow-sm transition-colors sm:p-8">
+              <span className="mb-4 inline-block rounded-full bg-wakakusa px-3 py-1 text-xs font-semibold text-white">
+                おすすめ
+              </span>
+              <h3 className="text-xl font-bold text-text-primary">
+                {monthlyPlan.name}
+              </h3>
+              <p className="mt-1 text-2xl font-semibold text-wakakusa">
+                {monthlyPlan.amount}
+              </p>
+              <p className="mt-3 text-sm text-text-secondary">
+                {monthlyPlan.description}
+              </p>
+              <ul className="mt-5 space-y-2.5">
+                {monthlyPlan.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-center gap-2 text-sm text-text-secondary"
+                  >
+                    <svg
+                      className="h-4 w-4 shrink-0 text-wakakusa"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <svg
-                        className="w-4 h-4 text-wakakusa shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={APP_DONATE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full py-3 font-semibold transition-colors ${
-                    plan.highlight
-                      ? "bg-wakakusa text-white shadow-sm hover:bg-wakakusa-dark"
-                      : "bg-wakakusa-light text-wakakusa-dark hover:bg-wakakusa/20"
-                  }`}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={APP_DONATE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+              >
+                サポーターになる
+                <ExternalLinkIcon className="h-4 w-4 shrink-0 opacity-90" />
+              </a>
+            </div>
+
+            {/* 都度寄付 → 銀行振込・郵便振替 */}
+            <div className="rounded-2xl border-2 border-border bg-white p-6 shadow-sm transition-colors hover:border-wakakusa/30 sm:p-8">
+              <h3 className="text-center text-xl font-bold text-text-primary">
+                都度寄付
+              </h3>
+              <p className="mt-1 text-center text-2xl font-semibold text-wakakusa">
+                1,000円〜
+              </p>
+              <p className="mt-2 text-center text-sm text-text-secondary">
+                ご都合の良いタイミングで、お好きな金額をご支援
+              </p>
+
+              <div className="mt-6 rounded-xl border border-border bg-ivory/60 px-4 py-6 text-center sm:px-6">
+                <h4 className="text-lg font-bold text-text-primary">
+                  銀行振込・郵便振替
+                </h4>
+                <div
+                  className="mx-auto mt-3 h-0.5 w-10 rounded-full bg-wakakusa"
+                  aria-hidden
+                />
+                <p className="mt-4 text-sm leading-relaxed text-text-secondary">
+                  下記のリンクよりお申込いただくことで、振込先口座を記載したメールをお送りします。
+                </p>
+                <Link
+                  href={BANK_DONATION_CONTACT_HREF}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-amber-400 px-5 py-3.5 text-base font-semibold text-text-primary shadow-sm transition-colors hover:bg-amber-500"
                 >
-                  {plan.highlight ? "サポーターになる" : "寄付する"}
-                  <ExternalLinkIcon className="h-4 w-4 shrink-0 opacity-90" />
-                </a>
+                  銀行振込で寄付する
+                  <ArrowCircleIcon />
+                </Link>
               </div>
-            ))}
+
+              <ul className="mt-6 space-y-2.5">
+                {oneTimeBankFeatures.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-center gap-2 text-sm text-text-secondary"
+                  >
+                    <svg
+                      className="h-4 w-4 shrink-0 text-wakakusa"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <p className="mt-6 text-center text-xs text-text-muted">
-            ※ 寄付・サポーター登録は公式アプリ上で安全にお手続きいただけます。
+            ※ マンスリーサポーターは公式アプリからお申し込みいただけます。
+            <br />
+            ※ 都度寄付は銀行振込・郵便振替のみです。お問い合わせフォームからお申込みのうえ、事務局より振込先をご案内します。
             <br />
             ※ 寄付金は、水源地の取得・保全、里山再生、生態系復活プロジェクト等の活動に使用されます。
           </p>
