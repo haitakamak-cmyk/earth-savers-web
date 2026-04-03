@@ -14,6 +14,42 @@ const CATEGORY_LABELS: Record<string, string> = {
   other: "その他",
 };
 
+/** Resend のエラーを利用者・運営が次に取るべき行動が分かる日本語に変換 */
+function userFacingResendError(err: {
+  message: string;
+  name: string;
+  statusCode: number | null;
+}): string {
+  const { name, message } = err;
+  const m = message.toLowerCase();
+
+  switch (name) {
+    case "invalid_from_address":
+      return "送信元メール（RESEND_FROM）が Resend で使えません。ドメイン認証が済んでいるアドレスにするか、検証用の onboarding@resend.dev を .env の RESEND_FROM に指定してください。";
+    case "daily_quota_exceeded":
+    case "monthly_quota_exceeded":
+      return "送信上限に達しています。しばらく時間をおいてから再度お試しください。";
+    case "rate_limit_exceeded":
+      return "送信が集中しています。数分後に再度お試しください。";
+    case "invalid_api_key":
+    case "missing_api_key":
+    case "restricted_api_key":
+      return "メール送信の API キーが無効です。環境変数 RESEND_API_KEY を確認してください。";
+    default:
+      break;
+  }
+
+  if (m.includes("domain") && (m.includes("verif") || m.includes("認証"))) {
+    return "送信元ドメインが Resend で未認証です。.env の RESEND_FROM を Resend ダッシュボードの案内どおり onboarding@resend.dev 等に変更するか、earth-savers.org をドメイン認証してください。";
+  }
+
+  if (name === "validation_error" && message.length > 0 && message.length < 200) {
+    return `送信サービスからエラーが返りました: ${message}`;
+  }
+
+  return "送信に失敗しました。しばらくおいてから再度お試しください。";
+}
+
 export async function POST(req: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -67,9 +103,9 @@ export async function POST(req: NextRequest) {
   });
 
   if (error) {
-    console.error("[contact] Resend error:", error);
+    console.error("[contact] Resend error:", JSON.stringify(error, null, 2));
     return NextResponse.json(
-      { error: "送信に失敗しました" },
+      { error: userFacingResendError(error) },
       { status: 500 }
     );
   }

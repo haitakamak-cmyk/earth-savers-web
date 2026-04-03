@@ -5,8 +5,12 @@ import { FormEvent, useState } from "react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+const DEFAULT_ERROR =
+  "送信に失敗しました。しばらくおいてから再度お試しください。";
+
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,10 +24,14 @@ export function ContactForm() {
     const message = String(data.get("message") ?? "").trim();
 
     if (!name || !email || !message) {
+      setErrorMessage(
+        "お名前・メールアドレス・お問い合わせ内容を入力してください。",
+      );
       setStatus("error");
       return;
     }
 
+    setErrorMessage(null);
     setStatus("submitting");
     try {
       const res = await fetch("/api/contact", {
@@ -31,13 +39,27 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, category, message }),
       });
+
+      const payload = (await res.json().catch(() => ({}))) as {
+        error?: string;
+      };
+
       if (!res.ok) {
+        setErrorMessage(
+          typeof payload.error === "string" && payload.error.trim()
+            ? payload.error
+            : DEFAULT_ERROR,
+        );
         setStatus("error");
         return;
       }
+
       setStatus("success");
       form.reset();
     } catch {
+      setErrorMessage(
+        "通信に失敗しました。ネットワークを確認して再度お試しください。",
+      );
       setStatus("error");
     }
   }
@@ -53,7 +75,10 @@ export function ContactForm() {
         </p>
         <button
           type="button"
-          onClick={() => setStatus("idle")}
+          onClick={() => {
+            setStatus("idle");
+            setErrorMessage(null);
+          }}
           className="mt-6 text-sm font-semibold text-wakakusa-dark underline"
         >
           続けて送信する
@@ -64,9 +89,12 @@ export function ContactForm() {
 
   return (
     <form className="space-y-4" onSubmit={onSubmit}>
-      {status === "error" ? (
-        <p className="rounded-lg bg-coral/10 px-3 py-2 text-sm text-coral" role="alert">
-          送信に失敗しました。しばらくおいてから再度お試しください。
+      {status === "error" && errorMessage ? (
+        <p
+          className="rounded-lg bg-coral/10 px-3 py-2 text-sm text-coral"
+          role="alert"
+        >
+          {errorMessage}
         </p>
       ) : null}
       <div>
