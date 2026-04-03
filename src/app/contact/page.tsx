@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 
+import { ContactFaqSection } from "./ContactFaqSection";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ | 財団法人 地球防衛群",
+  title: "お問い合わせ",
   description:
-    "財団法人 地球防衛群へのお問い合わせ・環境トラブル相談窓口（駆け込み寺）はこちら。",
+    "公益財団法人地球防衛群への一般お問い合わせ、寄付・取材のご相談はフォームから。メガソーラー・乱開発の相談窓口（駆け込み寺）は準備中。よくある質問（FAQ）もご覧ください。",
 };
 
 export default function ContactPage() {
@@ -120,6 +121,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <ContactFaqSection />
     </>
   );
 }

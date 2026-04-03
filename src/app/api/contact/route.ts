@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-/** Resend でドメイン未認証のときは .env の RESEND_FROM に onboarding@resend.dev を指定 */
+/**
+ * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
+ * 環境変数 RESEND_FROM に認証済みアドレスを必ず設定すること。
+ */
 const DEFAULT_FROM =
-  "地球防衛群 お問い合わせ <noreply@earth-savers.org>";
+  "地球防衛群 お問い合わせ <onboarding@resend.dev>";
 const DEFAULT_TO = "info@earth-savers.org";
 
 const CATEGORY_LABELS: Record<string, string> = {

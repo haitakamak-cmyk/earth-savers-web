@@ -1,7 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import HeroSlider from "@/components/HeroSlider";
+import { ORGANIZATION_NAME } from "@/lib/site";
+
+/** トップ：AI・検索向けに事実ベースの要約（キャッチコピーは H1 で人間向けに表示） */
+export const metadata: Metadata = {
+  title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
+  description:
+    "公益財団法人地球防衛群は、外資による水源買収やメガソーラー乱開発から日本の水と森を守る非営利団体（NGO）です。水源地保全、里山再生、生態系復活、530運動、環境教育を行います。",
+  openGraph: {
+    title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
+    description:
+      "外資の水源買収・メガソーラー対策、里山再生、生態系保全を行う公益財団法人の公式サイト。",
+  },
+};
 
 export default function Home() {
   return (
