@@ -193,8 +193,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="relative h-48 sm:h-52">
                 <Image
-                  src="/images/photos/pond-cleanup.jpeg"
-                  alt="530運動 ゴミ拾い活動"
+                  src="/images/photos/gomi530-group-vests.png"
+                  alt="ゴミ拾い530運動に参加するメンバーと地域の子どもたちの集合写真"
                   fill
                   className="object-cover"
                 />

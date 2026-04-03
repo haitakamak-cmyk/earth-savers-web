@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "財団について | 財団法人 地球防衛群",
   description:
-    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、組織体制をご紹介します。",
+    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。",
 };
 
 const credoItems = [
@@ -215,7 +215,7 @@ export default function AboutPage() {
       <section id="members" className="py-16 sm:py-24 bg-ivory-warm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
-            組織体制
+            運営体制
           </h2>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -73,6 +73,9 @@ export function ContactForm() {
         <p className="font-semibold text-text-primary">
           お問い合わせを受け付けました。担当者よりご連絡いたします。
         </p>
+        <p className="mt-3 text-sm text-text-secondary leading-relaxed">
+          ご入力のメールアドレスに、受付確認の自動返信をお送りしています。届かない場合は迷惑メールフォルダもご確認ください。
+        </p>
         <button
           type="button"
           onClick={() => {

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
@@ -40,6 +41,13 @@ function userFacingResendError(err: {
       return "メール送信の API キーが無効です。環境変数 RESEND_API_KEY を確認してください。";
     default:
       break;
+  }
+
+  if (
+    m.includes("only send testing") ||
+    m.includes("your own email address")
+  ) {
+    return "Resend のテストモードでは、受信先（CONTACT_TO_EMAIL）を Resend に登録した自分のメールアドレスにしてください。本番で info@ 等へ届けるには resend.com/domains でドメイン認証が必要です。";
   }
 
   if (m.includes("domain") && (m.includes("verif") || m.includes("認証"))) {
@@ -97,20 +105,61 @@ export async function POST(req: NextRequest) {
 
   const resend = new Resend(apiKey);
 
-  const { error } = await resend.emails.send({
+  const staffBody = `お名前: ${nameStr}\nメール: ${emailStr}\n種別: ${categoryLabel}\n\n${messageStr}`;
+
+  const { data, error } = await resend.emails.send({
     from,
     to,
     replyTo: emailStr,
     subject: `【お問い合わせ】${categoryLabel} - ${nameStr}様`,
-    text: `お名前: ${nameStr}\nメール: ${emailStr}\n種別: ${categoryLabel}\n\n${messageStr}`,
+    text: staffBody,
   });
 
   if (error) {
     console.error("[contact] Resend error:", JSON.stringify(error, null, 2));
+    console.error("[contact] from used:", from);
     return NextResponse.json(
       { error: userFacingResendError(error) },
       { status: 500 }
     );
+  }
+
+  if (data?.id) {
+    console.info("[contact] Resend accepted staff email id:", data.id, "to:", to);
+  }
+
+  const autoReplyText = `${nameStr} 様
+
+この度は財団法人 地球防衛群（earth savers foundation）へお問い合わせいただき、ありがとうございます。
+お問い合わせを受け付けました。
+
+【お問い合わせ種別】${categoryLabel}
+
+担当より追ってご連絡いたします。しばらくお待ちください。
+
+---
+※本メールは自動送信です。
+ご返信・お問い合わせは ${to} までお願いいたします。
+
+財団法人 地球防衛群
+${SITE_URL}
+`;
+
+  const { error: autoReplyError } = await resend.emails.send({
+    from,
+    to: emailStr,
+    replyTo: to,
+    subject: "【地球防衛群】お問い合わせを受け付けました",
+    text: autoReplyText,
+  });
+
+  if (autoReplyError) {
+    console.error(
+      "[contact] auto-reply failed:",
+      JSON.stringify(autoReplyError, null, 2),
+    );
+  } else {
+    console.info("[contact] auto-reply sent to:", emailStr);
   }
 
   return NextResponse.json({ ok: true });

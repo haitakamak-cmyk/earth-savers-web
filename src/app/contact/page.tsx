@@ -101,20 +101,13 @@ export default function ContactPage() {
                   現在、体制を整えています
                 </p>
                 <p className="mx-auto max-w-sm text-sm leading-relaxed text-text-secondary">
-                  弁護士・専門家との連携体制が整い次第、
+                  専門家との連携体制が整い次第、
                   環境トラブルの相談窓口を開設いたします。
                   <br className="hidden sm:block" />
                   今しばらくお待ちください。
                 </p>
                 <p className="text-sm text-text-secondary">
-                  緊急の場合は
-                  <a
-                    href="mailto:info@earth-savers.org"
-                    className="mx-1 text-aqua underline"
-                  >
-                    info@earth-savers.org
-                  </a>
-                  へ直接ご連絡ください。
+                  緊急の場合はお問い合わせフォームよりご連絡ください。
                 </p>
               </div>
             </div>

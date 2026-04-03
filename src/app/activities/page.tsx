@@ -79,8 +79,9 @@ const activities: Activity[] = [
     title: "530（ゴミゼロ）運動 ～その一歩で自分も世界も生まれ変わる～",
     description:
       "地域のゴミ拾いや衆楽園の池そうじ、在来種の種のシェアなど、誰でも気軽に参加できるボランティア活動を行っています。雨の日も風の日も、みんなで楽しくゴミを拾い、お花を植え、街をきれいにする。小さな一歩が、大きな変化を生み出します。",
-    image: "/images/photos/pond-cleanup.jpeg",
-    imageAlt: "530運動 衆楽園池そうじの集合写真",
+    image: "/images/photos/gomi530-group-vests.png",
+    imageAlt:
+      "ゴミ拾い530運動に参加する地球防衛群のメンバーと地域の子どもたちの集合写真。伝統的な瓦の壁を背景に、笑顔でトングや活動チラシを持っています。",
   },
   {
     id: "baramaku",

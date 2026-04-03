@@ -51,6 +51,7 @@ export default function PrivacyPage() {
           </h2>
           <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed">
             <li>お問い合わせへの対応、連絡のため</li>
+            <li>お問い合わせ受付の確認メール（自動返信）の送信のため</li>
             <li>本サイトの運営・改善、不正利用の防止のため</li>
             <li>法令に基づく対応のため</li>
           </ul>
