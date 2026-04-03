@@ -306,8 +306,8 @@ export default function Home() {
             <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-accent-gold/20">
               <div className="relative h-56">
                 <Image
-                  src="/images/photos/mega-solar-wide.jpeg"
-                  alt="広がるメガソーラーと荒廃する里山"
+                  src="/images/photos/crisis-satoyama-bamboo.png"
+                  alt="放置竹林と渓流、荒廃する里山の様子"
                   fill
                   className="object-cover"
                 />
@@ -320,7 +320,7 @@ export default function Home() {
               </div>
               <div className="p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-text-primary">
-                  里山の荒廃と放置林
+                  里山の荒廃と放置林・放置竹林
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   耕作放棄地が野生動物の餌場となり、人里への出没が激増。

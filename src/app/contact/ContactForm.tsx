@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -138,6 +139,16 @@ export function ContactForm() {
           placeholder="お問い合わせ内容をご記入ください"
         />
       </div>
+      <p className="text-xs leading-relaxed text-text-muted">
+        送信により、
+        <Link
+          href="/privacy"
+          className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+        >
+          プライバシーポリシー
+        </Link>
+        に記載のとおり個人情報を取り扱うことに同意したものとみなします。
+      </p>
       <button
         type="submit"
         disabled={status === "submitting"}
