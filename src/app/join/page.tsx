@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
-const BANK_DONATION_CONTACT_HREF = "/contact?intent=bank-donation";
+const BANK_DONATION_INFO_HREF = "/join/bank-donation";
 
 function ExternalLinkIcon({ className }: { className?: string }) {
   return (
@@ -249,10 +249,10 @@ export default function JoinPage() {
                   aria-hidden
                 />
                 <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                  下記のリンクよりお申込いただくことで、振込先口座を記載したメールをお送りします。
+                  下記のページで振込先口座をご確認いただけます。受領証明書やメールでの案内をご希望の方は、フォームからお申し込みください。
                 </p>
                 <Link
-                  href={BANK_DONATION_CONTACT_HREF}
+                  href={BANK_DONATION_INFO_HREF}
                   className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-amber-400 px-5 py-3.5 text-base font-semibold text-text-primary shadow-sm transition-colors hover:bg-amber-500"
                 >
                   銀行振込で寄付する
@@ -289,7 +289,11 @@ export default function JoinPage() {
           <p className="mt-6 text-center text-xs text-text-muted">
             ※ マンスリーサポーターは公式アプリからお申し込みいただけます。
             <br />
-            ※ 都度寄付は銀行振込・郵便振替のみです。お問い合わせフォームからお申込みのうえ、事務局より振込先をご案内します。
+            ※ 都度寄付は銀行振込・郵便振替のみです。振込先は
+            <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
+              銀行振込のご案内ページ
+            </Link>
+            をご覧ください。
             <br />
             ※ 寄付金は、水源地の取得・保全、里山再生、生態系復活プロジェクト等の活動に使用されます。
           </p>
@@ -329,6 +333,25 @@ export default function JoinPage() {
               />
             </svg>
           </a>
+        </div>
+      </section>
+
+      {/* 買って応援バナー */}
+      <section className="border-y border-aqua/20 bg-aqua-light/40 py-10 sm:py-14">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <p className="mb-2 text-sm font-semibold text-aqua">お買い物で応援</p>
+          <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
+            Back Nature Store での購入が支援につながります
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+            自然に還るプロダクトを選ぶことで、地球防衛群の活動を支えることができます。
+          </p>
+          <Link
+            href="/shop"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-aqua px-7 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+          >
+            買って応援する →
+          </Link>
         </div>
       </section>
 

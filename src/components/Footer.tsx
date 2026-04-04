@@ -27,6 +27,8 @@ const footerLinks = [
       { label: "寄付する", href: "/join#donation" },
       { label: "サポーター登録", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
+      { label: "アプリ紹介", href: "/app-intro" },
+      { label: "買って応援", href: "/shop" },
       { label: "お問い合わせ", href: "/contact" },
     ],
   },
