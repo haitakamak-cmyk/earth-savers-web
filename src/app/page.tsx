@@ -231,6 +231,48 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Card: ばら撒くっ種 */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative h-48 sm:h-52">
+                <Image
+                  src="/images/ばら撒くっ種/baramaku-seeds-table.png"
+                  alt="ばら撒くっ種の会で並べられた種子や実、モロヘイヤ・マリーゴールドなどのラベル付き袋"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6">
+                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                  種のシェア
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-text-primary">
+                  ばら撒くっ種
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+                  在来種や野草の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。
+                </p>
+                <Link
+                  href="/activities#baramaku"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                >
+                  詳しく見る
+                  <svg
+                    className="ml-1 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
             {/* Card 5: 環境教育 */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="relative h-48 sm:h-52">
