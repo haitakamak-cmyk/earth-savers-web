@@ -5,7 +5,7 @@ const SHOP_URL = "https://back-nature-store.com/";
 export const metadata: Metadata = {
   title: "買って応援",
   description:
-    "Back Nature Store でのお買い物が、地球防衛群の活動支援につながります。自然に還るプロダクトで、毎日の暮らしから地球を守ろう。",
+    "地球防衛群ショップでのお買い物が、地球防衛群の活動支援につながります。自然に還るプロダクトで、毎日の暮らしから地球を守ろう。",
 };
 
 function ExternalLinkIcon({ className }: { className?: string }) {
@@ -28,9 +28,9 @@ function ExternalLinkIcon({ className }: { className?: string }) {
 }
 
 const steps = [
-  "Back Nature Store でお買い物",
-  "購入金額の一部が地球防衛群へ",
-  "水源地保全・里山再生の活動に使われます",
+  "地球防衛群ショップでお買い物",
+  "購入金額の一部が環境活動へ",
+  "水源地保全・里山再生の活動などに使われます",
 ];
 
 export default function ShopPage() {
@@ -51,8 +51,7 @@ export default function ShopPage() {
             「お買い物が、地球を守る支援になる」
           </h2>
           <p className="mt-4 leading-relaxed text-text-secondary">
-            Back Nature Store は、自然に還る素材・環境負荷を抑えたプロダクトを
-            厳選したオンラインショップです。
+            地球防衛群ショップは、自然に還る素材・環境負荷を抑えたプロダクトを厳選したオンラインショップです。
             <br />
             購入金額の一部が地球防衛群の活動支援に充てられます。
           </p>

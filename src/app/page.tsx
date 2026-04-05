@@ -30,9 +30,9 @@ export default function Home() {
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/1 プロジェクト報告書公開</span>
-            <span>2026/3/15 自然観察会開催</span>
-            <span>2026/3/1 植林活動参加者募集！</span>
+            <span>2026/4/23 香南市BENTEN稼働！</span>
+            <span>2026/4/20 クラウドファンファンディング開始</span>
+            <span>2026/4/18 衆楽園池そうじ実施</span>
           </div>
         </div>
       </section>

@@ -10,6 +10,8 @@ const navItems = [
   { label: "メンバー", href: "/members" },
   { label: "活動内容", href: "/activities" },
   { label: "支援・参加する", href: "/join" },
+  { label: "地球防衛群アプリ", href: "/app-intro" },
+  { label: "買って応援", href: "/shop" },
   { label: "お問い合わせ", href: "/contact" },
 ];
 

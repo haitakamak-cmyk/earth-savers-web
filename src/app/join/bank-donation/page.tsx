@@ -24,6 +24,11 @@ const ambassadorAmountRows: { amountLabel: string; rank: string }[] = [
   { amountLabel: "年間100万円〜", rank: "七世代の大使" },
 ];
 
+/** 振込先口座（ハードコード）— アプリ側と同期 */
+const BANK_DETAILS_STATIC = `楽天銀行　第三営業支店（253）
+普通 7215359
+イーエス（カ`;
+
 type PageProps = {
   searchParams: Promise<{ view?: string }>;
 };
@@ -31,7 +36,9 @@ type PageProps = {
 export default async function BankDonationPage({ searchParams }: PageProps) {
   const { view } = await searchParams;
   const isMonthly = view === "monthly";
-  const bankDetails = process.env.BANK_TRANSFER_DETAILS?.trim() ?? "";
+  // 環境変数があれば優先、なければ定数を使用
+  const bankDetails =
+    process.env.BANK_TRANSFER_DETAILS?.trim() || BANK_DETAILS_STATIC;
 
   return (
     <>

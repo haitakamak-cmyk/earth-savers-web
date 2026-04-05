@@ -51,21 +51,16 @@ function AppClubIcon({ className }: { className?: string }) {
 }
 
 const monthlyPlan = {
-  name: "マンスリーサポーター",
+  name: "マンスリーサポーター（アプリ）",
   amount: "月額 1,000円〜",
   description: "毎月の継続支援で、活動を安定的に支えてくださる方",
   features: [
-    "活動報告メールマガジン",
-    "年次活動報告書の送付",
-    "サポーター限定イベントへのご招待",
-    "公式アプリでの活動報告閲覧",
+    "公式サイト・アプリでの活動報告閲覧",
   ],
 };
 
 const oneTimeBankFeatures = [
-  "活動報告メールマガジン",
-  "寄付金受領証明書の発行",
-  "使途のご報告",
+  "公式サイト・アプリでの活動報告閲覧",
 ];
 
 function ArrowCircleIcon({ className }: { className?: string }) {
@@ -341,7 +336,7 @@ export default function JoinPage() {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="mb-2 text-sm font-semibold text-aqua">お買い物で応援</p>
           <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
-            Back Nature Store での購入が支援につながります
+            地球防衛群ショップでの購入が支援につながります
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-text-secondary">
             自然に還るプロダクトを選ぶことで、地球防衛群の活動を支えることができます。
