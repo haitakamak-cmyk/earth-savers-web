@@ -51,7 +51,7 @@ export default function ShopPage() {
             「お買い物が、地球を守る支援になる」
           </h2>
           <p className="mt-4 leading-relaxed text-text-secondary">
-            地球防衛群ショップは、自然に還る素材・環境負荷を抑えたプロダクトを厳選したオンラインショップです。
+            地球防衛群ショップは、自然に還る素材・環境負荷を抑えた<br />プロダクトを厳選したオンラインショップです。
             <br />
             購入金額の一部が地球防衛群の活動支援に充てられます。
           </p>
@@ -61,9 +61,10 @@ export default function ShopPage() {
       <section className="bg-ivory-warm py-16 sm:py-24">
         <div className="mx-auto max-w-lg px-4 text-center sm:px-6">
           <div className="rounded-2xl border-2 border-wakakusa/30 bg-white p-8 shadow-sm">
-            <p className="text-xl font-bold text-text-primary">Back Nature Store</p>
+            <p className="text-xl font-bold text-text-primary">地球防衛群オンライショップ</p>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-              自然素材・無添加・サステナブルにこだわったプロダクトを届けるオンラインショップ
+              自然素材・無添加・サステナブルにこだわった<br />
+              プロダクトを届けるオンラインショップ
             </p>
             <a
               href={SHOP_URL}

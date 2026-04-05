@@ -99,6 +99,24 @@ const features = [
 export default function AppIntroPage() {
   return (
     <>
+      <section className="bg-wakakusa py-14 text-center sm:py-16">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+          <p className="font-semibold text-white">今すぐアプリを使ってみる</p>
+          <a
+            href={APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-semibold text-wakakusa shadow-sm transition-opacity hover:opacity-90"
+          >
+            アプリを開く
+            <ExternalLinkIcon className="h-4 w-4 shrink-0" />
+          </a>
+          <p className="mt-4 text-sm text-white/60">
+            ※ 現在はブラウザアプリです。App Store / Google Play は準備中。
+          </p>
+        </div>
+      </section>
+
       <section className="bg-wakakusa-light py-16 text-center sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
@@ -142,24 +160,6 @@ export default function AppIntroPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-wakakusa py-14 text-center">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
-          <p className="font-semibold text-white">今すぐアプリを使ってみる</p>
-          <a
-            href={APP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-semibold text-wakakusa shadow-sm transition-opacity hover:opacity-90"
-          >
-            アプリを開く
-            <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-          </a>
-          <p className="mt-4 text-sm text-white/60">
-            ※ 現在はブラウザアプリです。App Store / Google Play は準備中。
-          </p>
         </div>
       </section>
     </>
