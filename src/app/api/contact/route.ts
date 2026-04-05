@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { z } from "zod";
 import { SITE_URL } from "@/lib/site";
+import { validateRequestOrigin } from "@/lib/security";
 
 /**
  * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
@@ -16,6 +18,15 @@ const CATEGORY_LABELS: Record<string, string> = {
   media: "取材・メディアについて",
   other: "その他",
 };
+
+/** 入力バリデーション用の Zod スキーマ */
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "お名前は必須です").max(50, "お名前が長すぎます"),
+  email: z.string().trim().email("正しいメールアドレスの形式で入力してください"),
+  category: z.string().trim().optional(),
+  message: z.string().trim().min(1, "メッセージを入力してください").max(2000, "メッセージは2000文字以内で入力してください"),
+  intent: z.string().trim().optional(),
+});
 
 /** Resend のエラーを利用者・運営が次に取るべき行動が分かる日本語に変換 */
 function userFacingResendError(err: {
@@ -61,14 +72,25 @@ function userFacingResendError(err: {
 }
 
 export async function POST(req: NextRequest) {
+  // 1. セキュリティチェック（送信元検証）
+  const isValidOrigin = await validateRequestOrigin();
+  if (!isValidOrigin) {
+    console.error("[contact] Potential CSRF or unauthorized cross-origin request");
+    return NextResponse.json(
+      { error: "不正なリクエスト元です" },
+      { status: 403 },
+    );
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return NextResponse.json(
       { error: "メール送信が設定されていません" },
-      { status: 503 }
+      { status: 503 },
     );
   }
 
+  // 2. 入力バリデーション
   let body: unknown;
   try {
     body = await req.json();
@@ -76,27 +98,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
   }
 
-  if (!body || typeof body !== "object") {
-    return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
-  }
-
-  const { name, email, category, message, intent } = body as Record<
-    string,
-    unknown
-  >;
-
-  const nameStr = typeof name === "string" ? name.trim() : "";
-  const emailStr = typeof email === "string" ? email.trim() : "";
-  const messageStr = typeof message === "string" ? message.trim() : "";
-  const categoryStr = typeof category === "string" ? category.trim() : "";
-  const intentStr = typeof intent === "string" ? intent.trim() : "";
-
-  if (!nameStr || !emailStr || !messageStr) {
+  const result = contactSchema.safeParse(body);
+  if (!result.success) {
     return NextResponse.json(
-      { error: "必須項目が未入力です" },
-      { status: 400 }
+      { error: result.error.issues[0]?.message || "入力内容に誤りがあります" },
+      { status: 400 },
     );
   }
+
+  const { name: nameStr, email: emailStr, category, message: messageStr, intent } = result.data;
+  const categoryStr = category || "";
+  const intentStr = intent || "";
 
   const categoryLabel =
     categoryStr && CATEGORY_LABELS[categoryStr]
@@ -123,7 +135,7 @@ export async function POST(req: NextRequest) {
     console.error("[contact] from used:", from);
     return NextResponse.json(
       { error: userFacingResendError(error) },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
