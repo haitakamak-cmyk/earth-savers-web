@@ -151,7 +151,7 @@ export default async function BankDonationPage({ searchParams }: PageProps) {
                   振込先口座
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                  下記の口座へお振込みください。郵便振替の場合は、払込取扱票の備考欄にご氏名のご記入にご協力ください。
+                  下記の口座へお振込みください。
                 </p>
                 <div className="mt-5 rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6">
                   {bankDetails ? (
@@ -172,7 +172,7 @@ export default async function BankDonationPage({ searchParams }: PageProps) {
                   )}
                 </div>
                 <p className="mt-4 text-sm text-text-muted">
-                  寄付金受領証明書の発行や、メールでの案内をご希望の方は{" "}
+                  メールでの案内をご希望の方は{" "}
                   <Link
                     href="/contact?intent=bank-donation"
                     className="text-wakakusa underline hover:text-wakakusa-dark"

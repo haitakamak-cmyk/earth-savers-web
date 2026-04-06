@@ -79,12 +79,15 @@ export default function TermsPage() {
             第7条（準拠法・管轄）
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
-            本規約の準拠法は日本法とし、本サイトに関する紛争については、当財団の所在地を管轄する裁判所を第一審の専属的合意管轄とします。
+            本規約の準拠法は日本法とし、本サイトに関する紛争については、当財団の所在地（岡山県津山市小田中1403）を管轄する裁判所を第一審の専属的合意管轄とします。
           </p>
 
           <h2 className="mt-10 text-lg font-bold text-text-primary">
             お問い合わせ
           </h2>
+          <p className="mt-3 text-sm leading-relaxed">
+            当財団の所在地：岡山県津山市小田中1403
+          </p>
           <p className="mt-3 text-sm leading-relaxed">
             本規約に関するお問い合わせは、
             <Link

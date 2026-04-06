@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { appSnsLinks } from "@/lib/app-sns-links";
+
 const footerLinks = [
   {
     title: "財団について",
@@ -27,7 +29,11 @@ const footerLinks = [
       { label: "寄付する", href: "/join#donation" },
       { label: "サポーター登録", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
-      { label: "地球防衛群アプリ", href: "/app-intro" },
+      ...appSnsLinks.map((l) => ({
+        label: l.label,
+        href: l.href,
+        external: l.external,
+      })),
       { label: "買って応援", href: "/shop" },
       { label: "お問い合わせ", href: "/contact" },
     ],
@@ -63,13 +69,24 @@ export function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-text-muted hover:text-ivory-warm transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                  <li key={`${link.label}-${link.href}`}>
+                    {"external" in link && link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-text-muted transition-colors hover:text-ivory-warm"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-text-muted transition-colors hover:text-ivory-warm"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

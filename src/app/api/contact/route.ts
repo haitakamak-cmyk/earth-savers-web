@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { SITE_URL } from "@/lib/site";
 import { validateRequestOrigin } from "@/lib/security";
+import { rateLimitAllow } from "@/lib/rate-limit";
 
 /**
  * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
@@ -72,7 +73,16 @@ function userFacingResendError(err: {
 }
 
 export async function POST(req: NextRequest) {
-  // 1. セキュリティチェック（送信元検証）
+  // 1. レート制限 (IP単位または固定キー)
+  const ip = req.headers.get("x-forwarded-for") || "anonymous";
+  if (!(await rateLimitAllow(`contact:${ip}`, 5, 60 * 1000))) {
+    return NextResponse.json(
+      { error: "リクエストが多すぎます。しばらく時間をおいてから再度お試しください。" },
+      { status: 429 },
+    );
+  }
+
+  // 2. セキュリティチェック（送信元検証）
   const isValidOrigin = await validateRequestOrigin();
   if (!isValidOrigin) {
     console.error("[contact] Potential CSRF or unauthorized cross-origin request");

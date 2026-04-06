@@ -97,6 +97,9 @@ export default function PrivacyPage() {
             8. お問い合わせ窓口
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
+            当財団の所在地：岡山県津山市小田中1403
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">
             個人情報の取扱いに関するお問い合わせは、
             <Link
               href="/contact"
