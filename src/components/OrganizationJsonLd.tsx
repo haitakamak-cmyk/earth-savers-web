@@ -1,4 +1,8 @@
-import { ORGANIZATION_NAME, SITE_URL } from "@/lib/site";
+import {
+  ORGANIZATION_NAME,
+  SITE_ORGANIZATION_DESCRIPTION_SHORT,
+  SITE_URL,
+} from "@/lib/site";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -9,8 +13,7 @@ const organizationJsonLd = {
     "@type": "Person",
     name: "杉山 孔太",
   },
-  description:
-    "日本の水源地と山林を外資買収やメガソーラー等の乱開発から守り、水と森を次世代へ引き継ぐ公益財団法人です。水源地保全・里山再生・生態系復活・環境教育などに取り組みます。",
+  description: `${SITE_ORGANIZATION_DESCRIPTION_SHORT}日本の水源地と山林を外資買収やメガソーラー等の乱開発から守り、水と森を次世代へ引き継ぎます。`,
   url: `${SITE_URL}/`,
 } as const;
 

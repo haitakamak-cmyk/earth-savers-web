@@ -4,7 +4,11 @@ import "./globals.css";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { ORGANIZATION_NAME, SITE_URL } from "@/lib/site";
+import {
+  ORGANIZATION_NAME,
+  SITE_ORGANIZATION_DESCRIPTION,
+  SITE_URL,
+} from "@/lib/site";
 
 const zenMaru = Zen_Maru_Gothic({
   variable: "--font-zen-maru",
@@ -24,12 +28,10 @@ export const metadata: Metadata = {
     default: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
     template: `%s | ${ORGANIZATION_NAME}`,
   },
-  description:
-    "公益財団法人地球防衛群は、外資の水源買収やメガソーラー乱開発から日本の水と森を守る活動を行う非営利団体です。水源地保全・里山再生・生態系復活・環境教育に取り組みます。",
+  description: SITE_ORGANIZATION_DESCRIPTION,
   openGraph: {
     title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
-    description:
-      "外資の水源買収・メガソーラー乱開発対策、里山再生と生態系保全を行う公益財団法人。",
+    description: SITE_ORGANIZATION_DESCRIPTION,
     locale: "ja_JP",
     type: "website",
     url: SITE_URL,

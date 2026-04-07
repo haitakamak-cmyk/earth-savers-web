@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
 
   const bankIntro =
     process.env.BANK_DONATION_REPLY_INTRO?.trim() ||
-    `この度は公益財団法人 地球防衛群へ、都度寄付（銀行振込・郵便振替）のお申し出をいただき、ありがとうございます。
+    `この度は財団法人 地球防衛群へ、都度寄付（銀行振込・郵便振替）のお申し出をいただき、ありがとうございます。
 以下の口座へお振込みください。`;
 
   const bankFooter =
@@ -175,7 +175,7 @@ export async function POST(req: NextRequest) {
 ご不明な点は、本メールにそのままご返信いただくか、
 ${to} までお問い合わせください。
 
-一般財団法人 地球防衛群
+財団法人 地球防衛群
 岡山県津山市小田中1403
 ${SITE_URL}`;
 
@@ -202,7 +202,7 @@ ${bankFooter}
     applicantSubject = "【地球防衛群】お問い合わせを受け付けました";
     applicantBody = `${nameStr} 様
 
-この度は一般財団法人 地球防衛群（earth savers foundation）へお問い合わせいただき、誠にありがとうございます。
+この度は財団法人 地球防衛群（earth savers foundation）へお問い合わせいただき、誠にありがとうございます。
 以下の内容でお問い合わせを受け付けました。
 
 【お問い合わせ種別】${categoryLabel}
@@ -213,7 +213,7 @@ ${bankFooter}
 ※ご不明な点などがございましたら、本メールにそのままご返信いただくか、
 ${to} までお問い合わせください。
 
-一般財団法人 地球防衛群
+財団法人 地球防衛群
 岡山県津山市小田中1403
 ${SITE_URL}
 `;

@@ -1,5 +1,16 @@
 /** 本番ドメイン（構造化データ・OG のベース URL） */
 export const SITE_URL = "https://earth-savers.org";
 
-export const ORGANIZATION_NAME = "公益財団法人 地球防衛群";
+/**
+ * サイト表記の法人名（公益財団法人の認定は実績後のため、現段階では「財団法人」表記とする）
+ */
+export const ORGANIZATION_NAME = "財団法人 地球防衛群";
 export const ORGANIZATION_NAME_SHORT = "地球防衛群";
+
+/** メタディスクリプション・OG 等で共通化する一段説明 */
+export const SITE_ORGANIZATION_DESCRIPTION =
+  "財団法人として設立したばかりであり、活動実績を積み公益財団法人の認定を目指しています。外資の水源買収やメガソーラー乱開発から日本の水と森を守り、水源地保全・里山再生・生態系復活・環境教育に取り組みます。";
+
+/** 構造化データ・短文向け */
+export const SITE_ORGANIZATION_DESCRIPTION_SHORT =
+  "財団法人として、水源地保全・里山再生・生態系復活・環境教育に取り組み、公益認定を目指しています。";
