@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { appSnsLinks } from "@/lib/app-sns-links";
+import { ORGANIZATION_NAME } from "@/lib/site";
 
 const navItemsBeforeAppSns = [
   { label: "HOME", href: "/" },
@@ -49,17 +50,23 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-ivory/95 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex h-16 items-center justify-between sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-2">
+        <div className="flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20 sm:gap-4 sm:py-2.5">
+          {/* Logo + 法人名（site.ts の ORGANIZATION_NAME と一致） */}
+          <Link
+            href="/"
+            className="flex shrink-0 flex-col items-start gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wakakusa/50 focus-visible:ring-offset-2"
+          >
             <Image
               src="/images/logo/yoko_c1.png"
               alt="Earth Savers - 地球防衛群"
               width={180}
               height={48}
               priority
-              className="h-10 w-auto sm:h-12"
+              className="h-9 w-auto sm:h-11"
             />
+            <span className="font-serif text-[10px] font-semibold leading-snug text-text-primary sm:text-xs md:whitespace-nowrap">
+              {ORGANIZATION_NAME}
+            </span>
           </Link>
 
           {/* Desktop Nav */}

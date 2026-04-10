@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -10,21 +13,116 @@ export const metadata: Metadata = {
     "環境教育の一環としての出版物のご紹介と、新聞・メディア掲載の実績です。財団法人 地球防衛群（Earth Savers）。",
 };
 
-/** 生態系復活プロジェクト実績 PDF（テキスト抽出）に基づく掲載例。詳細は事務局へ。 */
-const mediaHighlights = [
+/** `public/images/media/` に同名ファイルを置くと表示されます（jpg / png / webp など）。 */
+const NEWSPAPER_ITEMS = [
   {
     title: "山陽新聞（岡山）",
     body: "水の日特集に、水質浄化機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
+    imageFile: "newspaper-sanyo-shimbun.jpg",
+    imageAlt:
+      "山陽新聞の紙面。水の日特集で水質浄化や新庄村との取り組みが紹介されている様子。",
   },
   {
-    title: "大阪・関西万博での登壇",
-    body: "登壇の様子が地元新聞で紹介されました（プロジェクト実績資料に記載）。",
+    title: "津山朝日新聞",
+    body: "活動内容が紙面で紹介されました。クリップや掲載日の確認はお問い合わせください。",
+    imageFile: "newspaper-tsuyama-asahi.jpg",
+    imageAlt: "津山朝日新聞の紙面で地球防衛群の活動が紹介されている様子。",
   },
   {
-    title: "その他の新聞掲載",
-    body: "実績資料には、諏訪湖（長野県岡谷市）周辺の取り組みなどを扱った「新聞掲載」スライドが含まれています。紙面名・掲載日の詳細はお問い合わせください。",
+    title: "諏訪（長野県岡谷市周辺）の新聞",
+    body: "諏訪湖周辺の取り組みなどを扱った紙面です。紙面名・掲載日の詳細はお問い合わせください。",
+    imageFile: "newspaper-suwa.jpg",
+    imageAlt: "諏訪・岡谷周辺の取り組みが掲載された新聞の紙面。",
   },
-];
+] as const;
+
+const EXPO_HIGHLIGHT = {
+  title: "大阪・関西万博での登壇",
+  body: "万博会場での登壇の様子です。地元新聞などでも紹介されました（プロジェクト実績資料に記載）。",
+  imageFile: "expo-stage.jpg",
+  imageAlt: "大阪・関西万博の会場で登壇している様子。",
+} as const;
+
+const MEDIA_DIR = path.join(process.cwd(), "public", "images", "media");
+
+/** 指定名、または同じベース名の jpg / jpeg / png / webp を探す */
+function resolveMediaFile(file: string): string | null {
+  const direct = path.join(MEDIA_DIR, file);
+  if (fs.existsSync(direct)) return file;
+  const stem = file.replace(/\.[^/.]+$/, "");
+  for (const ext of [".jpg", ".jpeg", ".png", ".webp"] as const) {
+    const name = `${stem}${ext}`;
+    if (fs.existsSync(path.join(MEDIA_DIR, name))) return name;
+  }
+  return null;
+}
+
+function mediaImagePath(file: string) {
+  const resolved = resolveMediaFile(file);
+  return `/images/media/${resolved ?? file}`;
+}
+
+function mediaImageExists(file: string): boolean {
+  return resolveMediaFile(file) !== null;
+}
+
+function MediaPhoto({
+  file,
+  alt,
+  priority,
+  layout = "card",
+}: {
+  file: string;
+  alt: string;
+  priority?: boolean;
+  /** 新聞カードは 4:3、万博など横長は wide */
+  layout?: "card" | "wide";
+}) {
+  const ok = mediaImageExists(file);
+  const src = mediaImagePath(file);
+  const frame =
+    layout === "wide"
+      ? "aspect-video w-full min-h-[200px] sm:min-h-[280px]"
+      : "aspect-[4/3] w-full";
+
+  if (!ok) {
+    return (
+      <div
+        className={`flex ${frame} flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-ivory px-4 text-center`}
+      >
+        <span className="text-sm font-medium text-text-secondary">
+          {layout === "wide" ? "登壇の写真は準備中です" : "写真は準備中です"}
+        </span>
+        <span className="text-xs leading-relaxed text-text-muted">
+          {layout === "wide"
+            ? "会場での登壇写真をご用意いただければ、こちらに掲載いたします。"
+            : "紙面写真を事務局でお持ちの場合は、Web 用データのご提供をお願いする場合がございます。"}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`relative ${frame} overflow-hidden rounded-xl bg-ivory`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={
+          layout === "wide"
+            ? "object-cover object-center"
+            : "object-cover object-top"
+        }
+        sizes={
+          layout === "wide"
+            ? "(max-width: 768px) 100vw, 48rem"
+            : "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
+        }
+        priority={priority}
+      />
+    </div>
+  );
+}
 
 function ExternalLinkIcon({ className }: { className?: string }) {
   return (
@@ -103,25 +201,60 @@ export default function MediaPage() {
       </section>
 
       <section className="bg-ivory-warm py-14 sm:py-20">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary">
             新聞・メディア掲載の実績
           </h2>
           <p className="mt-3 text-center text-sm leading-relaxed text-text-secondary">
-            水質浄化・生態系復活プロジェクトなどの活動が、新聞で取り上げられた事例の一部です（社内実績資料より整理）。
+            水質浄化・生態系復活プロジェクトなどの活動が、新聞で取り上げられた事例です（社内実績資料より整理）。
           </p>
-          <ul className="mt-10 space-y-6">
-            {mediaHighlights.map((item) => (
+
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {NEWSPAPER_ITEMS.map((item, i) => (
               <li
                 key={item.title}
-                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+                className="flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
               >
-                <h3 className="font-semibold text-text-primary">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-secondary">{item.body}</p>
+                <div className="p-4 pb-0">
+                  <MediaPhoto
+                    file={item.imageFile}
+                    alt={item.imageAlt}
+                    priority={i === 0}
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5 pt-4">
+                  <h3 className="font-semibold text-text-primary">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">{item.body}</p>
+                </div>
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-xs text-text-muted">
+
+          <div className="mt-14">
+            <h2 className="text-center font-serif text-2xl font-bold text-text-primary">
+              大阪・関西万博
+            </h2>
+            <p className="mt-2 text-center text-sm text-text-secondary">
+              登壇の様子
+            </p>
+            <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+              <div className="p-4 sm:p-6 sm:pb-4">
+                <MediaPhoto
+                  file={EXPO_HIGHLIGHT.imageFile}
+                  alt={EXPO_HIGHLIGHT.imageAlt}
+                  layout="wide"
+                />
+              </div>
+              <div className="border-t border-border px-5 pb-6 pt-2 sm:px-8 sm:pb-8">
+                <h3 className="font-semibold text-text-primary">{EXPO_HIGHLIGHT.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                  {EXPO_HIGHLIGHT.body}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-10 text-center text-xs text-text-muted">
             クリップのコピーや掲載日の確認は{" "}
             <Link href="/contact" className="text-wakakusa underline hover:text-wakakusa-dark">
               お問い合わせ
