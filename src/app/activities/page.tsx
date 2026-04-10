@@ -66,7 +66,7 @@ const activities: Activity[] = [
     id: "satoyama",
     tag: "大地の再生",
     tagColor: "text-wakakusa bg-wakakusa-light",
-    title: "里山オーガニック ～大地の再生の手法で～",
+    title: "里山オーガニック再生 ～大地の再生の手法で～",
     description:
       "現代のコンクリートやアスファルトは大地の水脈を分断し、空気と水の循環を止めてしまいます。「大地の再生」の考え方に基づき、風の草刈りや点穴掘りで空気と水の通り道を回復。放置された人工林・竹林に光を入れ、耕作放棄地を里山として再生します。人と動物が共生できる「やさしい境界線」をつくります。",
     image: "/images/photos/activity-bamboo.jpeg",

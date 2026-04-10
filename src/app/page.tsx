@@ -9,9 +9,9 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
   description:
-    "財団法人として設立したばかりであり、活動実績を積み公益財団法人の認定を目指しています。外資による水源買収やメガソーラー乱開発から日本の水と森を守るNGOです。水源地保全、里山再生、生態系復活、530運動、環境教育を行います。",
+    "活動実績を積み公益財団法人の認定を目指しています。外資による水源買収やメガソーラー乱開発から日本の水と森を守るNGOです。水源地保全、里山再生、生態系復活、530運動、環境教育を行います。",
   openGraph: {
-    title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
+    title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:
       "財団法人として公益認定を目指し、水源地保全・里山再生・生態系保全・530運動などに取り組む公式サイト。",
   },
@@ -162,7 +162,7 @@ export default function Home() {
                   大地の再生
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
-                  里山オーガニック
+                  里山オーガニック再生
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   放置された森に光を。大地の再生の手法で水脈を回復し、自然の防波堤を育てています。

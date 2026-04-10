@@ -11,6 +11,7 @@ const footerLinks = [
       { label: "クレド", href: "/about#credo" },
       { label: "組織体制", href: "/about#members" },
       { label: "メンバー紹介", href: "/members" },
+      { label: "メディア・実績", href: "/media" },
     ],
   },
   {

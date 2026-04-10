@@ -70,9 +70,9 @@ export default function HeroSlider() {
           水源を守る。山を守る。未来を守る。
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow sm:mt-6 sm:text-lg md:text-xl">
-          七世代先の子どもたちへ、水と森を残すために。
+          日本の宝「命の水と森」を子どもたちへ残す。
           <br className="hidden sm:block" />
-          財団法人「地球防衛群」をつくる。
+          財団法人「地球防衛群」
         </p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Link

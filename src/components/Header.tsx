@@ -14,9 +14,10 @@ const navItemsBeforeAppSns = [
   { label: "支援・参加する", href: "/join" },
 ];
 
+/** お問い合わせはヘッダーからは外し、フッター等からご案内（メニュー圧迫と「下げる」要望のため） */
 const navItemsAfterAppSns = [
   { label: "買って応援", href: "/shop" },
-  { label: "お問い合わせ", href: "/contact" },
+  { label: "メディア・実績", href: "/media" },
 ];
 
 function ChevronDownIcon({ className }: { className?: string }) {
