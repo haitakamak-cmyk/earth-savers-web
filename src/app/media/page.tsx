@@ -36,7 +36,7 @@ const NEWSPAPER_ITEMS = [
   },
   {
     title: "諏訪（長野県岡谷市周辺）の新聞",
-    body: "諏訪湖周辺の取り組みなどを扱った紙面です。紙面名・掲載日の詳細はお問い合わせください。",
+    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが新聞で取り上げられました。澱んだ水質の浄化に市民の方々も興味津々でした。",
     imageFile: "newspaper-suwa.jpg",
     imageAlt: "諏訪・岡谷周辺の取り組みが掲載された新聞の紙面。",
   },
@@ -44,7 +44,7 @@ const NEWSPAPER_ITEMS = [
 
 const EXPO_HIGHLIGHT = {
   title: "大阪・関西万博での登壇",
-  body: "万博会場での登壇の様子です。地元新聞などでも紹介されました（プロジェクト実績資料に記載）。",
+  body: "万博会場での登壇の様子です。生態系復活プロジェクトでの成果を発表しました。そ内容は地元新聞などでも紹介されました。",
   imageFile: "expo-stage.jpg",
   imageAlt: "大阪・関西万博の会場で登壇している様子。",
 } as const;
@@ -167,7 +167,7 @@ export default function MediaPage() {
             環境教育の本
           </h2>
           <p className="mt-3 text-center text-sm leading-relaxed text-text-secondary">
-            環境教育の一環として、親子でも読みやすい本の出版にも取り組んでいます。身近な生活と地球のことをつなぐ入門書です。
+            環境教育の一環として、親子でも読みやすい本の出版にも取り組んでいます。<br />身近な生活と地球のことをつなぐ入門書です。
           </p>
 
           <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
@@ -195,7 +195,7 @@ export default function MediaPage() {
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
               >
-                Back Nature Store で見る
+                地球防衛群ショップ で見る
                 <ExternalLinkIcon className="h-4 w-4 shrink-0" />
               </a>
               <p className="mt-3 text-xs text-text-muted">
@@ -212,7 +212,7 @@ export default function MediaPage() {
             新聞・メディア掲載の実績
           </h2>
           <p className="mt-3 text-center text-sm leading-relaxed text-text-secondary">
-            水質浄化・生態系復活プロジェクトなどの活動が、新聞で取り上げられた事例です（社内実績資料より整理）。
+            活動・生態系復活プロジェクトなどが、新聞で取り上げられた事例です。
           </p>
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
