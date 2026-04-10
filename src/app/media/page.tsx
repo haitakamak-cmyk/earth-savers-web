@@ -24,9 +24,15 @@ const NEWSPAPER_ITEMS = [
   },
   {
     title: "津山朝日新聞",
-    body: "活動内容が紙面で紹介されました。クリップや掲載日の確認はお問い合わせください。",
+    body: "大阪湾の水質改善プロジェクト3年間の成果が紙面で紹介されました。「大阪湾のウニ復活」と題し、大阪・関西万博での発表内容も掲載。",
     imageFile: "newspaper-tsuyama-asahi.jpg",
-    imageAlt: "津山朝日新聞の紙面で地球防衛群の活動が紹介されている様子。",
+    imageAlt: "津山朝日新聞の紙面。「大阪湾のウニ復活」の見出しで水質改善プロジェクトの成果が紹介されている様子。",
+  },
+  {
+    title: "津山朝日新聞（衆楽園）",
+    body: "津山市の国名勝・衆楽園での水草除去作業が紙面で紹介されました。ボランティア約30人が参加し、スイレンやヒシを除去。2022年より継続実施中。",
+    imageFile: "newspaper-tsuyama-shurakuen.jpg",
+    imageAlt: "津山朝日新聞の紙面。衆楽園でのスイレン除去作業とボランティア活動の様子。",
   },
   {
     title: "諏訪（長野県岡谷市周辺）の新聞",
@@ -238,6 +244,21 @@ export default function MediaPage() {
               登壇の様子
             </p>
             <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+              {/* 登壇シーン（南出市長 × 杉山社長）*/}
+              {mediaImageExists("expo-stage-2.jpg") && (
+                <div className="p-4 pb-0 sm:p-6 sm:pb-0">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-ivory">
+                    <Image
+                      src="/images/media/expo-stage-2.jpg"
+                      alt="大阪・関西万博 TEAM EXPO Pavilion。泉大津市長 南出賢一氏（左）とes株式会社 代表取締役 杉山孔太氏（右）が登壇。"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, 48rem"
+                    />
+                  </div>
+                </div>
+              )}
+              {/* 集合写真 */}
               <div className="p-4 sm:p-6 sm:pb-4">
                 <MediaPhoto
                   file={EXPO_HIGHLIGHT.imageFile}
@@ -248,7 +269,7 @@ export default function MediaPage() {
               <div className="border-t border-border px-5 pb-6 pt-2 sm:px-8 sm:pb-8">
                 <h3 className="font-semibold text-text-primary">{EXPO_HIGHLIGHT.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                  {EXPO_HIGHLIGHT.body}
+                  大阪・関西万博 TEAM EXPO Pavilionに登壇。泉大津市長 南出賢一氏と共に、大阪湾の水質改善プロジェクトの3年間の成果を発表しました。地元新聞（津山朝日新聞）にも掲載されました。
                 </p>
               </div>
             </div>
