@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
-const BANK_DONATION_INFO_HREF = "/join/bank-donation";
+const BANK_DONATION_INFO_HREF = "/contact?intent=bank-donation&category=donation";
 /** For Good クラウドファンディング */
 const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
