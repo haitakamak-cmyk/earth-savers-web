@@ -38,6 +38,7 @@ const footerLinks = [
         disabled: l.disabled,
       })),
       { label: "買って応援", href: "/shop" },
+      { label: "メディア・実績", href: "/media" },
       { label: "お問い合わせ", href: "/contact" },
     ],
   },

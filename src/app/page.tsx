@@ -9,7 +9,7 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
   description:
-    "外国資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守ります。取得した山林は恒久的に保全し、地下水脈のネットワークを維持・回復。七世代先の子どもたちに、きれいな水を届けるための土台を築きます。",
+    "水源地の保全・里山の再生・生態系の復活を通じて、命の源である「水」と「森」を次世代へつなぐ財団法人 地球防衛群。外資による買収や乱開発に直面する日本の自然を正面から守り、七世代先の子どもたちへ美しい環境を引き継ぎます。",
   openGraph: {
     title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:
@@ -41,14 +41,20 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            私たちの主旨
+            私たちの使命
           </h2>
-          <p className="mt-8 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto font-medium">
-            外資による水源地の買収や、大規模な開発から<br />
-            日本の豊かな水源を大切に守ります。<br />
-            <br />
-            地球防衛群は水源地の保全、里山の再生、そして生態系の復活を通じて、日本の美しい風景と命の源である「水」を次世代へつないでいくことを使命としています。
-          </p>
+          <div className="mt-8 space-y-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto font-medium">
+            <p>
+              地球防衛群は、水源地の保全・里山の再生・生態系の復活を通じて、<br className="hidden sm:block" />
+              命の源である「水」と「森」を次世代へつなぐために活動しています。
+            </p>
+            <p>
+              外資による水源地の買収、メガソーラーによる山林の乱開発——<br className="hidden sm:block" />
+              今、日本の水と自然の防壁が音を立てて崩れかけています。<br className="hidden sm:block" />
+              私たちはこの現実に正面から向き合い、七世代先の子どもたちが<br className="hidden sm:block" />
+              安心してきれいな水を飲める未来を守ります。
+            </p>
+          </div>
         </div>
       </section>
 
@@ -350,7 +356,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-text-primary">
                   乱開発と外資買収
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
                   メガソーラーの無秩序な建設と、外国資本による水源地の買収。<br />
                   山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
@@ -383,7 +389,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-text-primary">
                   里山の荒廃と放置林
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
                   手入れの行き届かない人工林や竹林は、保水力を失い、生態系のバランスを崩してしまいます。<br />
                   荒廃した里山は、野生動物と人間の境界を曖昧にする原因にもなっています。
                 </p>
@@ -391,13 +397,13 @@ export default function Home() {
                   <div>
                     <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（水質改善）</p>
                     <p className="text-sm text-text-secondary">
-                      微生物テクノロジー『BENTEN』による物理的浄化と生態系の復活。
+                      微生物テクノロジー「BENTEN」による物理的浄化と生態系の復活。
                     </p>
                   </div>
                   <div>
                     <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（里山再生）</p>
                     <p className="text-sm text-text-secondary">
-                      『大地の再生』メソッドによる水脈のデフラグ（再構築）と『530運動』『ばら撒くっ種』による実践。
+                      「大地の再生」メソッドによる水脈のデフラグ（再構築）と「530運動」「ばら撒くっ種」による実践。
                     </p>
                   </div>
                 </div>
@@ -425,9 +431,9 @@ export default function Home() {
                 代表理事メッセージ
               </h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                森が深呼吸すると、私たちの水が美味しくなる。
-                この当たり前の循環が、今まさに壊されようとしています。
-                私たちは「誠実」な覚悟で、この問題に取り組みます。
+                森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。
+                この当たり前の循環は、敵を倒して勝ち取るものではなく、
+                大地と向き合い、手を動かし、丁寧に取り戻していくものです。
               </p>
               <p className="mt-4 text-sm font-semibold text-text-primary">
                 代表理事　杉山 孔太
