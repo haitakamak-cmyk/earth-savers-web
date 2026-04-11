@@ -55,7 +55,7 @@
 
 | 領域 | パス |
 |------|------|
-| サイト定数・法人名・上記フラグ | `src/lib/site.ts` |
+| サイト定数・法人名・住所・代表者・上記フラグ | `src/lib/site.ts`（`ORGANIZATION_POSTAL_CODE` / `ORGANIZATION_ADDRESS_LINE` / `ORGANIZATION_REPRESENTATIVE_*` / `ORGANIZATION_FOUNDED_LABEL`・`ORGANIZATION_FOUNDING_DATE_ISO`。JSON-LD・規約・PP・お問い合わせメールと同期） |
 | アプリ紹介 + SNS 一覧（`id` / `disabled` / `external`） | `src/lib/app-sns-links.ts` |
 | ヘッダー（ロゴ下に `ORGANIZATION_NAME`、アプリ・SNS メニュー） | `src/components/Header.tsx` |
 | フッター | `src/components/Footer.tsx` |

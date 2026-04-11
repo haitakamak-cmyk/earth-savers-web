@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { ORGANIZATION_ADDRESS_LINE } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "プライバシーポリシー | 財団法人 地球防衛群",
   description:
@@ -97,7 +99,7 @@ export default function PrivacyPage() {
             8. お問い合わせ窓口
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
-            当財団の所在地：岡山県津山市小田中1403
+            当財団の所在地：{ORGANIZATION_ADDRESS_LINE}
           </p>
           <p className="mt-3 text-sm leading-relaxed">
             個人情報の取扱いに関するお問い合わせは、

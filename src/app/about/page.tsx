@@ -1,10 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
+
+import {
+  ORGANIZATION_ADDRESS_LINE,
+  ORGANIZATION_FOUNDED_LABEL,
+  ORGANIZATION_NAME,
+  ORGANIZATION_POSTAL_CODE,
+  ORGANIZATION_REPRESENTATIVE_NAME,
+  ORGANIZATION_REPRESENTATIVE_TITLE,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "理念・運営体制",
   description:
-    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。日本の水源地と山林を次世代へ引き継ぐ、私たちの揺るぎない決意をまとめています。",
+    "一般財団法人 地球防衛群の法人概要、設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。日本の水源地と山林を次世代へ引き継ぐ、私たちの揺るぎない決意をまとめています。",
 };
 
 const credoItems = [
@@ -51,20 +61,20 @@ const faqItems = [
     a: "現在は一般財団法人として活動しており、将来的に公益認定（公益財団法人）を目指しています。透明性の高い運営と、公益に資する活動を継続してまいります。",
   },
   {
-    q: "水質改善システム『BENTEN（ベンテン）』とは何ですか？",
-    a: "ナノバブルと微生物技術を活用した、独自の水環境改善システムです。池や河川の低酸素状態を解消し、本来の生態系が戻りやすい環境を整えます。",
+    q: "ナノバブル発生器 『B-369』とは何ですか？",
+    a: "独自開発のナノバブル発生器『B-369』を活用した、水環境改善システムです。池や河川の低酸素状態を解消し、本来の生態系が戻りやすい環境を整えます。",
   },
   {
     q: "どの地域で活動していますか？",
-    a: "本拠地である岡山県をはじめ、香川、高知、京都など、全国各地の水源地や里山、河川で活動・導入実績があります。お困りの地域があれば全国どこでもご相談を受け付けています。",
+    a: "本拠地である岡山県をはじめ、西日本を中心に、水源地や里山、河川で活動・導入実績があります。お困りの地域があれば全国どこでもご相談を受け付けています。",
   },
   {
     q: "寄付金は何に使われますか？",
-    a: "水源地や山林の取得・管理費用、BENTENの導入・メンテナンス、地域の清掃活動（530運動）、環境教育プログラムの運営などに充てられます。収支は定期的に公開いたします。",
+    a: "水源地や山林の取得・管理費用、B-369の導入・メンテナンス、法律等専門家への相談、地域の清掃活動（530運動）、環境教育プログラムの運営などに充てられます。",
   },
   {
     q: "寄付控除の対象ですか？",
-    a: "現在は一般財団法人のため、税制上の寄付金控除の対象外となります。将来的に公益認定を受けた際には、控除の対象となる予定です。",
+    a: "現在は一般財団法人のため、税制上の寄付金控除の対象外となります。控除の対象となるように公益化を目指しています。",
   },
   {
     q: "ボランティアは誰でも参加できますか？",
@@ -72,7 +82,7 @@ const faqItems = [
   },
   {
     q: "メガソーラー問題にはどう関わっていますか？",
-    a: "山林の乱開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じた法的アドバイスなど、「駆け込み寺」としての支援を行っています。",
+    a: "山林の乱開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じた法的アドバイスなど、今後「駆け込み寺」としての支援が行えるように準備を進めています。",
   },
   {
     q: "水源地保全とは具体的に何をする活動ですか？",
@@ -97,7 +107,7 @@ const members = [
     role: "事務局長",
     image: "/images/photos/ono-makoto.png",
     description:
-      "財団の運営を支え、行政手続きのサポートを行う。環境コンサルタントとしても全国を飛び回り、現場と向き合っている。",
+      "財団の運営を支え、行政手続きのサポートを行う。環境コンサルタントとしても岡山県内を飛び回り、現場と向き合っている。",
   },
 ];
 
@@ -127,6 +137,72 @@ export default function AboutPage() {
             </h1>
             <p className="mt-2 text-white/80 text-sm sm:text-base">About Us</p>
           </div>
+        </div>
+      </section>
+
+      {/* 法人概要 */}
+      <section id="overview" className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
+            法人概要
+          </h2>
+          <p className="mt-3 text-center text-sm text-text-muted">
+            登記・契約・領収書など公的文書に用いる名称・所在地の例です。
+          </p>
+          <dl className="mt-10 divide-y divide-border rounded-2xl border border-border bg-ivory/60 px-5 py-2 sm:px-8">
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">法人名</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_NAME}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">所在地</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                <span className="whitespace-nowrap">〒{ORGANIZATION_POSTAL_CODE}</span>
+                <br />
+                {ORGANIZATION_ADDRESS_LINE}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">
+                {ORGANIZATION_REPRESENTATIVE_TITLE}
+              </dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_REPRESENTATIVE_NAME}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">設立（登記）</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_FOUNDED_LABEL}
+                <span className="mt-2 block text-xs text-text-muted">
+                  ※ 具体日まで掲載する場合は登記と照合のうえ{" "}
+                  <code className="rounded bg-white px-1 py-0.5 text-[11px]">site.ts</code>{" "}
+                  の <code className="rounded bg-white px-1 py-0.5 text-[11px]">
+                    ORGANIZATION_FOUNDED_LABEL
+                  </code>
+                  ／
+                  <code className="rounded bg-white px-1 py-0.5 text-[11px]">
+                    ORGANIZATION_FOUNDING_DATE_ISO
+                  </code>
+                  を更新してください。
+                </span>
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">お問い合わせ</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                <Link
+                  href="/contact"
+                  className="text-wakakusa underline decoration-wakakusa/40 underline-offset-2 hover:text-wakakusa-dark"
+                >
+                  お問い合わせフォーム
+                </Link>
+                よりご連絡ください。
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 

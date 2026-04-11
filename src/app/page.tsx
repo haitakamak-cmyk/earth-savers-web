@@ -9,7 +9,7 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
   description:
-    "水源地の保全・里山の再生・生態系の復活を通じて、命の源である「水」と「森」を次世代へつなぐ財団法人 地球防衛群。外資による買収や乱開発に直面する日本の自然を正面から守り、七世代先の子どもたちへ美しい環境を引き継ぎます。",
+    "水源地の保全・里山の再生・生態系の復活を通じて、命の源である「水」と「森」を次世代へつなぐ、一般財団法人 地球防衛群の公式サイト。ナノバブル発生器「B-369」を活用した現場の実践を通じて、七世代先の子どもたちへ美しい環境を引き継ぎます。",
   openGraph: {
     title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:
@@ -25,7 +25,7 @@ export default function Home() {
       
       {/* ===== LLM / Search Definition ===== */}
       <div className="sr-only">
-        地球防衛群は、日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。
+        岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器『B-369』を用いた環境改善や、伝統的な『大地の再生』メソッドによる保全活動を実践しています。
       </div>
 
       {/* ===== News Ticker ===== */}
@@ -35,7 +35,7 @@ export default function Home() {
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/23 [水質浄化システム] 香南市にて水質改善システム 『BENTEN』 稼働開始</span>
+            <span>2026/4/23 [水質環境改善] 香南市にてナノバブル発生器 『B-369』 導入・稼働開始</span>
             <span>2026/4/20 クラウドファンディング開始</span>
             <span>2026/4/18 衆楽園池そうじ実施</span>
           </div>
@@ -69,7 +69,7 @@ export default function Home() {
             私たちの活動
           </h2>
           <p className="mt-3 text-center text-text-muted text-sm sm:text-base">
-            --- 実働部隊の足跡 ---
+            --- 現場の記録 ---
           </p>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -133,7 +133,7 @@ export default function Home() {
                   生態系復活プロジェクト
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  水から生態系を蘇らせる。微生物の力を活かした水質浄化で、河川や池のいのちを取り戻します。
+                  水から生態系を蘇らせる。ナノバブルの力を活かした水質改善で、河川や池のいのちを取り戻します。
                 </p>
                 <Link
                   href="/activities#ecosystem"
@@ -364,12 +364,6 @@ export default function Home() {
                   メガソーラーの無秩序な建設と、外国資本による水源地の買収。<br />
                   山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
-                <div className="mt-auto bg-ivory p-4 rounded-lg border border-border">
-                  <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み</p>
-                  <p className="text-sm text-text-secondary">
-                    対話とコミュニティによる調和。専門家と連携した「駆け込み寺」での開発防止・自然保護。
-                  </p>
-                </div>
               </div>
             </div>
 
@@ -397,20 +391,6 @@ export default function Home() {
                   手入れの行き届かない人工林や竹林は、保水力を失い、生態系のバランスを崩してしまいます。<br />
                   荒廃した里山は、野生動物と人間の境界を曖昧にする原因にもなっています。
                 </p>
-                <div className="mt-auto bg-ivory p-4 rounded-lg border border-border flex flex-col gap-3">
-                  <div>
-                    <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（水質改善）</p>
-                    <p className="text-sm text-text-secondary">
-                      微生物テクノロジー「BENTEN」による物理的浄化と生態系の復活。
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（里山再生）</p>
-                    <p className="text-sm text-text-secondary">
-                      「大地の再生」メソッドによる水脈のデフラグ（再構築）と「530運動」「ばら撒くっ種」による実践。
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -472,8 +452,8 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
             あなたにできること
           </h2>
-          <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            水源地の保全から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
+          <p className="mt-8 text-text-secondary leading-loose text-base sm:text-lg tracking-wide">
+            水源地の保全から、ナノバブルによる生態系復活、里山の再構築まで。<br className="hidden sm:block" />
             自ら山に入り、大地と対話しながら、失われた命の循環を丁寧に取り戻す。<br className="hidden sm:block" />
             あなたの一歩が、七世代先の子どもたちの笑顔につながります。
           </p>

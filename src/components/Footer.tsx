@@ -7,6 +7,7 @@ const footerLinks = [
   {
     title: "財団について",
     links: [
+      { label: "法人概要", href: "/about#overview" },
       { label: "設立趣旨", href: "/about#manifesto" },
       { label: "クレド", href: "/about#credo" },
       { label: "組織体制", href: "/about#members" },
@@ -18,7 +19,7 @@ const footerLinks = [
     title: "活動内容",
     links: [
       { label: "水源地の保全", href: "/activities#conservation" },
-      { label: "水質浄化", href: "/activities#water" },
+      { label: "生態系復活", href: "/activities#ecosystem" },
       { label: "里山再生", href: "/activities#satoyama" },
       { label: "ばら撒くっ種", href: "/activities#baramaku" },
       { label: "環境教育", href: "/activities#education" },
@@ -59,9 +60,9 @@ export function Footer() {
               className="h-10 w-auto mb-4"
             />
             <p className="text-sm text-text-muted leading-relaxed">
-              七世代先の子どもたちへ、
-              <br />
-              水と森を残すために。
+              日本の命の源である「水」と「森」を守り、<br />
+              七世代先の子どもたちへ、美しい環境を引き継ぐ。<br />
+              私たちは「現場」で汗を流し、大地の循環を再生し続けます。
             </p>
           </div>
 

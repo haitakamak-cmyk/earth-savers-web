@@ -10,7 +10,7 @@ const BOOK_STORE_URL = "https://back-nature-store.com/products/book1";
 export const metadata: Metadata = {
   title: "メディア掲載・活動実績",
   description:
-    "財団法人 地球防衛群のこれまでの活動実績と、新聞・雑誌・テレビ等のメディア掲載情報、大阪・関西万博への登壇実績などをまとめています。",
+    "池・河川の生態系復活、水源地保全活動の様子をご紹介します。財団法人 地球防衛群のこれまでの活動実績と、新聞・雑誌・テレビ等のメディア掲載情報、大阪・関西万博への登壇実績などをまとめています。",
 };
 
 /** `public/images/media/` に同名ファイルを置くと表示されます（jpg / png / webp など）。 */
@@ -18,9 +18,9 @@ const NEWSPAPER_ITEMS = [
   {
     title: "山陽新聞（岡山）",
     date: "2024年8月1日",
-    body: "水の日特集に、水質浄化機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
+    body: "水の日特集に、生態系復活機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
     imageFile: "newspaper-sanyo-shimbun.jpg",
-    imageAlt: "山陽新聞の紙面。水の日特集で水質浄化や新庄村との取り組みが紹介されている様子。",
+    imageAlt: "山陽新聞の紙面。水の日特集で生態系復活や新庄村との取り組みが紹介されている様子。",
     objectPosition: "right top",
   },
   {
@@ -42,9 +42,9 @@ const NEWSPAPER_ITEMS = [
   {
     title: "長野日報",
     date: "2025年3月31日",
-    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが取り上げられました。BENTENを使った水質浄化実験に市民の方々も興味深々でした。",
+    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが取り上げられました。ナノバブル発生器「B-369」を使った生態系復活実験に市民の方々も興味深々でした。",
     imageFile: "newspaper-suwa.jpg",
-    imageAlt: "長野日報の紙面。諏訪湖での水質浄化実験が紹介されている様子。",
+    imageAlt: "長野日報の紙面。諏訪湖での生態系復活実験が紹介されている様子。",
     objectPosition: "center 30%",
   },
 ] as const;
@@ -198,7 +198,7 @@ export default function MediaPage() {
               </p>
               <p className="mt-1 text-sm text-text-muted">著：小野 誠（環境コンサルタント）</p>
               <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                環境問題をわかりやすく解説し、子どもたちの未来のために「いまできること」に目を向けられる一冊です。親子で読み進めやすい構成になっています。
+                {`山に入ると、風の道がわかります。水がどこを通って、どこへ流れていくのか。木々がどう根を絡ませ合って、大地を支えているのか。自然環境の保全、里山の再生、ナノバブルによる生態系復活の現場から。環境問題をわかりやすく解説し、子どもたちの未来のために「いまできること」に目を向けられる一冊です。親子で読み進めやすい構成になっています。`}
               </p>
               <div className="mt-8 flex flex-col items-center">
                 <a

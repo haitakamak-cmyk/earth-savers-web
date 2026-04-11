@@ -1,6 +1,9 @@
 import {
+  ORGANIZATION_ADDRESS_STRUCTURED,
+  ORGANIZATION_FOUNDING_DATE_ISO,
   ORGANIZATION_NAME,
-  SITE_ORGANIZATION_DESCRIPTION_SHORT,
+  ORGANIZATION_REPRESENTATIVE_NAME,
+  ORGANIZATION_REPRESENTATIVE_TITLE,
   SITE_URL,
 } from "@/lib/site";
 
@@ -13,10 +16,10 @@ const organizationJsonLd = {
   image: [`${SITE_URL}/images/photos/representative.jpg`],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "田町13",
-    addressLocality: "津山市",
-    addressRegion: "岡山県",
-    postalCode: "708-0052",
+    streetAddress: ORGANIZATION_ADDRESS_STRUCTURED.streetAddress,
+    addressLocality: ORGANIZATION_ADDRESS_STRUCTURED.addressLocality,
+    addressRegion: ORGANIZATION_ADDRESS_STRUCTURED.addressRegion,
+    postalCode: ORGANIZATION_ADDRESS_STRUCTURED.postalCode,
     addressCountry: "JP",
   },
   sameAs: [
@@ -26,13 +29,13 @@ const organizationJsonLd = {
   ],
   founder: {
     "@type": "Person",
-    name: "杉山 孔太",
-    jobTitle: "代表理事",
+    name: ORGANIZATION_REPRESENTATIVE_NAME,
+    jobTitle: ORGANIZATION_REPRESENTATIVE_TITLE,
     sameAs: ["https://x.com/ko_ta_sugiyama"],
   },
-  foundingDate: "2024",
+  foundingDate: ORGANIZATION_FOUNDING_DATE_ISO,
   description:
-    "岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む財団法人。独自技術『BENTEN』を用いた水質浄化や、伝統的な『大地の再生』メソッドによる環境改善を実践しています。",
+    "岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器『B-369』を用いた生態系復活や、伝統的な『大地の再生』メソッドによる環境改善を実践しています。",
   url: `${SITE_URL}/`,
   areaServed: {
     "@type": "Country",
@@ -41,8 +44,9 @@ const organizationJsonLd = {
   knowsAbout: [
     "水源地保全",
     "里山再生",
-    "水質浄化テクノロジー",
-    "BENTEN",
+    "生態系復活テクノロジー",
+    "ナノバブル発生器",
+    "B-369",
     "大地の再生",
     "530運動",
     "環境教育",

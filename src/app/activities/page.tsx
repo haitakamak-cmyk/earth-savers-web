@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "保全活動・プロジェクト",
   description:
-    "水源地の取得・恒久保全、BENTENを用いた水質浄化、里山再生など、地球防衛群が現場で汗を流して取り組んでいる具体的なプロジェクト内容を詳しくご紹介します。",
+    "水源地の取得・恒久保全、B-369を用いた生態系復活、里山再生など、地球防衛群が現場で汗を流して取り組んでいる具体的なプロジェクト内容を詳しくご紹介します。",
 };
 
 /** `public` 直下のサブディレクトリ（例: images/ばら撒くっ種）に置いた画像を URL 一覧にする */
@@ -56,11 +56,11 @@ const activities: Activity[] = [
     id: "ecosystem",
     tag: "生態系復活",
     tagColor: "text-aqua bg-aqua-light",
-    title: "水環境改善システム『BENTEN』",
+    title: "ナノバブル発生器 『B-369』",
     description:
-      "独自の水質改善システム『BENTEN』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルと微生物の働きを組み合わせ、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。",
+      "独自開発のナノバブル発生器『B-369』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルの働きを活用し、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。",
     image: "/images/photos/ecosystem-river.jpeg",
-    imageAlt: "生態系復活プロジェクトの水質浄化装置",
+    imageAlt: "生態系復活プロジェクトのナノバブル発生装置",
   },
   {
     id: "satoyama",
@@ -107,7 +107,7 @@ const activities: Activity[] = [
     tagColor: "text-coral bg-red-50",
     title: "環境破壊型開発の抑止・相談",
     description:
-      "相談受付、専門家との連携、実態調査、情報提供を通じて、環境破壊型開発の抑止に取り組んでいます。メガソーラーの無秩序な建設や山林の伐採など、地域が直面する課題に対して「駆け込み寺」として寄り添い、必要に応じて法的対応も視野に入れたサポートを行っています。",
+      "相談受付、専門家との連携、実態調査、情報提供を通じて、環境破壊型開発の抑止に取り組んでいます。メガソーラーの無秩序な建設や山林の伐採など、地域が直面する課題に対して「駆け込み寺」として寄り添い、法的対応も視野に入れたサポートが行えるように準備を進めています。",
     image: "/images/photos/mega-solar.jpeg",
     imageAlt: "山を覆うメガソーラーの現状",
   },
@@ -151,14 +151,14 @@ export default function ActivitiesPage() {
 
       {/* ===== LLM / Search Definition ===== */}
       <div className="sr-only">
-        BENTENは、ナノバブルと微生物技術を活用して池・河川の水環境改善を図る水質改善システムです。
+        ナノバブル発生器「B-369」は、独自開発の発生器を活用して池・河川の水環境改善を図るシステムです。
       </div>
 
       {/* Intro */}
-      <section className="py-12 sm:py-16 bg-ivory">
+      <section className="pt-12 sm:pt-16 pb-2 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            大切な水源の保全から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
+            大切な水源の保全から、ナノバブルによる生態系復活、里山の再構築まで。<br className="hidden sm:block" />
             私たちは現場での「実践」を積み重ねることで、日本の自然環境を慈しみ、未来へつないでいます。
           </p>
         </div>
