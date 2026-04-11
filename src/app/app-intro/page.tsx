@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { APP_EXTERNAL_LINKS_READY } from "@/lib/site";
+
 const APP_URL = "https://app.earth-savers.org";
 
 export const metadata: Metadata = {
@@ -109,19 +111,39 @@ export default function AppIntroPage() {
         </div>
         <div className="mt-10 bg-wakakusa py-12 text-center sm:mt-12 sm:py-14">
           <div className="mx-auto max-w-2xl px-4 sm:px-6">
-            <p className="font-semibold text-white">今すぐアプリを使ってみる</p>
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-semibold text-wakakusa shadow-sm transition-opacity hover:opacity-90"
-            >
-              アプリを開く
-              <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-            </a>
-            <p className="mt-4 text-sm text-white/60">
-              ※ 現在はブラウザアプリです。App Store / Google Play は準備中。
-            </p>
+            {APP_EXTERNAL_LINKS_READY ? (
+              <>
+                <p className="font-semibold text-white">今すぐアプリを使ってみる</p>
+                <a
+                  href={APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 font-semibold text-wakakusa shadow-sm transition-opacity hover:opacity-90"
+                >
+                  アプリを開く
+                  <ExternalLinkIcon className="h-4 w-4 shrink-0" />
+                </a>
+                <p className="mt-4 text-sm text-white/60">
+                  ※ 現在はブラウザアプリです。App Store / Google Play は準備中。
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold text-white">公式アプリは準備中です</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/85">
+                  サイトを先行公開しています。アプリのリリースが整い次第、こちらからご利用いただけます。
+                </p>
+                <p
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white/25 px-8 py-3.5 font-semibold text-white/90 ring-1 ring-white/40"
+                  role="status"
+                >
+                  アプリを開く（準備中）
+                </p>
+                <p className="mt-4 text-sm text-white/60">
+                  ※ App Store / Google Play 版も順次予定です。
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>

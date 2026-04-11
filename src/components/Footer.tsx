@@ -31,9 +31,11 @@ const footerLinks = [
       { label: "サポーター登録", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
       ...appSnsLinks.map((l) => ({
+        id: l.id,
         label: l.label,
         href: l.href,
         external: l.external,
+        disabled: l.disabled,
       })),
       { label: "買って応援", href: "/shop" },
       { label: "お問い合わせ", href: "/contact" },
@@ -70,8 +72,12 @@ export function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {group.links.map((link) => (
-                  <li key={`${link.label}-${link.href}`}>
-                    {"external" in link && link.external ? (
+                  <li
+                    key={"id" in link && link.id ? link.id : `${link.label}-${link.href}`}
+                  >
+                    {"disabled" in link && link.disabled ? (
+                      <span className="text-sm text-text-muted/70">{link.label}</span>
+                    ) : "external" in link && link.external ? (
                       <a
                         href={link.href}
                         target="_blank"

@@ -19,26 +19,29 @@ const NEWSPAPER_ITEMS = [
     title: "山陽新聞（岡山）",
     body: "水の日特集に、水質浄化機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
     imageFile: "newspaper-sanyo-shimbun.jpg",
-    imageAlt:
-      "山陽新聞の紙面。水の日特集で水質浄化や新庄村との取り組みが紹介されている様子。",
+    imageAlt: "山陽新聞の紙面。水の日特集で水質浄化や新庄村との取り組みが紹介されている様子。",
+    objectPosition: "right top",
   },
   {
     title: "津山朝日新聞",
     body: "大阪湾の水質改善プロジェクト3年間の成果が紙面で紹介されました。「大阪湾のウニ復活」と題し、大阪・関西万博での発表内容も掲載。",
     imageFile: "newspaper-tsuyama-asahi.jpg",
     imageAlt: "津山朝日新聞の紙面。「大阪湾のウニ復活」の見出しで水質改善プロジェクトの成果が紹介されている様子。",
+    objectPosition: "center top",
   },
   {
     title: "津山朝日新聞（衆楽園）",
     body: "津山市の国名勝・衆楽園での水草除去作業が紙面で紹介されました。ボランティア約30人が参加し、スイレンやヒシを除去。2022年より継続実施中。",
     imageFile: "newspaper-tsuyama-shurakuen.jpg",
     imageAlt: "津山朝日新聞の紙面。衆楽園でのスイレン除去作業とボランティア活動の様子。",
+    objectPosition: "center top",
   },
   {
     title: "諏訪（長野県岡谷市周辺）の新聞",
     body: "諏訪湖（岡谷市）での生態系復活プロジェクトが新聞で取り上げられました。澱んだ水質の浄化に市民の方々も興味津々でした。",
     imageFile: "newspaper-suwa.jpg",
     imageAlt: "諏訪・岡谷周辺の取り組みが掲載された新聞の紙面。",
+    objectPosition: "center 30%",
   },
 ] as const;
 
@@ -77,12 +80,15 @@ function MediaPhoto({
   alt,
   priority,
   layout = "card",
+  objectPosition,
 }: {
   file: string;
   alt: string;
   priority?: boolean;
   /** 新聞カードは 4:3、万博など横長は wide */
   layout?: "card" | "wide";
+  /** object-position の指定（例: "right top", "center 30%"）*/
+  objectPosition?: string;
 }) {
   const ok = mediaImageExists(file);
   const src = mediaImagePath(file);
@@ -116,9 +122,10 @@ function MediaPhoto({
         fill
         className={
           layout === "wide"
-            ? "object-cover object-center"
-            : "object-cover object-top"
+            ? "object-cover"
+            : "object-cover"
         }
+        style={{ objectPosition: objectPosition ?? (layout === "wide" ? "center" : "top") }}
         sizes={
           layout === "wide"
             ? "(max-width: 768px) 100vw, 48rem"
@@ -189,18 +196,20 @@ export default function MediaPage() {
               <p className="mt-4 text-sm leading-relaxed text-text-secondary">
                 環境問題をわかりやすく解説し、子どもたちの未来のために「いまできること」に目を向けられる一冊です。親子で読み進めやすい構成になっています。
               </p>
-              <a
-                href={BOOK_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
-              >
-                地球防衛群ショップ で見る
-                <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-              </a>
-              <p className="mt-3 text-xs text-text-muted">
-                外部サイト（back-nature-store.com）へ移動します
-              </p>
+              <div className="mt-8 flex flex-col items-center">
+                <a
+                  href={BOOK_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+                >
+                  地球防衛群ショップ で見る
+                  <ExternalLinkIcon className="h-4 w-4 shrink-0" />
+                </a>
+                <p className="mt-3 max-w-md text-center text-xs text-text-muted">
+                  外部サイト（back-nature-store.com）へ移動します
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -226,6 +235,7 @@ export default function MediaPage() {
                     file={item.imageFile}
                     alt={item.imageAlt}
                     priority={i === 0}
+                    objectPosition={'objectPosition' in item ? item.objectPosition : undefined}
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5 pt-4">

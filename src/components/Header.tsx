@@ -92,8 +92,16 @@ export function Header() {
                 className="invisible absolute right-0 top-full z-50 mt-1 min-w-[13rem] translate-y-1 rounded-xl border border-border bg-white py-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
               >
                 {appSnsLinks.map((link) => (
-                  <li key={link.href} role="none">
-                    {link.external ? (
+                  <li key={link.id} role="none">
+                    {link.disabled ? (
+                      <span
+                        role="menuitem"
+                        aria-disabled="true"
+                        className="block cursor-default px-4 py-2.5 text-sm text-text-muted"
+                      >
+                        {link.label}
+                      </span>
+                    ) : link.external ? (
                       <a
                         role="menuitem"
                         href={link.href}
@@ -183,9 +191,16 @@ export function Header() {
               </summary>
               <div className="ml-2 mt-1 space-y-0.5 border-l-2 border-wakakusa/25 pl-3">
                 {appSnsLinks.map((link) =>
-                  link.external ? (
+                  link.disabled ? (
+                    <span
+                      key={link.id}
+                      className="block cursor-default rounded-lg px-3 py-2.5 text-sm text-text-muted"
+                    >
+                      {link.label}
+                    </span>
+                  ) : link.external ? (
                     <a
-                      key={link.href}
+                      key={link.id}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -196,7 +211,7 @@ export function Header() {
                     </a>
                   ) : (
                     <Link
-                      key={link.href}
+                      key={link.id}
                       href={link.href}
                       onClick={() => setIsOpen(false)}
                       className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"

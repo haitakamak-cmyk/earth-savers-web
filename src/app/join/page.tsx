@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { APP_EXTERNAL_LINKS_READY } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "支援・参加する | 財団法人 地球防衛群",
   description:
@@ -212,15 +214,24 @@ export default function JoinPage() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={APP_DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
-              >
-                サポーターになる
-                <ExternalLinkIcon className="h-4 w-4 shrink-0 opacity-90" />
-              </a>
+              {APP_EXTERNAL_LINKS_READY ? (
+                <a
+                  href={APP_DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                >
+                  サポーターになる
+                  <ExternalLinkIcon className="h-4 w-4 shrink-0 opacity-90" />
+                </a>
+              ) : (
+                <p
+                  className="mt-6 rounded-full border border-border bg-ivory-warm py-3 text-center text-sm font-semibold text-text-secondary"
+                  role="status"
+                >
+                  アプリからのお申し込みは準備中です
+                </p>
+              )}
             </div>
 
             {/* 都度寄付 → 銀行振込・郵便振替 */}
@@ -282,7 +293,10 @@ export default function JoinPage() {
           </div>
 
           <p className="mt-6 text-center text-xs text-text-muted">
-            ※ マンスリーサポーターは公式アプリからお申し込みいただけます。
+            ※
+            {APP_EXTERNAL_LINKS_READY
+              ? "マンスリーサポーターは公式アプリからお申し込みいただけます。"
+              : "マンスリーサポーターは、公式アプリ公開後にアプリからお申し込みいただける予定です（現在準備中）。"}
             <br />
             ※ 都度寄付は銀行振込・郵便振替のみです。振込先は
             <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
@@ -378,22 +392,34 @@ export default function JoinPage() {
                 <p className="mt-3 text-xs text-text-muted">
                   開催頻度: {activity.schedule}
                 </p>
-                <a
-                  href={APP_CLUBS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-2.5 text-sm font-semibold text-white transition-colors hover:bg-wakakusa-dark"
-                >
-                  <AppClubIcon className="h-5 w-5 shrink-0" />
-                  アプリで参加する
-                </a>
+                {APP_EXTERNAL_LINKS_READY ? (
+                  <a
+                    href={APP_CLUBS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-2.5 text-sm font-semibold text-white transition-colors hover:bg-wakakusa-dark"
+                  >
+                    <AppClubIcon className="h-5 w-5 shrink-0" />
+                    アプリで参加する
+                  </a>
+                ) : (
+                  <p
+                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-ivory-warm py-2.5 text-sm font-semibold text-text-secondary ring-1 ring-border"
+                    role="status"
+                  >
+                    <AppClubIcon className="h-5 w-5 shrink-0 opacity-70" />
+                    アプリで参加する（準備中）
+                  </p>
+                )}
               </div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
             <p className="text-sm text-text-muted">
-              公式アプリの「部活動」から参加したい部を選び、お気軽にご参加ください。
+              {APP_EXTERNAL_LINKS_READY
+                ? "公式アプリの「部活動」から参加したい部を選び、お気軽にご参加ください。"
+                : "部活動への参加は、公式アプリ公開後にアプリからお申し込みいただける予定です（現在準備中）。"}
               <br />
               ご質問は{" "}
               <Link href="/contact" className="text-wakakusa underline">

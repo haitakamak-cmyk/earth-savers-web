@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { APP_EXTERNAL_LINKS_READY } from "@/lib/site";
+
 export const metadata: Metadata = {
   title: "銀行振込（都度寄付） | 支援・参加する | 財団法人 地球防衛群",
   description:
-    "都度寄付の振込先口座とアンバサダーランクの目安をご案内します。月額サポーターは公式アプリからお申し込みいただけます。",
+    "都度寄付の振込先口座とアンバサダーランクの目安をご案内します。月額サポーターは公式アプリ公開後にお申し込みいただける予定です。",
 };
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
@@ -95,7 +97,10 @@ export default async function BankDonationPage({ searchParams }: PageProps) {
                 月額 1,000円〜
               </p>
               <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                毎月の継続支援で、活動を安定的に支えてくださる方のプランです。お申し込みは公式アプリから行えます。
+                毎月の継続支援で、活動を安定的に支えてくださる方のプランです。
+                {APP_EXTERNAL_LINKS_READY
+                  ? "お申し込みは公式アプリから行えます。"
+                  : "お申し込みは公式アプリ公開後にアプリから行える予定です（現在準備中）。"}
               </p>
               <ul className="mt-6 space-y-2.5">
                 {monthlyFeatures.map((f) => (
@@ -121,28 +126,37 @@ export default async function BankDonationPage({ searchParams }: PageProps) {
                   </li>
                 ))}
               </ul>
-              <a
-                href={APP_DONATE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
-              >
-                公式アプリでサポーターになる
-                <svg
-                  className="h-4 w-4 shrink-0 opacity-90"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
+              {APP_EXTERNAL_LINKS_READY ? (
+                <a
+                  href={APP_DONATE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3.5 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </a>
+                  公式アプリでサポーターになる
+                  <svg
+                    className="h-4 w-4 shrink-0 opacity-90"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              ) : (
+                <p
+                  className="mt-8 rounded-full border border-border bg-ivory-warm py-3.5 text-center text-sm font-semibold text-text-secondary"
+                  role="status"
+                >
+                  公式アプリでのお申し込みは準備中です
+                </p>
+              )}
             </div>
           ) : (
             <div className="mt-10 space-y-10">
