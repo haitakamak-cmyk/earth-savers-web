@@ -30,8 +30,8 @@ export default function Home() {
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/23 香南市BENTEN稼働！</span>
-            <span>2026/4/20 クラウドファンファンディング開始</span>
+            <span>2026/4/23 [水質浄化システム] 香南市にて『BENTEN』稼働開始！ ——池の水を一瞬で蘇らせる魔法のフィルター</span>
+            <span>2026/4/20 クラウドファンディング開始</span>
             <span>2026/4/18 衆楽園池そうじ実施</span>
           </div>
         </div>
@@ -41,13 +41,15 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            地球の未来を、共に守る。
+            【 ROOT DIRECTORY : MISSION 】<br />
+            日本の心臓（水と森）を、次世代へ死守せよ。
           </h2>
-          <p className="mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto">
-            私たちの自然環境を守り、持続可能な未来へ。
-            日本の水源地や里山が、乱開発や外資の買収によって危機にさらされています。
-            地球防衛群は、この問題に正面から向き合い、
-            水と森を次世代に引き継ぐための活動を行っています。
+          <p className="mt-8 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto font-medium">
+            外資による水源地の買収。山を切り崩すメガソーラーの乱開発。<br />
+            今、私たちの足元で、当たり前だった自然の防壁が音を立てて崩れ去ろうとしている。<br />
+            <br />
+            綺麗事は言わない。これは日本の未来を懸けた防衛戦だ。<br />
+            『地球防衛群』は、この侵略から命の水を奪還し、七世代先の子どもたちへ繋ぐための実働部隊である。
           </p>
         </div>
       </section>
@@ -322,17 +324,17 @@ export default function Home() {
       {/* ===== Crisis Section ===== */}
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
-            私たちが直面している危機
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-mono">
+            [ SYSTEM ALERT: 脅威レベル 拡大中 ]
           </h2>
-          <p className="mt-3 text-center text-text-muted">
-            日本の水と森に迫る、2つの脅威
+          <p className="mt-4 text-center text-text-muted font-bold tracking-widest">
+            日本の水と森に迫る、2つの致命的バグ
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Threat 1 */}
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-coral/20">
-              <div className="relative h-56">
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-coral/20 flex flex-col">
+              <div className="relative h-56 shrink-0">
                 <Image
                   src="/images/photos/mega-solar.jpeg"
                   alt="山を覆うメガソーラー"
@@ -341,26 +343,31 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full">
-                    外からの脅威
+                  <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full font-mono">
+                    [ THREAT 01: 外からの侵略 ]
                   </span>
                 </div>
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-text-primary">
                   乱開発と外資買収
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  メガソーラーの無秩序な建設や、外国資本による水源地の買収が、
-                  日本の貴重な自然環境を脅かしています。
-                  山の保水力が失われ、洪水や土砂崩れのリスクが高まっています。
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
+                  メガソーラーの無秩序な建設と、外国資本による水源地ハッキング（買収）。<br />
+                  山の保水力というファイアウォールが破壊され、洪水リスクが臨界点を突破している。
                 </p>
+                <div className="mt-auto bg-ivory p-4 rounded-lg border border-border">
+                  <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (解決策)</p>
+                  <p className="text-sm text-text-secondary">
+                    法律とコミュニティによる防衛。専門家と連携した「駆け込み寺（相談窓口）」での水際対策。
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Threat 2 */}
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-accent-gold/20">
-              <div className="relative h-56">
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-accent-gold/20 flex flex-col">
+              <div className="relative h-56 shrink-0">
                 <Image
                   src="/images/photos/crisis-satoyama-bamboo.png"
                   alt="放置竹林と渓流、荒廃する里山の様子"
@@ -369,20 +376,33 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
-                    内なる崩壊
+                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full font-mono">
+                    [ THREAT 02: 内なる崩壊 ]
                   </span>
                 </div>
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-text-primary">
-                  里山の荒廃と放置林・放置竹林
+                  里山の荒廃と放置林
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  耕作放棄地が野生動物の餌場となり、人里への出没が激増。
-                  放置された人工林は「緑の砂漠」と化し、
-                  水源涵養機能を失いつつあります。
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
+                  メンテナンスを放棄された人工林は、水を蓄えられない「緑の砂漠」へと成り果てた。<br />
+                  放置された大地のシステムエラーが、野生動物と人間の境界線を破壊している。
                 </p>
+                <div className="mt-auto bg-ivory p-4 rounded-lg border border-border flex flex-col gap-3">
+                  <div>
+                    <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (水質汚染への解決策)</p>
+                    <p className="text-sm text-text-secondary">
+                      微生物テクノロジー『BENTEN』による物理的浄化と生態系の復活。
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (里山荒廃への解決策)</p>
+                    <p className="text-sm text-text-secondary">
+                      『大地の再生』メソッドによる水脈のデフラグ（再構築）と『530運動』『ばら撒くっ種』による実践。
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

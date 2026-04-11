@@ -5,6 +5,8 @@ import { SITE_URL } from "@/lib/site";
 import { validateRequestOrigin } from "@/lib/security";
 import { rateLimitAllow } from "@/lib/rate-limit";
 
+import { sanitizeText } from "@/lib/sanitize";
+
 /**
  * デフォルトは Resend 検証用（ドメイン認証不要）。本番で自ドメインから送るときは
  * 環境変数 RESEND_FROM に認証済みアドレスを必ず設定すること。
@@ -116,9 +118,21 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { name: nameStr, email: emailStr, category, message: messageStr, intent } = result.data;
+  const {
+    name: rawName,
+    email: emailStr,
+    category,
+    message: rawMessage,
+    intent,
+  } = result.data;
+
+  // セキュリティ 30 条 第 27 条: 全入力をサニタイズ
+  const nameStr = sanitizeText(rawName);
+  const messageStr = sanitizeText(rawMessage);
+
   const categoryStr = category || "";
   const intentStr = intent || "";
+
 
   const categoryLabel =
     categoryStr && CATEGORY_LABELS[categoryStr]
