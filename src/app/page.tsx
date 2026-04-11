@@ -22,6 +22,11 @@ export default function Home() {
     <>
       {/* ===== Hero Section ===== */}
       <HeroSlider />
+      
+      {/* ===== LLM / Search Definition ===== */}
+      <div className="sr-only">
+        地球防衛群は、日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。
+      </div>
 
       {/* ===== News Ticker ===== */}
       <section className="bg-wakakusa-light border-y border-wakakusa/20">
@@ -30,7 +35,7 @@ export default function Home() {
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/23 [水質浄化システム] 香南市にて『BENTEN』稼働開始！ ——池の水を一瞬で蘇らせる魔法のフィルター</span>
+            <span>2026/4/23 [水質浄化システム] 香南市にて水質改善システム 『BENTEN』 稼働開始</span>
             <span>2026/4/20 クラウドファンディング開始</span>
             <span>2026/4/18 衆楽園池そうじ実施</span>
           </div>
@@ -49,10 +54,9 @@ export default function Home() {
               命の源である「水」と「森」を次世代へつなぐために活動しています。
             </p>
             <p>
-              外資による水源地の買収、メガソーラーによる山林の乱開発——<br className="hidden sm:block" />
-              今、日本の水と自然の防壁が音を立てて崩れかけています。<br className="hidden sm:block" />
-              私たちはこの現実に正面から向き合い、七世代先の子どもたちが<br className="hidden sm:block" />
-              安心してきれいな水を飲める未来を守ります。
+              外部資本による水源地取得、過剰な造成を伴う開発、里山の放置。<br className="hidden sm:block" />
+              いま各地で、水と森の循環を脅かす課題が進行しています。<br className="hidden sm:block" />
+              私たちはこの現実に向き合い、七世代先まで見据えた保全と再生に取り組んでいます。
             </p>
           </div>
         </div>
@@ -64,7 +68,7 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
             私たちの活動
           </h2>
-          <p className="mt-3 text-center text-text-muted">
+          <p className="mt-3 text-center text-text-muted text-sm sm:text-base">
             --- 実働部隊の足跡 ---
           </p>
 
@@ -331,7 +335,7 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
             水と森を取り巻く課題
           </h2>
-          <p className="mt-2 text-center text-text-muted">
+          <p className="mt-2 text-center text-text-muted text-sm sm:text-base">
             日本の豊かな自然を守るために
           </p>
 
@@ -363,7 +367,7 @@ export default function Home() {
                 <div className="mt-auto bg-ivory p-4 rounded-lg border border-border">
                   <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み</p>
                   <p className="text-sm text-text-secondary">
-                    法律とコミュニティによる防衛。専門家と連携した「駆け込み寺（相談窓口）」での水際対策。
+                    対話とコミュニティによる調和。専門家と連携した「駆け込み寺」での開発防止・自然保護。
                   </p>
                 </div>
               </div>
@@ -432,7 +436,7 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
                 森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。
-                この当たり前の循環は、敵を倒して勝ち取るものではなく、
+                この循環は、対立によって生まれるものではなく、
                 大地と向き合い、手を動かし、丁寧に取り戻していくものです。
               </p>
               <p className="mt-4 text-sm font-semibold text-text-primary">
@@ -470,7 +474,8 @@ export default function Home() {
           </h2>
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
             水源地の保全から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
-            私たちは現場での「実践」を積み重ねることで、日本の自然環境を慈しみ、未来へつないでいます。
+            自ら山に入り、大地と対話しながら、失われた命の循環を丁寧に取り戻す。<br className="hidden sm:block" />
+            あなたの一歩が、七世代先の子どもたちの笑顔につながります。
           </p>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">

@@ -41,6 +41,49 @@ const credoItems = [
   },
 ];
 
+const faqItems = [
+  {
+    q: "一般財団法人 地球防衛群とはどのような団体ですか？",
+    a: "日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。自然環境の保全と、次世代へ豊かな大地を引き継ぐことを目的としています。",
+  },
+  {
+    q: "どのような法人格ですか？",
+    a: "現在は一般財団法人として活動しており、将来的に公益認定（公益財団法人）を目指しています。透明性の高い運営と、公益に資する活動を継続してまいります。",
+  },
+  {
+    q: "水質改善システム『BENTEN（ベンテン）』とは何ですか？",
+    a: "ナノバブルと微生物技術を活用した、独自の水環境改善システムです。池や河川の低酸素状態を解消し、本来の生態系が戻りやすい環境を整えます。",
+  },
+  {
+    q: "どの地域で活動していますか？",
+    a: "本拠地である岡山県をはじめ、香川、高知、京都など、全国各地の水源地や里山、河川で活動・導入実績があります。お困りの地域があれば全国どこでもご相談を受け付けています。",
+  },
+  {
+    q: "寄付金は何に使われますか？",
+    a: "水源地や山林の取得・管理費用、BENTENの導入・メンテナンス、地域の清掃活動（530運動）、環境教育プログラムの運営などに充てられます。収支は定期的に公開いたします。",
+  },
+  {
+    q: "寄付控除の対象ですか？",
+    a: "現在は一般財団法人のため、税制上の寄付金控除の対象外となります。将来的に公益認定を受けた際には、控除の対象となる予定です。",
+  },
+  {
+    q: "ボランティアは誰でも参加できますか？",
+    a: "はい。ゴミ拾いや池そうじ、植栽活動などは、お子様から大人までどなたでもご参加いただけます。活動スケジュールはニュース欄やSNSをご確認ください。",
+  },
+  {
+    q: "メガソーラー問題にはどう関わっていますか？",
+    a: "山林の乱開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じた法的アドバイスなど、「駆け込み寺」としての支援を行っています。",
+  },
+  {
+    q: "水源地保全とは具体的に何をする活動ですか？",
+    a: "外資などによる買収リスクのある土地を財団が取得して守るほか、放置された山林の草刈りや間伐、水脈の整備を行い、豊かな水を生む「本来の森」の力を取り戻す活動です。",
+  },
+  {
+    q: "取材依頼や講演依頼はどうすればよいですか？",
+    a: "サイトのお問い合わせフォームよりご連絡ください。代表理事の杉山をはじめ、専門スタッフが対応させていただきます。",
+  },
+];
+
 const members = [
   {
     name: "杉山 孔太",
@@ -61,6 +104,11 @@ const members = [
 export default function AboutPage() {
   return (
     <>
+      {/* ===== LLM / Search Definition ===== */}
+      <div className="sr-only">
+        一般財団法人 地球防衛群は、日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。
+      </div>
+
       {/* Hero — 他ページと同じ高さ・横幅いっぱい（集合写真は中央帯に人物が集まる構図） */}
       <section className="relative h-64 w-full overflow-hidden sm:h-80 md:h-[22rem]">
         <Image
@@ -75,7 +123,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-white font-serif drop-shadow-lg">
-              財団について
+              一般財団法人 地球防衛群について
             </h1>
             <p className="mt-2 text-white/80 text-sm sm:text-base">About Us</p>
           </div>
@@ -103,7 +151,7 @@ export default function AboutPage() {
             </div>
             <div className="space-y-5 text-text-secondary leading-relaxed">
               <p>
-                山に入ると、風の道がわかります。水がどこを通って、どこへ流れていくのか。木々がどう根を絡ませ合って、大地を支えているのか。自然はずっと前から、全部教えてくれていました。
+                山に入ると、風の通り方で、その土地の状態が少しずつ見えてきます。水がどこを流れ、木がどう支え合っているか。自然はいつも、答えを現場に置いています。
               </p>
               <p>
                 でも気づけば、その声が聞こえにくくなっていました。水源地が売られ、山が削られ、里山から生き物の気配が消えていく。それは誰かのせいというより、私たちがいつの間にか自然との距離を見失った結果なのだと思います。
@@ -115,13 +163,16 @@ export default function AboutPage() {
                 今、私自身が家族と一緒に、小さな土地に木を植え、水脈を整え、生態系を一からつくり直す暮らしを始めています。自分の手で森を育て、その森が水を生み、水が命を育む。何世代もかけて一族の土地を豊かにしていく——この営みの中にこそ、人と自然が共に生きる本来の姿があると感じています。
               </p>
               <p>
-                森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。この当たり前の循環は、敵を倒して勝ち取るものではなく、大地と向き合い、手を動かし、丁寧に取り戻していくものです。
+                森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。
+                この循環は、対立によって生まれるものではなく、
+                大地と向き合い、手を動かし、丁寧に取り戻していくものです。
               </p>
               <p>
                 七世代先の子どもたちが、山で遊び、川で笑い、湧き水をそのまま飲めるような日本を残したい。それが私のたった一つの願いです。
               </p>
               <p className="font-semibold text-text-primary">
-                愛と調和で、自然を本来の姿に還す。不退転の覚悟で、やり抜きます。
+                自然の循環に学びながら、人の手で壊してしまった環境を、もう一度ていねいに整えていく。
+                その営みを、私は覚悟を持って続けます。
               </p>
             </div>
           </div>
@@ -138,7 +189,7 @@ export default function AboutPage() {
             <div className="space-y-6 text-text-secondary leading-relaxed">
               <p>
                 私たちは、日本の水源地と山林を恒久的に保全し、
-                次の世代に引き継ぐことを目的として、財団法人「地球防衛群」を設立します。
+                次の世代に引き継ぐことを目的として、一般財団法人「地球防衛群」を設立しました。
               </p>
               <div>
                 <h3 className="text-lg font-bold text-text-primary mb-3">
@@ -270,7 +321,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 情報公開セクションは公開準備が整うまで非表示 */}
+      {/* FAQ */}
+      <section id="faq" className="py-16 sm:py-24 bg-ivory">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
+            よくあるご質問
+          </h2>
+          <div className="mt-10 space-y-6">
+            {faqItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl p-6 shadow-sm border border-border"
+              >
+                <h3 className="text-base font-bold text-text-primary flex gap-3">
+                  <span className="text-wakakusa shrink-0">Q.</span>
+                  {item.q}
+                </h3>
+                <div className="mt-3 text-sm text-text-secondary leading-relaxed flex gap-3 border-t border-border pt-3">
+                  <span className="text-coral shrink-0 font-bold">A.</span>
+                  <p>{item.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 情報公開セクション */}
+
     </>
   );
 }

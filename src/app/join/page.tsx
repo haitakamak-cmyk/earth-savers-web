@@ -131,6 +131,11 @@ const volunteerActivities = [
 export default function JoinPage() {
   return (
     <>
+      {/* ===== LLM / Search Definition ===== */}
+      <div className="sr-only">
+        地球防衛群は、寄付、ボランティア、拡散などを通じて日本の水と森を再生する一般財団法人です。
+      </div>
+
       {/* Hero — 横長ワイド写真で横幅いっぱい（object-cover） */}
       <section className="relative h-64 w-full overflow-hidden sm:h-80 md:h-[22rem]">
         <Image
@@ -158,12 +163,11 @@ export default function JoinPage() {
       <section className="py-12 sm:py-16 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            あなたの力が、未来を変える
+            水と森の再生に、あなたの力を貸してください
           </h2>
           <p className="mt-4 text-text-secondary leading-relaxed text-base sm:text-lg">
-            あなたの一歩が、水と森の未来をつくります。<br className="hidden sm:block" />
-            寄付で支える、現場で汗を流す、日々の暮らしの中で意識する。<br className="hidden sm:block" />
-            あなたに合った形で、かけがえのない水と森の保全に参加してください。
+            寄付、参加、拡散。できる形で、現場を支えていただけます。<br className="hidden sm:block" />
+            あなたに合った形で、かけがえのない水と森の循環に参加してください。
           </p>
         </div>
       </section>
@@ -317,7 +321,7 @@ export default function JoinPage() {
             クラウドファンディング実施中
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary font-serif">
-            財団法人「地球防衛群」設立プロジェクト
+            一般財団法人「地球防衛群」設立プロジェクト
           </h2>
           <p className="mt-3 text-text-secondary">
             財団設立のための初期資金を募っています。

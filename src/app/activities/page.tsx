@@ -56,9 +56,9 @@ const activities: Activity[] = [
     id: "ecosystem",
     tag: "生態系復活",
     tagColor: "text-aqua bg-aqua-light",
-    title: "生態系復活プロジェクト ～水から生態系を蘇らせる～",
+    title: "水環境改善システム『BENTEN』",
     description:
-      "私たちはナノバブルや微生物の力を活かした独自の水質浄化技術『BENTEN』を用い、死にかけていた河川や池を蘇らせます。溶存酸素を劇的に改善し、水の中から直接生態系の息吹を吹き込むプロジェクトを全国で展開しています。",
+      "独自の水質改善システム『BENTEN』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルと微生物の働きを組み合わせ、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。",
     image: "/images/photos/ecosystem-river.jpeg",
     imageAlt: "生態系復活プロジェクトの水質浄化装置",
   },
@@ -66,9 +66,9 @@ const activities: Activity[] = [
     id: "satoyama",
     tag: "大地の再生",
     tagColor: "text-wakakusa bg-wakakusa-light",
-    title: "里山オーガニック再生 ～大地の再生の手法で～",
+    title: "里山オーガニック再生",
     description:
-      "現代のコンクリートは大地の水脈を塞ぎ、空気と水の循環を止めてしまいます。「大地の再生」の視点で、風の草刈りや点穴掘りを実践し、大地に深呼吸を。放置された森に光を入れ、人と動物が共に心地よく過ごせる境界を再生しています。",
+      "現代のコンクリートは大地の水脈を塞ぎ、空気と水の循環を止めてしまいます。私たちは水脈や通気の流れを見直し、土壌環境の再生を図る「大地の再生」の視点を大切にしています。放置された森に光を入れ、人と動物が共に心地よく過ごせる環境を再構築しています。",
     image: "/images/photos/activity-bamboo.jpeg",
     imageAlt: "里山再生活動の様子",
   },
@@ -76,9 +76,9 @@ const activities: Activity[] = [
     id: "gomi530",
     tag: "530運動",
     tagColor: "text-accent-gold bg-amber-50",
-    title: "530（ゴミゼロ）運動 ～その一歩で自分も世界も生まれ変わる～",
+    title: "530（ゴミゼロ）運動",
     description:
-      "地域のゴミ拾いや衆楽園の池そうじ、在来種の種のシェアなど、誰でも気軽に参加できるボランティア活動を行っています。雨の日も風の日も、みんなで楽しくゴミを拾い、お花を植え、街をきれいにする。小さな一歩が、大きな変化を生み出します。",
+      "地域のゴミ拾い、池そうじ、花植え、在来種の種のシェアなど、身近な環境改善活動を行っています。子どもから大人まで、楽しみながら「自分たちの手で街を調和させる」地域密着型の実践です。",
     image: "/images/photos/gomi530-group-vests.png",
     imageAlt:
       "ゴミ拾い530運動に参加する地球防衛群のメンバーと地域の子どもたちの集合写真。伝統的な瓦の壁を背景に、笑顔でトングや活動チラシを持っています。",
@@ -103,11 +103,11 @@ const activities: Activity[] = [
   },
   {
     id: "prevention",
-    tag: "環境防衛",
+    tag: "自然保護",
     tagColor: "text-coral bg-red-50",
-    title: "環境破壊型開発の防止・調査",
+    title: "環境破壊型開発の抑止・相談",
     description:
-      "メガソーラーの無秩序な建設や、山林の違法伐採、PFAS汚染など、環境破壊の現場を調査・記録し、法的手段を含めた防止策を講じます。「駆け込み寺」として、困っている住民や自治体の相談窓口となり、問題解決をサポートします。",
+      "相談受付、専門家との連携、実態調査、情報提供を通じて、環境破壊型開発の抑止に取り組んでいます。メガソーラーの無秩序な建設や山林の伐採など、地域が直面する課題に対して「駆け込み寺」として寄り添い、必要に応じて法的対応も視野に入れたサポートを行っています。",
     image: "/images/photos/mega-solar.jpeg",
     imageAlt: "山を覆うメガソーラーの現状",
   },
@@ -115,9 +115,9 @@ const activities: Activity[] = [
     id: "education",
     tag: "環境教育",
     tagColor: "text-wakakusa bg-wakakusa-light",
-    title: "環境教育・市民参加の促進",
+    title: "環境教育・次世代育成",
     description:
-      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で守る、そんな能動的な人材の輪を広げていきます。",
+      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で慈しみ育てる、豊かな感性を育む輪を広げていきます。",
     image: "/images/photos/child-corn.jpeg",
     imageAlt: "子どもと自然の中での体験活動",
   },
@@ -148,6 +148,11 @@ export default function ActivitiesPage() {
           </div>
         </div>
       </section>
+
+      {/* ===== LLM / Search Definition ===== */}
+      <div className="sr-only">
+        BENTENは、ナノバブルと微生物技術を活用して池・河川の水環境改善を図る水質改善システムです。
+      </div>
 
       {/* Intro */}
       <section className="py-12 sm:py-16 bg-ivory">
@@ -252,12 +257,11 @@ export default function ActivitiesPage() {
       <section className="py-16 sm:py-20 bg-wakakusa-light">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            森の声を聴ける子どもを、一人でも増やす
+            水と森の再生に、あなたの力を貸してください
           </h2>
           <p className="mt-4 text-text-secondary leading-relaxed text-base sm:text-lg">
-            あなたの一歩が、水と森の未来をつくる。<br className="hidden sm:block" />
-            寄付で支える、現場で汗を流す、日々の暮らしの中で意識する。<br className="hidden sm:block" />
-            あなたに合った形で、かけがえのない水と森の保全に参加してください。
+            あなたの一歩が、水と森の未来をつくります。<br className="hidden sm:block" />
+            寄付、参加、拡散。できる形で、現場を支えていただけます。
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
