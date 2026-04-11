@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 const NEWSPAPER_ITEMS = [
   {
     title: "山陽新聞（岡山）",
+    date: "2024年8月1日",
     body: "水の日特集に、水質浄化機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
     imageFile: "newspaper-sanyo-shimbun.jpg",
     imageAlt: "山陽新聞の紙面。水の日特集で水質浄化や新庄村との取り組みが紹介されている様子。",
@@ -24,6 +25,7 @@ const NEWSPAPER_ITEMS = [
   },
   {
     title: "津山朝日新聞",
+    date: "2025年10月31日",
     body: "大阪湾の水質改善プロジェクト3年間の成果が紙面で紹介されました。「大阪湾のウニ復活」と題し、大阪・関西万博での発表内容も掲載。",
     imageFile: "newspaper-tsuyama-asahi.jpg",
     imageAlt: "津山朝日新聞の紙面。「大阪湾のウニ復活」の見出しで水質改善プロジェクトの成果が紹介されている様子。",
@@ -31,16 +33,18 @@ const NEWSPAPER_ITEMS = [
   },
   {
     title: "津山朝日新聞（衆楽園）",
+    date: "2022年9月10日",
     body: "津山市の国名勝・衆楽園での水草除去作業が紙面で紹介されました。ボランティア約30人が参加し、スイレンやヒシを除去。2022年より継続実施中。",
     imageFile: "newspaper-tsuyama-shurakuen.jpg",
     imageAlt: "津山朝日新聞の紙面。衆楽園でのスイレン除去作業とボランティア活動の様子。",
     objectPosition: "center top",
   },
   {
-    title: "諏訪（長野県岡谷市周辺）の新聞",
-    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが新聞で取り上げられました。澱んだ水質の浄化に市民の方々も興味津々でした。",
+    title: "長野日報",
+    date: "2025年3月31日",
+    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが取り上げられました。BENTENを使った水質浄化実験に市民の方々も興味津々でした。",
     imageFile: "newspaper-suwa.jpg",
-    imageAlt: "諏訪・岡谷周辺の取り組みが掲載された新聞の紙面。",
+    imageAlt: "長野日報の紙面。諏訪湖での水質浄化実験が紹介されている様子。",
     objectPosition: "center 30%",
   },
 ] as const;
@@ -240,6 +244,9 @@ export default function MediaPage() {
                 </div>
                 <div className="flex flex-1 flex-col p-5 pt-4">
                   <h3 className="font-semibold text-text-primary">{item.title}</h3>
+                  {'date' in item && item.date && (
+                    <p className="mt-1 text-xs text-text-muted">{item.date}</p>
+                  )}
                   <p className="mt-2 text-sm leading-relaxed text-text-secondary">{item.body}</p>
                 </div>
               </li>
@@ -252,6 +259,9 @@ export default function MediaPage() {
             </h2>
             <p className="mt-2 text-center text-sm text-text-secondary">
               登壇の様子
+            </p>
+            <p className="mt-1 text-center text-xs text-text-muted">
+              2025年5月17日・6月24日
             </p>
             <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
               {/* 登壇シーン（南出市長 × 杉山社長）*/}

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
+/** For Good クラウドファンディング */
+const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
 function ExternalLinkIcon({ className }: { className?: string }) {
   return (
@@ -324,7 +326,9 @@ export default function JoinPage() {
             詳しくはクラウドファンディングページをご覧ください。
           </p>
           <a
-            href="#"
+            href={CROWDFUNDING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-sm"
           >
             クラウドファンディングを見る
