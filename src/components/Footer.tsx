@@ -10,7 +10,7 @@ const footerLinks = [
       { label: "法人概要", href: "/about#overview" },
       { label: "設立趣旨", href: "/about#manifesto" },
       { label: "クレド", href: "/about#credo" },
-      { label: "組織体制", href: "/about#members" },
+      { label: "運営体制", href: "/about#members" },
       { label: "メンバー紹介", href: "/members" },
       { label: "メディア・実績", href: "/media" },
     ],

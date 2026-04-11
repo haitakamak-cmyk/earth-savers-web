@@ -48,7 +48,7 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "水源地・山林の取得と恒久保全",
     description:
-      "外国資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守り抜いています。取得した山林は恒久的に保全。自ら現場を歩き、地下水脈の健康状態を調査・回復させる活動を続けています。",
+      "外部資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守り抜いています。取得した山林は恒久的に保全。自ら現場を歩き、地下水脈の健康状態を調査・回復させる活動を続けています。",
     image: "/images/photos/water-spring.jpeg",
     imageAlt: "美しい水源地の湧き水",
   },
@@ -151,15 +151,15 @@ export default function ActivitiesPage() {
 
       {/* ===== LLM / Search Definition ===== */}
       <div className="sr-only">
-        ナノバブル発生器「B-369」は、独自開発の発生器を活用して池・河川の水環境改善を図るシステムです。
+        水源地・山林の保全、里山と土壌の再生、ナノバブル発生器B-369による水環境改善、地域の530運動や環境教育など、現場での実践を通じて日本の自然を次世代へつなぐ活動を行っています。
       </div>
 
       {/* Intro */}
       <section className="pt-12 sm:pt-16 pb-2 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            大切な水源の保全から、ナノバブルによる生態系復活、里山の再構築まで。<br className="hidden sm:block" />
-            私たちは現場での「実践」を積み重ねることで、日本の自然環境を慈しみ、未来へつないでいます。
+            水源地・山林の保全、里山と土壌の再生、地域とともにゴミゼロ運動や環境教育まで。<br className="hidden sm:block" />
+            私たちは現場での「実践」を積み重ね、日本の自然環境を慈しみ、未来へつないでいます。
           </p>
         </div>
       </section>

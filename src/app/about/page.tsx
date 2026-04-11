@@ -86,7 +86,7 @@ const faqItems = [
   },
   {
     q: "水源地保全とは具体的に何をする活動ですか？",
-    a: "外資などによる買収リスクのある土地を財団が取得して守るほか、放置された山林の草刈りや間伐、水脈の整備を行い、豊かな水を生む「本来の森」の力を取り戻す活動です。",
+    a: "外部資本などによる買収リスクのある土地を財団が取得して守るほか、放置された山林の草刈りや間伐、水脈の整備を行い、豊かな水を生む「本来の森」の力を取り戻す活動です。",
   },
   {
     q: "取材依頼や講演依頼はどうすればよいですか？",
@@ -146,9 +146,6 @@ export default function AboutPage() {
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
             法人概要
           </h2>
-          <p className="mt-3 text-center text-sm text-text-muted">
-            登記・契約・領収書など公的文書に用いる名称・所在地の例です。
-          </p>
           <dl className="mt-10 divide-y divide-border rounded-2xl border border-border bg-ivory/60 px-5 py-2 sm:px-8">
             <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
               <dt className="text-sm font-semibold text-text-primary">法人名</dt>
@@ -173,21 +170,9 @@ export default function AboutPage() {
               </dd>
             </div>
             <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
-              <dt className="text-sm font-semibold text-text-primary">設立（登記）</dt>
+              <dt className="text-sm font-semibold text-text-primary">設立</dt>
               <dd className="text-sm leading-relaxed text-text-secondary">
                 {ORGANIZATION_FOUNDED_LABEL}
-                <span className="mt-2 block text-xs text-text-muted">
-                  ※ 具体日まで掲載する場合は登記と照合のうえ{" "}
-                  <code className="rounded bg-white px-1 py-0.5 text-[11px]">site.ts</code>{" "}
-                  の <code className="rounded bg-white px-1 py-0.5 text-[11px]">
-                    ORGANIZATION_FOUNDED_LABEL
-                  </code>
-                  ／
-                  <code className="rounded bg-white px-1 py-0.5 text-[11px]">
-                    ORGANIZATION_FOUNDING_DATE_ISO
-                  </code>
-                  を更新してください。
-                </span>
               </dd>
             </div>
             <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
@@ -276,7 +261,7 @@ export default function AboutPage() {
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">
                       <span className="w-2 h-2 rounded-full bg-coral" />
                     </span>
-                    外国資本による水源地の買収と、メガソーラー等による山林の乱開発
+                    外部資本による水源地の買収と、メガソーラー等による山林の乱開発
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">

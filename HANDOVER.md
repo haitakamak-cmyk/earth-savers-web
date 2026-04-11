@@ -5,7 +5,7 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
-**直近更新**: 2026-04（アプリリンク準備中・メディア写真枠・ヘッダー法人名・本 CTA センタリング 等）
+**直近更新**: 2026-04（法人概要・設立2026年4月・外部資本表記統一・activities リード整理・フッター「運営体制」・クラファン URL 等）
 
 ---
 
@@ -14,14 +14,18 @@
 ```
 【earth-savers-web 引き継ぎ】
 ・Next.js 16 App Router。本番ビルド: npm run build（2026-04 時点で成功）
-・法人表記: src/lib/site.ts の ORGANIZATION_NAME＝「財団法人 地球防衛群」（公益は名乗らず認定目標の説明は SITE_ORGANIZATION_DESCRIPTION）
-・クラファン: /join セクション → https://for-good.net/project/1003493（CROWDFUNDING_URL）
-・アプリ先行公開しない間: APP_EXTERNAL_LINKS_READY = false（site.ts）
-  → app.earth-savers.org への CTA は join / bank-donation / app-intro で「準備中」
-  → ナビの「公式アプリ紹介」は app-sns-links の disabled でクリック不可（/app-intro 直打ちは可）
-・アプリ・SNS URL: src/lib/app-sns-links.ts のみ編集（Header + Footer が共有）
-・/media: 本 + 新聞3枚（山陽・津山朝日・諏訪）+ 万博ブロック。画像は public/images/media/ に配置（未配置時はプレースホルダ）
-・検証: npx tsc --noEmit && npm run lint（eslint 警告2件のみ・下記）&& npm run build
+・法人表記: site.ts の ORGANIZATION_NAME＝「一般財団法人 地球防衛群」。住所・代表・設立は同ファイルで一元化（法人概要 /about#overview、JSON-LD、規約・PP、お問い合わせメール署名と同期）
+・設立表示: ORGANIZATION_FOUNDED_LABEL＝「2026年4月」、JSON-LD foundingDate＝ ORGANIZATION_FOUNDING_DATE_ISO（例: 2026-04）
+・資本の表記: 「外国資本」「外資」は使わずサイト全体で **外部資本** に統一（トップ・activities・about FAQ 等）
+・activities: ページ冒頭リードは活動全体の幅広い紹介。sr-only は要約列挙。B-369 の詳細文は **生態系復活セクションのみ**（リードと sr-only で長文を重複させない）
+・shop: 表記は **オンラインショップ**（ン付き）。誤って「オンライショップ」と見える場合はキャッシュ・旧デプロイを疑う
+・クラファン: /join → https://for-good.net/project/1003493（CROWDFUNDING_URL）
+・アプリ先行公開しない間: APP_EXTERNAL_LINKS_READY = false
+  → app CTA は join / bank-donation / app-intro で準備中、ナビ「公式アプリ紹介」は disabled（/app-intro 直打ちは可）
+・アプリ・SNS: src/lib/app-sns-links.ts のみ（Header + Footer）
+・/media: 本＋新聞・万博写真枠（画像は public/images/media/）
+・フッター「財団について」: 法人概要、運営体制（ラベル。※リンク先は /about#members）
+・検証: npx tsc --noEmit && npm run lint && npm run build
 ・正本: Web/earth-savers-web/HANDOVER.md
 ```
 
@@ -60,6 +64,10 @@
 | ヘッダー（ロゴ下に `ORGANIZATION_NAME`、アプリ・SNS メニュー） | `src/components/Header.tsx` |
 | フッター | `src/components/Footer.tsx` |
 | メディア・実績 | `src/app/media/page.tsx` |
+| 財団について・法人概要・マニフェスト等 | `src/app/about/page.tsx`（`#overview` 法人概要。設立・住所は `site.ts` 参照） |
+| 活動内容 | `src/app/activities/page.tsx`（リード＋`sr-only` と各 `activities[]` セクションの役割分担に注意） |
+| トップ | `src/app/page.tsx` |
+| 買って応援 | `src/app/shop/page.tsx` |
 | アプリ紹介ページ | `src/app/app-intro/page.tsx` |
 | 参加・寄付 | `src/app/join/page.tsx`、銀行都度 `src/app/join/bank-donation/page.tsx` |
 | お問い合わせ API | `src/app/api/contact/route.ts` |
@@ -85,12 +93,23 @@
 
 - ヘッダー主ナビに **お問い合わせは出さない**（フッター「支援・参加」に ` /contact`）。
 - ナビ項目名 **「アプリ・SNS」**（Instagram / TikTok / YouTube / Facebook + 先頭のアプリ紹介行）。
+- フッター「財団について」の **運営体制**（文言。`href` は `/about#members`）。
+
+## 表記・トーン（固定したいこと）
+
+- **外部資本**: 水源地取得リスクの説明は **「外部資本」** で統一。「外国資本」「外資」はニュアンス上避ける（マスター方針）。
+- **オンラインショップ**: カタカナは **オンライン**（`ン` 必須）。
+
+## `/about` 法人概要
+
+- セクション **`#overview`**。リードの注釈は削除済み（シンプルな定義リスト）。
+- 表示内容は **`site.ts`** の `ORGANIZATION_*` から出力。**変更は site.ts を一箇所直す**と JSON-LD・メール・規約類と揃う。
 
 ---
 
 ## 未完了・フォロー（リポジトリ全体と共有）
 
-- **クラファン**: `/join` の CTA は **`https://for-good.net/project/1003493`**（`join/page.tsx` の `CROWDFUNDING_URL`）。
+- 特になし（クラファン URL は確定済み・`CROWDFUNDING_URL`）。新しいフォローが出たらここに追記。
 
 ---
 

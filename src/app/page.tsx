@@ -91,7 +91,7 @@ export default function Home() {
                   水源地・山林の保全
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  外資による水源地の買収を防ぎ、日本の豊かな水源を恒久的に保全する取り組みを行っています。
+                  外部資本による水源地の買収を防ぎ、日本の豊かな水源を恒久的に保全する取り組みを行っています。
                 </p>
                 <Link
                   href="/activities#conservation"
@@ -358,10 +358,10 @@ export default function Home() {
               </div>
               <div className="p-5 sm:p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-text-primary">
-                  乱開発と外資買収
+                  乱開発と外部資本による買収
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
-                  メガソーラーの無秩序な建設と、外国資本による水源地の買収。<br />
+                  メガソーラーの無秩序な建設と、外部資本による水源地の買収。<br />
                   山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
               </div>
