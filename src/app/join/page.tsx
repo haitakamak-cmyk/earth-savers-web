@@ -242,7 +242,6 @@ export default function JoinPage() {
                 都度寄付
               </h3>
               <p className="mt-1 text-center text-2xl font-semibold text-wakakusa">
-                1,000円〜
               </p>
               <p className="mt-2 text-center text-sm text-text-secondary">
                 ご都合の良いタイミングで、お好きな金額をご支援
@@ -250,14 +249,14 @@ export default function JoinPage() {
 
               <div className="mt-6 rounded-xl border border-border bg-ivory/60 px-4 py-6 text-center sm:px-6">
                 <h4 className="text-lg font-bold text-text-primary">
-                  銀行振込・郵便振替
+                  銀行振込
                 </h4>
                 <div
                   className="mx-auto mt-3 h-0.5 w-10 rounded-full bg-wakakusa"
                   aria-hidden
                 />
                 <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-                  下記のページで振込先口座をご確認いただけます。受領証明書やメールでの案内をご希望の方は、フォームからお申し込みください。
+                  下記のページからお申し込みいただくと、振込先口座をご案内いたします。
                 </p>
                 <Link
                   href={BANK_DONATION_INFO_HREF}
@@ -300,7 +299,7 @@ export default function JoinPage() {
               ? "マンスリーサポーターは公式アプリからお申し込みいただけます。"
               : "マンスリーサポーターは、公式アプリ公開後にアプリからお申し込みいただける予定です（現在準備中）。"}
             <br />
-            ※ 都度寄付は銀行振込・郵便振替のみです。振込先は
+            ※ 都度寄付は銀行振込のみです。振込先は
             <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
               銀行振込のご案内ページ
             </Link>
