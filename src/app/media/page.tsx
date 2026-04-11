@@ -42,7 +42,7 @@ const NEWSPAPER_ITEMS = [
   {
     title: "長野日報",
     date: "2025年3月31日",
-    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが取り上げられました。BENTENを使った水質浄化実験に市民の方々も興味津々でした。",
+    body: "諏訪湖（岡谷市）での生態系復活プロジェクトが取り上げられました。BENTENを使った水質浄化実験に市民の方々も興味深々でした。",
     imageFile: "newspaper-suwa.jpg",
     imageAlt: "長野日報の紙面。諏訪湖での水質浄化実験が紹介されている様子。",
     objectPosition: "center 30%",

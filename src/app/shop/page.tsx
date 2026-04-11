@@ -61,7 +61,7 @@ export default function ShopPage() {
       <section className="bg-ivory-warm py-16 sm:py-24">
         <div className="mx-auto max-w-lg px-4 text-center sm:px-6">
           <div className="rounded-2xl border-2 border-wakakusa/30 bg-white p-8 shadow-sm">
-            <p className="text-xl font-bold text-text-primary">地球防衛群オンライショップ</p>
+            <p className="text-xl font-bold text-text-primary">地球防衛群オンラインショップ</p>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary">
               自然素材・無添加・サステナブルにこだわった<br />
               プロダクトを届けるオンラインショップ

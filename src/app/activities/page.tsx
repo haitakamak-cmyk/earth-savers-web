@@ -5,7 +5,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "活動内容 | 財団法人 地球防衛群",
+  title: "活動内容",
   description:
     "水源地の保全、生態系復活プロジェクト、大地の再生、530運動、ばら撒くっ種、環境教育など、地球防衛群の活動をご紹介します。",
 };
@@ -58,7 +58,7 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "生態系復活プロジェクト ～水から生態系を蘇らせる～",
     description:
-      "地球の表面の約70%は水で覆われていますが、人間が使える淡水はわずか0.01%。その貴重な水が汚染され、海・川・湖沼の低酸素化が深刻な問題となっています。私たちはナノバブルや微生物の力を活かした水質浄化技術を用い、河川や池の溶存酸素を改善。水から生態系全体を蘇らせるプロジェクトを推進しています。",
+      "私たちはナノバブルや微生物の力を活かした独自の水質浄化技術を用い、河川や池の溶存酸素を改善。深刻な低酸素化に苦しむ海・川・湖沼の生態系を、水の中から直接蘇らせるプロジェクトを推進しています。",
     image: "/images/photos/ecosystem-river.jpeg",
     imageAlt: "生態系復活プロジェクトの水質浄化装置",
   },
@@ -117,7 +117,7 @@ const activities: Activity[] = [
     tagColor: "text-wakakusa bg-wakakusa-light",
     title: "環境教育・市民参加の促進",
     description:
-      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代に伝えます。子どもたちが土に触れ、森の声を聴き、自然のペースで深呼吸できる場を提供。未来を担う人材を育て、環境保全の輪を広げていきます。",
+      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で守る、そんな能動的な人材の輪を広げていきます。",
     image: "/images/photos/child-corn.jpeg",
     imageAlt: "子どもと自然の中での体験活動",
   },
@@ -153,9 +153,8 @@ export default function ActivitiesPage() {
       <section className="py-12 sm:py-16 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            地球防衛群は、水源地の保全から生態系の復活、里山の再生、
-            地域の環境美化まで、多角的なアプローチで
-            日本の自然環境を守り、未来へつないでいます。
+            水源地の死守から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
+            私たちは現場での「実践」を積み重ねることで、日本の自然環境を守り、未来へつないでいます。
           </p>
         </div>
       </section>

@@ -7,9 +7,9 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 
 /** トップ：AI・検索向けに事実ベースの要約（キャッチコピーは H1 で人間向けに表示） */
 export const metadata: Metadata = {
-  title: `${ORGANIZATION_NAME} | 水と森の未来を守る`,
+  title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
   description:
-    "活動実績を積み公益財団法人の認定を目指しています。外資による水源買収やメガソーラー乱開発から日本の水と森を守るNGOです。水源地保全、里山再生、生態系復活、530運動、環境教育を行います。",
+    "公益財団法人認定を目指し、外資による水源買収やメガソーラー乱開発から日本の水と森を守るNGOです。水源地保全、里山再生、生態系復活、530運動、環境教育を通じ、次世代へ豊かな自然を繋ぎます。",
   openGraph: {
     title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:
@@ -41,15 +41,13 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            【 ROOT DIRECTORY : MISSION 】<br />
-            日本の心臓（水と森）を、次世代へ死守せよ。
+            私たちの主旨
           </h2>
           <p className="mt-8 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto font-medium">
-            外資による水源地の買収。山を切り崩すメガソーラーの乱開発。<br />
-            今、私たちの足元で、当たり前だった自然の防壁が音を立てて崩れ去ろうとしている。<br />
+            外資による水源地の買収や、メガソーラーの乱開発から<br />
+            日本の豊かな豊かな水源を守るために活動を行っています。<br />
             <br />
-            綺麗事は言わない。これは日本の未来を懸けた防衛戦だ。<br />
-            『地球防衛群』は、この侵略から命の水を奪還し、七世代先の子どもたちへ繋ぐための実働部隊である。
+            地球防衛群は水源地の保全、里山の再生、そして生態系の復活を通じて、日本の美しい風景と命の源である「水」を次世代へ引きつなぐことを使命としています。
           </p>
         </div>
       </section>
@@ -61,7 +59,7 @@ export default function Home() {
             私たちの活動
           </h2>
           <p className="mt-3 text-center text-text-muted">
-            Featured Projects
+            --- 実働部隊の足跡 ---
           </p>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -324,11 +322,11 @@ export default function Home() {
       {/* ===== Crisis Section ===== */}
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-mono">
-            [ SYSTEM ALERT: 脅威レベル 拡大中 ]
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
+            水と森を取り巻く課題
           </h2>
-          <p className="mt-4 text-center text-text-muted font-bold tracking-widest">
-            日本の水と森に迫る、2つの致命的バグ
+          <p className="mt-2 text-center text-text-muted">
+            日本の豊かな自然を守るために
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -343,8 +341,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full font-mono">
-                    [ THREAT 01: 外からの侵略 ]
+                  <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full">
+                    課題 01: 水源地の保全と開発規制
                   </span>
                 </div>
               </div>
@@ -353,11 +351,11 @@ export default function Home() {
                   乱開発と外資買収
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
-                  メガソーラーの無秩序な建設と、外国資本による水源地ハッキング（買収）。<br />
-                  山の保水力というファイアウォールが破壊され、洪水リスクが臨界点を突破している。
+                  メガソーラーの無秩序な建設と、外国資本による水源地の買収。<br />
+                  山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
                 <div className="mt-auto bg-ivory p-4 rounded-lg border border-border">
-                  <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (解決策)</p>
+                  <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み</p>
                   <p className="text-sm text-text-secondary">
                     法律とコミュニティによる防衛。専門家と連携した「駆け込み寺（相談窓口）」での水際対策。
                   </p>
@@ -376,8 +374,8 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full font-mono">
-                    [ THREAT 02: 内なる崩壊 ]
+                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
+                    課題 02: 里山の荒廃と生態系の維持
                   </span>
                 </div>
               </div>
@@ -386,18 +384,18 @@ export default function Home() {
                   里山の荒廃と放置林
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed font-medium mb-4">
-                  メンテナンスを放棄された人工林は、水を蓄えられない「緑の砂漠」へと成り果てた。<br />
-                  放置された大地のシステムエラーが、野生動物と人間の境界線を破壊している。
+                  手入れの行き届かない人工林や竹林は、保水力を失い、生態系のバランスを崩してしまいます。<br />
+                  荒廃した里山は、野生動物と人間の境界を曖昧にする原因にもなっています。
                 </p>
                 <div className="mt-auto bg-ivory p-4 rounded-lg border border-border flex flex-col gap-3">
                   <div>
-                    <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (水質汚染への解決策)</p>
+                    <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（水質改善）</p>
                     <p className="text-sm text-text-secondary">
                       微生物テクノロジー『BENTEN』による物理的浄化と生態系の復活。
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-text-primary font-mono mb-1">▶ APPLIED PATCH (里山荒廃への解決策)</p>
+                    <p className="text-xs font-bold text-text-primary mb-1">▶ 解決に向けた取り組み（里山再生）</p>
                     <p className="text-sm text-text-secondary">
                       『大地の再生』メソッドによる水脈のデフラグ（再構築）と『530運動』『ばら撒くっ種』による実践。
                     </p>
@@ -465,8 +463,8 @@ export default function Home() {
             あなたにできること
           </h2>
           <p className="mt-4 text-text-secondary max-w-xl mx-auto leading-relaxed">
-            一人ひとりの小さなアクションが、未来を大きく変えます。
-            あなたの力を、水と森の未来に。
+            寄付による水源の死守、あるいは現場での汗を流すボランティア。<br className="hidden sm:block" />
+            あなたの主体的なアクションが、日本の水脈を救う確かな一歩となります。
           </p>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
