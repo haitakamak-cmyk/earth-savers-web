@@ -184,7 +184,7 @@ export function BankDonationForm() {
           name="note"
           rows={3}
           maxLength={500}
-          placeholder="受領証明書の希望など"
+          placeholder="その他、ご連絡事項があればどうぞ"
           className="rounded-lg border border-border bg-ivory/40 px-4 py-3 text-text-primary placeholder:text-text-muted focus:border-wakakusa focus:outline-none"
         />
       </div>

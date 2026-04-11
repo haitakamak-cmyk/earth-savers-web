@@ -12,7 +12,9 @@ export async function validateRequestOrigin() {
 
   // In production, we should compare against the actual site URL.
   // In development, localhost is usually fine.
-  const siteUrl = process.env.SITE_URL || (host ? `http://${host}` : "");
+  // http/https 両方を候補に入れる
+  const siteUrlHttp = process.env.SITE_URL || (host ? `http://${host}` : "");
+  const siteUrlHttps = siteUrlHttp.replace(/^http:\/\//, "https://");
 
   if (!origin && !referer) {
     return false;
@@ -24,7 +26,11 @@ export async function validateRequestOrigin() {
     return false;
   }
 
-  // Basic check: starts with the same origin
-  // Note: For more robust check, parse and compare the actual domain
-  return requestOrigin.startsWith(siteUrl) || requestOrigin.includes("localhost") || requestOrigin.includes("127.0.0.1");
+  // Basic check: starts with the same origin (http or https)
+  return (
+    requestOrigin.startsWith(siteUrlHttp) ||
+    requestOrigin.startsWith(siteUrlHttps) ||
+    requestOrigin.includes("localhost") ||
+    requestOrigin.includes("127.0.0.1")
+  );
 }

@@ -41,8 +41,6 @@ export default function BankDonationPage() {
           <p className="mt-6 text-center text-xs leading-relaxed text-text-muted">
             ※ 振込名義は、できるだけご登録のお名前と同一でお願いいたします。
             <br />
-            ※ 寄付金受領証明書が必要な場合は、お振込後に事務局までご連絡ください。
-            <br />
             ※ ご不明な点は{" "}
             <Link
               href="/contact"

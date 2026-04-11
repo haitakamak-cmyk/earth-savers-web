@@ -169,7 +169,6 @@ export async function POST(req: NextRequest) {
   const bankFooter =
     process.env.BANK_DONATION_REPLY_FOOTER?.trim() ||
     `※ 振込名義は、できるだけご登録のお名前と同一でお願いいたします。
-※ 寄付金受領証明書が必要な場合は、お振込後に事務局までご連絡ください。
 
 ---
 ご不明な点は、本メールにそのままご返信いただくか、
