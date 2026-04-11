@@ -5,9 +5,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "活動内容",
+  title: "保全活動・プロジェクト",
   description:
-    "水源地の保全、生態系復活プロジェクト、大地の再生、530運動、ばら撒くっ種、環境教育など、地球防衛群の活動をご紹介します。",
+    "水源地の取得・恒久保全、BENTENを用いた水質浄化、里山再生など、地球防衛群が現場で汗を流して取り組んでいる具体的なプロジェクト内容を詳しくご紹介します。",
 };
 
 /** `public` 直下のサブディレクトリ（例: images/ばら撒くっ種）に置いた画像を URL 一覧にする */
@@ -48,7 +48,7 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "水源地・山林の取得と恒久保全",
     description:
-      "外国資本による水源地の買収や、メガソーラーの乱開発から日本の豊かな水源を守ります。取得した山林は恒久的に保全し、地下水脈のネットワークを維持・回復。七世代先の子どもたちに、きれいな水を届けるための土台をつくります。",
+      "外国資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守り抜いています。取得した山林は恒久的に保全。自ら現場を歩き、地下水脈の健康状態を調査・回復させる活動を続けています。",
     image: "/images/photos/water-spring.jpeg",
     imageAlt: "美しい水源地の湧き水",
   },
@@ -58,7 +58,7 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "生態系復活プロジェクト ～水から生態系を蘇らせる～",
     description:
-      "私たちはナノバブルや微生物の力を活かした独自の水質浄化技術を用い、河川や池の溶存酸素を改善。深刻な低酸素化に苦しむ海・川・湖沼の生態系を、水の中から直接蘇らせるプロジェクトを推進しています。",
+      "私たちはナノバブルや微生物の力を活かした独自の水質浄化技術『BENTEN』を用い、死にかけていた河川や池を蘇らせます。溶存酸素を劇的に改善し、水の中から直接生態系の息吹を吹き込むプロジェクトを全国で展開しています。",
     image: "/images/photos/ecosystem-river.jpeg",
     imageAlt: "生態系復活プロジェクトの水質浄化装置",
   },
@@ -68,7 +68,7 @@ const activities: Activity[] = [
     tagColor: "text-wakakusa bg-wakakusa-light",
     title: "里山オーガニック再生 ～大地の再生の手法で～",
     description:
-      "現代のコンクリートやアスファルトは大地の水脈を分断し、空気と水の循環を止めてしまいます。「大地の再生」の考え方に基づき、風の草刈りや点穴掘りで空気と水の通り道を回復。放置された人工林・竹林に光を入れ、耕作放棄地を里山として再生します。人と動物が共生できる「やさしい境界線」をつくります。",
+      "現代のコンクリートは大地の水脈を塞ぎ、空気と水の循環を止めてしまいます。「大地の再生」の視点で、風の草刈りや点穴掘りを実践し、大地に深呼吸を。放置された森に光を入れ、人と動物が共に心地よく過ごせる境界を再生しています。",
     image: "/images/photos/activity-bamboo.jpeg",
     imageAlt: "里山再生活動の様子",
   },
@@ -153,8 +153,8 @@ export default function ActivitiesPage() {
       <section className="py-12 sm:py-16 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            水源地の死守から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
-            私たちは現場での「実践」を積み重ねることで、日本の自然環境を守り、未来へつないでいます。
+            大切な水源の保全から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
+            私たちは現場での「実践」を積み重ねることで、日本の自然環境を慈しみ、未来へつないでいます。
           </p>
         </div>
       </section>
@@ -252,11 +252,12 @@ export default function ActivitiesPage() {
       <section className="py-16 sm:py-20 bg-wakakusa-light">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            一緒に活動しませんか？
+            森の声を聴ける子どもを、一人でも増やす
           </h2>
-          <p className="mt-4 text-text-secondary leading-relaxed">
-            ボランティアの参加も、寄付による応援も、
-            あなたの想いが活動を支えます。
+          <p className="mt-4 text-text-secondary leading-relaxed text-base sm:text-lg">
+            あなたの一歩が、水と森の未来をつくる。<br className="hidden sm:block" />
+            寄付で支える、現場で汗を流す、日々の暮らしの中で意識する。<br className="hidden sm:block" />
+            あなたに合った形で、かけがえのない水と森の保全に参加してください。
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a

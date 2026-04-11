@@ -9,7 +9,7 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
   description:
-    "公益財団法人認定を目指し、外資による水源買収やメガソーラー乱開発から日本の水と森を守るNGOです。水源地保全、里山再生、生態系復活、530運動、環境教育を通じ、次世代へ豊かな自然を繋ぎます。",
+    "外国資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守ります。取得した山林は恒久的に保全し、地下水脈のネットワークを維持・回復。七世代先の子どもたちに、きれいな水を届けるための土台を築きます。",
   openGraph: {
     title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:
@@ -44,10 +44,10 @@ export default function Home() {
             私たちの主旨
           </h2>
           <p className="mt-8 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto font-medium">
-            外資による水源地の買収や、メガソーラーの乱開発から<br />
-            日本の豊かな豊かな水源を守るために活動を行っています。<br />
+            外資による水源地の買収や、大規模な開発から<br />
+            日本の豊かな水源を大切に守ります。<br />
             <br />
-            地球防衛群は水源地の保全、里山の再生、そして生態系の復活を通じて、日本の美しい風景と命の源である「水」を次世代へ引きつなぐことを使命としています。
+            地球防衛群は水源地の保全、里山の再生、そして生態系の復活を通じて、日本の美しい風景と命の源である「水」を次世代へつないでいくことを使命としています。
           </p>
         </div>
       </section>
@@ -292,7 +292,7 @@ export default function Home() {
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   子どもたちに、おいしい水と豊かな森を。
-                  自然体験プログラムを通じて、未来を担う人材を育てます。
+                  自然体験プログラムを通じて、森の声を聴ける子どもを、一人でも増やします。
                 </p>
                 <Link
                   href="/activities#education"
@@ -427,7 +427,7 @@ export default function Home() {
               <p className="mt-4 text-text-secondary leading-relaxed">
                 森が深呼吸すると、私たちの水が美味しくなる。
                 この当たり前の循環が、今まさに壊されようとしています。
-                私たちは「不退転」の覚悟で、この問題に取り組みます。
+                私たちは「誠実」な覚悟で、この問題に取り組みます。
               </p>
               <p className="mt-4 text-sm font-semibold text-text-primary">
                 代表理事　杉山 孔太
@@ -462,9 +462,9 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
             あなたにできること
           </h2>
-          <p className="mt-4 text-text-secondary max-w-xl mx-auto leading-relaxed">
-            寄付による水源の死守、あるいは現場での汗を流すボランティア。<br className="hidden sm:block" />
-            あなたの主体的なアクションが、日本の水脈を救う確かな一歩となります。
+          <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
+            水源地の保全から、ナノバブルによる水質浄化、里山の再構築まで。<br className="hidden sm:block" />
+            私たちは現場での「実践」を積み重ねることで、日本の自然環境を慈しみ、未来へつないでいます。
           </p>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">

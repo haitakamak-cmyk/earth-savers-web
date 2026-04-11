@@ -8,9 +8,9 @@ import type { Metadata } from "next";
 const BOOK_STORE_URL = "https://back-nature-store.com/products/book1";
 
 export const metadata: Metadata = {
-  title: "メディア・実績",
+  title: "メディア掲載・活動実績",
   description:
-    "環境教育の一環としての出版物のご紹介と、新聞・メディア掲載の実績です。財団法人 地球防衛群（Earth Savers）。",
+    "財団法人 地球防衛群のこれまでの活動実績と、新聞・雑誌・テレビ等のメディア掲載情報、大阪・関西万博への登壇実績などをまとめています。",
 };
 
 /** `public/images/media/` に同名ファイルを置くと表示されます（jpg / png / webp など）。 */

@@ -2,9 +2,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "財団について",
+  title: "理念・運営体制",
   description:
-    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。",
+    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。日本の水源地と山林を次世代へ引き継ぐ、私たちの揺るぎない決意をまとめています。",
 };
 
 const credoItems = [
@@ -31,8 +31,8 @@ const credoItems = [
   },
   {
     icon: "05",
-    title: "不退転（退かない決意）",
-    description: "どんな困難にも屈せず、環境を守る使命を全うします。",
+    title: "揺るぎない決意",
+    description: "どんな困難にも向き合い、環境を守る使命を誠実に全うします。",
   },
   {
     icon: "06",

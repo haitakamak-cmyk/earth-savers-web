@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 import { APP_EXTERNAL_LINKS_READY } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "支援・参加する | 財団法人 地球防衛群",
+  title: "支援・参加する",
   description:
-    "寄付・サポーター登録・ボランティア参加など、あなたにできることがあります。地球防衛群の活動を支えてください。",
+    "寄付やサポーター登録、ボランティア活動への参加方法、オンラインショップでの応援など、水と森の未来を守るための参画方法をご案内します。",
 };
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
@@ -160,10 +160,10 @@ export default function JoinPage() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
             あなたの力が、未来を変える
           </h2>
-          <p className="mt-4 text-text-secondary leading-relaxed">
-            一人ひとりの小さなアクションが、大きな変化を生み出します。
-            寄付で支える、現場で汗を流す、日々の暮らしの中で意識する。
-            あなたに合った形で、水と森の未来づくりに参加してください。
+          <p className="mt-4 text-text-secondary leading-relaxed text-base sm:text-lg">
+            あなたの一歩が、水と森の未来をつくります。<br className="hidden sm:block" />
+            寄付で支える、現場で汗を流す、日々の暮らしの中で意識する。<br className="hidden sm:block" />
+            あなたに合った形で、かけがえのない水と森の保全に参加してください。
           </p>
         </div>
       </section>
