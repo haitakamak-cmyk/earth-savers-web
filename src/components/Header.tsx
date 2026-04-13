@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { appSnsLinks } from "@/lib/app-sns-links";
-import { ORGANIZATION_NAME } from "@/lib/site";
+import { ORGANIZATION_NAME_HEADER_LINE } from "@/lib/site";
 
 const navItemsBeforeAppSns = [
   { label: "HOME", href: "/" },
@@ -51,7 +51,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-ivory/95 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20 sm:gap-4 sm:py-2.5">
-          {/* Logo + 法人名（site.ts の ORGANIZATION_NAME と一致） */}
+          {/* Logo + 法人名（ヘッダーは「一般」を省いた表記。正式名は site.ts の ORGANIZATION_NAME） */}
           <Link
             href="/"
             className="flex shrink-0 flex-col items-start gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wakakusa/50 focus-visible:ring-offset-2"
@@ -65,7 +65,7 @@ export function Header() {
               className="h-9 w-auto sm:h-11"
             />
             <span className="font-serif text-[10px] font-semibold leading-snug text-text-primary sm:text-xs md:whitespace-nowrap">
-              {ORGANIZATION_NAME}
+              {ORGANIZATION_NAME_HEADER_LINE}
             </span>
           </Link>
 

@@ -175,7 +175,7 @@ export default function Home() {
                   里山オーガニック再生
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  放置された森に光を。大地の再生の手法で水脈を回復し、自然の防波堤を育てています。
+                  放置された森に光を。大地の再生の手法で水脈を回復し、里山の復活を行なっています。
                 </p>
                 <Link
                   href="/activities#satoyama"
@@ -217,7 +217,7 @@ export default function Home() {
                   530（ゴミゼロ）運動
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  ゴミ拾い、池そうじ、在来種の種シェア。その一歩で自分も世界も生まれ変わります。
+                  無料で誰でも今すぐできること。それがゴミ拾い。その一歩で自分も世界も生まれ変わります。
                 </p>
                 <Link
                   href="/activities#gomi530"

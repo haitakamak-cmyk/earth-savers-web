@@ -14,7 +14,7 @@
 ```
 【earth-savers-web 引き継ぎ】
 ・Next.js 16 App Router。本番ビルド: npm run build（2026-04 時点で成功）
-・法人表記: site.ts の ORGANIZATION_NAME＝「一般財団法人 地球防衛群」。住所・代表・設立は同ファイルで一元化（法人概要 /about#overview、JSON-LD、規約・PP、お問い合わせメール署名と同期）
+・法人表記: ORGANIZATION_NAME＝「一般財団法人 地球防衛群」（法人概要・JSON-LD・メール等）。ヘッダーロゴ下だけ ORGANIZATION_NAME_HEADER_LINE＝「財団法人 地球防衛群」（一般を省略）
 ・設立表示: ORGANIZATION_FOUNDED_LABEL＝「2026年4月」、JSON-LD foundingDate＝ ORGANIZATION_FOUNDING_DATE_ISO（例: 2026-04）
 ・資本の表記: 「外国資本」「外資」は使わずサイト全体で **外部資本** に統一（トップ・activities・about FAQ 等）
 ・activities: ページ冒頭リードは活動全体の幅広い紹介。sr-only は要約列挙。B-369 の詳細文は **生態系復活セクションのみ**（リードと sr-only で長文を重複させない）
@@ -61,7 +61,7 @@
 |------|------|
 | サイト定数・法人名・住所・代表者・上記フラグ | `src/lib/site.ts`（`ORGANIZATION_POSTAL_CODE` / `ORGANIZATION_ADDRESS_LINE` / `ORGANIZATION_REPRESENTATIVE_*` / `ORGANIZATION_FOUNDED_LABEL`・`ORGANIZATION_FOUNDING_DATE_ISO`。JSON-LD・規約・PP・お問い合わせメールと同期） |
 | アプリ紹介 + SNS 一覧（`id` / `disabled` / `external`） | `src/lib/app-sns-links.ts` |
-| ヘッダー（ロゴ下に `ORGANIZATION_NAME`、アプリ・SNS メニュー） | `src/components/Header.tsx` |
+| ヘッダー（ロゴ下は `ORGANIZATION_NAME_HEADER_LINE`＝「財団法人…」。正式名は `ORGANIZATION_NAME`） | `src/components/Header.tsx` |
 | フッター | `src/components/Footer.tsx` |
 | メディア・実績 | `src/app/media/page.tsx` |
 | 財団について・法人概要・マニフェスト等 | `src/app/about/page.tsx`（`#overview` 法人概要。設立・住所は `site.ts` 参照） |

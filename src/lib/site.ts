@@ -14,6 +14,9 @@ export const APP_EXTERNAL_LINKS_READY = false;
 export const ORGANIZATION_NAME = "一般財団法人 地球防衛群";
 export const ORGANIZATION_NAME_SHORT = "地球防衛群";
 
+/** ヘッダーロゴ下など。登記の正式名は `ORGANIZATION_NAME`（一般財団法人）のまま */
+export const ORGANIZATION_NAME_HEADER_LINE = "財団法人 地球防衛群";
+
 /**
  * 法人概要・JSON-LD・規約・お問い合わせメールで共通化（表記ゆれ防止）
  */

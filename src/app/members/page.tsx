@@ -16,7 +16,7 @@ const boardRows: { role: string; name: string }[] = [
   { role: "理事", name: "藤原 治" },
   { role: "理事", name: "近藤 さよ" },
   { role: "理事", name: "東川 恵里子" },
-  { role: "監事", name: "玉置 みわ" },
+  { role: "監事", name: "今昔 美未実" },
 ];
 
 const councilRows: { role: string; name: string }[] = [
