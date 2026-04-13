@@ -67,7 +67,9 @@ export default function HeroSlider() {
       />
       <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center px-4 text-center">
         <h1 className="font-serif text-3xl font-bold leading-tight tracking-wide text-white drop-shadow-lg sm:text-4xl md:text-5xl">
-          水源を守る。山を守る。未来を守る。
+          <span className="block lg:inline">水源を守る。</span>
+          <span className="block lg:inline">山を守る。</span>
+          <span className="block lg:inline">未来を守る。</span>
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow sm:mt-6 sm:text-lg md:text-xl">
           日本の宝「命の水と森」を子どもたちへ残す。
