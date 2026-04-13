@@ -78,10 +78,10 @@ const activities: Activity[] = [
     tagColor: "text-accent-gold bg-amber-50",
     title: "530（ゴミゼロ）運動",
     description:
-      "地域のゴミ拾い、池そうじ、花植え、在来種の種のシェアなど、身近な環境改善活動を行っています。子どもから大人まで、楽しみながら「自分たちの手で街を調和させる」地域密着型の実践です。",
+      "地域のゴミ拾い、池そうじ、花植え、など、身近な環境改善活動を行っています。子どもから大人まで、楽しみながら「自分たちの手で街を調和させる」地域密着型の実践です。",
     image: "/images/photos/gomi530-group-vests.png",
     imageAlt:
-      "ゴミ拾い530運動に参加する地球防衛群のメンバーと地域の子どもたちの集合写真。伝統的な瓦の壁を背景に、笑顔でトングや活動チラシを持っています。",
+      "ゴミ拾い530運動に参加する地球防衛群のメンバーと地域の子どもたちの集合写真。",
   },
   {
     id: "baramaku",
@@ -89,7 +89,7 @@ const activities: Activity[] = [
     tagColor: "text-accent-gold bg-amber-50",
     title: "ばら撒くっ種",
     description:
-      "在来種や野草の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
+      "在来種の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
     image: "/images/ばら撒くっ種/baramaku-seeds-table.png",
     imageAlt:
       "ばら撒くっ種の会で並べられた種子や実、モロヘイヤ・マリーゴールドなどのラベル付き袋",
@@ -117,7 +117,7 @@ const activities: Activity[] = [
     tagColor: "text-wakakusa bg-wakakusa-light",
     title: "環境教育・次世代育成",
     description:
-      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で慈しみ育てる、豊かな感性を育む輪を広げていきます。",
+      "講演会や自然体験を通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で慈しみ育てる、豊かな感性を育む輪を広げていきます。",
     image: "/images/photos/child-corn.jpeg",
     imageAlt: "子どもと自然の中での体験活動",
   },
@@ -158,7 +158,7 @@ export default function ActivitiesPage() {
       <section className="pt-12 sm:pt-16 pb-2 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            水源地・山林の保全、里山と土壌の再生、地域とともにゴミゼロ運動や環境教育まで。<br className="hidden sm:block" />
+            水源地・山林の保全、里山と土壌の再生、地域とともに530運動や環境教育まで。<br className="hidden sm:block" />
             私たちは現場での「実践」を積み重ね、日本の自然環境を慈しみ、未来へつないでいます。
           </p>
         </div>
