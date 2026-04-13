@@ -10,9 +10,6 @@ export async function validateRequestOrigin() {
   const referer = headerList.get("referer");
   const host = headerList.get("host");
 
-  // In production, we should compare against the actual site URL.
-  // In development, localhost is usually fine.
-  // http/https 両方を候補に入れる
   const siteUrlHttp = process.env.SITE_URL || (host ? `http://${host}` : "");
   const siteUrlHttps = siteUrlHttp.replace(/^http:\/\//, "https://");
 
@@ -26,11 +23,27 @@ export async function validateRequestOrigin() {
     return false;
   }
 
-  // Basic check: starts with the same origin (http or https)
-  return (
-    requestOrigin.startsWith(siteUrlHttp) ||
-    requestOrigin.startsWith(siteUrlHttps) ||
-    requestOrigin.includes("localhost") ||
-    requestOrigin.includes("127.0.0.1")
-  );
+  const siteOk =
+    (siteUrlHttp.length > 0 && requestOrigin.startsWith(siteUrlHttp)) ||
+    (siteUrlHttps.length > 0 && requestOrigin.startsWith(siteUrlHttps));
+
+  if (siteOk) {
+    return true;
+  }
+
+  // 本番では localhost 類似ドメイン（例: evil-localhost.com）を誤認しないよう、
+  // 開発時のみホスト名を厳密比較して緩和する
+  if (process.env.NODE_ENV === "development") {
+    try {
+      const u = new URL(requestOrigin);
+      const h = u.hostname;
+      if (h === "localhost" || h === "127.0.0.1" || h === "[::1]") {
+        return true;
+      }
+    } catch {
+      /* invalid URL */
+    }
+  }
+
+  return false;
 }
