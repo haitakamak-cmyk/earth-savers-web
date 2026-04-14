@@ -12,7 +12,6 @@ const boardRows: { role: string; name: string }[] = [
   { role: "代表理事", name: "杉山 孔太" },
   { role: "理事・事務局長", name: "小野 誠" },
   { role: "理事", name: "西尾 直哉" },
-  { role: "理事", name: "森川 保幸" },
   { role: "理事", name: "藤原 治" },
   { role: "理事", name: "近藤 さよ" },
   { role: "理事", name: "東川 恵里子" },
