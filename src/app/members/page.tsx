@@ -13,14 +13,14 @@ const boardRows: { role: string; name: string }[] = [
   { role: "理事・事務局長", name: "小野 誠" },
   { role: "理事", name: "西尾 直哉" },
   { role: "理事", name: "藤原 治" },
-  { role: "理事", name: "近藤 さよ" },
+  { role: "理事", name: "遠藤 さよ" },
   { role: "理事", name: "東川 恵里子" },
   { role: "監事", name: "今昔 美未実" },
 ];
 
 const councilRows: { role: string; name: string }[] = [
   { role: "評議員", name: "杉山 公紀" },
-  { role: "評議員", name: "杉山 麻衣子" },
+  { role: "評議員", name: "杉山 麻依子" },
   { role: "評議員", name: "瀬戸山 裕一" },
 ];
 
