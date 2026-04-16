@@ -2,6 +2,12 @@
 export const SITE_URL = "https://earth-savers.org";
 
 /**
+ * 検索エンジンに載せたくない間は **false**（全ページ `noindex`、Organization JSON-LD 非出力、`robots.txt` で `/` 拒否）。
+ * 正式オープン時に **true** にし、Google Search Console で再クロールをリクエストすると反映が早まることが多い。
+ */
+export const SITE_ALLOW_SEARCH_INDEXING = false;
+
+/**
  * 公式サイトをアプリより先に公開するときは false のままにする。
  * アプリ（app.earth-savers.org）への誘導リンクを止め、準備中の表示にする。
  * リリース時に true に変更する。
@@ -42,10 +48,14 @@ export const ORGANIZATION_FOUNDED_LABEL = "2026年4月";
 /** JSON-LD `foundingDate`（ISO 8601 の年月） */
 export const ORGANIZATION_FOUNDING_DATE_ISO = "2026-04";
 
-/** メタディスクリプション・OG 等で共通化する一段説明 */
+/** メタディスクリプション・OG 等で共通化する一段説明（`SITE_ALLOW_SEARCH_INDEXING` が true のときに使用） */
 export const SITE_ORGANIZATION_DESCRIPTION =
-  "一般財団法人として設立。活動実績を積み公益財団法人の認定を目指しています。水源買収や乱開発の課題に向き合い、水源地保全・里山再生・生態系復活・環境教育に取り組みます。";
+  "水源地の保全・里山の再生・生態系の回復・環境教育に取り組む一般財団法人 地球防衛群（earth savers）。岡山を拠点に、乱開発から水と森を守り、次世代へつなぐ現場の活動・会員募集・寄付受付をご案内します。";
 
 /** 構造化データ・短文向け */
 export const SITE_ORGANIZATION_DESCRIPTION_SHORT =
-  "一般財団法人として、水源地保全・里山再生・生態系復活・環境教育に取り組み、公益認定を目指しています。";
+  "水源地保全・里山再生・生態系の回復・環境教育に取り組み、日本の水と森を次の世代へつなぐ一般財団法人です。";
+
+/** `SITE_ALLOW_SEARCH_INDEXING` が false のときのメタ説明（検索用・準備中表示） */
+export const SITE_ORGANIZATION_DESCRIPTION_PRELAUNCH =
+  "水源地の保全・里山の再生・生態系の回復・環境教育に取り組む一般財団法人 地球防衛群（earth savers）。公式サイトは準備中です。活動情報・会員募集は公開後にこちらでご案内します。";
