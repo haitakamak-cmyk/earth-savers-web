@@ -4,6 +4,7 @@ import {
   ORGANIZATION_NAME,
   ORGANIZATION_REPRESENTATIVE_NAME,
   ORGANIZATION_REPRESENTATIVE_TITLE,
+  SITE_ALLOW_SEARCH_INDEXING,
   SITE_URL,
 } from "@/lib/site";
 
@@ -55,6 +56,10 @@ const organizationJsonLd = {
 } as const;
 
 export function OrganizationJsonLd() {
+  if (!SITE_ALLOW_SEARCH_INDEXING) {
+    return null;
+  }
+
   return (
     <script
       type="application/ld+json"

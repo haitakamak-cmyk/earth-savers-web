@@ -20,6 +20,7 @@
 ・activities: ページ冒頭リードは活動全体の幅広い紹介。sr-only は要約列挙。B-369 の詳細文は **生態系復活セクションのみ**（リードと sr-only で長文を重複させない）
 ・shop: 表記は **オンラインショップ**（ン付き）。誤って「オンライショップ」と見える場合はキャッシュ・旧デプロイを疑う
 ・クラファン: /join → https://for-good.net/project/1003493（CROWDFUNDING_URL）
+・検索掲載: `SITE_ALLOW_SEARCH_INDEXING`（site.ts）。false の間は全ページ noindex・`robots.txt` で全パス disallow・JSON-LD 非表示。公開時に true＋Search Console で URL 検査／再クロール
 ・アプリ先行公開しない間: APP_EXTERNAL_LINKS_READY = false
   → app CTA は join / bank-donation / app-intro で準備中、ナビ「公式アプリ紹介」は disabled（/app-intro 直打ちは可）
 ・アプリ・SNS: src/lib/app-sns-links.ts のみ（Header + Footer）
