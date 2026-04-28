@@ -28,8 +28,22 @@ const councilRows: { role: string; name: string }[] = [
 const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
   { rank: "七世代の大使", reading: "ななせだいのたいし", names: [] },
   { rank: "山の守護者", reading: "やまのしゅごしゃ", names: [] },
-  { rank: "森の番人", reading: "もりのばんにん", names: [] },
-  { rank: "水の守人", reading: "みずのもりびと", names: [] },
+  {
+    rank: "森の番人",
+    reading: "もりのばんにん",
+    names: ["(有)テンプルビューティフル", "堀江美喜"],
+  },
+  {
+    rank: "水の守人",
+    reading: "みずのもりびと",
+    names: [
+      "BBA協力隊",
+      "医療法人 徳治会 MOTOKI DENTAL CLINIC",
+      "マイク",
+      "株式会社ナファ生活研究所",
+      "三好隆元（ミヨシリュウゲン）",
+    ],
+  },
 ];
 
 function RosterTable({ rows }: { rows: { role: string; name: string }[] }) {
