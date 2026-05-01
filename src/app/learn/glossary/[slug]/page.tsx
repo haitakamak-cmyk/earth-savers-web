@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const path = `/learn/glossary/${slug}`;
   return {
     title: entry.term,
-    description: entry.shortDescription,
+    description: `${entry.shortDescription} ${entry.body.slice(0, 90)}`,
     alternates: { canonical: path },
     openGraph: {
       title: `${entry.term} | 用語集`,
@@ -51,13 +51,13 @@ export default async function GlossaryTermPage({ params }: Props) {
         name={entry.term}
         slug={slug}
         alternateName={entry.alternateNames}
-        description={entry.shortDescription}
+        description={entry.body}
       />
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
           { name: "まなぶ", path: "/learn" },
-          { name: "用語集", path: "/learn/glossary" },
+          { name: "環境用語集", path: "/learn/glossary" },
           { name: entry.term, path },
         ]}
       />
@@ -65,18 +65,65 @@ export default async function GlossaryTermPage({ params }: Props) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <p className="text-xs text-wakakusa-dark">
             <Link href="/learn/glossary" className="underline-offset-2 hover:underline">
-              用語集
+              環境用語集
             </Link>
           </p>
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {entry.term}
           </h1>
+          {entry.reading ? <p className="mt-1 text-sm text-text-muted">{entry.reading}</p> : null}
           <ResourceLead>{entry.shortDescription}</ResourceLead>
-          <div className="prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
-            {entry.body.split(/\n\n+/).map((para, i) => (
-              <p key={i} className="mb-4">{para}</p>
-            ))}
-          </div>
+          <section className="mt-6">
+            <h2 className="font-serif text-xl font-semibold text-text-primary">定義</h2>
+            <div className="mt-2 prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
+              {entry.body.split(/\n\n+/).map((para, i) => (
+                <p key={i} className="mb-4">{para}</p>
+              ))}
+            </div>
+          </section>
+
+          {entry.earthSaversContext ? (
+            <section className="mt-8">
+              <h2 className="font-serif text-xl font-semibold text-text-primary">地球防衛群との接点</h2>
+              <p className="mt-2 text-[15px] leading-relaxed text-text-secondary">{entry.earthSaversContext}</p>
+            </section>
+          ) : null}
+
+          {entry.laws && entry.laws.length > 0 ? (
+            <section className="mt-8">
+              <h2 className="font-serif text-xl font-semibold text-text-primary">関連法令</h2>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-[15px] text-text-secondary">
+                {entry.laws.map((law) => (
+                  <li key={law} className="font-medium">{law}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {entry.sources.length > 0 ? (
+            <section className="mt-8">
+              <h2 className="font-serif text-xl font-semibold text-text-primary">出典</h2>
+              <ul className="mt-2 space-y-2 text-sm text-text-secondary">
+                {entry.sources.map((source) => (
+                  <li key={`${source.label}-${source.url ?? ""}`}>
+                    {source.url ? (
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-aqua-dark underline underline-offset-2 hover:text-aqua"
+                      >
+                        {source.label}
+                      </a>
+                    ) : (
+                      <span>{source.label}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           <RelatedLinks items={related} />
         </div>
       </div>

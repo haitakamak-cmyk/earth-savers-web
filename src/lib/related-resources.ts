@@ -6,7 +6,7 @@ import type { PolicyEntry, PolicyKind } from "./policies";
 import { POLICY_KIND_LABEL, policiesByKind } from "./policies";
 import { TOOLKIT_LINKS } from "./toolkit-manifest";
 
-export type RelatedNavItem = { href: string; label: string };
+export type RelatedNavItem = { href: string; label: string; description?: string };
 
 const TOOLKIT_BY_PATH = Object.fromEntries(TOOLKIT_LINKS.map((l) => [l.href, l.label]));
 
@@ -45,10 +45,14 @@ export function linksFromLawAnchors(anchors: readonly string[]): RelatedNavItem[
 
 export function linksFromGlossarySlugs(slugs: readonly string[]): RelatedNavItem[] {
   return slugs
-    .map((slug) => {
+    .map<RelatedNavItem | null>((slug) => {
       const entry = getGlossaryBySlug(slug);
       if (!entry) return null;
-      return { href: `/learn/glossary/${slug}`, label: entry.term };
+      return {
+        href: `/learn/glossary/${slug}`,
+        label: entry.term,
+        description: entry.shortDescription,
+      };
     })
     .filter((x): x is RelatedNavItem => x !== null);
 }
@@ -76,6 +80,7 @@ function dedupeByHref(items: RelatedNavItem[]): RelatedNavItem[] {
 
 export function buildGlossaryRelated(entry: GlossaryEntry): RelatedNavItem[] {
   return dedupeByHref([
+    ...linksFromGlossarySlugs(entry.relatedGlossarySlugs ?? []),
     ...linksFromToolkitPaths(entry.relatedToolkitPaths ?? []),
     ...linksFromLawAnchors(entry.relatedLawAnchors ?? []),
     ...policyHubItemsForKinds(entry.relatedPolicyKinds ?? []),

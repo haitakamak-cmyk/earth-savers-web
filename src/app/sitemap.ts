@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getAllArticleSlugs } from "@/lib/articles";
-import { getAllGlossarySlugs } from "@/lib/glossary";
+import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
 import { getAllPolicySlugs } from "@/lib/policies";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
 
@@ -65,11 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of getAllGlossarySlugs()) {
+    const entry = GLOSSARY.find((e) => e.slug === slug);
     urls.push({
       url: `${SITE_URL}/learn/glossary/${slug}`,
-      lastModified: now,
+      lastModified: entry?.updatedAt ?? now,
       changeFrequency: "monthly",
-      priority: 0.55,
+      priority: 0.7,
     });
   }
 

@@ -5,7 +5,7 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
-**直近更新**: 2026-05（**リソース三本柱** `/policy`・`/toolkit`・`/learn`、ヘッダー「リソース」DM、JSON-LD 部品、`sitemap.xml` と `SITE_ALLOW_SEARCH_INDEXING` 連動）
+**直近更新**: 2026-05（**リソース三本柱** `/policy`・`/toolkit`・`/learn`、ヘッダー「リソース」DM、JSON-LD 部品、`sitemap.xml` と `SITE_ALLOW_SEARCH_INDEXING` 連動、**ヘッダー整理**＝重複していた「支援・参加する」テキストリンク削除＋ナビ全体に `whitespace-nowrap`、**条例テンプレ v0** を `/toolkit/ordinance` で全文公開＋Markdown ダウンロード）
 
 ---
 
@@ -29,6 +29,10 @@
 ・フッター「財団について」: 法人概要、運営体制（ラベル。※リンク先は /about#members）
 ・検証: npx tsc --noEmit && npm run lint && npm run build
 ・**リソース（三本柱）**: ヘッダー／フッター「リソース」→ `/policy`（政策）、`/toolkit`（実務中立）、`/learn`（学び）。文言・データは `policies.ts` / `articles.ts` / `glossary.ts`。`SITE_ALLOW_SEARCH_INDEXING === false` の間は構造化データ（ breadcrumbs 等）は出さず robots で全 disallow
+・**ヘッダー（PC）順序**: HOME / 財団について / メンバー / 活動内容 / リソース▼ / アプリ・SNS▼ / 買って応援 / メディア・実績 / [支援する CTA]。**「支援・参加する」テキストリンクは廃止**（緑CTA「支援する」と `/join` で完全重複だったため）。`navItemsAfterResource` は空配列で残してある（差し戻し or 別項目追加が必要なときに 1 行 push するだけ）
+・**ナビ折り返し対策**: `navLinkClassDesktop()` に `whitespace-nowrap` 必須。項目を増やしたら折り返さんかチェック
+・**条例テンプレ公開フロー**: 正本 `Web/条例テンプレ_v0_暫定版.md` → サイト配信用 `Web/earth-savers-web/public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` にコピー → 再ビルド／デプロイで `/toolkit/ordinance` に反映。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。指示書: `Web/指示書_ロクロー_条例テンプレ公開.md`
+・**用語集 v0 公開**: 27語を `/learn/glossary/[slug]` で配信。データは `public/learn/glossary/用語集_v0_完成版.md` から `src/lib/glossary.ts` が `GLOSSARY` 配列へ変換して生成。個別ページは `DefinedTerm` JSON-LD / `BreadcrumbList` を出力（`SITE_ALLOW_SEARCH_INDEXING === false` の間は既存規律どおり非出力）
 ・正本: Web/earth-savers-web/HANDOVER.md
 ```
 
@@ -75,7 +79,7 @@
 | 参加・寄付 | `src/app/join/page.tsx`、銀行都度 `src/app/join/bank-donation/page.tsx` |
 | お問い合わせ API | `src/app/api/contact/route.ts` |
 | 構造化データ（Organization のほか breadcrumbs / DefinedTerm / Article） | `src/components/OrganizationJsonLd.tsx`、`BreadcrumbJsonLd.tsx`、`DefinedTermJsonLd.tsx`、`ArticleJsonLd.tsx` |
-| **リソース** データソース | `src/lib/policies.ts`（個別ページ `/policy/[slug]`）、`src/lib/articles.ts`（`/learn/articles/[slug]`）、`src/lib/glossary.ts`（`/learn/glossary/[slug]`） |
+| **リソース** データソース | `src/lib/policies.ts`（個別ページ `/policy/[slug]`）、`src/lib/articles.ts`（`/learn/articles/[slug]`）、`src/lib/glossary.ts`（**用語集 v0: 27語**、`/learn/glossary/[slug]`） |
 | リソース共通 UI | `ResourceLead.tsx`（先頭リード）、`RelatedLinks.tsx`、ツール下層 `ToolkitPageBody.tsx`、長文 Markdown `MarkdownArticle.tsx` |
 | ナビ定数「三本柱」 | `src/lib/resource-nav.ts`（`RESOURCE_NAV_LINKS`。Header と Footer と一致させる） |
 | サイトマップ（index 許可時のみ URL 出力） | `src/app/sitemap.ts` |
@@ -121,7 +125,7 @@
 - **データ追加の流れ**: `glossary.ts` / `policies.ts` / `articles.ts` の配列に push（最初は空でビルド通る設計）
 
 ### 直近で予定している中身
-1. 用語集の最初の 20 語（OECM、ネイチャーポジティブ、30by30、TNFD、生物多様性増進活動促進法、自然共生サイト、外部資本… 等）
+1. ✅ **用語集 v0（27語）実装済み**（`/learn/glossary` 一覧 + `/learn/glossary/[slug]` 個別。`GLOSSARY` 配列から静的生成）
 2. 初期 3 提言（国向け：再エネ立地規制ガイドライン／自治体向け：環境配慮型再エネ条例モデル／業界向け：TNFD 準拠の自然資本影響評価）
 3. 条例テンプレート完成版（メガソーラー・風力規制条例の汎用ひな型）
 4. 法律活用ガイド（生物多様性増進活動促進法の認定取得手順と戦略的使い方）
@@ -148,6 +152,10 @@
 - 「**リソース**」は三本柱（`/policy` `/toolkit` `/learn`）のみ。ラベル変更は `resource-nav.ts` を一箇所直す。
 - ナビ項目名 **「アプリ・SNS」**（Instagram / TikTok / YouTube / Facebook + 先頭のアプリ紹介行）。
 - フッター「財団について」の **運営体制**（文言。`href` は `/about#members`）。
+- **ヘッダーPC（2026-05〜）の順序**: `HOME / 財団について / メンバー / 活動内容 / リソース▼ / アプリ・SNS▼ / 買って応援 / メディア・実績 / [支援する CTA]`。
+  - **「支援・参加する」テキストリンクは廃止**（緑CTA「支援する」と `/join` で完全重複だった）。`Header.tsx` の `navItemsAfterResource` を空配列にしてある（差し戻し or 別項目追加が必要なときは 1 行 push）。
+  - **`navLinkClassDesktop()` に `whitespace-nowrap` 必須**（語の途中で折れるのを防ぐ）。項目を増やすときは折り返さんか実機チェック。
+  - これでも詰まりだしたら、未実装の **B案**（`応援する▼` ドロップダウンに `/join` ＋ `/shop` をまとめ、CTA は「寄付する」に改名）か、**C案**（`メディア・実績` をフッター行きに）を検討。
 
 ## 表記・トーン（固定したいこと）
 
