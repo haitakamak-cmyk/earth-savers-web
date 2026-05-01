@@ -15,7 +15,11 @@ const navItemsBeforeResource = [
   { label: "活動内容", href: "/activities" },
 ];
 
-const navItemsAfterResource = [{ label: "支援・参加する", href: "/join" }];
+/**
+ * 「支援・参加する」テキストリンクは削除済み（緑CTA「支援する」と同じ `/join` で完全重複だったため）。
+ * 将来また間に項目を入れたいときはここに足す。
+ */
+const navItemsAfterResource: { label: string; href: string }[] = [];
 
 /** お問い合わせはヘッダーからは外し、フッター等からご案内（メニュー圧迫と「下げる」要望のため） */
 const navItemsAfterAppSns = [
@@ -43,7 +47,7 @@ function ChevronDownIcon({ className }: { className?: string }) {
 }
 
 function navLinkClassDesktop() {
-  return "rounded-lg px-2 py-2 text-xs font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark lg:px-3 lg:text-sm";
+  return "whitespace-nowrap rounded-lg px-2 py-2 text-xs font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark lg:px-3 lg:text-sm";
 }
 
 export function Header() {
