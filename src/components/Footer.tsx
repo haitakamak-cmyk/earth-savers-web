@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { appSnsLinks } from "@/lib/app-sns-links";
+import { RESOURCE_NAV_LINKS } from "@/lib/resource-nav";
 
 const footerLinks = [
   {
@@ -24,6 +25,10 @@ const footerLinks = [
       { label: "ばら撒くっ種", href: "/activities#baramaku" },
       { label: "環境教育", href: "/activities#education" },
     ],
+  },
+  {
+    title: "リソース",
+    links: RESOURCE_NAV_LINKS.map((l) => ({ label: l.label, href: l.href })),
   },
   {
     title: "支援・参加",
@@ -49,7 +54,7 @@ export function Footer() {
   return (
     <footer className="bg-text-primary text-ivory-warm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Logo & Description */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Image

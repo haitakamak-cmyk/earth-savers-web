@@ -154,7 +154,7 @@ export default function MembersPage() {
                   <span className="text-sm text-text-secondary">（{tier.reading}）</span>
                 </div>
                 {tier.names.length > 0 ? (
-                  <ul className="mt-4 flex flex-col gap-2 border-t border-border pt-4 sm:flex-row sm:flex-wrap sm:gap-x-6">
+                  <ul className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
                     {tier.names.map((n) => (
                       <li
                         key={n}
