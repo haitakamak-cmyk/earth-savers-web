@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "活動レビュー、論考、背景解説など、サイト内の読み物を一覧します（記事詳細が Article JSON-LD になります）。",
   alternates: { canonical: "/learn/articles" },
   openGraph: {
-    title: "読みもの | まなぶ",
+    title: "読みもの | 学ぶ",
     url: "/learn/articles",
     description: "読み物一覧です。",
   },
@@ -23,7 +23,7 @@ export default function ArticlesIndexPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "読みもの", path: "/learn/articles" },
         ]}
       />

@@ -27,14 +27,14 @@ const footerLinks = [
     ],
   },
   {
-    title: "リソース",
+    title: "資料室",
     links: RESOURCE_NAV_LINKS.map((l) => ({ label: l.label, href: l.href })),
   },
   {
     title: "支援・参加",
     links: [
       { label: "寄付する", href: "/join#donation" },
-      { label: "サポーター登録", href: "/join#donation" },
+      { label: "サポーター登録", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
       ...appSnsLinks.map((l) => ({
         id: l.id,

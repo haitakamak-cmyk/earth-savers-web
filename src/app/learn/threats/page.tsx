@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "水源地・里山・生態系に関わりやすいリスク区分（大規模設備開発、土地利用の転換、外部資本の取得など）を要約します。",
   alternates: { canonical: "/learn/threats" },
   openGraph: {
-    title: "環境脅威のサマリ | まなぶ",
+    title: "環境脅威のサマリ | 学ぶ",
     url: "/learn/threats",
     description: "代表的な環境リスク区分の概要です。",
   },
@@ -41,7 +41,7 @@ export default function ThreatsPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "環境脅威のサマリ", path: "/learn/threats" },
         ]}
       />

@@ -4,6 +4,9 @@ import { getAllArticleSlugs } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
 import { getAllPolicySlugs } from "@/lib/policies";
 import { TOPICS } from "@/lib/topic-entries";
+import {
+  ORDINANCE_SUPPLEMENTS,
+} from "@/lib/ordinance-supplements-data";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
 
 const CORE_PATHS = [
@@ -100,6 +103,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.58,
+    });
+  }
+
+  for (const entry of ORDINANCE_SUPPLEMENTS) {
+    urls.push({
+      url: `${SITE_URL}/toolkit/ordinance/${entry.slug}`,
+      lastModified: new Date(entry.updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.6,
     });
   }
 

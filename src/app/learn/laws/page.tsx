@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "河川法・森林法・都市計画など、水源地や里山の議論に関わりやすい法令をアンカー付きで整理します（個別ケースでの法的評価は専門家へ）。",
   alternates: { canonical: "/learn/laws" },
   openGraph: {
-    title: "関係法案の整理 | まなぶ",
+    title: "関係法案の整理 | 学ぶ",
     url: "/learn/laws",
     description: "関係法令の読みどころの整理です。",
   },
@@ -30,7 +30,7 @@ const sections = [
   {
     id: "planning",
     title: "都市計画・用途地域・エネルギー施策",
-    body: "開発の位置づけ、再生可能エネルギーの設備と環境評価の接点について、チェックリスト（ツールキット）とリンクします。",
+    body: "開発の位置づけ、再生可能エネルギーの設備と環境評価の接点について、チェックリスト（ひな形・資料）とリンクします。",
   },
 ] as const;
 
@@ -40,7 +40,7 @@ export default function LawsPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "関係法案の整理", path: "/learn/laws" },
         ]}
       />
@@ -52,7 +52,7 @@ export default function LawsPage() {
           <ResourceLead>
             条文の趣旨ではなく、「どのテーマ議論でどの法令が脚光を浴びやすいか」を地図のように並べます。詳細チェックリストは{" "}
             <Link href="/toolkit/checklist" className="text-aqua-dark underline underline-offset-2">
-              ツールキット
+              ひな形・資料
             </Link>
             と相互リンクさせます。
           </ResourceLead>

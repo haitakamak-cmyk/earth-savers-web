@@ -29,19 +29,14 @@ const GLOSSARY_LINK_RULES: { phrase: string; href: string }[] = [
 
 /** 条例テンプレの見出し id（MarkdownArticle の slugger・maintainCase と一致） */
 const ORDINANCE_ANCHOR_ARTICLE5 = "第5条設置禁止区域";
+const ORDINANCE_ANCHOR_ARTICLE29 = "第29条生物多様性維持協定等の推進";
 
 export function hrefForOrdinanceArticleLabel(label: string): string {
   if (label.includes("第5条"))
     return `/toolkit/ordinance#${encodeURIComponent(ORDINANCE_ANCHOR_ARTICLE5)}`;
   if (label.includes("第29条"))
-    return "/toolkit/ordinance";
+    return `/toolkit/ordinance#${encodeURIComponent(ORDINANCE_ANCHOR_ARTICLE29)}`;
   return "/toolkit/ordinance";
-}
-
-export function ordinanceArticleLinkSubtitle(label: string): string | undefined {
-  if (label.includes("第29条"))
-    return "条例テンプレの逐条本文は編集責任者が追記する前提です（ページ先頭へ）。";
-  return undefined;
 }
 
 export function loadTopicRawMarkdown(entry: TopicEntry): string {

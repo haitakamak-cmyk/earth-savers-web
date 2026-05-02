@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "制度・政策の背景を長めの文章で整理するコーナーです。用語集・条例テンプレ・政策提言と相互に参照できます。",
   alternates: { canonical: "/learn/topics" },
   openGraph: {
-    title: "解説記事 | まなぶ",
+    title: "解説記事 | 学ぶ",
     description: "制度解説・政策解説の長尺記事。",
     url: `${SITE_URL}/learn/topics`,
   },
@@ -29,7 +29,7 @@ export default function LearnTopicsIndexPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "解説記事", path: "/learn/topics" },
         ]}
       />

@@ -42,6 +42,8 @@ export type GlossaryEntry = {
   updatedAt: string;
   category?: GlossaryCategory;
   alternateNames?: readonly string[];
+  /** `international-framework` 等では制度改正の注記を併記 */
+  requiresLegalCaveat?: boolean;
 } & DefinedTermRelated;
 
 const GLOSSARY_SOURCE_PATH = path.join(
@@ -81,6 +83,15 @@ const CATEGORY_BY_SLUG: Record<string, GlossaryCategory> = {
   commons: "legal-theory",
   "satoyama-organic": "foundation-original",
 };
+
+function categoryRequiresLegalCaveat(cat?: GlossaryCategory): boolean {
+  return (
+    cat === "international-framework" ||
+    cat === "national-law" ||
+    cat === "precedent" ||
+    cat === "legal-theory"
+  );
+}
 
 function trimCodeTicks(value: string): string {
   return value.trim().replace(/^`|`$/g, "");
@@ -169,6 +180,7 @@ function parseGlossaryMarkdown(raw: string): GlossaryEntry[] {
       const body = parseSectionBody(block, "定義");
       const earthSaversContext = parseSectionBody(block, "財団との接点");
       const sources = parseSources(parseSectionBody(block, "出典"));
+      const category = CATEGORY_BY_SLUG[slug];
 
       return {
         slug,
@@ -180,7 +192,8 @@ function parseGlossaryMarkdown(raw: string): GlossaryEntry[] {
         laws: laws.length ? laws : undefined,
         sources,
         updatedAt,
-        category: CATEGORY_BY_SLUG[slug],
+        category,
+        requiresLegalCaveat: categoryRequiresLegalCaveat(category),
         relatedGlossarySlugs,
         relatedToolkitPaths: ["/toolkit/ordinance"],
       };

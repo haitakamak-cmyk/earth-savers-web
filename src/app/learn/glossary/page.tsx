@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { ResourceLead } from "@/components/ResourceLead";
 import { GLOSSARY_ENTRIES } from "@/lib/glossary";
 
 export const metadata: Metadata = {
   title: "環境用語集",
   description:
-    "水源保全・里山・生態系に関わる用語を短く定義し、政策提言・ツールキット・読み物へ橋渡しします。公開前データは空でもページ自体は確認できます。",
+    "水源保全・里山・生態系に関わる用語を短く定義し、政策提言・ひな形・資料・読み物へ橋渡しします。公開前データは空でもページ自体は確認できます。",
   alternates: { canonical: "/learn/glossary" },
   openGraph: {
-    title: "用語集 | まなぶ",
+    title: "用語集 | 学ぶ",
     url: "/learn/glossary",
     description: "用語の定義と関連リンクです。",
   },
@@ -25,7 +26,7 @@ export default function GlossaryIndexPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "環境用語集", path: "/learn/glossary" },
         ]}
       />
@@ -33,11 +34,11 @@ export default function GlossaryIndexPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">環境用語集</h1>
           <ResourceLead>
-            地球防衛群の活動・条例テンプレート・政策提言の理解を支える v0（27語）です。定義の正確さが必要な場面では一次資料へ遷移できるよう、各ページに出典を明記しています。
+            一般財団法人 地球防衛群の活動・条例テンプレ・政策提言の理解を支える用語集（27語）。定義の正確さが必要な場面では一次資料へ遷移できるよう、各ページに出典を明記しています。
           </ResourceLead>
-          <blockquote className="rounded-lg border-l-4 border-aqua bg-aqua-light/45 px-4 py-3 text-sm leading-relaxed text-text-secondary">
-            本用語集は地球防衛群の活動・条例テンプレート・政策提言の理解を補助するために作成した参考資料です。各用語の解釈は学術的・行政的な議論があり得るため、正確性が必要な場面では一次資料を確認してください。
-          </blockquote>
+          <div className="mt-4">
+            <ContentDisclaimer />
+          </div>
 
           {entries.length === 0 ? (
             <p className="text-[15px] text-text-secondary">

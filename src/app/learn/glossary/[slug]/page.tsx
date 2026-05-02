@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { DefinedTermJsonLd } from "@/components/DefinedTermJsonLd";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -56,7 +57,7 @@ export default async function GlossaryTermPage({ params }: Props) {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "環境用語集", path: "/learn/glossary" },
           { name: entry.term, path },
         ]}
@@ -125,6 +126,9 @@ export default async function GlossaryTermPage({ params }: Props) {
           ) : null}
 
           <RelatedLinks items={related} />
+          <div className="mt-10">
+            <ContentDisclaimer requiresLegalCaveat={entry.requiresLegalCaveat} />
+          </div>
         </div>
       </div>
     </div>

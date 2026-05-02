@@ -9,12 +9,12 @@ import {
 } from "@/lib/policies";
 
 export const metadata: Metadata = {
-  title: "政策提言（リソース）",
+  title: "政策提言（資料室）",
   description:
     "中央政府・地方自治体・立法・パブコメ・声明・共同署名まで、わたしたちが社会に届けたいメッセージと提言を体系立てて掲載するコーナーです。理念と実績評価に基づく立場表明はこちらで扱います。",
   alternates: { canonical: "/policy" },
   openGraph: {
-    title: "政策提言（リソース）",
+    title: "政策提言（資料室）",
     description:
       "国・自治体・法制度への提言、パブコメ、声明、署名活動までを一覧するコーナーです。",
     url: "/policy",
@@ -50,7 +50,7 @@ export default function PolicyHubPage() {
           <ResourceLead>
             メッセージ性の高いキャンペーン・理念に基づく声明や共同署名などは、この「政策提言」セクションで扱います。実務資料やテンプレの中立整理は{" "}
             <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
-              ツールキット
+              ひな形・資料
             </Link>
             側へ分け、「読み込みたい順番」を迷わせない構成にします。
           </ResourceLead>

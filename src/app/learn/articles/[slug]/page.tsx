@@ -53,12 +53,12 @@ export default async function ArticleDetailPage({ params }: Props) {
         pathname={path}
         description={article.summary}
         datePublished={article.datePublished}
-        articleSection="まなぶ（読み物）"
+        articleSection="学ぶ（読み物）"
       />
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "読みもの", path: "/learn/articles" },
           { name: article.title, path },
         ]}

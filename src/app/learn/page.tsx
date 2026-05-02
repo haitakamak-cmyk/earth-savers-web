@@ -5,12 +5,12 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ResourceLead } from "@/components/ResourceLead";
 
 export const metadata: Metadata = {
-  title: "まなぶ（リソース）",
+  title: "学ぶ（資料室）",
   description:
     "用語集、関係法案の整理、環境脅威のサマリ、読み物で、水源・里山・生態系を学べるコーナーです。政策の主張は政策提言と明確に分けます。",
   alternates: { canonical: "/learn" },
   openGraph: {
-    title: "まなぶ（リソース）",
+    title: "学ぶ（資料室）",
     description: "用語・法案・脅威・読み物で学べるコーナーです。",
     url: "/learn",
   },
@@ -20,7 +20,7 @@ const cards = [
   {
     href: "/learn/topics",
     title: "解説記事",
-    body: "制度・政策の背景を長めの文章で整理します。用語集・ツールキット・政策提言とつながります。",
+    body: "制度・政策の背景を長めの文章で整理します。用語集・ひな形・資料・政策提言とつながります。",
   },
   {
     href: "/learn/glossary",
@@ -50,23 +50,23 @@ export default function LearnHubPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
         ]}
       />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <p className="text-xs font-medium uppercase tracking-wider text-wakakusa-dark">
-            Resource / Learn
+            資料室 / 学ぶ
           </p>
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
-            まなぶ
+            学ぶ
           </h1>
           <ResourceLead>
             「知る」を支えるコンテンツを集約します。
             <Link href="/policy" className="text-aqua-dark underline underline-offset-2">
               政策提言
             </Link>
-            で述べる主張と、この「まなぶ」で整理する法令・背景知識の役割分担を はっきりさせ、読者が迷わない導線にします。
+            で述べる主張と、この「学ぶ」コーナーで整理する法令・背景知識の役割分担を はっきりさせ、読者が迷わない導線にします。
           </ResourceLead>
           <ul className="grid gap-3 sm:grid-cols-2">
             {cards.map((card) => (

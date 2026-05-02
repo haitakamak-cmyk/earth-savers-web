@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "開発案件の見極め、パブコメ、住民説明など、現場で使える確認項目リストを順次載せる予定のページです。",
   alternates: { canonical: "/toolkit/checklist" },
   openGraph: {
-    title: "実務チェックリスト | ツールキット",
+    title: "実務チェックリスト | ひな形・資料",
     description: "水源・里山に関わる案件の論点確認に使えるチェックリストです。",
     url: "/toolkit/checklist",
   },
@@ -21,7 +21,7 @@ export default function ToolkitChecklistPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "ツールキット", path: "/toolkit" },
+          { name: "ひな形・資料", path: "/toolkit" },
           { name: "実務チェックリスト", path: "/toolkit/checklist" },
         ]}
       />

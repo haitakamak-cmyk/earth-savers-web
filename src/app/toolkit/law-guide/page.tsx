@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "河川法・森林法・都市計画など、水源保全に関係しやすい法令の読みどころを平易にまとめる予定のページです（法的助言ではありません）。",
   alternates: { canonical: "/toolkit/law-guide" },
   openGraph: {
-    title: "法律ガイド | ツールキット",
+    title: "法律ガイド | ひな形・資料",
     description: "水源保全に関係しやすい法令の読みどころを整理します。",
     url: "/toolkit/law-guide",
   },
@@ -21,7 +21,7 @@ export default function ToolkitLawGuidePage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "ツールキット", path: "/toolkit" },
+          { name: "ひな形・資料", path: "/toolkit" },
           { name: "法律ガイド", path: "/toolkit/law-guide" },
         ]}
       />

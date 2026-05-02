@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "国内外の水源地保全・開発規制に関わる事例の要約・整理を順次載せる予定のページです（中立的トーンでの紹介に留めます）。",
   alternates: { canonical: "/toolkit/case-studies" },
   openGraph: {
-    title: "導入・訴訟事例 | ツールキット",
+    title: "導入・訴訟事例 | ひな形・資料",
     description: "水源保全や開発規制に関する事例整理です。",
     url: "/toolkit/case-studies",
   },
@@ -21,7 +21,7 @@ export default function ToolkitCaseStudiesPage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "ツールキット", path: "/toolkit" },
+          { name: "ひな形・資料", path: "/toolkit" },
           { name: "導入・訴訟事例", path: "/toolkit/case-studies" },
         ]}
       />

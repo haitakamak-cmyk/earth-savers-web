@@ -187,7 +187,10 @@ export default function JoinPage() {
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* マンスリー → アプリ */}
-            <div className="rounded-2xl border-2 border-wakakusa bg-white p-6 shadow-sm transition-colors sm:p-8">
+            <div
+              id="supporter"
+              className="rounded-2xl border-2 border-wakakusa bg-white p-6 shadow-sm transition-colors sm:p-8"
+            >
               <span className="mb-4 inline-block rounded-full bg-wakakusa px-3 py-1 text-xs font-semibold text-white">
                 おすすめ
               </span>

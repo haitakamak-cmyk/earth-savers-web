@@ -15,7 +15,6 @@ import {
   getTopicBySlug,
   hrefForOrdinanceArticleLabel,
   loadTopicRawMarkdown,
-  ordinanceArticleLinkSubtitle,
   splitTopicMarkdown,
   stripTopicSourceHeader,
 } from "@/lib/topics";
@@ -79,12 +78,12 @@ export default async function TopicDetailPage({ params }: Props) {
         description={entry.shortDescription}
         datePublished={entry.publishedAt}
         dateModified={entry.updatedAt}
-        articleSection="まなぶ（解説記事）"
+        articleSection="学ぶ（解説記事）"
       />
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
-          { name: "まなぶ", path: "/learn" },
+          { name: "学ぶ", path: "/learn" },
           { name: "解説記事", path: "/learn/topics" },
           { name: entry.title, path },
         ]}
@@ -173,7 +172,6 @@ export default async function TopicDetailPage({ params }: Props) {
               <ul className="mt-4 space-y-3 text-sm">
                 {entry.relatedOrdinanceArticles.map((label) => {
                   const href = hrefForOrdinanceArticleLabel(label);
-                  const sub = ordinanceArticleLinkSubtitle(label);
                   return (
                     <li key={label}>
                       <Link
@@ -182,9 +180,6 @@ export default async function TopicDetailPage({ params }: Props) {
                       >
                         条例{label}
                       </Link>
-                      {sub ? (
-                        <span className="mt-1 block text-text-muted">{sub}</span>
-                      ) : null}
                     </li>
                   );
                 })}
