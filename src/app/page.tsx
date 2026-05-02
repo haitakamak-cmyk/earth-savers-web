@@ -175,7 +175,7 @@ export default function Home() {
                   里山オーガニック再生
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  放置された森に光を。大地の再生の手法で水脈を回復し、里山の復活を行なっています。
+                  放置された森に光を。大地の再生の手法で水脈を回復し、里山の復活を行っています。
                 </p>
                 <Link
                   href="/activities#satoyama"
@@ -487,7 +487,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/join#supporter"
+              href="/join#donation"
               className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-aqua/30 transition-all"
             >
               <div className="w-14 h-14 mx-auto bg-aqua-light rounded-full flex items-center justify-center group-hover:bg-aqua/20 transition-colors">

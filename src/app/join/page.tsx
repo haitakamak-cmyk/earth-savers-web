@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
-/** For Good クラウドファンディング */
+/** For Good クラウドファンディング（リリース直前にプロジェクト継続中・ID を再確認すること） */
 const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
 function ExternalLinkIcon({ className }: { className?: string }) {
@@ -181,6 +181,9 @@ export default function JoinPage() {
           <p className="mt-3 text-center text-text-muted">
             あなたのご支援が、活動を支えます
           </p>
+          <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-relaxed text-text-muted">
+            ※ 現在は一般財団法人のため、個人の寄付に係る寄付金控除（税額控除）はお受けできません。あらかじめご了承ください。
+          </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* マンスリー → アプリ */}
@@ -246,6 +249,7 @@ export default function JoinPage() {
                 都度寄付
               </h3>
               <p className="mt-1 text-center text-2xl font-semibold text-wakakusa">
+                自由な金額
               </p>
               <p className="mt-2 text-center text-sm text-text-secondary">
                 ご都合の良いタイミングで、お好きな金額をご支援
@@ -309,7 +313,8 @@ export default function JoinPage() {
             </Link>
             をご覧ください。
             <br />
-            ※ 寄付金は、水源地の取得・保全、里山再生、生態系復活プロジェクト等の活動に使用されます。
+            ※
+            ご支援いただいた資金は、水源地の取得・保全、里山再生、生態系復活プロジェクトなど現場の活動に、責任を持って活用いたします（振込手数料・決済に係る費用などが発生する場合があります）。
           </p>
         </div>
       </section>

@@ -3,11 +3,7 @@ import path from "path";
 
 import GithubSlugger from "github-slugger";
 
-import {
-  getAllTopicSlugs,
-  getTopicBySlug,
-  type TopicEntry,
-} from "./topic-entries";
+import type { TopicEntry } from "./topic-entries";
 
 export type { TopicEntry } from "./topic-entries";
 export { getAllTopicSlugs, getTopicBySlug, TOPICS } from "./topic-entries";
