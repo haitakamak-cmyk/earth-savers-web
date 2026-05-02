@@ -94,6 +94,22 @@ function parseListLine(value: string): string[] {
     .filter(Boolean);
 }
 
+/**
+ * Markdown 行末で「https://...」の直後に「」。.。）などが続くと、\S+ がそれらを URL に含めてしまう。
+ * 末尾から URL として有効な文字だけ残す。
+ */
+function sanitizeExtractedUrl(raw: string): string {
+  let u = raw.trim();
+  /** URL の末尾に正当に来うる ASCII（パーセントエンコード含む） */
+  const urlTailOk = /[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]$/;
+  let guard = 0;
+  while (u.length > 0 && !urlTailOk.test(u) && guard < 32) {
+    u = u.slice(0, -1);
+    guard += 1;
+  }
+  return u;
+}
+
 function parseSources(block: string): GlossarySource[] {
   const lines = block
     .split("\n")
@@ -104,8 +120,12 @@ function parseSources(block: string): GlossarySource[] {
     const body = line.replace(/^- /, "").trim();
     const urlMatch = body.match(/https?:\/\/\S+$/i);
     if (!urlMatch) return { label: body };
-    const url = urlMatch[0];
-    const label = body.slice(0, body.length - url.length).trim().replace(/[：:]$/, "");
+    const rawUrl = urlMatch[0];
+    const url = sanitizeExtractedUrl(rawUrl);
+    const label = body
+      .slice(0, body.length - rawUrl.length)
+      .trim()
+      .replace(/[：:]$/, "");
     return { label: label || url, url };
   });
 }

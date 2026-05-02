@@ -33,6 +33,8 @@
 ・**ナビ折り返し対策**: `navLinkClassDesktop()` に `whitespace-nowrap` 必須。項目を増やしたら折り返さんかチェック
 ・**条例テンプレ公開フロー**: 正本 `Web/条例テンプレ_v0_暫定版.md` → サイト配信用 `Web/earth-savers-web/public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` にコピー → 再ビルド／デプロイで `/toolkit/ordinance` に反映。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。指示書: `Web/指示書_ロクロー_条例テンプレ公開.md`
 ・**用語集 v0 公開**: 27語を `/learn/glossary/[slug]` で配信。データは `public/learn/glossary/用語集_v0_完成版.md` から `src/lib/glossary.ts` が `GLOSSARY` 配列へ変換して生成。個別ページは `DefinedTerm` JSON-LD / `BreadcrumbList` を出力（`SITE_ALLOW_SEARCH_INDEXING === false` の間は既存規律どおり非出力）
+・**解説記事（topics）**: `/learn/topics` 一覧・`/learn/topics/[slug]` 個別。記事データは `src/lib/topic-entries.ts` の `TOPICS`、本文は `src/content/topics/*.md`（第1号 `oecm-30by30`）。変換・内部リンクは `src/lib/topics.ts`。個別ページは `Article` JSON-LD（`ArticleJsonLd.tsx`）・パンくず・目次 `TopicToc.tsx`。まなぶハブ `/learn` にカードあり
+・解説記事 第1号 = OECMと30by30、`/learn/topics/oecm-30by30/` で配信、Article JSON-LD 出力（index 許可時）
 ・正本: Web/earth-savers-web/HANDOVER.md
 ```
 
@@ -79,8 +81,8 @@
 | 参加・寄付 | `src/app/join/page.tsx`、銀行都度 `src/app/join/bank-donation/page.tsx` |
 | お問い合わせ API | `src/app/api/contact/route.ts` |
 | 構造化データ（Organization のほか breadcrumbs / DefinedTerm / Article） | `src/components/OrganizationJsonLd.tsx`、`BreadcrumbJsonLd.tsx`、`DefinedTermJsonLd.tsx`、`ArticleJsonLd.tsx` |
-| **リソース** データソース | `src/lib/policies.ts`（個別ページ `/policy/[slug]`）、`src/lib/articles.ts`（`/learn/articles/[slug]`）、`src/lib/glossary.ts`（**用語集 v0: 27語**、`/learn/glossary/[slug]`） |
-| リソース共通 UI | `ResourceLead.tsx`（先頭リード）、`RelatedLinks.tsx`、ツール下層 `ToolkitPageBody.tsx`、長文 Markdown `MarkdownArticle.tsx` |
+| **リソース** データソース | `src/lib/policies.ts`（個別ページ `/policy/[slug]`）、`src/lib/articles.ts`（`/learn/articles/[slug]`）、`src/lib/glossary.ts`（**用語集 v0: 27語**、`/learn/glossary/[slug]`）、**解説記事** `src/lib/topic-entries.ts`（`TOPICS`）＋本文処理 `src/lib/topics.ts`（`/learn/topics/[slug]`） |
+| リソース共通 UI | `ResourceLead.tsx`（先頭リード）、`RelatedLinks.tsx`、ツール下層 `ToolkitPageBody.tsx`、長文 Markdown `MarkdownArticle.tsx`、`ContentDisclaimer.tsx`（用語集一覧・解説記事の利用注意）、`TopicToc.tsx`（解説記事の目次） |
 | ナビ定数「三本柱」 | `src/lib/resource-nav.ts`（`RESOURCE_NAV_LINKS`。Header と Footer と一致させる） |
 | サイトマップ（index 許可時のみ URL 出力） | `src/app/sitemap.ts` |
 
@@ -89,7 +91,7 @@
 ## リソース（`/policy` / `/toolkit` / `/learn`）
 
 - **導線**: ヘッダー主ナビは「活動内容」の次に **リソース ▼**（政策提言・ツールキット・まなぶ）。その次が「支援・参加する」。フッターに **リソース** 列（同3リンク）。
-- **役割分担**: **ツールキット**は条文・チェックリスト等の中立整理。**政策提言**はキャンペーン・声明などメッセージ性の高いもの。**まなぶ**は用語・法令整理・環境リスク概要・サイト内読み物。
+- **役割分担**: **ツールキット**は条文・チェックリスト等の中立整理。**政策提言**はキャンペーン・声明などメッセージ性の高いもの。**まなぶ**は用語・法令整理・環境リスク概要・サイト内読み物・**解説記事（長尺、`/learn/topics`）**。
 - **公開資料**: `public/toolkit/<subdir>/` にファイルを置くと該当ツールページで「資料あり」トーンになる（`src/lib/toolkit-files.ts`）。未配置時は準備中表示。
 - **条例テンプレ**: `public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` を編集・差し替えると `/toolkit/ordinance` の本文とダウンロードが更新される。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。再ビルド／デプロイで反映。
 - **SEO**: メタ・ canonical・OG は各 `page`。

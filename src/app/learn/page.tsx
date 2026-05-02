@@ -18,6 +18,11 @@ export const metadata: Metadata = {
 
 const cards = [
   {
+    href: "/learn/topics",
+    title: "解説記事",
+    body: "制度・政策の背景を長めの文章で整理します。用語集・ツールキット・政策提言とつながります。",
+  },
+  {
     href: "/learn/glossary",
     title: "用語集",
     body: "水源保全・生態系でよく出る言葉を短く定義し、相互リンクで深掘りしやすくします。",

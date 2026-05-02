@@ -5,7 +5,10 @@ export type ArticleJsonLdProps = {
   pathname: string;
   description: string;
   datePublished?: string;
+  dateModified?: string;
   articleSection: string;
+  /** 発行者ロゴ（OG・構造化データ用・省略可） */
+  publisherLogo?: string;
 };
 
 export function ArticleJsonLd(props: ArticleJsonLdProps) {
@@ -25,6 +28,7 @@ export function ArticleJsonLd(props: ArticleJsonLdProps) {
     ...(props.datePublished
       ? { datePublished: props.datePublished }
       : {}),
+    ...(props.dateModified ? { dateModified: props.dateModified } : {}),
     author: {
       "@type": "Organization",
       name: ORGANIZATION_NAME,
@@ -32,6 +36,16 @@ export function ArticleJsonLd(props: ArticleJsonLdProps) {
     publisher: {
       "@type": "Organization",
       name: ORGANIZATION_NAME,
+      ...(props.publisherLogo
+        ? {
+            logo: {
+              "@type": "ImageObject",
+              url: props.publisherLogo.startsWith("http")
+                ? props.publisherLogo
+                : `${SITE_URL}${props.publisherLogo.startsWith("/") ? "" : "/"}${props.publisherLogo}`,
+            },
+          }
+        : {}),
     },
     articleSection: props.articleSection,
   };

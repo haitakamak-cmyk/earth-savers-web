@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { getAllArticleSlugs } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
 import { getAllPolicySlugs } from "@/lib/policies";
+import { TOPICS } from "@/lib/topic-entries";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
 
 const CORE_PATHS = [
@@ -38,6 +39,7 @@ const RESOURCE_STATIC = [
   "/learn/laws",
   "/learn/threats",
   "/learn/articles",
+  "/learn/topics",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -80,6 +82,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.55,
+    });
+  }
+
+  for (const entry of TOPICS) {
+    urls.push({
+      url: `${SITE_URL}/learn/topics/${entry.slug}`,
+      lastModified: new Date(entry.updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
     });
   }
 
