@@ -19,14 +19,14 @@ import {
 } from "./md-path";
 
 export const metadata: Metadata = {
-  title: `条例テンプレ（v2.1） | ${ORGANIZATION_NAME}`,
+  title: `条例ひな形（v2.1） | ${ORGANIZATION_NAME}`,
   description:
-    "水源・地下水・開発規制の条例たたき台「命の水と森を守る条例」の全文 Markdown。参入・運転・退出の段階に対応した附則（既存施設）までを含むたたき台と、議会・パブコメなど向けの補助資料への導線を備えています。",
+    "市町村向けひな形「命の水と森を守る条例」の全文 Markdown（条文・逐条解説・別表・経過措置）。施行規則骨子案・導入ガイド・議会問答・パブコメ回答の補助資料への導線付きです。",
   alternates: { canonical: "/toolkit/ordinance" },
   openGraph: {
-    title: "条例テンプレ（v2.1）| ひな形・資料",
+    title: "条例ひな形（v2.1）| ひな形・資料",
     description:
-      "水源・地下水・開発規制の条例たたき台全文。議会・住民説明のたたき台としてご活用ください（法務確認必須）。",
+      "全56条構成のひな形全文と補助資料。採用前に法務・議会での協議が必要です。",
     url: "/toolkit/ordinance",
   },
 };
@@ -51,23 +51,24 @@ export default async function ToolkitOrdinancePage() {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
+          { name: "資料室", path: "/toolkit" },
           { name: "ひな形・資料", path: "/toolkit" },
-          { name: "条例テンプレ", path: "/toolkit/ordinance" },
+          { name: "条例ひな形", path: "/toolkit/ordinance" },
         ]}
       />
       <div className="border-b border-wakakusa/20 bg-ivory-warm/40 py-10 sm:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-xs font-medium uppercase tracking-wider text-wakakusa-dark">
-            Resource / Toolkit · Ordinance template
+          <p className="text-xs font-medium tracking-wide text-wakakusa-dark">
+            資料室 / ひな形・資料 / 条例ひな形
           </p>
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
-            条例テンプレ
+            条例ひな形
           </h1>
-          <p className="mt-1 text-sm font-medium text-aqua-dark">v2.1｜前文・参入／運転／出口の各規定と附則（既存施設の経過措置）まで含むたたき台</p>
+          <p className="mt-1 text-sm font-medium text-aqua-dark">
+            v2.1（2026年5月改訂）｜全56条構成（参入・運転・承継・出口の四段階規制と既設施設対応）
+          </p>
           <ResourceLead>
-            「命の水と森を守る条例」のたたき台です。条文・逐条解説・別表案・末尾の活用ガイドまで1本の Markdown で公開しています。採用に際しては法務担当・議会と必ず協議してください。サイト表記ポリシーのとおり
-            <strong className="text-text-primary">外部資本</strong>
-            で統一されています。
+            「命の水と森を守る条例」の市町村向けひな形です。条文・逐条解説・別表案・既設施設の経過措置・活用ガイドまでを1本のMarkdownで公開しています。本ページとあわせて、施行規則骨子案・自治体導入ガイド・議会想定問答集・パブコメ回答集の補助資料も公開しています。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
           </ResourceLead>
           <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-white px-4 py-4 text-sm shadow-sm">
             <a
