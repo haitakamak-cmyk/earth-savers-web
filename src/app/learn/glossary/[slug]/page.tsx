@@ -77,15 +77,6 @@ export default async function GlossaryTermPage({ params }: Props) {
           </h1>
           {entry.reading ? <p className="mt-1 text-sm text-text-muted">{entry.reading}</p> : null}
           <ResourceLead>{entry.shortDescription}</ResourceLead>
-          <p className="mt-5">
-            <Link
-              href="/learn/glossary"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-wakakusa/35 bg-white px-4 py-2.5 text-sm font-medium text-wakakusa-dark shadow-sm transition hover:border-wakakusa/60 hover:bg-wakakusa-light/40"
-            >
-              <span aria-hidden>←</span>
-              一覧に戻る
-            </Link>
-          </p>
           <section className="mt-6">
             <h2 className="font-serif text-xl font-semibold text-text-primary">定義</h2>
             <div className="mt-2 prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
@@ -136,6 +127,16 @@ export default async function GlossaryTermPage({ params }: Props) {
               </ul>
             </section>
           ) : null}
+
+          <p className="mt-10">
+            <Link
+              href="/learn/glossary"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-wakakusa/35 bg-white px-4 py-2.5 text-sm font-medium text-wakakusa-dark shadow-sm transition hover:border-wakakusa/60 hover:bg-wakakusa-light/40"
+            >
+              <span aria-hidden>←</span>
+              一覧に戻る
+            </Link>
+          </p>
 
           <RelatedLinks items={related} />
           <div className="mt-10">
