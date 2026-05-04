@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ToolkitPageBody } from "@/components/ToolkitPageBody";
-import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
+import {
+  getToolkitSectionByHref,
+  toolkitSectionHasPublishedContent,
+} from "@/lib/toolkit-manifest";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -19,6 +23,9 @@ export const metadata: Metadata = {
 
 export default function ToolkitCasesHubPage() {
   const section = getToolkitSectionByHref("/toolkit/cases");
+  if (!toolkitSectionHasPublishedContent(section)) {
+    redirect("/toolkit");
+  }
 
   return (
     <div className="bg-ivory">

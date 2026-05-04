@@ -77,13 +77,13 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
     href: "/toolkit/operations",
     subdir: "operations",
     description:
-      "条例を現場で運用するために整備すべきツール（窓口フロー、届出受理チェックリスト、案件管理台帳、年次カレンダー、エスカレーション基準表、窓口FAQ）の設計仕様をまとめたガイドです。具体の様式は各自治体の環境に合わせて作成してください。",
+      "施行初日に窓口が止まらないよう、窓口フロー・届出チェックリスト・FAQ・台帳・年次カレンダー・エスカレーションの「決めておくこと」を、引き継ぎメモのトーンで整理したガイドです。様式は各自治体で作成してください。",
     files: [
       {
         title: "条例運用設計ガイド",
         filename: "条例運用設計ガイド.md",
         description:
-          "窓口フローチャート・届出受理チェックリスト・案件管理台帳・年次カレンダー・エスカレーション基準表・窓口FAQの設計仕様書です。",
+          "窓口フロー・届出チェックリスト・台帳・カレンダー・エスカレーション・FAQを、現場の引き継ぎを想定した書き方で整理したガイドです。",
         status: "published",
       },
     ],
@@ -108,6 +108,14 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
 ] as const;
 
 export const TOOLKIT_LINKS = TOOLKIT_SECTIONS.map(({ label, href }) => ({ label, href }));
+
+/** ハブ一覧・サイトマップ用: 公開済み資料が1件以上あるセクションだけ */
+export function toolkitSectionHasPublishedContent(section: ToolkitSection): boolean {
+  return section.files.some((file) => file.status === "published");
+}
+
+export const TOOLKIT_HUB_VISIBLE_SECTIONS: readonly ToolkitSection[] =
+  TOOLKIT_SECTIONS.filter(toolkitSectionHasPublishedContent);
 
 export const TOOLKIT_SUBDIRS = Object.fromEntries(
   TOOLKIT_SECTIONS.map((section) => [section.href, section.subdir]),
@@ -135,17 +143,28 @@ export function getToolkitViewerSlugs(subdir: "legal" | "cases"): string[] {
   const section = TOOLKIT_SECTIONS.find((s) => s.subdir === subdir);
   if (!section) return [];
   return section.files
+    .filter((f) => f.status === "published")
     .map((f) => f.viewSlug)
     .filter((s): s is string => Boolean(s));
 }
 
-/** sitemap 用: `/toolkit/legal/foo` 形式の表示用パス */
+/** sitemap 用: 公開済みの `/toolkit/legal/foo` 形式のみ（準備中の viewer は含めない） */
 export function getAllToolkitMarkdownViewerPaths(): string[] {
   const paths: string[] = [];
   for (const section of TOOLKIT_SECTIONS) {
+    if (!toolkitSectionHasPublishedContent(section)) continue;
     for (const f of section.files) {
-      if (f.viewSlug) paths.push(`${section.href}/${f.viewSlug}`);
+      if (f.status !== "published" || !f.viewSlug) continue;
+      paths.push(`${section.href}/${f.viewSlug}`);
     }
   }
   return paths;
+}
+
+/** サイトマップ: `/toolkit` と公開中セクションの index のみ */
+export function getToolkitSitemapHubPaths(): readonly string[] {
+  return [
+    "/toolkit",
+    ...TOOLKIT_HUB_VISIBLE_SECTIONS.map((s) => s.href),
+  ];
 }

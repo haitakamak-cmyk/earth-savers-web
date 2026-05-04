@@ -7,7 +7,10 @@ import { TOPICS } from "@/lib/topic-entries";
 import {
   ORDINANCE_SUPPLEMENTS,
 } from "@/lib/ordinance-supplements-data";
-import { getAllToolkitMarkdownViewerPaths } from "@/lib/toolkit-manifest";
+import {
+  getAllToolkitMarkdownViewerPaths,
+  getToolkitSitemapHubPaths,
+} from "@/lib/toolkit-manifest";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
 
 const CORE_PATHS = [
@@ -26,11 +29,6 @@ const CORE_PATHS = [
 ] as const;
 
 const RESOURCE_STATIC = [
-  "/toolkit",
-  "/toolkit/ordinance",
-  "/toolkit/legal",
-  "/toolkit/operations",
-  "/toolkit/cases",
   "/policy",
   "/policy/national",
   "/policy/local",
@@ -62,6 +60,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const path of RESOURCE_STATIC) {
+    urls.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: path.split("/").length <= 2 ? 0.75 : 0.6,
+    });
+  }
+
+  for (const path of getToolkitSitemapHubPaths()) {
     urls.push({
       url: `${SITE_URL}${path}`,
       lastModified: now,

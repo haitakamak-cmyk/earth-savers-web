@@ -22,7 +22,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = getToolkitFileBySubdirAndViewSlug("legal", slug);
-  if (!found)
+  if (!found || found.file.status !== "published")
     return { title: "法律ガイド" };
 
   const path = `/toolkit/legal/${slug}`;
@@ -47,13 +47,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ToolkitLegalDocPage({ params }: Props) {
   const { slug } = await params;
   const found = getToolkitFileBySubdirAndViewSlug("legal", slug);
-  if (!found) notFound();
+  if (!found || found.file.status !== "published") notFound();
 
   const { section, file } = found;
   const markdown = await readToolkitPublicMarkdown("legal", file.filename);
   const pagePath = `/toolkit/legal/${slug}`;
   const downloadHref = `/toolkit/legal/${encodeURIComponent(file.filename)}`;
-  const others = section.files.filter((f) => f.viewSlug !== slug && f.viewSlug);
+  const others = section.files.filter(
+    (f) => f.status === "published" && f.viewSlug !== slug && f.viewSlug,
+  );
 
   return (
     <div className="bg-ivory pb-16">

@@ -3,17 +3,17 @@ import Link from "next/link";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ResourceLead } from "@/components/ResourceLead";
-import { TOOLKIT_SECTIONS } from "@/lib/toolkit-manifest";
+import { TOOLKIT_HUB_VISIBLE_SECTIONS } from "@/lib/toolkit-manifest";
 
 export const metadata: Metadata = {
   title: "ひな形・資料（資料室）",
   description:
-    "条例ひな型、法律ガイド、実務チェックリスト、導入・訴訟事例など、自治体・市民の皆さまが水源や里山を守る活動に使える実務情報を整理するコーナーです。トーンは中立で、政治的主張は政策提言ページで扱います。",
+    "現在公開している条例ひな型・実務チェックリストなど、自治体・市民の皆さまが水源や里山を守る活動に使える実務資料を並べています。「法律ガイド」「導入・訴訟事例」等はコンテンツ整備後に追加します。",
   alternates: { canonical: "/toolkit" },
   openGraph: {
     title: "ひな形・資料（資料室）",
     description:
-      "条例・法律・チェックリスト・事例など、水源保全の実務に使える情報を整理するコーナーです。",
+      "公開中の条例ひな型・実務チェックリストなどへの入口です。その他カテゴリは順次追加予定です。",
     url: "/toolkit",
   },
 };
@@ -43,7 +43,7 @@ export default function ToolkitHubPage() {
             で扱い、ここではできるだけ中立的な実務情報に絞ります。
           </ResourceLead>
           <ul className="grid gap-4 sm:grid-cols-2">
-            {TOOLKIT_SECTIONS.map((item) => {
+            {TOOLKIT_HUB_VISIBLE_SECTIONS.map((item) => {
               const preparing = item.files.some((file) => file.status === "preparing");
               return (
               <li key={item.href}>

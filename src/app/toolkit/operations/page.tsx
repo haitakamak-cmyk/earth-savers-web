@@ -12,12 +12,12 @@ import { ORGANIZATION_NAME } from "@/lib/site";
 export const metadata: Metadata = {
   title: `実務チェックリスト | ${ORGANIZATION_NAME}`,
   description:
-    "条例を現場で運用するために整備すべき窓口フロー、届出受理チェックリスト、案件管理台帳、年次カレンダー、エスカレーション基準表、窓口FAQの設計仕様をまとめたガイドです。",
+    "条例施行後の窓口が止まらないよう、届出・手続の振り分け・受理・FAQ・案件管理・年次業務・エスカレーションを、引き継ぎメモのトーンで整理したガイドです。",
   alternates: { canonical: "/toolkit/operations" },
   openGraph: {
     title: "実務チェックリスト | ひな形・資料",
     description:
-      "条例運用に必要な窓口フロー、チェックリスト、台帳、FAQ等の設計仕様です。",
+      "窓口フロー、チェックリスト、台帳、FAQ 等の「決めておくこと」と考え方です。",
     url: "/toolkit/operations",
   },
 };

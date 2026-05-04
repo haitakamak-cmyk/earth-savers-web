@@ -10,6 +10,8 @@ export type PolicyEntry = {
   slug: string;
   kind: PolicyKind;
   title: string;
+  /** 一覧・ページ上部での副題表示（任意） */
+  subtitle?: string;
   /** 一覧用リード・OG 説明など */
   summary: string;
   /** 詳細本文（contentPath 未指定時のフォールバック。段落分割で表示）。 */
@@ -41,10 +43,11 @@ export const POLICIES: readonly PolicyEntry[] = [
   {
     slug: "landowner-beneficial-owner-disclosure",
     kind: "legislative",
-    title:
-      "土地取得における実質的支配者開示制度の創設に関する提言──FATF勧告24・英国 Register of Overseas Entities との整合に向けて",
+    title: "土地取得における実質的支配者開示制度の創設に関する提言",
+    subtitle:
+      "――自治体の条例運用から見えた制度的空白について――",
     summary:
-      "土地・不動産取得時の実質的支配者（自然人）開示と第三者検証を国制度として求める提言。英国 Register of Overseas Entities（2022年8月施行）・EU マネロン指令・米国 Corporate Transparency Act・FATF 勧告24（2023年改訂）との整合を軸に、自治体条例で執行不能な範囲を国法で補完する5つの提言を整理。",
+      "市町村向け条例ひな形での第一層届出だけでは実質的支配者まで追跡できないという現場の限界から、法人の土地・不動産取得時に自然人支配者開示・第三者検証・自治体の限定的アクセスなどを国法で義務化する五点を整理。英国ROE／EU AML／米国CTA／FATF勧告24の動向と日本の実質的支配者リストの任意性・株式会社限定・不動産非連動を対比する。",
     contentPath:
       "src/content/policies/landowner-beneficial-owner-disclosure.md",
     datePublished: "2026-05-04",
