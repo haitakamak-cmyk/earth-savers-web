@@ -121,29 +121,44 @@ function sanitizeExtractedUrl(raw: string): string {
   return u;
 }
 
+function parseSourceLine(body: string): GlossarySource {
+  // Markdown: `環境省「…」 [https://…](https://…)`（表示とリンクが同じURLのケース）
+  const mdLinked = body.match(/^(.*?)\s*\[([^\]]*)\]\((https?:\/\/[^)]+)\)\s*$/);
+  if (mdLinked) {
+    const prefix = mdLinked[1]?.trim() ?? "";
+    const bracket = mdLinked[2]?.trim() ?? "";
+    const url = sanitizeExtractedUrl(mdLinked[3] ?? "");
+    const label = prefix || bracket || url;
+    return { label, url };
+  }
+
+  const urlMatch = body.match(/https?:\/\/\S+$/i);
+  if (!urlMatch) return { label: body };
+  const rawUrl = urlMatch[0];
+  const url = sanitizeExtractedUrl(rawUrl);
+  const label = body
+    .slice(0, body.length - rawUrl.length)
+    .trim()
+    .replace(/[：:]$/, "");
+  return { label: label || url, url };
+}
+
 function parseSources(block: string): GlossarySource[] {
   const lines = block
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line.startsWith("- "));
 
-  return lines.map((line) => {
-    const body = line.replace(/^- /, "").trim();
-    const urlMatch = body.match(/https?:\/\/\S+$/i);
-    if (!urlMatch) return { label: body };
-    const rawUrl = urlMatch[0];
-    const url = sanitizeExtractedUrl(rawUrl);
-    const label = body
-      .slice(0, body.length - rawUrl.length)
-      .trim()
-      .replace(/[：:]$/, "");
-    return { label: label || url, url };
-  });
+  return lines.map((line) => parseSourceLine(line.replace(/^- /, "").trim()));
 }
 
 function parseSectionBody(section: string, heading: string): string {
   const esc = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const re = new RegExp(`### ${esc}\\n([\\s\\S]*?)(?=\\n### |\\n---\\n|$)`, "m");
+  /**
+   * `m` を付けると `$` が「行末」にもマッチし、`### 定義\n\n本文…` の空行直後で
+   * キャプチャが空になってしまう（全用語で定義・出典が消える）。
+   */
+  const re = new RegExp(`### ${esc}\\n([\\s\\S]*?)(?=\\n### |\\n---\\n|$)`);
   const m = section.match(re);
   return (m?.[1] ?? "").trim();
 }
@@ -178,7 +193,9 @@ function parseGlossaryMarkdown(raw: string): GlossaryEntry[] {
       );
 
       const body = parseSectionBody(block, "定義");
-      const earthSaversContext = parseSectionBody(block, "財団との接点");
+      const earthSaversContext =
+        parseSectionBody(block, "当法人との接点") ||
+        parseSectionBody(block, "財団との接点");
       const sources = parseSources(parseSectionBody(block, "出典"));
       const category = CATEGORY_BY_SLUG[slug];
 
