@@ -135,12 +135,6 @@ export default async function PolicyDetailPage({ params }: Props) {
           {policy.datePublished ? (
             <p className="mt-2 text-sm text-text-muted">公開 {policy.datePublished}</p>
           ) : null}
-          {policy.audience && policy.audience.length > 0 ? (
-            <p className="mt-2 text-sm text-text-secondary">
-              <span className="font-medium text-text-primary">想定読者：</span>
-              {policy.audience.join("、")}
-            </p>
-          ) : null}
         </div>
       </div>
 

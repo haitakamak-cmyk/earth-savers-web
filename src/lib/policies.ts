@@ -20,8 +20,6 @@ export type PolicyEntry = {
   contentPath?: string;
   /** ISO 8601 日付（Article JSON-LD 用） */
   datePublished?: string;
-  /** 想定読者（任意・本文上部表示） */
-  audience?: readonly string[];
   /** 制度・法令系の改正注意を出すか（個別ページ末尾の ContentDisclaimer 用） */
   requiresLegalCaveat?: boolean;
   relatedToolkitPaths?: readonly string[];
@@ -57,19 +55,10 @@ export const POLICIES: readonly PolicyEntry[] = [
     subtitle:
       "――自治体の条例運用から見えた制度的空白について――",
     summary:
-      "市町村向け条例ひな形での第一層届出だけでは実質的支配者まで追跡できないという現場の限界から、法人の土地・不動産取得時に自然人支配者開示・第三者検証・自治体の限定的アクセスなどを国法で義務化する五点を整理。英国ROE／EU AML／米国CTA／FATF勧告24の動向と日本の実質的支配者リストの任意性・株式会社限定・不動産非連動を対比する。",
+      "法人が土地を取得する際、最終的に誰が意思決定しているのかを自治体は把握できない。条例の届出では第一層の株主までしか見えず、その先を追う権限がないためだ。本提言は、この制度的空白を埋めるために、不動産取得時の実質的支配者の開示義務化を含む五つの措置を国に求めるものである。英国・EU・米国の先行制度とFATF勧告を踏まえ、日本の現行制度の課題を整理した。",
     contentPath:
       "src/content/policies/landowner-beneficial-owner-disclosure.md",
     datePublished: "2026-05-04",
-    audience: [
-      "環境省",
-      "経済産業省",
-      "国土交通省",
-      "法務省",
-      "金融庁",
-      "国会議員",
-      "地方議会",
-    ],
     requiresLegalCaveat: true,
     relatedToolkitPaths: ["/toolkit/ordinance"],
     relatedGlossarySlugs: [],
