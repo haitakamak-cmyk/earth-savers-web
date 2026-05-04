@@ -2,20 +2,24 @@ import type { Metadata } from "next";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ToolkitPageBody } from "@/components/ToolkitPageBody";
+import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
 
 export const metadata: Metadata = {
   title: "法律ガイド",
   description:
-    "河川法・森林法・都市計画など、水源保全に関係しやすい法令の読みどころを平易にまとめる予定のページです（法的助言ではありません）。",
+    "条例制定にあたって確認すべき上位法との関係、都道府県条例との調整手順、条例の適法性を支持した判例の要点をまとめています。",
   alternates: { canonical: "/toolkit/law-guide" },
   openGraph: {
     title: "法律ガイド | ひな形・資料",
-    description: "水源保全に関係しやすい法令の読みどころを整理します。",
+    description:
+      "上位法との関係、県条例との調整、条例適法性の判例要点を整理します。",
     url: "/toolkit/law-guide",
   },
 };
 
 export default function ToolkitLawGuidePage() {
+  const section = getToolkitSectionByHref("/toolkit/law-guide");
+
   return (
     <div className="bg-ivory">
       <BreadcrumbJsonLd
@@ -30,14 +34,7 @@ export default function ToolkitLawGuidePage() {
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             法律ガイド
           </h1>
-          <ToolkitPageBody
-            subdir="law-guide"
-            lead={
-              <>
-                関係法令の適用条文・手続の流れ・よくある誤読に触れる構成を想定しています。個別具体的な適用可否は法令と最新の運用によって変わり得るため、必要に応じて弁護士等の法的助言を受けてください。
-              </>
-            }
-          />
+          <ToolkitPageBody section={section} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ResourceLead } from "@/components/ResourceLead";
-import { TOOLKIT_LINKS } from "@/lib/toolkit-manifest";
+import { TOOLKIT_SECTIONS } from "@/lib/toolkit-manifest";
 
 export const metadata: Metadata = {
   title: "ひな形・資料（資料室）",
@@ -42,17 +42,35 @@ export default function ToolkitHubPage() {
             </Link>
             で扱い、ここではできるだけ中立的な実務情報に絞ります。
           </ResourceLead>
-          <ul className="space-y-3">
-            {TOOLKIT_LINKS.map((item) => (
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {TOOLKIT_SECTIONS.map((item) => {
+              const preparing = item.files.some((file) => file.status === "preparing");
+              return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block rounded-xl border border-border bg-white px-4 py-4 text-[15px] font-medium text-text-primary shadow-sm transition-colors hover:border-wakakusa/40 hover:bg-wakakusa-light/40"
+                  className="flex h-full flex-col rounded-xl border border-border bg-white px-4 py-4 shadow-sm transition-colors hover:border-wakakusa/40 hover:bg-wakakusa-light/40"
                 >
-                  {item.label}
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-serif text-lg font-semibold text-text-primary">
+                      {item.label}
+                    </span>
+                    {preparing ? (
+                      <span className="rounded-full border border-aqua/30 bg-aqua-light/40 px-2 py-0.5 text-xs font-semibold text-aqua-dark">
+                        準備中あり
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
+                    {item.description}
+                  </span>
+                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4">
+                    資料を見る →
+                  </span>
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </div>

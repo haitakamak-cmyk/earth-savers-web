@@ -2,20 +2,24 @@ import type { Metadata } from "next";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ToolkitPageBody } from "@/components/ToolkitPageBody";
+import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
 
 export const metadata: Metadata = {
   title: "実務チェックリスト",
   description:
-    "開発案件の見極め、パブコメ、住民説明など、現場で使える確認項目リストを順次載せる予定のページです。",
+    "条例を現場で運用するために整備すべき窓口フロー、届出受理チェックリスト、案件管理台帳、年次カレンダー、エスカレーション基準表、窓口FAQの設計仕様をまとめたガイドです。",
   alternates: { canonical: "/toolkit/checklist" },
   openGraph: {
     title: "実務チェックリスト | ひな形・資料",
-    description: "水源・里山に関わる案件の論点確認に使えるチェックリストです。",
+    description:
+      "条例運用に必要な窓口フロー、チェックリスト、台帳、FAQ等の設計仕様です。",
     url: "/toolkit/checklist",
   },
 };
 
 export default function ToolkitChecklistPage() {
+  const section = getToolkitSectionByHref("/toolkit/checklist");
+
   return (
     <div className="bg-ivory">
       <BreadcrumbJsonLd
@@ -30,14 +34,7 @@ export default function ToolkitChecklistPage() {
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             実務チェックリスト
           </h1>
-          <ToolkitPageBody
-            subdir="checklist"
-            lead={
-              <>
-                メガソーラー・宅地開発・水道水源などテーマごとに、「誰が・いつ・何を確認するか」を箇条書きにした実務リストを置く計画です。地域の法令・ガイドラインとあわせてご利用ください。
-              </>
-            }
-          />
+          <ToolkitPageBody section={section} />
         </div>
       </div>
     </div>

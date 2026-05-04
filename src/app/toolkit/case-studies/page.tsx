@@ -2,20 +2,24 @@ import type { Metadata } from "next";
 
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ToolkitPageBody } from "@/components/ToolkitPageBody";
+import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
 
 export const metadata: Metadata = {
   title: "導入・訴訟事例",
   description:
-    "国内外の水源地保全・開発規制に関わる事例の要約・整理を順次載せる予定のページです（中立的トーンでの紹介に留めます）。",
+    "全国の自治体における条例導入事例、裁判で条例の適法性が認められた判例、条例がなかったために開発を防げなかった事例をまとめています。",
   alternates: { canonical: "/toolkit/case-studies" },
   openGraph: {
     title: "導入・訴訟事例 | ひな形・資料",
-    description: "水源保全や開発規制に関する事例整理です。",
+    description:
+      "条例導入自治体事例、条例適法性の判例、条例未整備で防げなかった事例を整理します。",
     url: "/toolkit/case-studies",
   },
 };
 
 export default function ToolkitCaseStudiesPage() {
+  const section = getToolkitSectionByHref("/toolkit/case-studies");
+
   return (
     <div className="bg-ivory">
       <BreadcrumbJsonLd
@@ -30,14 +34,7 @@ export default function ToolkitCaseStudiesPage() {
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             導入・訴訟事例
           </h1>
-          <ToolkitPageBody
-            subdir="case-studies"
-            lead={
-              <>
-                判決文・行政の取扱い・技術導入の経緯などを、事実関係と論点に分けて紹介する形を想定しています。特定の立場への賛否を煽る文言は避け、学習用の資料として整えます。
-              </>
-            }
-          />
+          <ToolkitPageBody section={section} />
         </div>
       </div>
     </div>
