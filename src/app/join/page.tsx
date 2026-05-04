@@ -172,6 +172,7 @@ export default function JoinPage() {
             {supportPlans.map((plan) => (
               <div
                 key={plan.name}
+                id={plan.highlight ? "supporter" : undefined}
                 className={`bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-2 transition-colors ${
                   plan.highlight
                     ? "border-wakakusa"

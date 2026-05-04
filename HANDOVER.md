@@ -5,6 +5,8 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-04 — **本番復旧デプロイ（Vercel production）**: `npx vercel deploy --prod --yes` 成功。本番エイリアス `https://earth-savers.org`。当該ビルドのデプロイURL `https://earth-savers-1lddk5trp-haitaka0512-7940s-projects.vercel.app`。Vercel deployment id `dpl_8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`、インスペクタ `https://vercel.com/haitaka0512-7940s-projects/earth-savers-web/8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`。Git自動デプロイで共通Headerが古い状態（`資料室` 不在・`支援・参加する` テキストリンク残存）に戻ったため、`Header.tsx` を **資料室▼（政策提言／ひな形・資料／学ぶ）＋支援CTA一本** に復旧し、`Footer.tsx` に資料室リンク群を復元、`/join#supporter` アンカーを実体化。`https://earth-savers.org/` のHTMLで `資料室` 表示と `支援・参加する` 非表示を確認済み。このリリースには **ひな形・資料4カテゴリ**、**用語集**、**政策提言 v0** も含まれる。
+
 **直近更新**: 2026-05-04 — **ひな形・資料 4カテゴリ構成**: `public/toolkit/` 配下に `legal/`・`operations/`・`cases/` を追加。`legal/` は `上位法との関係整理.md`・`県条例との調整チェックシート.md`・`判例サマリ.md` をプレースホルダ（「準備中です。」）で固定配置、`cases/導入事例・判例集.md` も同様。`operations/条例運用設計ガイド.md` は本文をMarkdown化し、誤字 **「両方が揃って初めに」→「両方が揃って初めて」** を修正。`src/lib/toolkit-manifest.ts` に4カテゴリの説明文・配布Markdown一覧・`published/preparing` 状態を集約し、`/toolkit` のカード説明と準備中バッジ、`/toolkit/law-guide`・`/toolkit/checklist`・`/toolkit/case-studies` の固定ファイルリンク表示に反映。**`npm run build` 成功**（既存のTurbopack NFT警告は継続）。
 
 **直近更新**: 2026-05-04 — **用語集詳細ページ**: `src/lib/glossary.ts` の `parseSectionBody` から正規表現の **`m`（multiline）フラグを削除**（`$` が各行末にマッチし、`### 定義\n\n本文` の直後でキャプチャが空になり **定義・出典が全件消える** 不具合）。見出し **`当法人との接点`** をパース（従来の「財団との接点」もフォールバック）。出典行の **`[表示](https://…)`** 形式を `parseSourceLine` で URL 抽出。`/learn/glossary/[slug]` に **「一覧に戻る」** ボタン（`/learn/glossary` へ）を追加。`generateMetadata` の description は本文空時に `shortDescription` のみ。**本番デプロイ済**。

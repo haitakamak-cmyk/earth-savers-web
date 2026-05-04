@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { RESOURCE_NAV_LINKS } from "@/lib/resource-nav";
+
 const footerLinks = [
   {
     title: "財団について",
@@ -20,6 +22,10 @@ const footerLinks = [
       { label: "ばら撒くっ種", href: "/activities#baramaku" },
       { label: "環境教育", href: "/activities#education" },
     ],
+  },
+  {
+    title: "資料室",
+    links: RESOURCE_NAV_LINKS,
   },
   {
     title: "支援・参加",
@@ -79,7 +85,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-text-secondary/30">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-text-muted">
-              &copy; {new Date().getFullYear()} 財団法人 地球防衛群（Earth
+              &copy; {new Date().getFullYear()} 一般財団法人 地球防衛群（Earth
               Savers） All rights reserved.
             </p>
             <div className="flex gap-6 text-xs text-text-muted">
