@@ -5,6 +5,8 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-05 — **インシデント記録（本番が「古い」・メニュー欠落）**: 現象＝ヘッダーから **「買って応援」「公式アプリ紹介」** 等が消え、トップ・`/members`・`/about`・`join`・お問い合わせ周りが **以前より薄い／古い表示** に見える。想定される要因は二つ。(1)**Vercel の Git 連携本番**は **`origin/main` のコミット**をビルドする。手元で **`vercel deploy --prod` のみ先**に上げ、`main` が追いついていないと、後から **Git 側のデプロイが古い `main` で本番を上書き**する。(2) コミット **`5f04e5c`**（2026-05-04 11:31・`chore: earth-savers-web の未コミット変更をまとめて反映`）が `Header.tsx` / `Footer.tsx` / `page.tsx` / `members` / `about` / `join` / `api/contact/route.ts` / `layout.tsx` 等を **大幅に削除・簡素化**しており、その内容が `main` に残っていると本番も同様になる。**対応**: `5f04e5c` の一つ前 **`5f04e5c~1`** から上記系ファイルを復元した **`bdce093`**（`revert(ui): 5f04e5c で削減された主要ページ・共通部品を復元`）。**用語集・政策提言・ひな形4カテゴリ・条例補助資料**など 5/4 以降の別改修は **触らず維持**。安全用ブランチ **`backup/before-restore-2026-05-04`**。再発防止の実装は **`19b77a7`**（CI・PR テンプレ・`npm run verify-deploy`）＋下記 **「再発防止（本番が古い／消えたに見える事故）」**。
+
 **直近更新**: 2026-05-05 — **再発防止**: GitHub Actions（`.github/workflows/ci.yml`）で `main` の push / PR 時に `npm ci` → `lint` → `build`。PR テンプレ（`.github/pull_request_template.md`）と CLI 本番前チェック `scripts/verify-deploy-ready.sh` を追加。運用ルール・事故の型は下 **「再発防止（本番が古い／消えたに見える事故）」** を参照。
 
 **直近更新**: 2026-05-04 — **本番復旧デプロイ（Vercel production）**: `npx vercel deploy --prod --yes` 成功。本番エイリアス `https://earth-savers.org`。当該ビルドのデプロイURL `https://earth-savers-1lddk5trp-haitaka0512-7940s-projects.vercel.app`。Vercel deployment id `dpl_8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`、インスペクタ `https://vercel.com/haitaka0512-7940s-projects/earth-savers-web/8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`。Git自動デプロイで共通Headerが古い状態（`資料室` 不在・`支援・参加する` テキストリンク残存）に戻ったため、`Header.tsx` を **資料室▼（政策提言／ひな形・資料／学ぶ）＋支援CTA一本** に復旧し、`Footer.tsx` に資料室リンク群を復元、`/join#supporter` アンカーを実体化。`https://earth-savers.org/` のHTMLで `資料室` 表示と `支援・参加する` 非表示を確認済み。このリリースには **ひな形・資料4カテゴリ**、**用語集**、**政策提言 v0** も含まれる。
@@ -75,6 +77,8 @@
 
 1. **Vercel の Git 自動デプロイが正**で、`main` に入っていない変更だけ CLI で本番に載せた → あとから `main` がデプロイされ **Git 側の古い UI に上書き**された。
 2. **`main` に「未コミットをまとめて反映」系の巨大コミット**が入り、`Header` / `page` / `api/contact` などが **意図せず大幅削除**された → それがそのまま本番に出た。
+
+**実例コミット（追跡用）**: 問題の一括反映 **`5f04e5c`**（大幅削除）／UI・問い合わせAPI 等の復元 **`bdce093`**（`5f04e5c~1` からチェックアウト）／CI・PR テンプレ・`verify-deploy` 追加 **`19b77a7`**。詳細な時系列・ファイル一覧は冒頭 **「インシデント記録（本番が古い・メニュー欠落）」** の直近更新を参照。
 
 **運用ルール（必須）**
 
