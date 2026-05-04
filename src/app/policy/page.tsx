@@ -5,8 +5,10 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
   POLICY_KIND_LABEL,
-  type PolicyKind,
+  policyKindsWithPublicEntries,
 } from "@/lib/policies";
+
+import { POLICY_KIND_PATH } from "./policy-kind-path";
 
 export const metadata: Metadata = {
   title: "政策提言（資料室）",
@@ -21,16 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
-const KIND_ORDER: PolicyKind[] = [
-  "national",
-  "local",
-  "legislative",
-  "public-comments",
-  "statements",
-  "petitions",
-];
-
 export default function PolicyHubPage() {
+  const kinds = policyKindsWithPublicEntries();
   return (
     <div className="bg-ivory">
       <BreadcrumbJsonLd
@@ -48,17 +42,17 @@ export default function PolicyHubPage() {
             政策提言
           </h1>
           <ResourceLead>
-            条例では対応できない制度的課題について、国や都道府県に対して法改正・制度整備を求める提言をまとめたセクションです。実務資料やひな型は{" "}
+            条例のみでは済まない制度課題について、国や都道府県に求める見解や提言をカテゴリ別に載せています。実務で使うひな型や資料は{" "}
             <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
               ひな形・資料
             </Link>
-            側で扱います。
+            をご覧ください。
           </ResourceLead>
           <ul className="space-y-3">
-            {KIND_ORDER.map((kind) => (
+            {kinds.map((kind) => (
               <li key={kind}>
                 <Link
-                  href={`/policy/${kind}`}
+                  href={`/policy/${POLICY_KIND_PATH[kind]}`}
                   className="block rounded-xl border border-border bg-white px-4 py-4 text-[15px] font-medium text-text-primary shadow-sm transition-colors hover:border-aqua/35 hover:bg-aqua-light/25"
                 >
                   {POLICY_KIND_LABEL[kind]}
@@ -67,8 +61,7 @@ export default function PolicyHubPage() {
             ))}
           </ul>
           <p className="mt-8 text-sm text-text-muted">
-            個別の提言ページは一覧から順次リンクされます（データは{" "}
-            <code className="rounded bg-white px-1 text-xs">src/lib/policies.ts</code> に集約）。
+            現在、公開があるカテゴリだけを下に載せています。未掲載のカテゴリは準備中です。
           </p>
         </div>
       </div>

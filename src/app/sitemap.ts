@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { getAllArticleSlugs } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
-import { getAllPolicySlugs } from "@/lib/policies";
+import { getAllPolicySlugs, policyKindsWithPublicEntries } from "@/lib/policies";
 import { TOPICS } from "@/lib/topic-entries";
 import {
   ORDINANCE_SUPPLEMENTS,
@@ -12,6 +12,8 @@ import {
   getToolkitSitemapHubPaths,
 } from "@/lib/toolkit-manifest";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
+
+import { POLICY_KIND_PATH } from "./policy/policy-kind-path";
 
 const CORE_PATHS = [
   "/",
@@ -30,12 +32,6 @@ const CORE_PATHS = [
 
 const RESOURCE_STATIC = [
   "/policy",
-  "/policy/national",
-  "/policy/local",
-  "/policy/legislative",
-  "/policy/public-comments",
-  "/policy/statements",
-  "/policy/petitions",
   "/learn",
   "/learn/glossary",
   "/learn/laws",
@@ -60,6 +56,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const path of RESOURCE_STATIC) {
+    urls.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: path.split("/").length <= 2 ? 0.75 : 0.6,
+    });
+  }
+
+  for (const kind of policyKindsWithPublicEntries()) {
+    const path = `/policy/${POLICY_KIND_PATH[kind]}`;
     urls.push({
       url: `${SITE_URL}${path}`,
       lastModified: now,

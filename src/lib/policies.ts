@@ -38,6 +38,16 @@ export const POLICY_KIND_LABEL: Record<PolicyKind, string> = {
   petitions: "著名人との共同署名",
 };
 
+/** カテゴリ一覧ページ上部の説明（閲覧者向け／リポジトリのファイル名は表示しない） */
+export const POLICY_KIND_PUBLIC_LEAD: Record<PolicyKind, string> = {
+  national: "中央政府や国会議員に向けたメッセージや提言をまとめています。",
+  local: "地方自治体との連携や条例に関わるモデルや提言をまとめています。",
+  legislative: "法律・税制・制度の改善を国や都道府県に求める提言をまとめています。",
+  "public-comments": "法令案などに対するパブリックコメント関連の書き起こし・立場をまとめています。",
+  statements: "理念や評価に基づく声明などをまとめています。",
+  petitions: "著名人との共同署名などの取り組みをまとめています。",
+};
+
 /** 公開前は空配列でも可 */
 export const POLICIES: readonly PolicyEntry[] = [
   {
@@ -68,6 +78,20 @@ export const POLICIES: readonly PolicyEntry[] = [
 
 export function policiesByKind(kind: PolicyKind): readonly PolicyEntry[] {
   return POLICIES.filter((p) => p.kind === kind);
+}
+
+/** 政策提言ハブのカード並び順（掲載が無い kind は表示しない） */
+export const POLICY_HUB_KIND_ORDER: readonly PolicyKind[] = [
+  "national",
+  "local",
+  "legislative",
+  "public-comments",
+  "statements",
+  "petitions",
+];
+
+export function policyKindsWithPublicEntries(): readonly PolicyKind[] {
+  return POLICY_HUB_KIND_ORDER.filter((k) => policiesByKind(k).length > 0);
 }
 
 export function getPolicyBySlug(slug: string): PolicyEntry | undefined {

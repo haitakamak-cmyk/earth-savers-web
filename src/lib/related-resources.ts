@@ -10,7 +10,7 @@ export type RelatedNavItem = { href: string; label: string; description?: string
 
 const TOOLKIT_BY_PATH = Object.fromEntries(TOOLKIT_LINKS.map((l) => [l.href, l.label]));
 
-/** 一覧に出している代表スラッグ（最初の1件だけリンク）／将来は個別一覧へ */
+/** 一覧に出している代表スラッグ（その kind に掲載が無い場合はリンクを出さない） */
 export function policyHubItemsForKinds(
   kinds: readonly PolicyKind[],
 ): RelatedNavItem[] {
@@ -19,8 +19,6 @@ export function policyHubItemsForKinds(
     const list = policiesByKind(k);
     if (list[0]) {
       out.push({ href: `/policy/${list[0].slug}`, label: POLICY_KIND_LABEL[k] });
-    } else {
-      out.push({ href: `/policy/${k}`, label: POLICY_KIND_LABEL[k] });
     }
   }
   return out;
