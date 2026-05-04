@@ -5,6 +5,8 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-05 — **再発防止**: GitHub Actions（`.github/workflows/ci.yml`）で `main` の push / PR 時に `npm ci` → `lint` → `build`。PR テンプレ（`.github/pull_request_template.md`）と CLI 本番前チェック `scripts/verify-deploy-ready.sh` を追加。運用ルール・事故の型は下 **「再発防止（本番が古い／消えたに見える事故）」** を参照。
+
 **直近更新**: 2026-05-04 — **本番復旧デプロイ（Vercel production）**: `npx vercel deploy --prod --yes` 成功。本番エイリアス `https://earth-savers.org`。当該ビルドのデプロイURL `https://earth-savers-1lddk5trp-haitaka0512-7940s-projects.vercel.app`。Vercel deployment id `dpl_8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`、インスペクタ `https://vercel.com/haitaka0512-7940s-projects/earth-savers-web/8G8JwnB6q53ctaq6Nfp2w5Y8cwEd`。Git自動デプロイで共通Headerが古い状態（`資料室` 不在・`支援・参加する` テキストリンク残存）に戻ったため、`Header.tsx` を **資料室▼（政策提言／ひな形・資料／学ぶ）＋支援CTA一本** に復旧し、`Footer.tsx` に資料室リンク群を復元、`/join#supporter` アンカーを実体化。`https://earth-savers.org/` のHTMLで `資料室` 表示と `支援・参加する` 非表示を確認済み。このリリースには **ひな形・資料4カテゴリ**、**用語集**、**政策提言 v0** も含まれる。
 
 **直近更新**: 2026-05-04 — **ひな形・資料 4カテゴリ構成**: `public/toolkit/` 配下に `legal/`・`operations/`・`cases/` を追加。`legal/` は `上位法との関係整理.md`・`県条例との調整チェックシート.md`・`判例サマリ.md` をプレースホルダ（「準備中です。」）で固定配置、`cases/導入事例・判例集.md` も同様。`operations/条例運用設計ガイド.md` は本文をMarkdown化し、誤字 **「両方が揃って初めに」→「両方が揃って初めて」** を修正。`src/lib/toolkit-manifest.ts` に4カテゴリの説明文・配布Markdown一覧・`published/preparing` 状態を集約し、`/toolkit` のカード説明と準備中バッジ、`/toolkit/law-guide`・`/toolkit/checklist`・`/toolkit/case-studies` の固定ファイルリンク表示に反映。**`npm run build` 成功**（既存のTurbopack NFT警告は継続）。
@@ -66,6 +68,30 @@
 ### 参照メモ（GCP・Gemini API キー不正利用）
 
 [G-gen: Gemini API と API キーの不正使用](https://blog.g-gen.co.jp/entry/gemini-api-abuse-explanation-and-prevention) の論点（クライアント露出キー × 制限なし × 同一プロジェクトで Generative Language API 有効化 → 第三者の大量利用）。**本リポジトリの `earth-savers-web` ソース**では `AIza` / `GEMINI_` / `@google/generative-ai` 等のヒットなし（2026-05 確認）。**GCP 側のキー制限・予算アラート・プロジェクト分割**はコード外の運用で別途監査すること。
+
+### 再発防止（本番が「古い／消えた」に見える事故）
+
+**原因の型（2026-05 実例）**
+
+1. **Vercel の Git 自動デプロイが正**で、`main` に入っていない変更だけ CLI で本番に載せた → あとから `main` がデプロイされ **Git 側の古い UI に上書き**された。
+2. **`main` に「未コミットをまとめて反映」系の巨大コミット**が入り、`Header` / `page` / `api/contact` などが **意図せず大幅削除**された → それがそのまま本番に出た。
+
+**運用ルール（必須）**
+
+- **本番の単一の正は `origin/main` のコミット**とする。`npx vercel deploy --prod` を使うなら **必ずその直前に push 済み**にする（または CLI 本番をやめて **Git の Production Deployment のみ**に寄せる）。
+- 大量変更をコミットする前に **`git diff --stat`** と **主要ファイルの目視**（ナビ・トップ・問い合わせ API 等）。
+- 手元で本番直挿しする前に: `bash scripts/verify-deploy-ready.sh`（クリーン・`main`・`origin/main` 一致を確認）。
+
+**リポジトリに入れたもの（2026-05-05）**
+
+- **GitHub Actions** `.github/workflows/ci.yml` … `main` への push / PR で `npm ci` → `lint` → `build`。
+- **PR テンプレ** `.github/pull_request_template.md` … 上記チェックのリマインダ。
+- **事前スクリプト** `scripts/verify-deploy-ready.sh`（`npm run verify-deploy` でも可）… CLI 本番前の最低限ガード。
+
+**GitHub / Vercel 側の推奨（コード外）**
+
+- **Branch protection**（`main`）: PR 必須・CI 必須・直接 push 禁止（運用に合わせて緩急調整）。
+- Vercel の **Production Branch** が `main` であることを確認。チーム運用なら **CLI からの本番デプロイ権限**を絞る選択肢あり。
 
 ---
 
