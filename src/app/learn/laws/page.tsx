@@ -51,7 +51,7 @@ export default function LawsPage() {
           </h1>
           <ResourceLead>
             条文の趣旨ではなく、「どのテーマ議論でどの法令が脚光を浴びやすいか」を地図のように並べます。詳細チェックリストは{" "}
-            <Link href="/toolkit/checklist" className="text-aqua-dark underline underline-offset-2">
+            <Link href="/toolkit/operations" className="text-aqua-dark underline underline-offset-2">
               ひな形・資料
             </Link>
             と相互リンクさせます。

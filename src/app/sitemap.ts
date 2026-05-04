@@ -7,6 +7,7 @@ import { TOPICS } from "@/lib/topic-entries";
 import {
   ORDINANCE_SUPPLEMENTS,
 } from "@/lib/ordinance-supplements-data";
+import { getAllToolkitMarkdownViewerPaths } from "@/lib/toolkit-manifest";
 import { SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
 
 const CORE_PATHS = [
@@ -27,9 +28,9 @@ const CORE_PATHS = [
 const RESOURCE_STATIC = [
   "/toolkit",
   "/toolkit/ordinance",
-  "/toolkit/law-guide",
-  "/toolkit/checklist",
-  "/toolkit/case-studies",
+  "/toolkit/legal",
+  "/toolkit/operations",
+  "/toolkit/cases",
   "/policy",
   "/policy/national",
   "/policy/local",
@@ -112,6 +113,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(entry.updatedAt),
       changeFrequency: "monthly",
       priority: 0.6,
+    });
+  }
+
+  for (const path of getAllToolkitMarkdownViewerPaths()) {
+    urls.push({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.58,
     });
   }
 

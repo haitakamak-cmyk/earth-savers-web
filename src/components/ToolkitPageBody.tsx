@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import type { ToolkitSection } from "@/lib/toolkit-manifest";
 
 import { ResourceLead } from "./ResourceLead";
@@ -16,11 +18,14 @@ export function ToolkitPageBody({ section }: ToolkitPageBodyProps) {
       <ResourceLead>{section.description}</ResourceLead>
       <ul className="mt-8 space-y-3">
         {section.files.map((file) => {
-          const href = `/toolkit/${section.subdir}/${encodeURIComponent(file.filename)}`;
+          const href =
+            file.viewSlug != null
+              ? `${section.href}/${file.viewSlug}`
+              : `/toolkit/${section.subdir}/${encodeURIComponent(file.filename)}`;
           const preparing = file.status === "preparing";
           return (
             <li key={file.filename}>
-              <a
+              <Link
                 href={href}
                 className="block rounded-xl border border-border bg-white p-4 shadow-sm transition-colors hover:border-wakakusa/40 hover:bg-wakakusa-light/30"
               >
@@ -40,7 +45,7 @@ export function ToolkitPageBody({ section }: ToolkitPageBodyProps) {
                 <span className="mt-3 block text-xs text-text-muted">
                   Markdown：{file.filename}
                 </span>
-              </a>
+              </Link>
             </li>
           );
         })}

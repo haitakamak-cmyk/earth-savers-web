@@ -3,13 +3,22 @@ export type ToolkitFileStatus = "published" | "preparing";
 export type ToolkitFileEntry = {
   title: string;
   filename: string;
+  /**
+   * HTML 表示用のパス `/toolkit/.../この値`（英数字スラッグ）。
+   * セクション直下1ページのみの運用（実務チェックリスト）では省略可。
+   */
+  viewSlug?: string;
   description: string;
   status: ToolkitFileStatus;
 };
 
 export type ToolkitSection = {
   label: string;
-  href: "/toolkit/ordinance" | "/toolkit/law-guide" | "/toolkit/checklist" | "/toolkit/case-studies";
+  href:
+    | "/toolkit/ordinance"
+    | "/toolkit/legal"
+    | "/toolkit/operations"
+    | "/toolkit/cases";
   subdir: "ordinance" | "legal" | "operations" | "cases";
   description: string;
   files: readonly ToolkitFileEntry[];
@@ -34,7 +43,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
   },
   {
     label: "法律ガイド",
-    href: "/toolkit/law-guide",
+    href: "/toolkit/legal",
     subdir: "legal",
     description:
       "条例制定にあたって確認すべき上位法との関係、都道府県条例との調整手順、条例の適法性を支持した判例の要点をまとめています。",
@@ -42,6 +51,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
       {
         title: "上位法との関係整理",
         filename: "上位法との関係整理.md",
+        viewSlug: "upper-law-relations",
         description:
           "再エネ特措法・森林法・盛土規制法・文化財保護法・景観法・地域生物多様性増進法と条例の関係を整理する予定です。",
         status: "preparing",
@@ -49,12 +59,14 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
       {
         title: "県条例との調整チェックシート",
         filename: "県条例との調整チェックシート.md",
+        viewSlug: "prefectural-ordinance-checklist",
         description: "県条例が既にある場合の上乗せ・横出し確認手順を整理する予定です。",
         status: "preparing",
       },
       {
         title: "判例サマリ",
         filename: "判例サマリ.md",
+        viewSlug: "case-law-summary",
         description: "条例の適法性を支持した裁判例の要点を整理する予定です。",
         status: "preparing",
       },
@@ -62,7 +74,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
   },
   {
     label: "実務チェックリスト",
-    href: "/toolkit/checklist",
+    href: "/toolkit/operations",
     subdir: "operations",
     description:
       "条例を現場で運用するために整備すべきツール（窓口フロー、届出受理チェックリスト、案件管理台帳、年次カレンダー、エスカレーション基準表、窓口FAQ）の設計仕様をまとめたガイドです。具体の様式は各自治体の環境に合わせて作成してください。",
@@ -78,7 +90,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
   },
   {
     label: "導入・訴訟事例",
-    href: "/toolkit/case-studies",
+    href: "/toolkit/cases",
     subdir: "cases",
     description:
       "全国の自治体における条例導入事例、裁判で条例の適法性が認められた判例、条例がなかったために開発を防げなかった事例をまとめています。",
@@ -86,6 +98,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
       {
         title: "導入事例・判例集",
         filename: "導入事例・判例集.md",
+        viewSlug: "case-studies-and-precedents",
         description:
           "全国の条例導入自治体事例、裁判で条例が支持された判例概要、条例がなかったために防げなかった事例を整理する予定です。",
         status: "preparing",
@@ -104,4 +117,35 @@ export function getToolkitSectionByHref(href: ToolkitSection["href"]): ToolkitSe
   const section = TOOLKIT_SECTIONS.find((item) => item.href === href);
   if (!section) throw new Error(`Unknown toolkit section: ${href}`);
   return section;
+}
+
+/** 法律ガイド・導入事例など、`viewSlug` 付きで HTML 表示するセクション用 */
+export function getToolkitFileBySubdirAndViewSlug(
+  subdir: "legal" | "cases",
+  viewSlug: string,
+): { section: ToolkitSection; file: ToolkitFileEntry } | undefined {
+  const section = TOOLKIT_SECTIONS.find((s) => s.subdir === subdir);
+  if (!section) return undefined;
+  const file = section.files.find((f) => f.viewSlug === viewSlug);
+  if (!file) return undefined;
+  return { section, file };
+}
+
+export function getToolkitViewerSlugs(subdir: "legal" | "cases"): string[] {
+  const section = TOOLKIT_SECTIONS.find((s) => s.subdir === subdir);
+  if (!section) return [];
+  return section.files
+    .map((f) => f.viewSlug)
+    .filter((s): s is string => Boolean(s));
+}
+
+/** sitemap 用: `/toolkit/legal/foo` 形式の表示用パス */
+export function getAllToolkitMarkdownViewerPaths(): string[] {
+  const paths: string[] = [];
+  for (const section of TOOLKIT_SECTIONS) {
+    for (const f of section.files) {
+      if (f.viewSlug) paths.push(`${section.href}/${f.viewSlug}`);
+    }
+  }
+  return paths;
 }
