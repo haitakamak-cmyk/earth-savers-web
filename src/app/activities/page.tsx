@@ -5,9 +5,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "保全活動・プロジェクト",
+  title: "活動内容 | 財団法人 地球防衛群",
   description:
-    "水源地の取得・恒久保全、B-369を用いた生態系復活、里山再生など、地球防衛群が現場で汗を流して取り組んでいる具体的なプロジェクト内容を詳しくご紹介します。",
+    "水源地の保全、生態系復活プロジェクト、大地の再生、530運動、ばら撒くっ種、環境教育など、地球防衛群の活動をご紹介します。",
 };
 
 /** `public` 直下のサブディレクトリ（例: images/ばら撒くっ種）に置いた画像を URL 一覧にする */
@@ -48,7 +48,7 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "水源地・山林の取得と恒久保全",
     description:
-      "外部資本による水源地の取得や、大規模な開発から日本の豊かな水源を大切に守り抜いています。取得した山林は恒久的に保全。自ら現場を歩き、地下水脈の健康状態を調査・回復させる活動を続けています。",
+      "外国資本による水源地の買収や、メガソーラーの乱開発から日本の豊かな水源を守ります。取得した山林は恒久的に保全し、地下水脈のネットワークを維持・回復。七世代先の子どもたちに、きれいな水を届けるための土台をつくります。",
     image: "/images/photos/water-spring.jpeg",
     imageAlt: "美しい水源地の湧き水",
   },
@@ -56,19 +56,19 @@ const activities: Activity[] = [
     id: "ecosystem",
     tag: "生態系復活",
     tagColor: "text-aqua bg-aqua-light",
-    title: "ナノバブル発生器 『B-369』",
+    title: "生態系復活プロジェクト ～水から生態系を蘇らせる～",
     description:
-      "独自開発のナノバブル発生器『B-369』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルの働きを活用し、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。",
+      "地球の表面の約70%は水で覆われていますが、人間が使える淡水はわずか0.01%。その貴重な水が汚染され、海・川・湖沼の低酸素化が深刻な問題となっています。私たちはナノバブルや微生物の力を活かした水質浄化技術を用い、河川や池の溶存酸素を改善。水から生態系全体を蘇らせるプロジェクトを推進しています。",
     image: "/images/photos/ecosystem-river.jpeg",
-    imageAlt: "生態系復活プロジェクトのナノバブル発生装置",
+    imageAlt: "生態系復活プロジェクトの水質浄化装置",
   },
   {
     id: "satoyama",
     tag: "大地の再生",
     tagColor: "text-wakakusa bg-wakakusa-light",
-    title: "里山オーガニック再生",
+    title: "里山オーガニック ～大地の再生の手法で～",
     description:
-      "現代のコンクリートは大地の水脈を塞ぎ、空気と水の循環を止めてしまいます。私たちは水脈や通気の流れを見直し、土壌環境の再生を図る「大地の再生」の視点を大切にしています。放置された森に光を入れ、人と動物が共に心地よく過ごせる環境を再構築しています。",
+      "現代のコンクリートやアスファルトは大地の水脈を分断し、空気と水の循環を止めてしまいます。「大地の再生」の考え方に基づき、風の草刈りや点穴掘りで空気と水の通り道を回復。放置された人工林・竹林に光を入れ、耕作放棄地を里山として再生します。人と動物が共生できる「やさしい境界線」をつくります。",
     image: "/images/photos/activity-bamboo.jpeg",
     imageAlt: "里山再生活動の様子",
   },
@@ -76,12 +76,11 @@ const activities: Activity[] = [
     id: "gomi530",
     tag: "530運動",
     tagColor: "text-accent-gold bg-amber-50",
-    title: "530（ゴミゼロ）運動",
+    title: "530（ゴミゼロ）運動 ～その一歩で自分も世界も生まれ変わる～",
     description:
-      "地域のゴミ拾い、池そうじ、花植え、など、身近な環境改善活動を行っています。子どもから大人まで、楽しみながら「自分たちの手で街を調和させる」地域密着型の実践です。",
-    image: "/images/photos/gomi530-group-vests.png",
-    imageAlt:
-      "ゴミ拾い530運動に参加する地球防衛群のメンバーと地域の子どもたちの集合写真。",
+      "地域のゴミ拾いや衆楽園の池そうじ、在来種の種のシェアなど、誰でも気軽に参加できるボランティア活動を行っています。雨の日も風の日も、みんなで楽しくゴミを拾い、お花を植え、街をきれいにする。小さな一歩が、大きな変化を生み出します。",
+    image: "/images/photos/pond-cleanup.jpeg",
+    imageAlt: "530運動 衆楽園池そうじの集合写真",
   },
   {
     id: "baramaku",
@@ -89,7 +88,7 @@ const activities: Activity[] = [
     tagColor: "text-accent-gold bg-amber-50",
     title: "ばら撒くっ種",
     description:
-      "在来種の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
+      "在来種や野草の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
     image: "/images/ばら撒くっ種/baramaku-seeds-table.png",
     imageAlt:
       "ばら撒くっ種の会で並べられた種子や実、モロヘイヤ・マリーゴールドなどのラベル付き袋",
@@ -103,11 +102,11 @@ const activities: Activity[] = [
   },
   {
     id: "prevention",
-    tag: "自然保護",
+    tag: "環境防衛",
     tagColor: "text-coral bg-red-50",
-    title: "環境破壊型開発の抑止・相談",
+    title: "環境破壊型開発の防止・調査",
     description:
-      "相談受付、専門家との連携、実態調査、情報提供を通じて、環境破壊型開発の抑止に取り組んでいます。メガソーラーの無秩序な建設や山林の伐採など、地域が直面する課題に対して「駆け込み寺」として寄り添い、法的対応も視野に入れたサポートが行えるように準備を進めています。",
+      "メガソーラーの無秩序な建設や、山林の違法伐採、PFAS汚染など、環境破壊の現場を調査・記録し、法的手段を含めた防止策を講じます。「駆け込み寺」として、困っている住民や自治体の相談窓口となり、問題解決をサポートします。",
     image: "/images/photos/mega-solar.jpeg",
     imageAlt: "山を覆うメガソーラーの現状",
   },
@@ -115,9 +114,9 @@ const activities: Activity[] = [
     id: "education",
     tag: "環境教育",
     tagColor: "text-wakakusa bg-wakakusa-light",
-    title: "環境教育・次世代育成",
+    title: "環境教育・市民参加の促進",
     description:
-      "講演会や自然体験を通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で慈しみ育てる、豊かな感性を育む輪を広げていきます。",
+      "講演会や自然体験プログラムを通じて、水と森の大切さを次の世代に伝えます。子どもたちが土に触れ、森の声を聴き、自然のペースで深呼吸できる場を提供。未来を担う人材を育て、環境保全の輪を広げていきます。",
     image: "/images/photos/child-corn.jpeg",
     imageAlt: "子どもと自然の中での体験活動",
   },
@@ -149,17 +148,13 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-      {/* ===== LLM / Search Definition ===== */}
-      <div className="sr-only">
-        水源地・山林の保全、里山と土壌の再生、ナノバブル発生器B-369による水環境改善、地域の530運動や環境教育など、現場での実践を通じて日本の自然を次世代へつなぐ活動を行っています。
-      </div>
-
       {/* Intro */}
-      <section className="pt-12 sm:pt-16 pb-2 bg-ivory">
+      <section className="py-12 sm:py-16 bg-ivory">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-text-secondary leading-relaxed text-base sm:text-lg">
-            水源地・山林の保全、里山と土壌の再生、地域とともに530運動や環境教育まで。<br className="hidden sm:block" />
-            私たちは現場での「実践」を積み重ね、日本の自然環境を慈しみ、未来へつないでいます。
+            地球防衛群は、水源地の保全から生態系の復活、里山の再生、
+            地域の環境美化まで、多角的なアプローチで
+            日本の自然環境を守り、未来へつないでいます。
           </p>
         </div>
       </section>
@@ -257,11 +252,11 @@ export default function ActivitiesPage() {
       <section className="py-16 sm:py-20 bg-wakakusa-light">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            水と森の再生に、あなたの力を貸してください
+            一緒に活動しませんか？
           </h2>
-          <p className="mt-4 text-text-secondary leading-relaxed text-base sm:text-lg">
-            あなたの一歩が、水と森の未来をつくります。<br className="hidden sm:block" />
-            寄付、参加、拡散。できる形で、現場を支えていただけます。
+          <p className="mt-4 text-text-secondary leading-relaxed">
+            ボランティアの参加も、寄付による応援も、
+            あなたの想いが活動を支えます。
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a

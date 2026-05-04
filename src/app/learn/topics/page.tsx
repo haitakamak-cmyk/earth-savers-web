@@ -10,7 +10,7 @@ import { ORGANIZATION_NAME, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "解説記事",
   description:
-    "制度・政策の背景を長めの文章で整理するコーナーです。用語集・条例テンプレ・政策提言と相互に参照できます。",
+    "制度・政策の背景を長めの文章で整理するコーナーです。用語集・条例ひな型・政策提言と相互に参照できます。",
   alternates: { canonical: "/learn/topics" },
   openGraph: {
     title: "解説記事 | 学ぶ",
@@ -86,7 +86,7 @@ export default function LearnTopicsIndexPage() {
               </li>
               <li>
                 <Link href="/toolkit/ordinance" className="underline underline-offset-2">
-                  条例テンプレート
+                  条例ひな型
                 </Link>
               </li>
               <li>

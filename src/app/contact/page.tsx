@@ -1,26 +1,14 @@
 import type { Metadata } from "next";
 
-import { ContactFaqSection } from "./ContactFaqSection";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ",
+  title: "お問い合わせ | 財団法人 地球防衛群",
   description:
-    "財団法人地球防衛群への一般お問い合わせ、寄付・取材のご相談はフォームから。設立初期であり公益認定を目指して活動しています。メガソーラー・乱開発の相談窓口（駆け込み寺）は準備中。よくある質問（FAQ）もご覧ください。",
+    "財団法人 地球防衛群へのお問い合わせ・環境トラブル相談窓口（駆け込み寺）はこちら。",
 };
 
-const BANK_DONATION_MESSAGE = `都度寄付（銀行振込・郵便振替）です。受領証明書の発行や、振込先を記載したメールでのご案内を希望します。
-
-氏名（フリガナ）：
-希望寄付額（目安）：`;
-
-type ContactPageProps = {
-  searchParams: Promise<{ intent?: string }>;
-};
-
-export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const { intent } = await searchParams;
-  const isBankDonation = intent === "bank-donation";
+export default function ContactPage() {
   return (
     <>
       {/* Hero */}
@@ -65,11 +53,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
               </div>
 
-              <ContactForm
-                initialCategory={isBankDonation ? "donation" : undefined}
-                initialMessage={isBankDonation ? BANK_DONATION_MESSAGE : undefined}
-                submitIntent={isBankDonation ? "bank-donation" : undefined}
-              />
+              <ContactForm />
             </div>
 
             {/* Help Desk — 準備中 */}
@@ -116,21 +100,26 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   現在、体制を整えています
                 </p>
                 <p className="mx-auto max-w-sm text-sm leading-relaxed text-text-secondary">
-                  専門家との連携体制が整い次第、
+                  弁護士・専門家との連携体制が整い次第、
                   環境トラブルの相談窓口を開設いたします。
                   <br className="hidden sm:block" />
                   今しばらくお待ちください。
                 </p>
                 <p className="text-sm text-text-secondary">
-                  緊急の場合はお問い合わせフォームよりご連絡ください。
+                  緊急の場合は
+                  <a
+                    href="mailto:info@earth-savers.org"
+                    className="mx-1 text-aqua underline"
+                  >
+                    info@earth-savers.org
+                  </a>
+                  へ直接ご連絡ください。
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <ContactFaqSection />
     </>
   );
 }

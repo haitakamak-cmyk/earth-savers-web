@@ -30,11 +30,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const entry = getOrdinanceSupplementBySlug(slug);
   if (!entry)
-    return { title: "条例ひな形 補助資料" };
+    return { title: "条例ひな型 補助資料" };
 
   const path = `/toolkit/ordinance/${entry.slug}`;
   return {
-    title: `${entry.title} | 条例ひな形 補助資料 | ${ORGANIZATION_NAME}`,
+    title: `${entry.title} | 条例ひな型 補助資料 | ${ORGANIZATION_NAME}`,
     description: entry.shortDescription,
     alternates: { canonical: path },
     openGraph: {
@@ -77,7 +77,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
           { name: "HOME", path: "/" },
           { name: "資料室", path: "/toolkit" },
           { name: "ひな形・資料", path: "/toolkit" },
-          { name: "条例ひな形", path: "/toolkit/ordinance" },
+          { name: "条例ひな型", path: "/toolkit/ordinance" },
           { name: entry.title, path: pagePath },
         ]}
       />
@@ -107,7 +107,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
               href="/toolkit/ordinance"
               className="underline-offset-2 hover:underline"
             >
-              条例ひな形
+              条例ひな型
             </Link>
           </li>
           <li aria-hidden className="text-text-muted">
@@ -143,7 +143,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
           <ul className="mt-3 space-y-2 text-sm">
             <li>
               <Link href="/toolkit/ordinance" className="text-aqua-dark underline underline-offset-2">
-                条例ひな形ページへ
+                条例ひな型ページへ
               </Link>
             </li>
             {others.map((o) => (

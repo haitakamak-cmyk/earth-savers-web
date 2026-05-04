@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
 import { Zen_Maru_Gothic, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
-import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import {
-  ORGANIZATION_NAME,
-  SITE_ALLOW_SEARCH_INDEXING,
-  SITE_ORGANIZATION_DESCRIPTION,
-  SITE_ORGANIZATION_DESCRIPTION_PRELAUNCH,
-  SITE_URL,
-} from "@/lib/site";
+import { Footer } from "@/components/Footer";
 
 const zenMaru = Zen_Maru_Gothic({
   variable: "--font-zen-maru",
@@ -24,36 +16,16 @@ const notoSerif = Noto_Serif_JP({
   weight: ["400", "600", "700"],
 });
 
-const defaultTitle = SITE_ALLOW_SEARCH_INDEXING
-  ? `${ORGANIZATION_NAME} | 水と森の未来を守る`
-  : `地球防衛群（公式サイト・準備中）| 水と森の未来を守る`;
-
-const siteDescription = SITE_ALLOW_SEARCH_INDEXING
-  ? SITE_ORGANIZATION_DESCRIPTION
-  : SITE_ORGANIZATION_DESCRIPTION_PRELAUNCH;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: defaultTitle,
-    template: SITE_ALLOW_SEARCH_INDEXING
-      ? `%s | ${ORGANIZATION_NAME}`
-      : `%s | 地球防衛群`,
-  },
-  description: siteDescription,
-  robots: SITE_ALLOW_SEARCH_INDEXING
-    ? { index: true, follow: true }
-    : {
-        index: false,
-        follow: false,
-        googleBot: { index: false, follow: false },
-      },
+  title: "財団法人 地球防衛群 | 水と森の未来を守る",
+  description:
+    "水源を守る。山を守る。未来を守る。七世代先の子どもたちへ、水と森を残すために。公益財団法人 地球防衛群（Earth Savers）の公式サイトです。",
   openGraph: {
-    title: defaultTitle,
-    description: siteDescription,
+    title: "財団法人 地球防衛群 | 水と森の未来を守る",
+    description:
+      "七世代先の子どもたちへ、水と森を残すために。",
     locale: "ja_JP",
     type: "website",
-    url: SITE_URL,
   },
 };
 
@@ -64,8 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${zenMaru.variable} ${notoSerif.variable}`}>
-      <body className="flex min-h-screen flex-col font-sans antialiased">
-        <OrganizationJsonLd />
+      <body className="min-h-screen flex flex-col font-sans antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

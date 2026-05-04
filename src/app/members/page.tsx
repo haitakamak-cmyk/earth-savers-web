@@ -12,15 +12,16 @@ const boardRows: { role: string; name: string }[] = [
   { role: "代表理事", name: "杉山 孔太" },
   { role: "理事・事務局長", name: "小野 誠" },
   { role: "理事", name: "西尾 直哉" },
+  { role: "理事", name: "森川 保幸" },
   { role: "理事", name: "藤原 治" },
-  { role: "理事", name: "遠藤 さよ" },
+  { role: "理事", name: "近藤 さよ" },
   { role: "理事", name: "東川 恵里子" },
-  { role: "監事", name: "今昔 美未実" },
+  { role: "監事", name: "玉置 みわ" },
 ];
 
 const councilRows: { role: string; name: string }[] = [
   { role: "評議員", name: "杉山 公紀" },
-  { role: "評議員", name: "杉山 麻依子" },
+  { role: "評議員", name: "杉山 麻衣子" },
   { role: "評議員", name: "瀬戸山 裕一" },
 ];
 
@@ -28,22 +29,8 @@ const councilRows: { role: string; name: string }[] = [
 const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
   { rank: "七世代の大使", reading: "ななせだいのたいし", names: [] },
   { rank: "山の守護者", reading: "やまのしゅごしゃ", names: [] },
-  {
-    rank: "森の番人",
-    reading: "もりのばんにん",
-    names: ["(有)テンプルビューティフル", "堀江美喜"],
-  },
-  {
-    rank: "水の守人",
-    reading: "みずのもりびと",
-    names: [
-      "BBA協力隊",
-      "医療法人 徳治会 MOTOKI DENTAL CLINIC",
-      "マイク",
-      "株式会社ナファ生活研究所",
-      "三好隆元（ミヨシリュウゲン）",
-    ],
-  },
+  { rank: "森の番人", reading: "もりのばんにん", names: [] },
+  { rank: "水の守人", reading: "みずのもりびと", names: [] },
 ];
 
 function RosterTable({ rows }: { rows: { role: string; name: string }[] }) {
@@ -154,7 +141,7 @@ export default function MembersPage() {
                   <span className="text-sm text-text-secondary">（{tier.reading}）</span>
                 </div>
                 {tier.names.length > 0 ? (
-                  <ul className="mt-4 flex flex-col gap-2 border-t border-border pt-4">
+                  <ul className="mt-4 flex flex-col gap-2 border-t border-border pt-4 sm:flex-row sm:flex-wrap sm:gap-x-6">
                     {tier.names.map((n) => (
                       <li
                         key={n}

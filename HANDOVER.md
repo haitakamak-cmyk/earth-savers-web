@@ -5,7 +5,11 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
-**直近更新**: 2026-05-05 — `**/toolkit/ordinance` 公開ページの表記・ナビ整備**（見出し **条例ひな形**／サブ **v2.1（2026年5月改訂）・全56条・参入・運転・承継・出口＋既設**/リードに補助資料4種の言及／ページ上段を **「資料室 / ひな形・資料 / 条例ひな形」** に統一。`BreadcrumbJsonLd` も HOME→資料室→ひな形・資料→条例ひな形）。補助資料個別（`src/app/toolkit/ordinance/[slug]/page.tsx`）のパンくず・メタ **条例ひな形 補助資料**、関連リンク「条例ひな形ページへ」。`toolkit-manifest.ts` の `/toolkit` カードラベル、`/toolkit` のメタ説明を **条例ひな形** に整合。**本番 Vercel 再デプロイ**（`earth-savers.org`）。**確認**: ヘッダーは **資料室 ▼**／ソースに「9重の障壁」「9つの壁」なし。
+**直近更新**: 2026-05-04 — **政策提言 v0 公開**: 「土地取得における実質的支配者開示制度の創設に関する提言──FATF勧告24・英国 Register of Overseas Entities との整合に向けて」を `/policy/landowner-beneficial-owner-disclosure` として公開（kind: `legislative`）。**条例 v2.1 第9条の2（第一層の届出）の国制度補完版** という位置付けで、英国 ROE・EU マネロン指令・米 CTA・FATF 対日相互審査（2021-08）・FATF 勧告24（2023-03改訂）を根拠に、(1)不動産取得時の実質的支配者開示の義務化、(2)第三者検証制度（英国 verification checks 型）、(3)自治体への情報提供、(4)閾値の段階的引下げ、(5)重要土地等調査法の対象拡大、を提言。**正本** `Web/政策提言_土地取得_実質的支配者開示_v0.md` ／**サイト配信** `src/content/policies/landowner-beneficial-owner-disclosure.md`（正本コピー、Topics 同様の `src/content/` 配置）。**実装**: `src/lib/policies.ts` に `contentPath?: string`／`audience?: readonly string[]`／`requiresLegalCaveat?: boolean` を追加し POLICIES に1件登録、`src/app/policy/[slug]/page.tsx` を `MarkdownArticle`（`react-markdown` + `remark-gfm`）表示に改修して GFM 脚注・テーブル・コードブロック対応、末尾に `ContentDisclaimer` を追加、`BreadcrumbJsonLd` を「HOME / 資料室 / 政策提言 / {kind} / {title}」に拡張、`generateMetadata` を OG・robots 連動の標準形に揃えた。**依存追加**: `package.json` `dependencies` に `react-markdown@^10` `remark-gfm@^4` `github-slugger@^2`（ローカル `node_modules` には残っていたが Vercel ビルドで消えていた既存問題を解消）／同じく `@upstash/ratelimit` `@upstash/redis` も再導入。**TODO（一次資料の最終確認）**: 英国 ROE 遡及起算日（England&Wales／Scotland／NI 別）・FATF 勧告24最新 Methodology・対日相互審査 R.24/R.25 評価文言・米 CTA 暫定最終規則（2025-03）の Federal Register 番号と現時点ステータス・EU 6AMLD/AMLA 状況・19.9% 分散の実例出典（取れないものは載せない方針）。**本番デプロイ成功**（`https://earth-savers.org/policy/landowner-beneficial-owner-disclosure`）。
+
+**直近更新**: 2026-05-05 — **サイト表記「条例ひな型」統一**（旧「条例テンプレート」「条例ひな形」等を製品名として **条例ひな型** に揃えた。関連リソース・`toolkit-manifest`・`/toolkit/ordinance`・補助資料・`learn` 各ページ・公開用語集 MD 等）。**条例正本**（`Web/条例テンプレ_v0_暫定版.md`）＝逐条解説の公開トーン調整（内部メモ調・訴訟で引用されうる表現の中立化）、第18条の2の憲法審査「必須」注記は逐条解説から削除し **ご利用にあたって** 免責へ法務審査一文を移設、「ペーパーカンパニー」等を **不透明／実体を伴わない法人** 表現へ置換。`public/toolkit/ordinance/` は正本コピーで同期。**`npm run build` 成功**。詳細は下「2026-05-05 条例・サイトメモ」。
+
+**直近更新**: 2026-05-05（履歴）— `**/toolkit/ordinance` 公開ページの表記・ナビ整備**（見出し **条例ひな形**／サブ **v2.1（2026年5月改訂）・全56条・参入・運転・承継・出口＋既設**/リードに補助資料4種の言及／ページ上段を **「資料室 / ひな形・資料 / 条例ひな形」** に統一。`BreadcrumbJsonLd` も HOME→資料室→ひな形・資料→条例ひな形）。補助資料個別（`src/app/toolkit/ordinance/[slug]/page.tsx`）のパンくず・メタ **条例ひな形 補助資料**、関連リンク「条例ひな形ページへ」。`toolkit-manifest.ts` の `/toolkit` カードラベル、`/toolkit` のメタ説明を **条例ひな形** に整合。**本番 Vercel 再デプロイ**（`earth-savers.org`）。**確認**: ヘッダーは **資料室 ▼**／ソースに「9重の障壁」「9つの壁」なし。→ **同一日の追記**で UI 上の製品名は **条例ひな型** に再統一済み（上段「直近更新」参照）。
 
 **直近更新**: 2026-05-04 — **条例ひな型正本** `Web/条例テンプレ_v0_暫定版.md` の議会向け一括整備（条番号整合・誤参照修正・炎上リスク平準化・免責強化・歴史景観抑制区域・国動向数字・用語「ひな型」統一）。**詳細は下の「2026-05-04 条例ひな型（正本）サマリー」**。
 
@@ -31,13 +35,24 @@
 | **逐条解説の用語**      | 「狙い／真意／本音」→趣旨・目的。「抑止する」等→適正な管理・防ぐ・担保。「外国資本／外部資本」等の属性名→届出義務者・取得者・事業者等。「議会対策として」「攻撃されないために」は書かない。**抑止力**（制裁の実効性の説明）は法技術用語として可。正本に 2026-05-04 反映済み。 |
 
 
+### 2026-05-05 条例・サイトメモ（公開トーン・表記統一）
+
+| 区分 | 内容 |
+| ---- | ---- |
+| **正本パス** | `Web/条例テンプレ_v0_暫定版.md` → サイト配信は従来どおり `public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` にコピー（ファイル名は据え置き）。 |
+| **逐条解説（追加整備）** | 内部検討調・他自治体へのリスク断定・制度弱点の自認・「投機目的」等を削し、根拠・趣旨の中立説明へ（例: 第6条実務留意、総括の土地取得段落・第三層・表、第17条の3、第18条の2ただし書、第24条本文、第25条、第26条の3、附則第7条）。第18条の2末尾の「憲法適合性の厳格な審査が必須」系注記は**逐条解説から削除**し、**ご利用にあたって**の免責段落へ「第18条の2の連帯保証条項を含む各規定の導入に際しては、自治体の実情に応じた法務審査を経ること」を追記。 |
+| **「ペーパーカンパニー」除去** | 正本内の該当語を **資本関係が不透明な法人／実体を伴わない法人** 等へ置換。あわせて「温床」「責任のすり替え」「蒸発」比喩を緩和（第20条の3・附則第8条の逐条解説）。 |
+| **サイト（earth-savers-web）** | ユーザー向け文言の **「条例テンプレート」「条例テンプレ」「条例ひな形」（製品名部分）** を **条例ひな型** に統一。主な実装: `src/lib/toolkit-manifest.ts`、`src/app/toolkit/page.tsx`、`src/app/toolkit/ordinance/page.tsx`・`[slug]/page.tsx`、`src/app/learn/topics/page.tsx`・`[slug]/page.tsx`（見出し「関連条例条項（ひな型）」）、`src/app/learn/glossary/page.tsx`、`src/app/policy/page.tsx`、`src/content/topics/oecm-30by30.md`、`src/content/ordinance-supplements/*.md`（「本テンプレート」等→**本ひな型**／パブコメ資料は**回答ひな型**）、`src/lib/ordinance-supplements-data.ts`、`public/learn/glossary/用語集_v0_完成版.md`。セクション名 **「ひな形・資料」**（資料室コーナー）はそのまま。 |
+| **検証** | `Web/earth-savers-web` で `npm run build` 成功。 |
+
+
 ### 2026-05-05 `/toolkit/ordinance` サイト表記（UI・メタ）
 
 
 | 項目         | 内容                                                                                                                                                             |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **実装**     | `src/app/toolkit/ordinance/page.tsx`（H1・サブタイトル・`ResourceLead`・上段ラベル・`metadata` / `openGraph`・`BreadcrumbJsonLd`）                                               |
-| **連動**     | `src/app/toolkit/ordinance/[slug]/page.tsx`（補助資料のパンくず・メタ・「条例ひな形ページへ」）、`src/lib/toolkit-manifest.ts`（一覧ラベル）、`src/app/toolkit/page.tsx`（メタ description の「条例ひな形」） |
+| **連動**     | `src/app/toolkit/ordinance/[slug]/page.tsx`（補助資料のパンくず・メタ・「条例ひな型ページへ」）、`src/lib/toolkit-manifest.ts`（一覧ラベル）、`src/app/toolkit/page.tsx`（メタ description の「条例ひな型」）※2026-05-05 追記で **条例ひな型** 表記に再統一 |
 | **旧表記の除去** | 英語の `Resource / Toolkit · Ordinance template` 廃止、「9重の障壁」系はサイト `src/` に残存なし（grep 確認）                                                                            |
 | **デプロイ**   | `npx vercel deploy --prod` 成功（本番 `https://earth-savers.org`）                                                                                                   |
 
@@ -74,7 +89,7 @@
 ・**用語集 v1.2 公開**: 27語を `/learn/glossary/[slug]` で配信。データは `public/learn/glossary/用語集_v0_完成版.md` から `src/lib/glossary.ts` が `GLOSSARY` 配列へ変換して生成。個別ページは `DefinedTerm` JSON-LD / `BreadcrumbList` を出力（`SITE_ALLOW_SEARCH_INDEXING === false` の間は既存規律どおり非出力）。**v1.2 改訂（2026-05-02）**＝NIMBY印象の回避（再エネ非否定スタンス明記）／OECM登録条件の明示／「当法人」表記統一／`requiresLegalCaveat` フラグで制度系用語に改正注記表示／法的助言代替不可の注記を全ページ末尾に追加
 ・**解説記事（topics）**: `/learn/topics` 一覧・`/learn/topics/[slug]` 個別。記事データは `src/lib/topic-entries.ts` の `TOPICS`、本文は `src/content/topics/*.md`（第1号 `oecm-30by30`）。変換・内部リンクは `src/lib/topics.ts`。個別ページは `Article` JSON-LD（`ArticleJsonLd.tsx`）・パンくず・目次 `TopicToc.tsx`。**学ぶ**ハブ `/learn` にカードあり
 ・解説記事 第1号 = OECMと30by30 v1.1、`/learn/topics/oecm-30by30/` で配信、Article JSON-LD 出力（index 許可時）。**v1.1 改訂（2026-05-02）**＝「地域社会との対話と合意形成」セクション新設／税制20%減を「一定の要件を満たす場合」と限定明記／OECM登録条件の明示／著者表記を「一般財団法人 地球防衛群」に統一／第29条条項リンクは条例本体アンカーへ接続。
-・**条例ひな形 補助資料**: `src/lib/ordinance-supplements-data.ts` ＋ `src/content/ordinance-supplements/*.md`。**4ページ** `/toolkit/ordinance/rules`・`adoption-guide`・`qa-council`・`qa-public`（`src/app/toolkit/ordinance/[slug]/page.tsx`）。一覧は `/toolkit/ordinance` の「条例導入を支える補助資料」。ZIP 一括はなし。パンくず・メタは **条例ひな形** 表記に統一（2026-05-05）。
+・**条例ひな型 補助資料**: `src/lib/ordinance-supplements-data.ts` ＋ `src/content/ordinance-supplements/*.md`。**4ページ** `/toolkit/ordinance/rules`・`adoption-guide`・`qa-council`・`qa-public`（`src/app/toolkit/ordinance/[slug]/page.tsx`）。一覧は `/toolkit/ordinance` の「条例導入を支える補助資料」。ZIP 一括はなし。パンくず・メタは **条例ひな型** 表記に統一（2026-05-05 追記）。
 ・**条例テンプレ v2**: `/toolkit/ordinance` で配信。前文「本条例の理念と基本スタンス」を新設（「再エネ否定ではない・適切な開発は歓迎」を冒頭明言）。**入口規制（第3章 参入段階）＋運転規制（第3章の2 維持管理）＋承継規制（第3章の3 事業の承継）＋出口規制（第3章の4 廃止及び撤去）＋第29条 生物多様性維持協定等の推進** という4軸構成。第9条の2 土地取引事前届出は水源含有確認・補正命令・個人情報保護・届出制非許可制明文化を含む拡張版。第18条は廃棄等費用積立金（1kWあたり1万円下限・FIT積立2分の1充当）。第17条の2〜の4で離隔100m／傾斜20度／調整池3,000㎡基準を導入。第26条の3 地域環境保全協力金は努力義務型（5,000㎡以上）。第25条過料は11項目（既存6項目＋出口5項目）。総括は参入・運転・出口の3段階対応表で再構成。煽り表現を全面解体
 ・**法務ガイドライン（2026-05-02 確立）**: 用語集・解説記事・条例の全公開ドキュメントに対し、(1)NIMBY印象を与えない（再エネ非否定スタンスを明記）、(2)税制・補助制度の適用可否を保証しない、(3)法的助言・税務助言の代替ではない旨を明記、(4)出典は官公庁・国際機関・一次資料を優先、(5)登記済み法人として「一般財団法人 地球防衛群」「当法人」で統一、を遵守
 ・正本: Web/earth-savers-web/HANDOVER.md
@@ -103,7 +118,7 @@
 
 - `**false`（既定・サイト先行）**:  
   - `app.earth-savers.org` へのリンクは `**join` / `join/bank-donation` / `app-intro`** でボタン無効または文言「準備中」。  
-  - `**src/lib/app-sns-links.ts`** 先頭行（公式アプリ紹介）に `**disabled: true**` が付き、**Header / Footer では `<span>` のみ**（遷移しない）。ラベルは「公式アプリ紹介（準備中）」。
+  - `**src/lib/app-sns-links.ts`** 先頭行（公式アプリ紹介）に `**disabled: true`** が付き、**Header / Footer では `<span>` のみ**（遷移しない）。ラベルは「公式アプリ紹介（準備中）」。
 - `**true`（アプリ公開後）**: 上記がすべて通常リンクに戻る。**リリース時はこの定数だけ `true` に変える**のが第一歩。
 
 ---
@@ -113,7 +128,7 @@
 
 | 領域                                                                          | パス                                                                                                                                                                                                                                                                                                                                                                                   |
 | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| サイト定数・法人名・住所・代表者・上記フラグ                                                      | `src/lib/site.ts`（`ORGANIZATION_POSTAL_CODE` / `ORGANIZATION_ADDRESS_LINE` / `ORGANIZATION_REPRESENTATIVE_*` / `ORGANIZATION_FOUNDED_LABEL`・`ORGANIZATION_FOUNDING_DATE_ISO`。JSON-LD・規約・PP・お問い合わせメールと同期）                                                                                                                                                                             |
+| サイト定数・法人名・住所・代表者・上記フラグ                                                      | `src/lib/site.ts`（`ORGANIZATION_POSTAL_CODE` / `ORGANIZATION_ADDRESS_LINE` / `ORGANIZATION_REPRESENTATIVE_`* / `ORGANIZATION_FOUNDED_LABEL`・`ORGANIZATION_FOUNDING_DATE_ISO`。JSON-LD・規約・PP・お問い合わせメールと同期）                                                                                                                                                                             |
 | アプリ紹介 + SNS 一覧（`id` / `disabled` / `external`）                              | `src/lib/app-sns-links.ts`                                                                                                                                                                                                                                                                                                                                                           |
 | ヘッダー（ロゴ下は `ORGANIZATION_NAME_HEADER_LINE`＝「財団法人…」。正式名は `ORGANIZATION_NAME`） | `src/components/Header.tsx`                                                                                                                                                                                                                                                                                                                                                          |
 | フッター                                                                        | `src/components/Footer.tsx`                                                                                                                                                                                                                                                                                                                                                          |
@@ -139,7 +154,7 @@
 - **導線**: ヘッダー主ナビは「活動内容」の次に **資料室 ▼**（政策提言・ひな形・資料・学ぶ）。フッターは **資料室** 列（同3リンク）。
 - **役割分担**: **ひな形・資料（`/toolkit`）** は条文・チェックリスト等の中立整理。**政策提言** はキャンペーン・声明などメッセージ性の高いもの。**学ぶ（`/learn`）** は用語・法令整理・環境リスク概要・サイト内読み物・**解説記事（長尺、`/learn/topics`）**。
 - **公開資料**: `public/toolkit/<subdir>/` にファイルを置くと該当ツールページで「資料あり」トーンになる（`src/lib/toolkit-files.ts`）。未配置時は準備中表示。
-- **条例ひな形（本体）**: `public/toolkit/ordinance/条例テンプレ_v0_暫定版.md`（ファイル名は従来どおり）を編集・差し替えると `/toolkit/ordinance` の本文とダウンロードが更新される。**公開ページの名称は「条例ひな形」**（2026-05-05）。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。再ビルド／デプロイで反映。
+- **条例ひな型（本体）**: `public/toolkit/ordinance/条例テンプレ_v0_暫定版.md`（ファイル名は従来どおり）を編集・差し替えると `/toolkit/ordinance` の本文とダウンロードが更新される。**公開ページの製品名表記は「条例ひな型」**（2026-05-05 追記で統一。コーナー名「ひな形・資料」とは別）。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。再ビルド／デプロイで反映。
 - **SEO**: メタ・ canonical・OG は各 `page`。
 
 ## リソース三本柱：戦略の意図と設計判断（2026-05）
@@ -238,7 +253,7 @@
 ## `/about` 法人概要
 
 - セクション `**#overview`**。リードの注釈は削除済み（シンプルな定義リスト）。
-- 表示内容は `**site.ts`** の `ORGANIZATION_*` から出力。**変更は site.ts を一箇所直す**と JSON-LD・メール・規約類と揃う。
+- 表示内容は `**site.ts`** の `ORGANIZATION_`* から出力。**変更は site.ts を一箇所直す**と JSON-LD・メール・規約類と揃う。
 
 ---
 

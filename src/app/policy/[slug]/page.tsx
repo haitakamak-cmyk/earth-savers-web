@@ -1,9 +1,14 @@
+import { readFile } from "fs/promises";
+import path from "path";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ContentDisclaimer } from "@/components/ContentDisclaimer";
+import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
 import { buildPolicyRelated } from "@/lib/related-resources";
@@ -13,6 +18,11 @@ import {
   getAllPolicySlugs,
   getPolicyBySlug,
 } from "@/lib/policies";
+import {
+  ORGANIZATION_NAME,
+  SITE_ALLOW_SEARCH_INDEXING,
+  SITE_URL,
+} from "@/lib/site";
 
 import { POLICY_KIND_PATH } from "../policy-kind-path";
 
@@ -30,15 +40,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const pathname = `/policy/${slug}`;
   return {
-    title: policy.title,
+    title: `${policy.title} | 政策提言 | ${ORGANIZATION_NAME}`,
     description: policy.summary,
     alternates: { canonical: pathname },
     openGraph: {
       title: policy.title,
       description: policy.summary,
-      url: pathname,
+      url: `${SITE_URL}${pathname}`,
+      siteName: ORGANIZATION_NAME,
+      locale: "ja_JP",
       type: "article",
+      publishedTime: policy.datePublished,
     },
+    robots: SITE_ALLOW_SEARCH_INDEXING
+      ? undefined
+      : { index: false, follow: false },
   };
 }
 
@@ -54,8 +70,21 @@ export default async function PolicyDetailPage({ params }: Props) {
   const related = buildPolicyRelated(policy);
   const pathname = `/policy/${slug}`;
 
+  let markdown: string | null = null;
+  if (policy.contentPath) {
+    try {
+      markdown = await readFile(
+        path.join(process.cwd(), policy.contentPath),
+        "utf-8",
+      );
+    } catch {
+      markdown =
+        "> 政策提言 Markdown を読み込めませんでした。`src/content/policies/` にファイルがあるか確認してください。\n";
+    }
+  }
+
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory pb-16">
       <ArticleJsonLd
         headline={policy.title}
         pathname={pathname}
@@ -66,6 +95,7 @@ export default async function PolicyDetailPage({ params }: Props) {
       <BreadcrumbJsonLd
         items={[
           { name: "HOME", path: "/" },
+          { name: "資料室", path: "/policy" },
           { name: "政策提言", path: "/policy" },
           {
             name: POLICY_KIND_LABEL[policy.kind],
@@ -89,12 +119,33 @@ export default async function PolicyDetailPage({ params }: Props) {
             {policy.title}
           </h1>
           <ResourceLead>{policy.summary}</ResourceLead>
+          {policy.datePublished ? (
+            <p className="mt-2 text-sm text-text-muted">公開 {policy.datePublished}</p>
+          ) : null}
+          {policy.audience && policy.audience.length > 0 ? (
+            <p className="mt-2 text-sm text-text-secondary">
+              <span className="font-medium text-text-primary">想定読者：</span>
+              {policy.audience.join("、")}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+        {markdown ? (
+          <MarkdownArticle markdown={markdown} narrowProse />
+        ) : policy.body ? (
           <div className="prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
             {policy.body.split(/\n\n+/).map((para, i) => (
               <p key={i} className="mb-4">{para}</p>
             ))}
           </div>
-          <RelatedLinks items={related} />
+        ) : null}
+
+        <RelatedLinks items={related} />
+
+        <div className="mt-10 space-y-4">
+          <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
         </div>
       </div>
     </div>

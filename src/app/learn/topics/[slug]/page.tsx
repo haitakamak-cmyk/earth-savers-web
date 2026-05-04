@@ -167,7 +167,7 @@ export default async function TopicDetailPage({ params }: Props) {
           entry.relatedOrdinanceArticles.length > 0 ? (
             <section className="mt-12 max-w-[720px] border-t border-border pt-10">
               <h2 className="font-serif text-xl font-semibold text-text-primary">
-                関連条例条項（テンプレ）
+                関連条例条項（ひな型）
               </h2>
               <ul className="mt-4 space-y-3 text-sm">
                 {entry.relatedOrdinanceArticles.map((label) => {

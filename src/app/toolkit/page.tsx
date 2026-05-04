@@ -8,7 +8,7 @@ import { TOOLKIT_LINKS } from "@/lib/toolkit-manifest";
 export const metadata: Metadata = {
   title: "ひな形・資料（資料室）",
   description:
-    "条例ひな形、法律ガイド、実務チェックリスト、導入・訴訟事例など、自治体・市民の皆さまが水源や里山を守る活動に使える実務情報を整理するコーナーです。トーンは中立で、政治的主張は政策提言ページで扱います。",
+    "条例ひな型、法律ガイド、実務チェックリスト、導入・訴訟事例など、自治体・市民の皆さまが水源や里山を守る活動に使える実務情報を整理するコーナーです。トーンは中立で、政治的主張は政策提言ページで扱います。",
   alternates: { canonical: "/toolkit" },
   openGraph: {
     title: "ひな形・資料（資料室）",

@@ -48,7 +48,7 @@ export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
     slug: "qa-public",
     title: "パブリックコメント回答集",
     shortDescription:
-      "パブリックコメントで想定される事業者・住民からの意見30種類への定型回答テンプレート。対応区分（反映・既盛込・参考・対応困難・関係なし）別の整理。",
+      "パブリックコメントで想定される事業者・住民からの意見30種類への定型回答のひな型。対応区分（反映・既盛込・参考・対応困難・関係なし）別の整理。",
     contentPath: "src/content/ordinance-supplements/qa-public.md",
     publishedAt: "2026-05-03",
     updatedAt: "2026-05-03",

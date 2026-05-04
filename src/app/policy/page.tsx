@@ -48,7 +48,7 @@ export default function PolicyHubPage() {
             政策提言
           </h1>
           <ResourceLead>
-            メッセージ性の高いキャンペーン・理念に基づく声明や共同署名などは、この「政策提言」セクションで扱います。実務資料やテンプレの中立整理は{" "}
+            メッセージ性の高いキャンペーン・理念に基づく声明や共同署名などは、この「政策提言」セクションで扱います。実務資料やひな型の中立整理は{" "}
             <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
               ひな形・資料
             </Link>

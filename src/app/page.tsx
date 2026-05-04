@@ -1,32 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
 
 import HeroSlider from "@/components/HeroSlider";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
-/** トップ：AI・検索向けに事実ベースの要約（キャッチコピーは H1 で人間向けに表示） */
-export const metadata: Metadata = {
-  title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
-  description:
-    "水源地の保全・里山の再生・生態系の復活を通じて、命の源である「水」と「森」を次世代へつなぐ、一般財団法人 地球防衛群の公式サイト。ナノバブル発生器「B-369」を活用した現場の実践を通じて、七世代先の子どもたちへ美しい環境を引き継ぎます。",
-  openGraph: {
-    title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
-    description:
-      "財団法人として公益認定を目指し、水源地保全・里山再生・生態系保全・530運動などに取り組む公式サイト。",
-  },
-};
 
 export default function Home() {
   return (
     <>
       {/* ===== Hero Section ===== */}
       <HeroSlider />
-      
-      {/* ===== LLM / Search Definition ===== */}
-      <div className="sr-only">
-        岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器『B-369』を用いた環境改善や、伝統的な『大地の再生』メソッドによる保全活動を実践しています。
-      </div>
 
       {/* ===== News Ticker ===== */}
       <section className="bg-wakakusa-light border-y border-wakakusa/20">
@@ -35,9 +16,9 @@ export default function Home() {
             最新情報
           </span>
           <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/23 [水質環境改善] 香南市にてナノバブル発生器 『B-369』 導入・稼働開始</span>
-            <span>2026/4/20 クラウドファンディング開始</span>
-            <span>2026/4/18 衆楽園池そうじ実施</span>
+            <span>2026/4/1 プロジェクト報告書公開</span>
+            <span>2026/3/15 自然観察会開催</span>
+            <span>2026/3/1 植林活動参加者募集！</span>
           </div>
         </div>
       </section>
@@ -46,19 +27,14 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
-            私たちの使命
+            地球の未来を、共に守る。
           </h2>
-          <div className="mt-8 space-y-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-3xl mx-auto font-medium">
-            <p>
-              地球防衛群は、水源地の保全・里山の再生・生態系の復活を通じて、<br className="hidden sm:block" />
-              命の源である「水」と「森」を次世代へつなぐために活動しています。
-            </p>
-            <p>
-              外部資本による水源地取得、過剰な造成を伴う開発、里山の放置。<br className="hidden sm:block" />
-              いま各地で、水と森の循環を脅かす課題が進行しています。<br className="hidden sm:block" />
-              私たちはこの現実に向き合い、七世代先まで見据えた保全と再生に取り組んでいます。
-            </p>
-          </div>
+          <p className="mt-6 text-base sm:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto">
+            私たちの自然環境を守り、持続可能な未来へ。
+            日本の水源地や里山が、乱開発や外資の買収によって危機にさらされています。
+            地球防衛群は、この問題に正面から向き合い、
+            水と森を次世代に引き継ぐための活動を行っています。
+          </p>
         </div>
       </section>
 
@@ -68,8 +44,8 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
             私たちの活動
           </h2>
-          <p className="mt-3 text-center text-text-muted text-sm sm:text-base">
-            --- 現場の記録 ---
+          <p className="mt-3 text-center text-text-muted">
+            Featured Projects
           </p>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -91,7 +67,7 @@ export default function Home() {
                   水源地・山林の保全
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  外部資本による水源地の買収を防ぎ、日本の豊かな水源を恒久的に保全する取り組みを行っています。
+                  外資による水源地の買収を防ぎ、日本の豊かな水源を恒久的に保全する取り組みを行っています。
                 </p>
                 <Link
                   href="/activities#conservation"
@@ -133,7 +109,7 @@ export default function Home() {
                   生態系復活プロジェクト
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  水から生態系を蘇らせる。ナノバブルの力を活かした水質改善で、河川や池のいのちを取り戻します。
+                  水から生態系を蘇らせる。微生物の力を活かした水質浄化で、河川や池のいのちを取り戻します。
                 </p>
                 <Link
                   href="/activities#ecosystem"
@@ -172,10 +148,10 @@ export default function Home() {
                   大地の再生
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
-                  里山オーガニック再生
+                  里山オーガニック
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  放置された森に光を。大地の再生の手法で水脈を回復し、里山の復活を行っています。
+                  放置された森に光を。大地の再生の手法で水脈を回復し、自然の防波堤を育てています。
                 </p>
                 <Link
                   href="/activities#satoyama"
@@ -203,8 +179,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
               <div className="relative h-48 sm:h-52">
                 <Image
-                  src="/images/photos/gomi530-group-vests.png"
-                  alt="ゴミ拾い530運動に参加するメンバーと地域の子どもたちの集合写真"
+                  src="/images/photos/pond-cleanup.jpeg"
+                  alt="530運動 ゴミ拾い活動"
                   fill
                   className="object-cover"
                 />
@@ -217,52 +193,10 @@ export default function Home() {
                   530（ゴミゼロ）運動
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  無料で誰でも今すぐできること。それがゴミ拾い。その一歩で自分も世界も生まれ変わります。
+                  ゴミ拾い、池そうじ、在来種の種シェア。その一歩で自分も世界も生まれ変わります。
                 </p>
                 <Link
                   href="/activities#gomi530"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
-                >
-                  詳しく見る
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            {/* Card: ばら撒くっ種 */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative h-48 sm:h-52">
-                <Image
-                  src="/images/ばら撒くっ種/baramaku-seeds-table.png"
-                  alt="ばら撒くっ種の会で並べられた種子や実、モロヘイヤ・マリーゴールドなどのラベル付き袋"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
-                  種のシェア
-                </span>
-                <h3 className="mt-3 text-lg font-bold text-text-primary">
-                  ばら撒くっ種
-                </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  在来種や野草の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。
-                </p>
-                <Link
-                  href="/activities#baramaku"
                   className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
                 >
                   詳しく見る
@@ -302,7 +236,7 @@ export default function Home() {
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   子どもたちに、おいしい水と豊かな森を。
-                  自然体験プログラムを通じて、森の声を聴ける子どもを、一人でも増やします。
+                  自然体験プログラムを通じて、未来を担う人材を育てます。
                 </p>
                 <Link
                   href="/activities#education"
@@ -333,16 +267,16 @@ export default function Home() {
       <section className="py-16 sm:py-24 bg-ivory">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
-            水と森を取り巻く課題
+            私たちが直面している危機
           </h2>
-          <p className="mt-2 text-center text-text-muted text-sm sm:text-base">
-            日本の豊かな自然を守るために
+          <p className="mt-3 text-center text-text-muted">
+            日本の水と森に迫る、2つの脅威
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Threat 1 */}
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-coral/20 flex flex-col">
-              <div className="relative h-56 shrink-0">
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-coral/20">
+              <div className="relative h-56">
                 <Image
                   src="/images/photos/mega-solar.jpeg"
                   alt="山を覆うメガソーラー"
@@ -352,44 +286,46 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
                   <span className="text-xs font-semibold text-white bg-coral/90 px-3 py-1 rounded-full">
-                    課題 01: 水源地の保全と開発規制
+                    外からの脅威
                   </span>
                 </div>
               </div>
-              <div className="p-5 sm:p-6 flex-1 flex flex-col">
+              <div className="p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-text-primary">
-                  乱開発と外部資本による買収
+                  乱開発と外資買収
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
-                  メガソーラーの無秩序な建設と、外部資本による水源地の買収。<br />
-                  山林の保水力が失われることで、自然災害のリスクが高まっています。
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+                  メガソーラーの無秩序な建設や、外国資本による水源地の買収が、
+                  日本の貴重な自然環境を脅かしています。
+                  山の保水力が失われ、洪水や土砂崩れのリスクが高まっています。
                 </p>
               </div>
             </div>
 
             {/* Threat 2 */}
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-accent-gold/20 flex flex-col">
-              <div className="relative h-56 shrink-0">
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-accent-gold/20">
+              <div className="relative h-56">
                 <Image
-                  src="/images/photos/crisis-satoyama-bamboo.png"
-                  alt="放置竹林と渓流、荒廃する里山の様子"
+                  src="/images/photos/mega-solar-wide.jpeg"
+                  alt="広がるメガソーラーと荒廃する里山"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
                   <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
-                    課題 02: 里山の荒廃と生態系の維持
+                    内なる崩壊
                   </span>
                 </div>
               </div>
-              <div className="p-5 sm:p-6 flex-1 flex flex-col">
+              <div className="p-5 sm:p-6">
                 <h3 className="text-lg font-bold text-text-primary">
                   里山の荒廃と放置林
                 </h3>
-                <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
-                  手入れの行き届かない人工林や竹林は、保水力を失い、生態系のバランスを崩してしまいます。<br />
-                  荒廃した里山は、野生動物と人間の境界を曖昧にする原因にもなっています。
+                <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+                  耕作放棄地が野生動物の餌場となり、人里への出没が激増。
+                  放置された人工林は「緑の砂漠」と化し、
+                  水源涵養機能を失いつつあります。
                 </p>
               </div>
             </div>
@@ -415,9 +351,9 @@ export default function Home() {
                 代表理事メッセージ
               </h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。
-                この循環は、対立によって生まれるものではなく、
-                大地と向き合い、手を動かし、丁寧に取り戻していくものです。
+                森が深呼吸すると、私たちの水が美味しくなる。
+                この当たり前の循環が、今まさに壊されようとしています。
+                私たちは「不退転」の覚悟で、この問題に取り組みます。
               </p>
               <p className="mt-4 text-sm font-semibold text-text-primary">
                 代表理事　杉山 孔太
@@ -452,10 +388,9 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary font-serif">
             あなたにできること
           </h2>
-          <p className="mt-8 text-text-secondary leading-loose text-base sm:text-lg tracking-wide">
-            水源地の保全から、ナノバブルによる生態系復活、里山の再構築まで。<br className="hidden sm:block" />
-            自ら山に入り、大地と対話しながら、失われた命の循環を丁寧に取り戻す。<br className="hidden sm:block" />
-            あなたの一歩が、七世代先の子どもたちの笑顔につながります。
+          <p className="mt-4 text-text-secondary max-w-xl mx-auto leading-relaxed">
+            一人ひとりの小さなアクションが、未来を大きく変えます。
+            あなたの力を、水と森の未来に。
           </p>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -487,7 +422,7 @@ export default function Home() {
             </Link>
 
             <Link
-              href="/join#donation"
+              href="/join#supporter"
               className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-aqua/30 transition-all"
             >
               <div className="w-14 h-14 mx-auto bg-aqua-light rounded-full flex items-center justify-center group-hover:bg-aqua/20 transition-colors">

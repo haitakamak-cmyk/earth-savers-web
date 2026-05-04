@@ -34,7 +34,7 @@ export default function GlossaryIndexPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">環境用語集</h1>
           <ResourceLead>
-            一般財団法人 地球防衛群の活動・条例テンプレ・政策提言の理解を支える用語集（27語）。定義の正確さが必要な場面では一次資料へ遷移できるよう、各ページに出典を明記しています。
+            一般財団法人 地球防衛群の活動・条例ひな型・政策提言の理解を支える用語集（27語）。定義の正確さが必要な場面では一次資料へ遷移できるよう、各ページに出典を明記しています。
           </ResourceLead>
           <div className="mt-4">
             <ContentDisclaimer />
@@ -60,7 +60,7 @@ export default function GlossaryIndexPage() {
               </ul>
               <div className="mt-8 text-sm">
                 <Link href="/toolkit/ordinance" className="text-aqua-dark underline underline-offset-2">
-                  条例テンプレート
+                  条例ひな型
                 </Link>
                 <span className="mx-2 text-text-muted">/</span>
                 <Link href="/policy" className="text-aqua-dark underline underline-offset-2">

@@ -27,7 +27,7 @@ const GLOSSARY_LINK_RULES: { phrase: string; href: string }[] = [
   { phrase: "OECM", href: "/learn/glossary/oecm" },
 ].sort((a, b) => b.phrase.length - a.phrase.length);
 
-/** 条例テンプレの見出し id（MarkdownArticle の slugger・maintainCase と一致） */
+/** 条例ひな型の見出し id（MarkdownArticle の slugger・maintainCase と一致） */
 const ORDINANCE_ANCHOR_ARTICLE5 = "第5条設置禁止区域";
 const ORDINANCE_ANCHOR_ARTICLE29 = "第29条生物多様性維持協定等の推進";
 

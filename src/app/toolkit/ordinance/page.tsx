@@ -19,12 +19,12 @@ import {
 } from "./md-path";
 
 export const metadata: Metadata = {
-  title: `条例ひな形（v2.1） | ${ORGANIZATION_NAME}`,
+  title: `条例ひな型（v2.1） | ${ORGANIZATION_NAME}`,
   description:
     "市町村向けひな形「命の水と森を守る条例」の全文 Markdown（条文・逐条解説・別表・経過措置）。施行規則骨子案・導入ガイド・議会問答・パブコメ回答の補助資料への導線付きです。",
   alternates: { canonical: "/toolkit/ordinance" },
   openGraph: {
-    title: "条例ひな形（v2.1）| ひな形・資料",
+    title: "条例ひな型（v2.1）| ひな形・資料",
     description:
       "全56条構成のひな形全文と補助資料。採用前に法務・議会での協議が必要です。",
     url: "/toolkit/ordinance",
@@ -53,16 +53,16 @@ export default async function ToolkitOrdinancePage() {
           { name: "HOME", path: "/" },
           { name: "資料室", path: "/toolkit" },
           { name: "ひな形・資料", path: "/toolkit" },
-          { name: "条例ひな形", path: "/toolkit/ordinance" },
+          { name: "条例ひな型", path: "/toolkit/ordinance" },
         ]}
       />
       <div className="border-b border-wakakusa/20 bg-ivory-warm/40 py-10 sm:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <p className="text-xs font-medium tracking-wide text-wakakusa-dark">
-            資料室 / ひな形・資料 / 条例ひな形
+            資料室 / ひな形・資料 / 条例ひな型
           </p>
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
-            条例ひな形
+            条例ひな型
           </h1>
           <p className="mt-1 text-sm font-medium text-aqua-dark">
             v2.1（2026年5月改訂）｜全56条構成（参入・運転・承継・出口の四段階規制と既設施設対応）
