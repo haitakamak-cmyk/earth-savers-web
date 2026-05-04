@@ -11,12 +11,12 @@ import {
 export const metadata: Metadata = {
   title: "政策提言（資料室）",
   description:
-    "中央政府・地方自治体・立法・パブコメ・声明・共同署名まで、わたしたちが社会に届けたいメッセージと提言を体系立てて掲載するコーナーです。理念と実績評価に基づく立場表明はこちらで扱います。",
+    "条例では対応できない制度的課題について、国や都道府県に対して法改正・制度整備を求める提言をまとめたコーナーです。実務資料やひな型はひな形・資料で扱います。",
   alternates: { canonical: "/policy" },
   openGraph: {
     title: "政策提言（資料室）",
     description:
-      "国・自治体・法制度への提言、パブコメ、声明、署名活動までを一覧するコーナーです。",
+      "国・都道府県への法改正・制度整備の提言。カテゴリ別に整理し、実務のひな型は別コーナーで提供します。",
     url: "/policy",
   },
 };
@@ -48,11 +48,11 @@ export default function PolicyHubPage() {
             政策提言
           </h1>
           <ResourceLead>
-            メッセージ性の高いキャンペーン・理念に基づく声明や共同署名などは、この「政策提言」セクションで扱います。実務資料やひな型の中立整理は{" "}
+            条例では対応できない制度的課題について、国や都道府県に対して法改正・制度整備を求める提言をまとめたセクションです。実務資料やひな型は{" "}
             <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
               ひな形・資料
             </Link>
-            側へ分け、「読み込みたい順番」を迷わせない構成にします。
+            側で扱います。
           </ResourceLead>
           <ul className="space-y-3">
             {KIND_ORDER.map((kind) => (
