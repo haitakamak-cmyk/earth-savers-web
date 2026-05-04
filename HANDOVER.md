@@ -5,6 +5,12 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-05 — **コンテンツ・ツールハブ運用（追記・非表示設計）**  
+- **政策提言** `/policy/landowner-beneficial-owner-disclosure`：本文マスターを `src/content/policies/landowner-beneficial-owner-disclosure.md` で更新。**タイトル／副題**は `src/lib/policies.ts` の `title` + 任意 **`subtitle`**（一覧・ヒーバー・`<title>`・OG・JSON-LD の見出しは `policyDocumentTitle()` で統合）。**要旨と第4章**はともに提言五点で整合。脚注はループ参照なし。**正本との同期**：必要なら `Web/政策提言_土地取得_実質的支配者開示_v0.md` を手動でサイト用 MD と揃える。  
+- **実務チェックリスト** `/toolkit/operations`：`public/toolkit/operations/条例運用設計ガイド.md` を全面的に改稿（上から仕様調→**引き継ぎメモ調**、「窓口が止まる」を軸に理由を書く）。ツールごとに見出し構造を**均一フォーマットにしない**（フロー＝分岐中心、FAQ＝問答、エスカレーション＝境界線＋即上げ、`おわりに` はマスター案の短文）。サイトメタ／`toolkit-manifest` の該当説明も追随。  
+- **ひな形・資料ハブ**：`status: "published"` のファイルが**1つも無いセクション**は一覧に出さない（`TOOLKIT_HUB_VISIBLE_SECTIONS`＝ `toolkitSectionHasPublishedContent` でフィルタ。実装：`src/lib/toolkit-manifest.ts`）。**`/toolkit/legal`**・**`/toolkit/cases`** は該当期間は **`/toolkit` にリダイレクト**（`redirect()`）。`/toolkit/legal/[slug]`・`/toolkit/cases/[slug]` は **published のみ `generateStaticParams`・表示**、preparing は `notFound`。**サイトマップ**：ツール索引は `getToolkitSitemapHubPaths()` と `getAllToolkitMarkdownViewerPaths()`（公開 viewer のみ）。**復活**：`toolkit-manifest.ts` で該当ファイルを `published` にするとカード・index・サイトマップに自動復帰。  
+- **`ToolkitPageBody`**：一覧は **published だけ**リンク化（準備中用は一覧に出ない）。  
+
 **直近更新**: 2026-05-05 — **インシデント記録（本番が「古い」・メニュー欠落）**: 現象＝ヘッダーから **「買って応援」「公式アプリ紹介」** 等が消え、トップ・`/members`・`/about`・`join`・お問い合わせ周りが **以前より薄い／古い表示** に見える。想定される要因は二つ。(1)**Vercel の Git 連携本番**は **`origin/main` のコミット**をビルドする。手元で **`vercel deploy --prod` のみ先**に上げ、`main` が追いついていないと、後から **Git 側のデプロイが古い `main` で本番を上書き**する。(2) コミット **`5f04e5c`**（2026-05-04 11:31・`chore: earth-savers-web の未コミット変更をまとめて反映`）が `Header.tsx` / `Footer.tsx` / `page.tsx` / `members` / `about` / `join` / `api/contact/route.ts` / `layout.tsx` 等を **大幅に削除・簡素化**しており、その内容が `main` に残っていると本番も同様になる。**対応**: `5f04e5c` の一つ前 **`5f04e5c~1`** から上記系ファイルを復元した **`bdce093`**（`revert(ui): 5f04e5c で削減された主要ページ・共通部品を復元`）。**用語集・政策提言・ひな形4カテゴリ・条例補助資料**など 5/4 以降の別改修は **触らず維持**。安全用ブランチ **`backup/before-restore-2026-05-04`**。再発防止の実装は **`19b77a7`**（CI・PR テンプレ・`npm run verify-deploy`）＋下記 **「再発防止（本番が古い／消えたに見える事故）」**。
 
 **直近更新**: 2026-05-05 — **再発防止**: GitHub Actions（`.github/workflows/ci.yml`）で `main` の push / PR 時に `npm ci` → `lint` → `build`。PR テンプレ（`.github/pull_request_template.md`）と CLI 本番前チェック `scripts/verify-deploy-ready.sh` を追加。運用ルール・事故の型は下 **「再発防止（本番が古い／消えたに見える事故）」** を参照。
@@ -128,6 +134,8 @@
 ・**条例ひな型 補助資料**: `src/lib/ordinance-supplements-data.ts` ＋ `src/content/ordinance-supplements/*.md`。**4ページ** `/toolkit/ordinance/rules`・`adoption-guide`・`qa-council`・`qa-public`（`src/app/toolkit/ordinance/[slug]/page.tsx`）。一覧は `/toolkit/ordinance` の「条例導入を支える補助資料」。ZIP 一括はなし。パンくず・メタは **条例ひな型** 表記に統一（2026-05-05 追記）。
 ・**条例テンプレ v2**: `/toolkit/ordinance` で配信。前文「本条例の理念と基本スタンス」を新設（「再エネ否定ではない・適切な開発は歓迎」を冒頭明言）。**入口規制（第3章 参入段階）＋運転規制（第3章の2 維持管理）＋承継規制（第3章の3 事業の承継）＋出口規制（第3章の4 廃止及び撤去）＋第29条 生物多様性維持協定等の推進** という4軸構成。第9条の2 土地取引事前届出は水源含有確認・補正命令・個人情報保護・届出制非許可制明文化を含む拡張版。第18条は廃棄等費用積立金（1kWあたり1万円下限・FIT積立2分の1充当）。第17条の2〜の4で離隔100m／傾斜20度／調整池3,000㎡基準を導入。第26条の3 地域環境保全協力金は努力義務型（5,000㎡以上）。第25条過料は11項目（既存6項目＋出口5項目）。総括は参入・運転・出口の3段階対応表で再構成。煽り表現を全面解体
 ・**法務ガイドライン（2026-05-02 確立）**: 用語集・解説記事・条例の全公開ドキュメントに対し、(1)NIMBY印象を与えない（再エネ非否定スタンスを明記）、(2)税制・補助制度の適用可否を保証しない、(3)法的助言・税務助言の代替ではない旨を明記、(4)出典は官公庁・国際機関・一次資料を優先、(5)登記済み法人として「一般財団法人 地球防衛群」「当法人」で統一、を遵守
+・**ひな形・資料**: 一覧は **`toolkit-manifest.ts` で `published` があるセクションのみ**（法律ガイド・事例は準備中の間 `/toolkit` のみへリダイレクト）。復活は `status: "published"` に変更。**実務チェックリスト**は `operations/条例運用設計ガイド.md` を引き継ぎトーンで管理
+・政策提言 `landowner-beneficial-owner-disclosure`：`policies.ts` の `subtitle` と `src/content/policies/*.md`。正本との同期は手動で可（`Web/政策提言_土地取得…`）
 ・正本: Web/earth-savers-web/HANDOVER.md
 ```
 
@@ -190,6 +198,7 @@
 - **導線**: ヘッダー主ナビは「活動内容」の次に **資料室 ▼**（政策提言・ひな形・資料・学ぶ）。フッターは **資料室** 列（同3リンク）。
 - **役割分担**: **ひな形・資料（`/toolkit`）** は条文・チェックリスト等の中立整理。**政策提言** はキャンペーン・声明などメッセージ性の高いもの。**学ぶ（`/learn`）** は用語・法令整理・環境リスク概要・サイト内読み物・**解説記事（長尺、`/learn/topics`）**。
 - **公開資料**: `public/toolkit/<subdir>/` にファイルを置くと該当ツールページで「資料あり」トーンになる（`src/lib/toolkit-files.ts`）。未配置時は準備中表示。
+- **マニフェストでの公開制御**: `src/lib/toolkit-manifest.ts` の各ファイル `status` が `published` / `preparing`。**セクションに published が1つも無いとき**は `/toolkit` 一覧に出さず、法律ガイド／導入事例の index は `/toolkit` へリダイレクト。**公開時**は該当ファイルを `published` に変えるだけでハブ・サイトマップ・viewer に復活（詳細は冒頭「コンテンツ・ツールハブ運用」を参照）。
 - **条例ひな型（本体）**: `public/toolkit/ordinance/条例テンプレ_v0_暫定版.md`（ファイル名は従来どおり）を編集・差し替えると `/toolkit/ordinance` の本文とダウンロードが更新される。**公開ページの製品名表記は「条例ひな型」**（2026-05-05 追記で統一。コーナー名「ひな形・資料」とは別）。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。再ビルド／デプロイで反映。
 - **SEO**: メタ・ canonical・OG は各 `page`。
 
