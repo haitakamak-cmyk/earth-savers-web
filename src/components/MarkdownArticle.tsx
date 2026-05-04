@@ -55,7 +55,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       );
     },
     p: ({ children }) => (
-      <p className="mb-4 text-[15px] leading-[1.85] text-text-secondary">{children}</p>
+      <p className="mb-4 text-[15px] leading-[1.85] text-text-secondary [text-wrap:pretty]">{children}</p>
     ),
     ul: ({ children }) => (
       <ul className="mb-4 list-inside list-disc space-y-1 pl-2 text-[15px]">{children}</ul>

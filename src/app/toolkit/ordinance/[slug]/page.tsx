@@ -127,10 +127,6 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
             公開 {entry.publishedAt}
             {entry.updatedAt !== entry.publishedAt ? ` · 更新 ${entry.updatedAt}` : ""}
           </p>
-          <p className="mt-3 text-sm text-text-secondary">
-            <span className="font-medium text-text-primary">想定読者：</span>
-            {entry.audience.join("、")}
-          </p>
         </div>
       </div>
 

@@ -1,3 +1,8 @@
+import {
+  ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
+  ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
+} from "./ordinance-supplements-data";
+
 export type ToolkitFileStatus = "published" | "preparing";
 
 export type ToolkitFileEntry = {
@@ -18,8 +23,9 @@ export type ToolkitSection = {
     | "/toolkit/ordinance"
     | "/toolkit/legal"
     | "/toolkit/operations"
-    | "/toolkit/cases";
-  subdir: "ordinance" | "legal" | "operations" | "cases";
+    | "/toolkit/cases"
+    | "/toolkit/supplements";
+  subdir: "ordinance" | "legal" | "operations" | "cases" | "supplements";
   description: string;
   files: readonly ToolkitFileEntry[];
 };
@@ -89,6 +95,13 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
     ],
   },
   {
+    label: ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
+    href: "/toolkit/supplements",
+    subdir: "supplements",
+    description: ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
+    files: [],
+  },
+  {
     label: "導入・訴訟事例",
     href: "/toolkit/cases",
     subdir: "cases",
@@ -109,8 +122,9 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
 
 export const TOOLKIT_LINKS = TOOLKIT_SECTIONS.map(({ label, href }) => ({ label, href }));
 
-/** ハブ一覧・サイトマップ用: 公開済み資料が1件以上あるセクションだけ */
+/** ハブ一覧・サイトマップ用: 公開済み資料が1件以上あるセクション、または補助資料ハブ */
 export function toolkitSectionHasPublishedContent(section: ToolkitSection): boolean {
+  if (section.href === "/toolkit/supplements") return true;
   return section.files.some((file) => file.status === "published");
 }
 

@@ -8,9 +8,10 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
-  ORDINANCE_SUPPLEMENT_LIST_ORDER,
-  ORDINANCE_SUPPLEMENTS,
+  ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
+  ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
 } from "@/lib/ordinance-supplements-data";
+import { OrdinanceSupplementsCardGrid } from "@/components/OrdinanceSupplementsCardGrid";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 import {
@@ -41,10 +42,6 @@ export default async function ToolkitOrdinancePage() {
   }
 
   const downloadHref = `/toolkit/ordinance/${encodeURIComponent(ORDINANCE_MARKDOWN_FILENAME)}`;
-
-  const supplementEntries = ORDINANCE_SUPPLEMENT_LIST_ORDER.map((slug) =>
-    ORDINANCE_SUPPLEMENTS.find((e) => e.slug === slug),
-  ).filter((e): e is NonNullable<typeof e> => Boolean(e));
 
   return (
     <div className="bg-ivory pb-16">
@@ -95,34 +92,23 @@ export default async function ToolkitOrdinancePage() {
             id="ordinance-supplements-heading"
             className="font-serif text-2xl font-bold text-text-primary"
           >
-            条例導入を支える補助資料
+            {ORDINANCE_SUPPLEMENTS_SECTION_TITLE}
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-text-secondary">
-            自治体が条例を導入・運用する各段階で活用できる4種の補助資料を提供します。いずれも参考資料であり、最終条文はご担当の法務・顧問弁護士レビューを前提としてください。
+            {ORDINANCE_SUPPLEMENTS_SECTION_INTRO}
           </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {supplementEntries.map((entry) => (
-              <li key={entry.slug}>
-                <Link
-                  href={`/toolkit/ordinance/${entry.slug}`}
-                  className="flex h-full flex-col rounded-xl border border-border bg-white p-5 shadow-sm transition-colors hover:border-wakakusa/35 hover:bg-ivory"
-                >
-                  <span className="font-serif text-lg font-semibold text-text-primary">
-                    {entry.title}
-                  </span>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
-                    {entry.shortDescription}
-                  </p>
-                  <p className="mt-3 text-xs text-text-muted">
-                    想定読者：{entry.audience.join("、")}
-                  </p>
-                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4 group-hover:underline">
-                    読む →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-2 text-sm text-text-muted">
+            <Link
+              href="/toolkit/supplements"
+              className="font-medium text-aqua-dark underline underline-offset-2"
+            >
+              補助資料の一覧ページ
+            </Link>
+            にも同じ4件への導線をまとめています。
+          </p>
+          <div className="mt-8">
+            <OrdinanceSupplementsCardGrid />
+          </div>
         </div>
         <div className="mx-auto mt-12 max-w-3xl border-t border-border pt-10">
           <ContentDisclaimer ordinanceDraftFinalizeNote />

@@ -1,3 +1,9 @@
+/** 条例ひな型ページ／補助資料ハブで共通利用 */
+export const ORDINANCE_SUPPLEMENTS_SECTION_TITLE = "条例導入を支える補助資料";
+
+export const ORDINANCE_SUPPLEMENTS_SECTION_INTRO =
+  "自治体が条例を導入・運用する各段階で活用できる4種の補助資料を提供します。いずれも参考資料であり、最終条文はご担当の法務・顧問弁護士レビューを前提としてください。";
+
 export type OrdinanceSupplementEntry = {
   slug: string;
   title: string;

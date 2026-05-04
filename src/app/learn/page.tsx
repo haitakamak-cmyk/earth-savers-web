@@ -7,16 +7,23 @@ import { ResourceLead } from "@/components/ResourceLead";
 export const metadata: Metadata = {
   title: "学ぶ（資料室）",
   description:
-    "用語集、関係法案の整理、環境脅威のサマリ、読み物で、水源・里山・生態系を学べるコーナーです。政策の主張は政策提言と明確に分けます。",
+    "用語集・解説記事で、水源・里山・生態系を学べるコーナーです。関係法案・環境脅威のサマリ・読みものは整備中です。政策の主張は政策提言と明確に分けます。",
   alternates: { canonical: "/learn" },
   openGraph: {
     title: "学ぶ（資料室）",
-    description: "用語・法案・脅威・読み物で学べるコーナーです。",
+    description: "用語集・解説記事で学べるコーナーです。",
     url: "/learn",
   },
 };
 
-const cards = [
+/** コンテンツ整備までハブから非表示（`src/app/learn/page.tsx` でフィルタ） */
+const LEARN_HUB_HIDDEN_PATHS = new Set<string>([
+  "/learn/laws",
+  "/learn/threats",
+  "/learn/articles",
+]);
+
+const allCards = [
   {
     href: "/learn/topics",
     title: "解説記事",
@@ -43,6 +50,8 @@ const cards = [
     body: "活動レビューや論考など、読み順に迷いにくい形で並べます。",
   },
 ] as const;
+
+const cards = allCards.filter((c) => !LEARN_HUB_HIDDEN_PATHS.has(c.href));
 
 export default function LearnHubPage() {
   return (

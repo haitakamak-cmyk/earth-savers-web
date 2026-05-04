@@ -55,18 +55,58 @@ export function stripTopicSourceHeader(raw: string): string {
   return lines.slice(i).join("\n").trimStart();
 }
 
-/** 本文_main部のみ、各用語の初出を内部リンク化（参考文献ブロックは別処理のため呼び出し側で除外） */
+/** ``` で囲まれた範囲（コードフェンス）を検出。用語自動リンクはフェンス内を対象外とする。 */
+function findFenceRanges(md: string): readonly { start: number; end: number }[] {
+  const ranges: { start: number; end: number }[] = [];
+  let pos = 0;
+  while (pos < md.length) {
+    const open = md.indexOf("```", pos);
+    if (open === -1) break;
+    const close = md.indexOf("```", open + 3);
+    if (close === -1) break;
+    ranges.push({ start: open, end: close + 3 });
+    pos = close + 3;
+  }
+  return ranges;
+}
+
+function indexInFence(
+  idx: number,
+  ranges: readonly { start: number; end: number }[],
+): boolean {
+  return ranges.some((r) => idx >= r.start && idx < r.end);
+}
+
+/** フェンス外かつ [ ] バランスが取れている位置で phrase の先頭が現れる最初の index */
+function indexOfPhraseForGlossary(
+  text: string,
+  phrase: string,
+  ranges: readonly { start: number; end: number }[],
+): number {
+  let from = 0;
+  while (from <= text.length) {
+    const idx = text.indexOf(phrase, from);
+    if (idx === -1) return -1;
+    if (!indexInFence(idx, ranges)) {
+      const before = text.slice(0, idx);
+      const bracketOpens = (before.match(/\[/g) ?? []).length;
+      const linkStarts = (before.match(/\]\(/g) ?? []).length;
+      if (bracketOpens <= linkStarts) return idx;
+    }
+    from = idx + phrase.length;
+  }
+  return -1;
+}
+
+/** 本文_main部のみ、各用語の初出を内部リンク化（参考文献ブロックは別処理のため呼び出し側で除外）。コードフェンス内は置換しない。 */
 export function applyGlossaryLinksOnce(mainMarkdown: string): string {
   let text = mainMarkdown;
   for (const { phrase, href } of GLOSSARY_LINK_RULES) {
-    const index = text.indexOf(phrase);
+    const ranges = findFenceRanges(text);
+    const index = indexOfPhraseForGlossary(text, phrase, ranges);
     if (index === -1) continue;
     const before = text.slice(0, index);
-    const bracketOpens = (before.match(/\[/g) ?? []).length;
-    const linkStarts = (before.match(/\]\(/g) ?? []).length;
-    if (bracketOpens > linkStarts) continue;
-    text =
-      `${before}[${phrase}](${href})${text.slice(index + phrase.length)}`;
+    text = `${before}[${phrase}](${href})${text.slice(index + phrase.length)}`;
   }
   return text;
 }

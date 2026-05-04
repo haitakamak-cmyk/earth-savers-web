@@ -5,6 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
   POLICY_KIND_LABEL,
+  POLICY_KIND_PUBLIC_LEAD,
   policyKindsWithPublicEntries,
 } from "@/lib/policies";
 
@@ -48,21 +49,26 @@ export default function PolicyHubPage() {
             </Link>
             をご覧ください。
           </ResourceLead>
-          <ul className="space-y-3">
+          <ul className="grid gap-4 sm:grid-cols-2">
             {kinds.map((kind) => (
               <li key={kind}>
                 <Link
                   href={`/policy/${POLICY_KIND_PATH[kind]}`}
-                  className="block rounded-xl border border-border bg-white px-4 py-4 text-[15px] font-medium text-text-primary shadow-sm transition-colors hover:border-aqua/35 hover:bg-aqua-light/25"
+                  className="flex h-full flex-col rounded-xl border border-border bg-white px-4 py-4 shadow-sm transition-colors hover:border-aqua/35 hover:bg-aqua-light/25"
                 >
-                  {POLICY_KIND_LABEL[kind]}
+                  <span className="font-serif text-lg font-semibold text-text-primary">
+                    {POLICY_KIND_LABEL[kind]}
+                  </span>
+                  <span className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
+                    {POLICY_KIND_PUBLIC_LEAD[kind]}
+                  </span>
+                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4">
+                    一覧を見る →
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-sm text-text-muted">
-            現在、公開があるカテゴリだけを下に載せています。未掲載のカテゴリは準備中です。
-          </p>
         </div>
       </div>
     </div>
