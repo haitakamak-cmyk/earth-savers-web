@@ -7,6 +7,8 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
+import { TopicToc } from "@/components/TopicToc";
+import { extractMarkdownHeadingToc } from "@/lib/markdown-toc";
 import {
   ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
   ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
@@ -41,12 +43,13 @@ export default async function ToolkitOrdinancePage() {
       "> 条例 Markdown を読み込めませんでした。`public/toolkit/ordinance/` にファイルが配置されているか確認してください。\n";
   }
 
+  const toc = extractMarkdownHeadingToc(markdown);
   const downloadHref = `/toolkit/ordinance/${encodeURIComponent(ORDINANCE_MARKDOWN_FILENAME)}`;
 
   return (
     <div className="bg-ivory pb-16">
       <div className="border-b border-wakakusa/20 bg-ivory-warm/40 py-10 sm:py-12">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ResourceBreadcrumbs
             className="mb-4 text-text-muted"
             items={[
@@ -76,13 +79,27 @@ export default async function ToolkitOrdinancePage() {
               ← ひな形・資料一覧
             </Link>
           </div>
-          <MarkdownArticle markdown={markdown} className="mt-12" />
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <a
+          href="#ordinance-doc-main"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-wakakusa focus:px-3 focus:py-2 focus:text-white"
+        >
+          本文へスキップ
+        </a>
+        <div id="ordinance-doc-main" className="lg:flex lg:gap-10">
+          <TopicToc items={toc} />
+          <div className="min-w-0 flex-1">
+            <MarkdownArticle markdown={markdown} narrowProse />
+          </div>
         </div>
       </div>
 
       <section
         aria-labelledby="ordinance-supplements-heading"
-        className="mx-auto max-w-4xl px-4 pb-12 pt-10 sm:px-6"
+        className="mx-auto max-w-6xl px-4 pb-12 pt-10 sm:px-6"
       >
         <div className="rounded-2xl border border-wakakusa/25 bg-wakakusa-light/20 px-4 py-8 sm:px-8">
           <h2

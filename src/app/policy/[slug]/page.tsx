@@ -8,6 +8,8 @@ import { ArticleJsonLd } from "@/components/ArticleJsonLd";
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
+import { TopicToc } from "@/components/TopicToc";
+import { extractMarkdownHeadingToc } from "@/lib/markdown-toc";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
 import { buildPolicyRelated } from "@/lib/related-resources";
@@ -90,6 +92,8 @@ export default async function PolicyDetailPage({ params }: Props) {
     }
   }
 
+  const toc = markdown ? extractMarkdownHeadingToc(markdown) : [];
+
   return (
     <div className="bg-ivory pb-16">
       <ArticleJsonLd
@@ -100,7 +104,7 @@ export default async function PolicyDetailPage({ params }: Props) {
         articleSection="政策提言"
       />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <ResourceBreadcrumbs
             tone="aqua"
             className="mb-4 text-text-muted"
@@ -129,22 +133,44 @@ export default async function PolicyDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <a
+          href="#policy-doc-main"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-aqua-dark focus:px-3 focus:py-2 focus:text-white"
+        >
+          本文へスキップ
+        </a>
         {markdown ? (
-          <MarkdownArticle markdown={markdown} narrowProse />
-        ) : policy.body ? (
-          <div className="prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
-            {policy.body.split(/\n\n+/).map((para, i) => (
-              <p key={i} className="mb-4">{para}</p>
-            ))}
+          <div id="policy-doc-main" className="lg:flex lg:gap-10">
+            <TopicToc items={toc} />
+            <div className="min-w-0 flex-1">
+              <MarkdownArticle markdown={markdown} narrowProse />
+              <RelatedLinks items={related} />
+              <div className="mt-10 space-y-4">
+                <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
+              </div>
+            </div>
           </div>
-        ) : null}
-
-        <RelatedLinks items={related} />
-
-        <div className="mt-10 space-y-4">
-          <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
-        </div>
+        ) : policy.body ? (
+          <>
+            <div className="prose prose-neutral max-w-none text-[15px] leading-relaxed text-text-secondary">
+              {policy.body.split(/\n\n+/).map((para, i) => (
+                <p key={i} className="mb-4">{para}</p>
+              ))}
+            </div>
+            <RelatedLinks items={related} />
+            <div className="mt-10 space-y-4">
+              <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
+            </div>
+          </>
+        ) : (
+          <>
+            <RelatedLinks items={related} />
+            <div className="mt-10 space-y-4">
+              <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
