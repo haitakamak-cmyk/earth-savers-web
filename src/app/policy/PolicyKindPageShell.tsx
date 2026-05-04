@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
   POLICY_KIND_LABEL,
@@ -21,15 +21,17 @@ export function PolicyKindPageShell({ kind }: { kind: PolicyKind }) {
 
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "政策提言", path: "/policy" },
-          { name: POLICY_KIND_LABEL[kind], path },
-        ]}
-      />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            tone="aqua"
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "政策提言", path: "/policy" },
+              { name: POLICY_KIND_LABEL[kind], path },
+            ]}
+          />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {POLICY_KIND_LABEL[kind]}
           </h1>

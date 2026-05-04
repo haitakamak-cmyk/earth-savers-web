@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { OrdinanceSupplementsCardGrid } from "@/components/OrdinanceSupplementsCardGrid";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -26,19 +26,16 @@ export default function ToolkitSupplementsHubPage() {
   const path = "/toolkit/supplements";
   return (
     <div className="bg-ivory pb-16">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "資料室", path: "/toolkit" },
-          { name: "ひな形・資料", path: "/toolkit" },
-          { name: ORDINANCE_SUPPLEMENTS_SECTION_TITLE, path },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-xs font-medium tracking-wide text-wakakusa-dark">
-            資料室 / ひな形・資料 / {ORDINANCE_SUPPLEMENTS_SECTION_TITLE}
-          </p>
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "ひな形・資料", path: "/toolkit" },
+              { name: ORDINANCE_SUPPLEMENTS_SECTION_TITLE, path },
+            ]}
+          />
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {ORDINANCE_SUPPLEMENTS_SECTION_TITLE}
           </h1>

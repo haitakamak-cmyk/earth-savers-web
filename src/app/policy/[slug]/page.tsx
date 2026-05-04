@@ -2,11 +2,10 @@ import { readFile } from "fs/promises";
 import path from "path";
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { RelatedLinks } from "@/components/RelatedLinks";
@@ -100,29 +99,21 @@ export default async function PolicyDetailPage({ params }: Props) {
         datePublished={policy.datePublished}
         articleSection="政策提言"
       />
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "資料室", path: "/policy" },
-          { name: "政策提言", path: "/policy" },
-          {
-            name: POLICY_KIND_LABEL[policy.kind],
-            path: kindHref(policy.kind),
-          },
-          { name: documentTitle, path: pathname },
-        ]}
-      />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="text-xs text-aqua-dark">
-            <Link href="/policy" className="underline-offset-2 hover:underline">
-              政策提言
-            </Link>
-            {" / "}
-            <Link href={kindHref(policy.kind)} className="underline-offset-2 hover:underline">
-              {POLICY_KIND_LABEL[policy.kind]}
-            </Link>
-          </p>
+          <ResourceBreadcrumbs
+            tone="aqua"
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "政策提言", path: "/policy" },
+              {
+                name: POLICY_KIND_LABEL[policy.kind],
+                path: kindHref(policy.kind),
+              },
+              { name: documentTitle, path: pathname },
+            ]}
+          />
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {policy.title}
           </h1>

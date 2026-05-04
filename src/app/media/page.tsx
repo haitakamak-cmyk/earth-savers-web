@@ -16,27 +16,11 @@ export const metadata: Metadata = {
 /** `public/images/media/` に同名ファイルを置くと表示されます（jpg / png / webp など）。 */
 const NEWSPAPER_ITEMS = [
   {
-    title: "山陽新聞（岡山）",
-    date: "2024年8月1日",
-    body: "水の日特集に、生態系復活機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
-    imageFile: "newspaper-sanyo-shimbun.jpg",
-    imageAlt: "山陽新聞の紙面。水の日特集で生態系復活や新庄村との取り組みが紹介されている様子。",
-    objectPosition: "right top",
-  },
-  {
     title: "津山朝日新聞",
     date: "2025年10月31日",
     body: "大阪湾の水質改善プロジェクト3年間の成果が紙面で紹介されました。「大阪湾のウニ復活」と題し、大阪・関西万博での発表内容も掲載。",
     imageFile: "newspaper-tsuyama-asahi.jpg",
     imageAlt: "津山朝日新聞の紙面。「大阪湾のウニ復活」の見出しで水質改善プロジェクトの成果が紹介されている様子。",
-    objectPosition: "center top",
-  },
-  {
-    title: "津山朝日新聞（衆楽園）",
-    date: "2022年9月10日",
-    body: "津山市の国名勝・衆楽園での水草除去作業が紙面で紹介されました。ボランティア約30人が参加し、スイレンやヒシを除去。2022年より継続実施中。",
-    imageFile: "newspaper-tsuyama-shurakuen.jpg",
-    imageAlt: "津山朝日新聞の紙面。衆楽園でのスイレン除去作業とボランティア活動の様子。",
     objectPosition: "center top",
   },
   {
@@ -48,11 +32,27 @@ const NEWSPAPER_ITEMS = [
     objectPosition: "center 30%",
   },
   {
+    title: "山陽新聞（岡山）",
+    date: "2024年8月1日",
+    body: "水の日特集に、生態系復活機器の設置や岡山県新庄村との取り組みなどが掲載されました。",
+    imageFile: "newspaper-sanyo-shimbun.jpg",
+    imageAlt: "山陽新聞の紙面。水の日特集で生態系復活や新庄村との取り組みが紹介されている様子。",
+    objectPosition: "right top",
+  },
+  {
     title: "高知新聞",
     date: "2024年4月24日",
     body: "高知県香南市の清水川排水機場に、津山市のsesが開発したナノバブル発生器が設置されたと報じています。約1年間の実証で川の浄化を目指すとともに、宇和ノ内湾（須崎）や大阪湾など全国18か所での導入実績にも触れています。",
     imageFile: "newspaper-kochi-shimbun.png",
     imageAlt: "高知新聞の紙面。「気泡発生器で川の水きれいに」の見出しで香南市の清水川排水機場への設置が紹介されている様子。",
+    objectPosition: "center top",
+  },
+  {
+    title: "津山朝日新聞（衆楽園）",
+    date: "2022年9月10日",
+    body: "津山市の国名勝・衆楽園での水草除去作業が紙面で紹介されました。ボランティア約30人が参加し、スイレンやヒシを除去。2022年より継続実施中。",
+    imageFile: "newspaper-tsuyama-shurakuen.jpg",
+    imageAlt: "津山朝日新聞の紙面。衆楽園でのスイレン除去作業とボランティア活動の様子。",
     objectPosition: "center top",
   },
 ] as const;

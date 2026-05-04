@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
@@ -80,14 +80,6 @@ export default async function TopicDetailPage({ params }: Props) {
         dateModified={entry.updatedAt}
         articleSection="学ぶ（解説記事）"
       />
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "解説記事", path: "/learn/topics" },
-          { name: entry.title, path },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <a
@@ -96,11 +88,15 @@ export default async function TopicDetailPage({ params }: Props) {
           >
             本文へスキップ
           </a>
-          <p className="text-xs text-wakakusa-dark">
-            <Link href="/learn/topics" className="underline-offset-2 hover:underline">
-              解説記事
-            </Link>
-          </p>
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "解説記事", path: "/learn/topics" },
+              { name: entry.title, path },
+            ]}
+          />
           <h1 className="mt-2 max-w-[720px] font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {entry.title}
           </h1>

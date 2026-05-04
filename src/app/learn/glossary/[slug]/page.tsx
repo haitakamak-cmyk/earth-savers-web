@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { DefinedTermJsonLd } from "@/components/DefinedTermJsonLd";
 import { RelatedLinks } from "@/components/RelatedLinks";
@@ -57,21 +57,17 @@ export default async function GlossaryTermPage({ params }: Props) {
         alternateName={entry.alternateNames}
         description={entry.body}
       />
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "環境用語集", path: "/learn/glossary" },
-          { name: entry.term, path },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="text-xs text-wakakusa-dark">
-            <Link href="/learn/glossary" className="underline-offset-2 hover:underline">
-              環境用語集
-            </Link>
-          </p>
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "環境用語集", path: "/learn/glossary" },
+              { name: entry.term, path },
+            ]}
+          />
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {entry.term}
           </h1>

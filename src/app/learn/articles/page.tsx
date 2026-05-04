@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 import { ARTICLES } from "@/lib/articles";
 
@@ -20,15 +20,16 @@ export const metadata: Metadata = {
 export default function ArticlesIndexPage() {
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "読みもの", path: "/learn/articles" },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "読みもの", path: "/learn/articles" },
+            ]}
+          />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">読みもの</h1>
           <ResourceLead>
             サイト内だけで読み切れる原則読みものを並べます。外部メディア掲載の紹介は{" "}

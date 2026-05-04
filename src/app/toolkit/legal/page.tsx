@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ToolkitPageBody } from "@/components/ToolkitPageBody";
 import {
   getToolkitSectionByHref,
@@ -29,16 +29,16 @@ export default function ToolkitLegalHubPage() {
 
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "資料室", path: "/toolkit" },
-          { name: "ひな形・資料", path: "/toolkit" },
-          { name: "法律ガイド", path: "/toolkit/legal" },
-        ]}
-      />
       <div className="border-b border-wakakusa/20 bg-ivory-warm/40 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "ひな形・資料", path: "/toolkit" },
+              { name: "法律ガイド", path: "/toolkit/legal" },
+            ]}
+          />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             法律ガイド
           </h1>

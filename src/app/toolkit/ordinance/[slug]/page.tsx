@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -72,50 +72,15 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
 
   return (
     <div className="bg-ivory pb-16">
-      <BreadcrumbJsonLd
+      <ResourceBreadcrumbs
+        layout="ribbon"
         items={[
           { name: "HOME", path: "/" },
-          { name: "資料室", path: "/toolkit" },
           { name: "ひな形・資料", path: "/toolkit" },
           { name: "条例ひな型", path: "/toolkit/ordinance" },
           { name: entry.title, path: pagePath },
         ]}
       />
-      <nav
-        aria-label="パンくず"
-        className="mx-auto max-w-3xl border-b border-border bg-ivory-warm/35 px-4 py-3 text-xs text-text-muted sm:px-6"
-      >
-        <ol className="flex flex-wrap items-center gap-x-1 gap-y-1">
-          <li>
-            <Link href="/" className="underline-offset-2 hover:underline">
-              HOME
-            </Link>
-          </li>
-          <li aria-hidden className="text-text-muted">
-            /
-          </li>
-          <li>
-            <Link href="/toolkit" className="underline-offset-2 hover:underline">
-              ひな形・資料
-            </Link>
-          </li>
-          <li aria-hidden className="text-text-muted">
-            /
-          </li>
-          <li>
-            <Link
-              href="/toolkit/ordinance"
-              className="underline-offset-2 hover:underline"
-            >
-              条例ひな型
-            </Link>
-          </li>
-          <li aria-hidden className="text-text-muted">
-            /
-          </li>
-          <li className="font-medium text-text-primary">{entry.title}</li>
-        </ol>
-      </nav>
 
       <div className="border-b border-wakakusa/25 bg-aqua-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">

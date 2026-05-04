@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
   POLICY_KIND_LABEL,
@@ -28,14 +28,16 @@ export default function PolicyHubPage() {
   const kinds = policyKindsWithPublicEntries();
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "政策提言", path: "/policy" },
-        ]}
-      />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            tone="aqua"
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "政策提言", path: "/policy" },
+            ]}
+          />
           <p className="text-xs font-medium uppercase tracking-wider text-aqua-dark">
             Resource / Policy
           </p>

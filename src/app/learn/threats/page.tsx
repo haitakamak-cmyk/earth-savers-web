@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 
 export const metadata: Metadata = {
@@ -38,15 +38,16 @@ const threats = [
 export default function ThreatsPage() {
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "環境脅威のサマリ", path: "/learn/threats" },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "環境脅威のサマリ", path: "/learn/threats" },
+            ]}
+          />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             環境脅威のサマリ
           </h1>

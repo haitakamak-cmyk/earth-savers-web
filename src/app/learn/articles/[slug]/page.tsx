@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
@@ -55,21 +54,17 @@ export default async function ArticleDetailPage({ params }: Props) {
         datePublished={article.datePublished}
         articleSection="学ぶ（読み物）"
       />
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "読みもの", path: "/learn/articles" },
-          { name: article.title, path },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <p className="text-xs text-wakakusa-dark">
-            <Link href="/learn/articles" className="underline-offset-2 hover:underline">
-              読みもの
-            </Link>
-          </p>
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "読みもの", path: "/learn/articles" },
+              { name: article.title, path },
+            ]}
+          />
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {article.title}
           </h1>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -40,19 +40,16 @@ export default async function ToolkitOperationsPage() {
 
   return (
     <div className="bg-ivory pb-16">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "資料室", path: "/toolkit" },
-          { name: "ひな形・資料", path: "/toolkit" },
-          { name: section.label, path: "/toolkit/operations" },
-        ]}
-      />
       <div className="border-b border-wakakusa/20 bg-ivory-warm/40 py-10 sm:py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="text-xs font-medium tracking-wide text-wakakusa-dark">
-            資料室 / ひな形・資料 / {section.label}
-          </p>
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "ひな形・資料", path: "/toolkit" },
+              { name: section.label, path: "/toolkit/operations" },
+            ]}
+          />
           <h1 className="mt-2 font-serif text-3xl font-bold text-text-primary sm:text-4xl">
             {section.label}
           </h1>

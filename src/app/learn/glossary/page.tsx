@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { ResourceLead } from "@/components/ResourceLead";
 import { GLOSSARY_ENTRIES } from "@/lib/glossary";
@@ -23,15 +23,16 @@ export default function GlossaryIndexPage() {
 
   return (
     <div className="bg-ivory">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "HOME", path: "/" },
-          { name: "学ぶ", path: "/learn" },
-          { name: "環境用語集", path: "/learn/glossary" },
-        ]}
-      />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <ResourceBreadcrumbs
+            className="mb-4 text-text-muted"
+            items={[
+              { name: "HOME", path: "/" },
+              { name: "学ぶ", path: "/learn" },
+              { name: "環境用語集", path: "/learn/glossary" },
+            ]}
+          />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">環境用語集</h1>
           <ResourceLead>
             一般財団法人 地球防衛群の活動・条例ひな型・政策提言の理解を支える用語集（27語）。定義の正確さが必要な場面では一次資料へ遷移できるよう、各ページに出典を明記しています。

@@ -5,6 +5,13 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-04 — **Markdown脚注（MarkdownArticle）＋パブコメ回答ひな型（qa-public）**
+
+- **`src/components/MarkdownArticle.tsx`**（政策・条例補助資料など共通）：GFM脚注の参照側 `<a>` に **`id="user-content-fnref-…"`** が必要なのに、カスタム **`a`** が **`href`／`children` だけ転送していた**ため **本文番号 ⇄ ↩ がリンク切れ**。**対応**：`id`・`data-*`・`aria-*` を含め **`...rest` で継続**、`react-markdown` の **`node` は DOM に出さない**（`node="[object Object]"` 防止）。**見出し**（`h1`/`h2`/`h3`）は **`footnote-label` 等、HAST 側の明示 `id` を GitHub slug より優先**。**脚注セクション見出し**：`remarkRehypeOptions` で **`footnoteLabel`** を **注・出典** にし、**`footnoteLabelProperties`** で画面上に見えるスタイルを付与（英語 "**Footnotes**" の既定ラベルを置換）。
+- **政策タイトページ本文** `src/content/policies/landowner-beneficial-owner-disclosure.md`：脚注定義は維持し、Markdown の **`## 脚注`** は削除（上記プラグイン見出しと二重になるため）。**正本** `Web/政策提言_土地取得_実質的支配者開示_v0.md` に同見出しがあれば必要に応じ手動同期。
+- **パブコメ回答ひな型** `src/content/ordinance-supplements/qa-public.md`：**ウ／エ偏重の合理性**、「区分表は理由説明用」、問題は **ア／イがゼロ** のとき、**アまたはイを最低1件**推奨、**P-03・P-27** で軽微修正して「ア」にできる具体例。**「内部メモ：回答戦略ノート」**を **`## ■ 回答作成時の留意点`** に改称（公開と矛盾しないよう「非公開」注記は撤去）。
+- **検証**：`npm run build` 成功。プリレンダ HTML で `#user-content-fnref-*` と `id` の対応確認済み。
+
 **直近更新**: 2026-05-05 — **コンテンツ・ツールハブ運用（追記・非表示設計）**  
 - **政策提言** `/policy/landowner-beneficial-owner-disclosure`：本文マスターを `src/content/policies/landowner-beneficial-owner-disclosure.md` で更新。**タイトル／副題**は `src/lib/policies.ts` の `title` + 任意 **`subtitle`**（一覧・ヒーバー・`<title>`・OG・JSON-LD の見出しは `policyDocumentTitle()` で統合）。**要旨と第4章**はともに提言五点で整合。脚注はループ参照なし。**正本との同期**：必要なら `Web/政策提言_土地取得_実質的支配者開示_v0.md` を手動でサイト用 MD と揃える。  
 - **実務チェックリスト** `/toolkit/operations`：`public/toolkit/operations/条例運用設計ガイド.md` を全面的に改稿（上から仕様調→**引き継ぎメモ調**、「窓口が止まる」を軸に理由を書く）。ツールごとに見出し構造を**均一フォーマットにしない**（フロー＝分岐中心、FAQ＝問答、エスカレーション＝境界線＋即上げ、`おわりに` はマスター案の短文）。サイトメタ／`toolkit-manifest` の該当説明も追随。  
@@ -128,15 +135,15 @@
 ・**リソース → 資料室（三本柱）**: ヘッダー／フッターは **資料室 ▼** → `/policy`（政策）、`/toolkit`（**ひな形・資料**）、`/learn`（**学ぶ**）。文言・データは `policies.ts` / `articles.ts` / `glossary.ts`。`SITE_ALLOW_SEARCH_INDEXING === false` の間は構造化データ（ breadcrumbs 等）は出さず robots で全 disallow
 ・**ヘッダー（PC）順序**: HOME / 財団について / メンバー / 活動内容 / **資料室 ▼** / アプリ・SNS▼ / 買って応援 / メディア・実績 / [支援する CTA]。**「支援・参加する」テキストリンクは廃止**（緑CTA「支援する」と `/join` で完全重複だったため）。`navItemsAfterResource` は空配列で残してある（差し戻し or 別項目追加が必要なときに 1 行 push するだけ）
 ・**ナビ折り返し対策**: `navLinkClassDesktop()` に `whitespace-nowrap` 必須。項目を増やしたら折り返さんかチェック
-・**条例ひな型公開フロー**: 正本 `Web/条例テンプレ_v0_暫定版.md` → サイト配信用 `Web/earth-savers-web/public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` にコピー → 再ビルド／デプロイで `/toolkit/ordinance` に反映。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`）。指示書: `Web/指示書_ロクロー_条例テンプレ公開.md`。**2026-05-04** 正本を議会向けに一括整備（HANDOVER 内「2026-05-04 条例ひな型（正本）サマリー」参照）
+・**条例ひな型公開フロー**: 正本 `Web/条例テンプレ_v0_暫定版.md` → サイト配信用 `Web/earth-savers-web/public/toolkit/ordinance/条例テンプレ_v0_暫定版.md` にコピー → 再ビルド／デプロイで `/toolkit/ordinance` に反映。表示は `MarkdownArticle.tsx`（`react-markdown` + `remark-gfm`。**GFM脚注**は `remarkRehypeOptions` で見出し **注・出典**。**カスタム `a`** は脚注の **`id`** を転送しないと ↩ が切れる。詳細は冒頭「2026-05-04 — Markdown脚注…」）。指示書: `Web/指示書_ロクロー_条例テンプレ公開.md`。**2026-05-04** 正本を議会向けに一括整備（HANDOVER 内「2026-05-04 条例ひな型（正本）サマリー」参照）
 ・**用語集 v1.2 公開**: 27語を `/learn/glossary/[slug]` で配信。データは `public/learn/glossary/用語集_v0_完成版.md` から `src/lib/glossary.ts` が `GLOSSARY` 配列へ変換して生成。個別ページは `DefinedTerm` JSON-LD / `BreadcrumbList` を出力（`SITE_ALLOW_SEARCH_INDEXING === false` の間は既存規律どおり非出力）。**v1.2 改訂（2026-05-02）**＝NIMBY印象の回避（再エネ非否定スタンス明記）／OECM登録条件の明示／「当法人」表記統一／`requiresLegalCaveat` フラグで制度系用語に改正注記表示／法的助言代替不可の注記を全ページ末尾に追加
 ・**解説記事（topics）**: `/learn/topics` 一覧・`/learn/topics/[slug]` 個別。記事データは `src/lib/topic-entries.ts` の `TOPICS`、本文は `src/content/topics/*.md`（第1号 `oecm-30by30`）。変換・内部リンクは `src/lib/topics.ts`。個別ページは `Article` JSON-LD（`ArticleJsonLd.tsx`）・パンくず・目次 `TopicToc.tsx`。**学ぶ**ハブ `/learn` にカードあり
 ・解説記事 第1号 = OECMと30by30 v1.1、`/learn/topics/oecm-30by30/` で配信、Article JSON-LD 出力（index 許可時）。**v1.1 改訂（2026-05-02）**＝「地域社会との対話と合意形成」セクション新設／税制20%減を「一定の要件を満たす場合」と限定明記／OECM登録条件の明示／著者表記を「一般財団法人 地球防衛群」に統一／第29条条項リンクは条例本体アンカーへ接続。
-・**条例ひな型 補助資料**: `src/lib/ordinance-supplements-data.ts` ＋ `src/content/ordinance-supplements/*.md`。**4ページ** `/toolkit/ordinance/rules`・`adoption-guide`・`qa-council`・`qa-public`（`src/app/toolkit/ordinance/[slug]/page.tsx`）。一覧は `/toolkit/ordinance` の「条例導入を支える補助資料」。ZIP 一括はなし。パンくず・メタは **条例ひな型** 表記に統一（2026-05-05 追記）。
+・**条例ひな型 補助資料**: `src/lib/ordinance-supplements-data.ts` ＋ `src/content/ordinance-supplements/*.md`。**4ページ** `/toolkit/ordinance/rules`・`adoption-guide`・`qa-council`・`qa-public`（`src/app/toolkit/ordinance/[slug]/page.tsx`）。一覧は `/toolkit/ordinance` の「条例導入を支える補助資料」。ZIP 一括はなし。パンくず・メタは **条例ひな型** 表記に統一（2026-05-05 追記）。**qa-public** の運用説明・留意点見出しの変更は HANDOVER 冒頭「Markdown脚注 … qa-public」を参照。
 ・**条例テンプレ v2**: `/toolkit/ordinance` で配信。前文「本条例の理念と基本スタンス」を新設（「再エネ否定ではない・適切な開発は歓迎」を冒頭明言）。**入口規制（第3章 参入段階）＋運転規制（第3章の2 維持管理）＋承継規制（第3章の3 事業の承継）＋出口規制（第3章の4 廃止及び撤去）＋第29条 生物多様性維持協定等の推進** という4軸構成。第9条の2 土地取引事前届出は水源含有確認・補正命令・個人情報保護・届出制非許可制明文化を含む拡張版。第18条は廃棄等費用積立金（1kWあたり1万円下限・FIT積立2分の1充当）。第17条の2〜の4で離隔100m／傾斜20度／調整池3,000㎡基準を導入。第26条の3 地域環境保全協力金は努力義務型（5,000㎡以上）。第25条過料は11項目（既存6項目＋出口5項目）。総括は参入・運転・出口の3段階対応表で再構成。煽り表現を全面解体
 ・**法務ガイドライン（2026-05-02 確立）**: 用語集・解説記事・条例の全公開ドキュメントに対し、(1)NIMBY印象を与えない（再エネ非否定スタンスを明記）、(2)税制・補助制度の適用可否を保証しない、(3)法的助言・税務助言の代替ではない旨を明記、(4)出典は官公庁・国際機関・一次資料を優先、(5)登記済み法人として「一般財団法人 地球防衛群」「当法人」で統一、を遵守
 ・**ひな形・資料**: 一覧は **`toolkit-manifest.ts` で `published` があるセクションのみ**（法律ガイド・事例は準備中の間 `/toolkit` のみへリダイレクト）。復活は `status: "published"` に変更。**実務チェックリスト**は `operations/条例運用設計ガイド.md` を引き継ぎトーンで管理
-・政策提言 `landowner-beneficial-owner-disclosure`：`policies.ts` の `subtitle` と `src/content/policies/*.md`。正本との同期は手動で可（`Web/政策提言_土地取得…`）
+・政策提言 `landowner-beneficial-owner-disclosure`：`policies.ts` の `subtitle` と `src/content/policies/*.md`。脚注は **プラグイン生成の見出し「注・出典」**のみ（過去あった MD の `## 脚注` は重複になるためサイト版から削除済み）。正本との同期は手動で可（`Web/政策提言_土地取得…`）
 ・正本: Web/earth-savers-web/HANDOVER.md
 ```
 
