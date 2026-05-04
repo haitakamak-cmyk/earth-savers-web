@@ -1,23 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { appSnsLinks } from "@/lib/app-sns-links";
 import { RESOURCE_NAV_LINKS } from "@/lib/resource-nav";
 
 const footerLinks = [
   {
     title: "財団について",
     links: [
+      { label: "法人概要", href: "/about#overview" },
       { label: "設立趣旨", href: "/about#manifesto" },
       { label: "クレド", href: "/about#credo" },
-      { label: "組織体制", href: "/about#members" },
+      { label: "運営体制", href: "/about#members" },
       { label: "メンバー紹介", href: "/members" },
+      { label: "メディア・実績", href: "/media" },
     ],
   },
   {
     title: "活動内容",
     links: [
       { label: "水源地の保全", href: "/activities#conservation" },
-      { label: "水質浄化", href: "/activities#water" },
+      { label: "生態系復活", href: "/activities#ecosystem" },
       { label: "里山再生", href: "/activities#satoyama" },
       { label: "ばら撒くっ種", href: "/activities#baramaku" },
       { label: "環境教育", href: "/activities#education" },
@@ -25,7 +28,7 @@ const footerLinks = [
   },
   {
     title: "資料室",
-    links: RESOURCE_NAV_LINKS,
+    links: RESOURCE_NAV_LINKS.map((l) => ({ label: l.label, href: l.href })),
   },
   {
     title: "支援・参加",
@@ -33,6 +36,15 @@ const footerLinks = [
       { label: "寄付する", href: "/join#donation" },
       { label: "サポーター登録", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
+      ...appSnsLinks.map((l) => ({
+        id: l.id,
+        label: l.label,
+        href: l.href,
+        external: l.external,
+        disabled: l.disabled,
+      })),
+      { label: "買って応援", href: "/shop" },
+      { label: "メディア・実績", href: "/media" },
       { label: "お問い合わせ", href: "/contact" },
     ],
   },
@@ -42,7 +54,7 @@ export function Footer() {
   return (
     <footer className="bg-text-primary text-ivory-warm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Logo & Description */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Image
@@ -53,9 +65,9 @@ export function Footer() {
               className="h-10 w-auto mb-4"
             />
             <p className="text-sm text-text-muted leading-relaxed">
-              七世代先の子どもたちへ、
-              <br />
-              水と森を残すために。
+              日本の命の源である「水」と「森」を守り、<br />
+              七世代先の子どもたちへ、美しい環境を引き継ぐ。<br />
+              私たちは「現場」で汗を流し、大地の循環を再生し続けます。
             </p>
           </div>
 
@@ -67,13 +79,28 @@ export function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-text-muted hover:text-ivory-warm transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                  <li
+                    key={"id" in link && link.id ? link.id : `${link.label}-${link.href}`}
+                  >
+                    {"disabled" in link && link.disabled ? (
+                      <span className="text-sm text-text-muted/70">{link.label}</span>
+                    ) : "external" in link && link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-text-muted transition-colors hover:text-ivory-warm"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-text-muted transition-colors hover:text-ivory-warm"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -85,7 +112,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-text-secondary/30">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-text-muted">
-              &copy; {new Date().getFullYear()} 一般財団法人 地球防衛群（Earth
+              &copy; {new Date().getFullYear()} 財団法人 地球防衛群（Earth
               Savers） All rights reserved.
             </p>
             <div className="flex gap-6 text-xs text-text-muted">

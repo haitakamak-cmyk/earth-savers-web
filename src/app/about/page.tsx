@@ -1,10 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
+import {
+  ORGANIZATION_ADDRESS_LINE,
+  ORGANIZATION_FOUNDED_LABEL,
+  ORGANIZATION_NAME,
+  ORGANIZATION_POSTAL_CODE,
+  ORGANIZATION_REPRESENTATIVE_NAME,
+  ORGANIZATION_REPRESENTATIVE_TITLE,
+} from "@/lib/site";
+
 export const metadata: Metadata = {
-  title: "財団について | 財団法人 地球防衛群",
+  title: "理念・運営体制",
   description:
-    "財団法人 地球防衛群の設立趣旨、マニフェスト、クレド（行動信条）、組織体制をご紹介します。",
+    "一般財団法人 地球防衛群の法人概要、設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。日本の水源地と山林を次世代へ引き継ぐ、私たちの揺るぎない決意をまとめています。",
 };
 
 const credoItems = [
@@ -17,7 +27,7 @@ const credoItems = [
     icon: "02",
     title: "透明性",
     description:
-      "活動の姿勢や判断の根拠を分かりやすく示し、ステークホルダーとの対話を大切にします。",
+      "活動の姿勢や判断の根拠を分かりやすく示し、支援者・地域の方・関係機関との対話を大切にします。",
   },
   {
     icon: "03",
@@ -31,13 +41,56 @@ const credoItems = [
   },
   {
     icon: "05",
-    title: "不退転",
-    description: "どんな困難にも屈せず、環境を守る使命を全うします。",
+    title: "揺るぎない決意",
+    description: "どんな困難にも向き合い、環境を守る使命を誠実に全うします。",
   },
   {
     icon: "06",
     title: "次世代への責任",
     description: "七世代先の子どもたちに恥じない選択をし続けます。",
+  },
+];
+
+const faqItems = [
+  {
+    q: "一般財団法人 地球防衛群とはどのような団体ですか？",
+    a: "日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。自然環境の保全と、次世代へ豊かな大地を引き継ぐことを目的としています。",
+  },
+  {
+    q: "どのような法人格ですか？",
+    a: "現在は一般財団法人として活動しており、将来的に公益認定（公益財団法人）を目指しています。透明性の高い運営と、公益に資する活動を継続してまいります。",
+  },
+  {
+    q: "ナノバブル発生器 『B-369』とは何ですか？",
+    a: "独自開発のナノバブル発生器『B-369』を活用した、水環境改善システムです。池や河川の低酸素状態を解消し、本来の生態系が戻りやすい環境を整えます。",
+  },
+  {
+    q: "どの地域で活動していますか？",
+    a: "本拠地である岡山県をはじめ、西日本を中心に、水源地や里山、河川で活動・導入実績があります。お困りの地域があれば全国どこでもご相談を受け付けています。",
+  },
+  {
+    q: "寄付金は何に使われますか？",
+    a: "水源地や山林の取得・管理費用、B-369のメンテナンス、法律等専門家への相談、地域の清掃活動（530運動）、環境教育などに充てられます。",
+  },
+  {
+    q: "寄付控除の対象ですか？",
+    a: "現在は一般財団法人のため、税制上の寄付金控除の対象外となります。控除の対象となるように公益化を目指しています。",
+  },
+  {
+    q: "ボランティアは誰でも参加できますか？",
+    a: "はい。ゴミ拾いや池そうじ、植栽活動などは、お子様から大人までどなたでもご参加いただけます。活動スケジュールはSNSをご確認ください。",
+  },
+  {
+    q: "メガソーラー問題にはどう関わっていますか？",
+    a: "山林の乱開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じた法的アドバイスなど、今後「駆け込み寺」としての支援が行えるように準備を進めています。",
+  },
+  {
+    q: "水源地保全とは具体的に何をする活動ですか？",
+    a: "外部資本などによる買収リスクのある土地を財団が取得して守るほか、放置された山林の草刈りや間伐、水脈の整備を行い、豊かな水を生む「本来の森」の力を取り戻す活動です。",
+  },
+  {
+    q: "取材依頼や講演依頼はどうすればよいですか？",
+    a: "サイトのお問い合わせフォームよりご連絡ください。代表理事の杉山をはじめ、専門スタッフが対応させていただきます。",
   },
 ];
 
@@ -47,20 +100,25 @@ const members = [
     role: "代表理事",
     image: "/images/photos/representative.jpg",
     description:
-      "水と森を次世代に引き継ぐため、財団の設立を決意。現場主義を貫き、自ら山に入り、川に立ち、問題の最前線で活動を続ける。",
+      "水と森を次世代に引き継ぐため、財団の設立を決意。現場主義を貫き、自ら山に入り、川に立ち、問題の最前線で活動を続ける。アナスタシア一族の土地を創造中。",
   },
   {
     name: "小野 誠",
     role: "事務局長",
     image: "/images/photos/ono-makoto.png",
     description:
-      "財団の運営を支え、行政手続きのサポートを行う。組織運営のプロフェッショナル。環境コンサルタントとして全国を飛び回っている。",
+      "財団の運営を支え、環境問題のサポートを行う。環境コンサルタントとしても岡山県内を飛び回り、現場と向き合っている。",
   },
 ];
 
 export default function AboutPage() {
   return (
     <>
+      {/* ===== LLM / Search Definition ===== */}
+      <div className="sr-only">
+        一般財団法人 地球防衛群は、日本の水源保全、里山再生、水質改善、生態系再生、環境教育に取り組む団体です。
+      </div>
+
       {/* Hero — 他ページと同じ高さ・横幅いっぱい（集合写真は中央帯に人物が集まる構図） */}
       <section className="relative h-64 w-full overflow-hidden sm:h-80 md:h-[22rem]">
         <Image
@@ -75,10 +133,61 @@ export default function AboutPage() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-3xl sm:text-4xl font-bold text-white font-serif drop-shadow-lg">
-              財団について
+              一般財団法人 地球防衛群について
             </h1>
             <p className="mt-2 text-white/80 text-sm sm:text-base">About Us</p>
           </div>
+        </div>
+      </section>
+
+      {/* 法人概要 */}
+      <section id="overview" className="border-b border-border bg-white py-14 sm:py-16">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
+            法人概要
+          </h2>
+          <dl className="mt-10 divide-y divide-border rounded-2xl border border-border bg-ivory/60 px-5 py-2 sm:px-8">
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">法人名</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_NAME}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">所在地</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                <span className="whitespace-nowrap">〒{ORGANIZATION_POSTAL_CODE}</span>
+                <br />
+                {ORGANIZATION_ADDRESS_LINE}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">
+                {ORGANIZATION_REPRESENTATIVE_TITLE}
+              </dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_REPRESENTATIVE_NAME}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">設立</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                {ORGANIZATION_FOUNDED_LABEL}
+              </dd>
+            </div>
+            <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
+              <dt className="text-sm font-semibold text-text-primary">お問い合わせ</dt>
+              <dd className="text-sm leading-relaxed text-text-secondary">
+                <Link
+                  href="/contact"
+                  className="text-wakakusa underline decoration-wakakusa/40 underline-offset-2 hover:text-wakakusa-dark"
+                >
+                  お問い合わせフォーム
+                </Link>
+                よりご連絡ください。
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -101,21 +210,30 @@ export default function AboutPage() {
                 代表理事　杉山 孔太
               </p>
             </div>
-            <div className="space-y-4 text-text-secondary leading-relaxed">
+            <div className="space-y-5 text-text-secondary leading-relaxed">
               <p>
-                日本の美しい水源地が、外国資本に買収されていく。山が削られ、メガソーラーパネルに覆われていく。里山は荒れ果て、野生動物が人里に降りてくる。
+                山に入ると、風の通り方で、その土地の状態が少しずつ見えてきます。水がどこを流れ、木がどう支え合っているか。自然はいつも、答えを現場に置いてくれています。
               </p>
               <p>
-                この現実を目の当たりにして、もう黙っていることはできないと思いました。
+                でも気づけば、その声が聞こえにくくなっていました。水源地が売られ、山が削られ、里山から生き物の気配が消えていく。それは誰かのせいというより、私たちがいつの間にか自然との距離を見失った結果なのだと思います。
               </p>
               <p>
-                森が深呼吸すると、私たちの水が美味しくなる。大地の水脈がつながれば、生き物が戻ってくる。この当たり前の循環を取り戻すために、私たちは立ち上がります。
+                だから私は、もう一度そのつながりを取り戻したいと思いました。
               </p>
               <p>
-                七世代先の子どもたちが、安心してきれいな水を飲み、豊かな森で遊べる未来。その未来を、今ここから一緒につくりましょう。
+                今、私自身が家族と一緒に、小さな土地に木を植え、水脈を整え、生態系を一からつくり直す暮らしを始めています。自分の手で森を育て、その森が水を生み、水が命を育む。何世代もかけて一族の土地を豊かにしていく——この営みの中にこそ、人と自然が共に生きる本来の姿があると感じています。
+              </p>
+              <p>
+                森が呼吸すれば、水がきれいになる。水脈がつながれば、生き物が戻ってくる。
+                この循環は、対立によって生まれるものではなく、
+                大地と向き合い、手を動かし、丁寧に取り戻していくものです。
+              </p>
+              <p>
+                七世代先の子どもたちが、山で遊び、川で笑い、湧き水をそのまま飲めるような日本を残したい。それが私のたった一つの願いです。
               </p>
               <p className="font-semibold text-text-primary">
-                「不退転」の覚悟で、水と森の未来を守ります。
+                自然の循環に学びながら、人の手で壊してしまった環境を、もう一度整えていく。
+                その営みを、私は覚悟を持って続けます。
               </p>
             </div>
           </div>
@@ -132,7 +250,7 @@ export default function AboutPage() {
             <div className="space-y-6 text-text-secondary leading-relaxed">
               <p>
                 私たちは、日本の水源地と山林を恒久的に保全し、
-                次の世代に引き継ぐことを目的として、財団法人「地球防衛群」を設立します。
+                次の世代に引き継ぐことを目的として、一般財団法人「地球防衛群」を設立しました。
               </p>
               <div>
                 <h3 className="text-lg font-bold text-text-primary mb-3">
@@ -143,7 +261,7 @@ export default function AboutPage() {
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">
                       <span className="w-2 h-2 rounded-full bg-coral" />
                     </span>
-                    外国資本による水源地の買収と、メガソーラー等による山林の乱開発
+                    外部資本による水源地の買収と、メガソーラー等による山林の乱開発
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">
@@ -215,7 +333,7 @@ export default function AboutPage() {
       <section id="members" className="py-16 sm:py-24 bg-ivory-warm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
-            組織体制
+            運営体制
           </h2>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -264,7 +382,34 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 情報公開セクションは公開準備が整うまで非表示 */}
+      {/* FAQ */}
+      <section id="faq" className="py-16 sm:py-24 bg-ivory">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
+            よくあるご質問
+          </h2>
+          <div className="mt-10 space-y-6">
+            {faqItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl p-6 shadow-sm border border-border"
+              >
+                <h3 className="text-base font-bold text-text-primary flex gap-3">
+                  <span className="text-wakakusa shrink-0">Q.</span>
+                  {item.q}
+                </h3>
+                <div className="mt-3 text-sm text-text-secondary leading-relaxed flex gap-3 border-t border-border pt-3">
+                  <span className="text-coral shrink-0 font-bold">A.</span>
+                  <p>{item.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 情報公開セクション */}
+
     </>
   );
 }
