@@ -7,6 +7,13 @@ import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+function normalizeClassName(value: unknown): string | undefined {
+  if (!value) return undefined;
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value.filter(Boolean).join(" ");
+  return undefined;
+}
+
 function toPlainText(node: ReactNode): string {
   if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -21,9 +28,10 @@ function toPlainText(node: ReactNode): string {
 function buildMarkdownComponents(slugger: GithubSlugger): Components {
   return {
     hr: () => <hr className="my-8 border-border" />,
-    h1: ({ children }) => {
+    h1: ({ children, id: explicitId }) => {
       const text = toPlainText(children).trim();
-      const id = text ? slugger.slug(text, true) : undefined;
+      const slugId = text ? slugger.slug(text, true) : undefined;
+      const id = explicitId ?? slugId;
       return (
         <h2
           id={id}
@@ -33,9 +41,10 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </h2>
       );
     },
-    h2: ({ children }) => {
+    h2: ({ children, id: explicitId }) => {
       const text = toPlainText(children).trim();
-      const id = text ? slugger.slug(text, true) : undefined;
+      const slugId = text ? slugger.slug(text, true) : undefined;
+      const id = explicitId ?? slugId;
       return (
         <h3
           id={id}
@@ -45,9 +54,10 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </h3>
       );
     },
-    h3: ({ children }) => {
+    h3: ({ children, id: explicitId }) => {
       const text = toPlainText(children).trim();
-      const id = text ? slugger.slug(text, true) : undefined;
+      const slugId = text ? slugger.slug(text, true) : undefined;
+      const id = explicitId ?? slugId;
       return (
         <h4 id={id} className="mt-6 scroll-mt-28 font-semibold text-text-primary">
           {children}
@@ -72,13 +82,28 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         {children}
       </blockquote>
     ),
-    a: ({ href, children }) => {
+    a: ({
+      href,
+      children,
+      className,
+      id,
+      // react-markdown（ExtraProps）は mdast を `node` に渡す。DOM に出さない
+      node: _omitMarkdownNode,
+      ...rest
+    }) => {
+      void _omitMarkdownNode;
       const raw = typeof href === "string" ? href : "";
       const external = /^https?:\/\//i.test(raw);
+      const proseDefault =
+        "break-words font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua";
+      const merged =
+        normalizeClassName(className) === undefined ? proseDefault : `${proseDefault} ${normalizeClassName(className)}`;
       return (
         <a
+          {...rest}
+          id={id}
           href={raw || undefined}
-          className="break-words font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua"
+          className={merged}
           {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         >
           {children}
@@ -143,7 +168,19 @@ export function MarkdownArticle({
     <article
       className={`text-text-secondary ${narrowProse ? "max-w-[720px]" : ""} ${className}`}
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        remarkRehypeOptions={{
+          footnoteLabel: "注・出典",
+          footnoteLabelTagName: "h2",
+          footnoteLabelProperties: {
+            className: [
+              "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-xl font-semibold text-text-primary",
+            ],
+          },
+        }}
+        components={markdownComponents}
+      >
         {markdown}
       </ReactMarkdown>
     </article>

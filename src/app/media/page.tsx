@@ -47,6 +47,14 @@ const NEWSPAPER_ITEMS = [
     imageAlt: "長野日報の紙面。諏訪湖での生態系復活実験が紹介されている様子。",
     objectPosition: "center 30%",
   },
+  {
+    title: "高知新聞",
+    date: "2024年4月24日",
+    body: "高知県香南市の清水川排水機場に、津山市のsesが開発したナノバブル発生器が設置されたと報じています。約1年間の実証で川の浄化を目指すとともに、宇和ノ内湾（須崎）や大阪湾など全国18か所での導入実績にも触れています。",
+    imageFile: "newspaper-kochi-shimbun.png",
+    imageAlt: "高知新聞の紙面。「気泡発生器で川の水きれいに」の見出しで香南市の清水川排水機場への設置が紹介されている様子。",
+    objectPosition: "center top",
+  },
 ] as const;
 
 const EXPO_HIGHLIGHT = {

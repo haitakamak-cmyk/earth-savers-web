@@ -87,7 +87,12 @@ export default function LearnHubPage() {
                   <span className="font-serif text-lg font-semibold text-text-primary">
                     {card.title}
                   </span>
-                  <span className="mt-2 text-sm leading-relaxed text-text-secondary">{card.body}</span>
+                  <span className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
+                    {card.body}
+                  </span>
+                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4">
+                    読む →
+                  </span>
                 </Link>
               </li>
             ))}
