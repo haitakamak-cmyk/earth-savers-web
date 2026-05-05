@@ -14,9 +14,9 @@ function normalizeClassName(value: unknown): string | undefined {
   return undefined;
 }
 
-/** GFM 脚注の定義リスト項目（スクロール先がヘッダーに隠れんよう margin） */
+/** GFM 脚注の定義（`user-content-fn-1` や衝突回避の `user-content-fn-uk-ecstea` 等。`fnref` とは異なるので fn- で始まる） */
 function isFootnoteDefinitionListId(id: unknown): boolean {
-  return typeof id === "string" && /^user-content-fn-\d+$/.test(id);
+  return typeof id === "string" && /^user-content-fn-/.test(id);
 }
 
 /** GFM 脚注の本文側参照（↩ で戻るときのスクロール先） */

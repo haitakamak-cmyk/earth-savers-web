@@ -130,7 +130,13 @@ export default async function TopicDetailPage({ params }: Props) {
             aria-label="ほかの解説記事へ移動する"
             className="mx-auto mt-12 max-w-[720px] border-t border-border pt-10"
           >
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:gap-x-6 sm:gap-y-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-3">
+              <Link
+                href="/learn/topics"
+                className="inline-flex items-center px-1 py-2 text-sm font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua sm:py-2.5"
+              >
+                ← 解説記事一覧へ
+              </Link>
               {episodeNav?.next ? (
                 <Link
                   href={`/learn/topics/${episodeNav.next.slug}`}
@@ -139,12 +145,6 @@ export default async function TopicDetailPage({ params }: Props) {
                   {episodeNav.next.subtitle}へ →
                 </Link>
               ) : null}
-              <Link
-                href="/learn/topics"
-                className="inline-flex items-center px-1 py-2 text-sm font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua sm:py-2.5"
-              >
-                ← 解説記事一覧へ
-              </Link>
             </div>
             {episodeNav?.prev ? (
               <Link
