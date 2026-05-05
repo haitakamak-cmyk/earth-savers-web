@@ -118,6 +118,7 @@ export type SplitTopicMarkdown = {
 };
 
 export function splitTopicMarkdown(body: string): SplitTopicMarkdown {
+  /** `## 参考文献` のみ分割。GFM 脚注を使う記事は `## 注・出典` と脚注定義を同一パースに載せる必要があるため、ここでは分けない。 */
   const refHeading = "## 参考文献";
   const refStart = body.indexOf(refHeading);
   if (refStart === -1) {

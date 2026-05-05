@@ -40,6 +40,32 @@ export const TOPICS: TopicEntry[] = [
     category: "biodiversity",
     requiresLegalCaveat: true,
   },
+  {
+    slug: "dam-reassessment",
+    title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
+    subtitle: "第1話｜荒瀬ダムが撤去された日",
+    shortDescription:
+      "2018年、熊本県の荒瀬ダムが日本初の本格撤去を完了した。発電専用ダムが姿を消した翌年から、球磨川の生態系は予想を超える速度で回復し始める。3,000基とも言われる日本のダムを、流域の水循環と生態系を基準に再評価する——その出発点として、荒瀬ダムが示したものを記録する。",
+    publishedAt: "2026-05-05",
+    updatedAt: "2026-05-05",
+    contentPath: "src/content/topics/dam-reassessment.md",
+    relatedGlossarySlugs: ["water-cycle-basic-act", "ecosystem-services"],
+    category: "water",
+    requiresLegalCaveat: true,
+  },
+  {
+    slug: "dam-reassessment-2",
+    title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
+    subtitle: "第2話｜欧米では、ダムを壊すことが戦略になっている",
+    shortDescription:
+      "2024年、欧州23カ国で542基の河川障壁が撤去された。米国ではエルワ川で高さ64メートルのダムが消え、絶滅寸前だったサケが帰ってきた。世界の動きを踏まえたうえで、日本に何が持ち込めて何が持ち込めないのかを考える。",
+    publishedAt: "2026-05-05",
+    updatedAt: "2026-05-05",
+    contentPath: "src/content/topics/dam-reassessment-2.md",
+    relatedGlossarySlugs: ["water-cycle-basic-act", "ecosystem-services"],
+    category: "water",
+    requiresLegalCaveat: true,
+  },
 ];
 
 export function getAllTopicSlugs(): string[] {
