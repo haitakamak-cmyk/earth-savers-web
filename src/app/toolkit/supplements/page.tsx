@@ -54,7 +54,7 @@ export default function ToolkitSupplementsHubPage() {
           <OrdinanceSupplementsCardGrid />
         </div>
         <p className="mt-10 text-sm leading-relaxed text-text-secondary">
-          各資料の本文・ダウンロードはカードから開けます。条例のひな型本文（Markdown 一括）は{" "}
+          本文の閲覧やファイルのダウンロードは、下にある一覧から各資料を選んでください。条例のひな型本文（Markdown 一括）は{" "}
           <Link href="/toolkit/ordinance" className="font-medium text-aqua-dark underline underline-offset-2">
             条例ひな型ページ
           </Link>

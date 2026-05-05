@@ -73,7 +73,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
     ol: ({ children }) => (
       <ol className="mb-4 list-inside list-decimal space-y-1 pl-2 text-[15px]">{children}</ol>
     ),
-    li: ({ children }) => <li className="marker:text-text-muted">{children}</li>,
+    li: ({ children, id }) => <li id={id} className="marker:text-text-muted">{children}</li>,
     strong: ({ children }) => (
       <strong className="font-semibold text-text-primary">{children}</strong>
     ),
