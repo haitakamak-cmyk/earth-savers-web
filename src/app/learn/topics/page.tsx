@@ -4,7 +4,10 @@ import Link from "next/link";
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { ResourceLead } from "@/components/ResourceLead";
-import { TOPICS } from "@/lib/topic-entries";
+import {
+  buildTopicHubRows,
+  getTopicBySlug,
+} from "@/lib/topic-entries";
 import { ORGANIZATION_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,9 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function LearnTopicsIndexPage() {
-  const sorted = [...TOPICS].sort(
-    (a, b) => b.publishedAt.localeCompare(a.publishedAt),
-  );
+  const hubRows = buildTopicHubRows();
 
   return (
     <div className="bg-ivory">
@@ -47,33 +48,76 @@ export default function LearnTopicsIndexPage() {
           </ResourceLead>
           <ContentDisclaimer />
           <ul className="mt-10 space-y-4">
-            {sorted.map((t) => (
-              <li key={t.slug}>
-                <Link
-                  href={`/learn/topics/${t.slug}`}
-                  className="block rounded-xl border border-border bg-white px-5 py-5 shadow-sm transition-colors hover:border-wakakusa/35 hover:bg-wakakusa-light/25"
-                >
-                  <span className="font-serif text-lg font-semibold text-text-primary">
-                    {t.title}
-                  </span>
-                  {t.subtitle ? (
-                    <span className="mt-1 block text-sm font-medium text-aqua-dark">
-                      {t.subtitle}
+            {hubRows.map((row) =>
+              row.kind === "series" ? (
+                <li key={row.card.key}>
+                  <div className="rounded-xl border border-border bg-white px-5 py-5 shadow-sm">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-wakakusa-dark">
+                      連載
+                    </p>
+                    <span className="mt-1 block font-serif text-lg font-semibold text-text-primary">
+                      {row.card.title}
                     </span>
-                  ) : null}
-                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                    {t.shortDescription}
-                  </p>
-                  <p className="mt-3 text-xs text-text-muted">
-                    公開 {t.publishedAt}
-                    {t.updatedAt !== t.publishedAt ? ` · 更新 ${t.updatedAt}` : ""}
-                  </p>
-                  <span className="mt-3 inline-block text-sm font-medium text-aqua-dark">
-                    読む →
-                  </span>
-                </Link>
-              </li>
-            ))}
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                      {row.card.overview}
+                    </p>
+                    <p className="mt-3 text-xs text-text-muted">
+                      公開 {row.card.hubSortPublishedAt}
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                      {row.card.episodeSlugs.map((slug, index) => {
+                        const ep = getTopicBySlug(slug);
+                        const n = index + 1;
+                        return ep ? (
+                          <Link
+                            key={slug}
+                            href={`/learn/topics/${slug}`}
+                            className="text-sm font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua"
+                          >
+                            {n}話→
+                          </Link>
+                        ) : (
+                          <span
+                            key={slug}
+                            className="text-sm text-text-muted"
+                          >
+                            {n}話（準備中）
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li key={row.topic.slug}>
+                  <Link
+                    href={`/learn/topics/${row.topic.slug}`}
+                    className="block rounded-xl border border-border bg-white px-5 py-5 shadow-sm transition-colors hover:border-wakakusa/35 hover:bg-wakakusa-light/25"
+                  >
+                    <span className="font-serif text-lg font-semibold text-text-primary">
+                      {row.topic.title}
+                    </span>
+                    {row.topic.subtitle ? (
+                      <span className="mt-1 block text-sm font-medium text-aqua-dark">
+                        {row.topic.subtitle}
+                      </span>
+                    ) : null}
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                      {row.topic.shortDescription}
+                    </p>
+                    <p className="mt-3 text-xs text-text-muted">
+                      公開 {row.topic.publishedAt}
+                      {row.topic.updatedAt !== row.topic.publishedAt
+                        ? ` · 更新 ${row.topic.updatedAt}`
+                        : ""}
+                    </p>
+                    <span className="mt-3 inline-block text-sm font-medium text-aqua-dark">
+                      読む →
+                    </span>
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
           <section className="mt-12 border-t border-border pt-8 text-sm">
             <h2 className="font-serif text-lg font-semibold text-text-primary">
