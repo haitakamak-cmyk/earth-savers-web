@@ -138,6 +138,44 @@ export function getTopicBySlug(slug: string): TopicEntry | undefined {
   return TOPICS.find((t) => t.slug === slug);
 }
 
+/** 連載なら「前話・次話」（単独記事は null） */
+export type TopicEpisodeNeighbors = {
+  prev: { slug: string; subtitle: string } | null;
+  next: { slug: string; subtitle: string } | null;
+};
+
+export function getTopicSeriesEpisodeNeighbors(
+  slug: string,
+): TopicEpisodeNeighbors | null {
+  for (const series of TOPIC_SERIES_LIST) {
+    const idx = series.episodeSlugs.indexOf(slug);
+    if (idx === -1) continue;
+    const prevSlug =
+      idx > 0 ? (series.episodeSlugs[idx - 1] as string | undefined) : undefined;
+    const nextSlug =
+      idx < series.episodeSlugs.length - 1
+        ? (series.episodeSlugs[idx + 1] as string | undefined)
+        : undefined;
+    const prev = prevSlug ? getTopicBySlug(prevSlug) : undefined;
+    const next = nextSlug ? getTopicBySlug(nextSlug) : undefined;
+    return {
+      prev:
+        prev && prev.subtitle
+          ? { slug: prev.slug, subtitle: prev.subtitle }
+          : prev
+            ? { slug: prev.slug, subtitle: prev.title }
+            : null,
+      next:
+        next && next.subtitle
+          ? { slug: next.slug, subtitle: next.subtitle }
+          : next
+            ? { slug: next.slug, subtitle: next.title }
+            : null,
+    };
+  }
+  return null;
+}
+
 export function getTopicSeriesHubCards(): TopicSeriesHubCard[] {
   return TOPIC_SERIES_LIST.map((series) => {
     const publishedEpisodes = series.episodeSlugs

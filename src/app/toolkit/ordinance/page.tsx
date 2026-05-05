@@ -8,6 +8,7 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
 import { TopicToc } from "@/components/TopicToc";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import { extractMarkdownHeadingToc } from "@/lib/markdown-toc";
 import {
   ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
@@ -126,6 +127,11 @@ export default async function ToolkitOrdinancePage() {
         </div>
         <div className="mx-auto mt-12 max-w-3xl border-t border-border pt-10">
           <ContentDisclaimer ordinanceDraftFinalizeNote />
+          <ToolkitFooterBackNav
+            href="/toolkit"
+            label="← ひな形・資料一覧へ戻る"
+            navAriaLabel="ひな形・資料一覧へ戻る"
+          />
         </div>
       </section>
     </div>

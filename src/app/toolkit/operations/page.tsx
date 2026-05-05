@@ -5,6 +5,7 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
 import { readToolkitPublicMarkdown } from "@/lib/toolkit-public-md";
 import { ORGANIZATION_NAME } from "@/lib/site";
@@ -71,6 +72,7 @@ export default async function ToolkitOperationsPage() {
       </div>
       <div className="mx-auto max-w-3xl px-4 pt-10 sm:px-6">
         <ContentDisclaimer />
+        <ToolkitFooterBackNav href="/toolkit" label="← ひな形・資料一覧へ戻る" />
       </div>
     </div>
   );

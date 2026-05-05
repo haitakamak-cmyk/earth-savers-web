@@ -6,6 +6,7 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import {
   getToolkitFileBySubdirAndViewSlug,
   getToolkitViewerSlugs,
@@ -113,6 +114,7 @@ export default async function ToolkitLegalDocPage({ params }: Props) {
         ) : null}
         <div className="mt-10">
           <ContentDisclaimer requiresLegalCaveat />
+          <ToolkitFooterBackNav href="/toolkit/legal" label="← 法律ガイド一覧へ戻る" />
         </div>
       </div>
     </div>

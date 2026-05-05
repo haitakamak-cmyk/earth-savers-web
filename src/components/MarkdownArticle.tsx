@@ -14,6 +14,16 @@ function normalizeClassName(value: unknown): string | undefined {
   return undefined;
 }
 
+/** GFM 脚注の定義リスト項目（スクロール先がヘッダーに隠れんよう margin） */
+function isFootnoteDefinitionListId(id: unknown): boolean {
+  return typeof id === "string" && /^user-content-fn-\d+$/.test(id);
+}
+
+/** GFM 脚注の本文側参照（↩ で戻るときのスクロール先） */
+function isFootnoteRefAnchorId(id: unknown): boolean {
+  return typeof id === "string" && /^user-content-fnref-/.test(id);
+}
+
 function toPlainText(node: ReactNode): string {
   if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -73,7 +83,18 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
     ol: ({ children }) => (
       <ol className="mb-4 list-inside list-decimal space-y-1 pl-2 text-[15px]">{children}</ol>
     ),
-    li: ({ children, id }) => <li id={id} className="marker:text-text-muted">{children}</li>,
+    li: ({ children, id }) => (
+      <li
+        id={id}
+        className={
+          isFootnoteDefinitionListId(id)
+            ? "scroll-mt-28 marker:text-text-muted"
+            : "marker:text-text-muted"
+        }
+      >
+        {children}
+      </li>
+    ),
     strong: ({ children }) => (
       <strong className="font-semibold text-text-primary">{children}</strong>
     ),
@@ -98,12 +119,13 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         "break-words font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua";
       const merged =
         normalizeClassName(className) === undefined ? proseDefault : `${proseDefault} ${normalizeClassName(className)}`;
+      const footnoteScroll = isFootnoteRefAnchorId(id) ? " scroll-mt-28" : "";
       return (
         <a
           {...rest}
           id={id}
           href={raw || undefined}
-          className={merged}
+          className={`${merged}${footnoteScroll}`}
           {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         >
           {children}

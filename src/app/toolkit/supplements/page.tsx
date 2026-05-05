@@ -5,6 +5,7 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { OrdinanceSupplementsCardGrid } from "@/components/OrdinanceSupplementsCardGrid";
 import { ResourceLead } from "@/components/ResourceLead";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import {
   ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
   ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
@@ -62,6 +63,11 @@ export default function ToolkitSupplementsHubPage() {
         </p>
         <div className="mx-auto mt-10 max-w-3xl border-t border-border pt-10">
           <ContentDisclaimer ordinanceDraftFinalizeNote />
+          <ToolkitFooterBackNav
+            href="/toolkit"
+            label="← ひな形・資料一覧へ戻る"
+            navAriaLabel="ひな形・資料一覧へ戻る"
+          />
         </div>
       </div>
     </div>

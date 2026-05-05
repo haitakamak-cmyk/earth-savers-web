@@ -8,6 +8,7 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
 import { getGlossaryBySlug } from "@/lib/glossary";
+import { getTopicSeriesEpisodeNeighbors } from "@/lib/topic-entries";
 import {
   applyGlossaryLinksOnce,
   extractTopicToc,
@@ -69,6 +70,7 @@ export default async function TopicDetailPage({ params }: Props) {
     splitTopicMarkdown(stripped);
   const linkedMain = applyGlossaryLinksOnce(mainMarkdown);
   const toc = extractTopicToc(mainMarkdown);
+  const episodeNav = getTopicSeriesEpisodeNeighbors(entry.slug);
 
   return (
     <div className="bg-ivory pb-16">
@@ -123,6 +125,37 @@ export default async function TopicDetailPage({ params }: Props) {
         <TopicToc items={toc} />
         <div className="min-w-0 flex-1">
           <MarkdownArticle markdown={linkedMain} narrowProse />
+
+          <nav
+            aria-label="ほかの解説記事へ移動する"
+            className="mx-auto mt-12 max-w-[720px] border-t border-border pt-10"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:gap-x-6 sm:gap-y-3">
+              {episodeNav?.next ? (
+                <Link
+                  href={`/learn/topics/${episodeNav.next.slug}`}
+                  className="inline-flex rounded-lg border border-wakakusa/35 bg-wakakusa-light/40 px-4 py-2.5 text-sm font-semibold text-aqua-dark shadow-sm transition-colors hover:border-wakakusa/55 hover:bg-wakakusa-light/60"
+                >
+                  {episodeNav.next.subtitle}へ →
+                </Link>
+              ) : null}
+              <Link
+                href="/learn/topics"
+                className="inline-flex items-center px-1 py-2 text-sm font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua sm:py-2.5"
+              >
+                ← 解説記事一覧へ
+              </Link>
+            </div>
+            {episodeNav?.prev ? (
+              <Link
+                href={`/learn/topics/${episodeNav.prev.slug}`}
+                className="mt-3 inline-block px-1 text-sm font-medium text-text-secondary underline underline-offset-2 hover:text-aqua-dark"
+              >
+                ← {episodeNav.prev.subtitle}
+              </Link>
+            ) : null}
+          </nav>
+
           {entry.relatedGlossarySlugs.length > 0 ? (
             <section className="mt-14 max-w-[720px] border-t border-border pt-10">
               <h2 className="font-serif text-xl font-semibold text-text-primary">
@@ -195,15 +228,6 @@ export default async function TopicDetailPage({ params }: Props) {
               <MarkdownArticle markdown={footnoteMarkdown} narrowProse />
             ) : null}
           </div>
-
-          <p className="mt-12 max-w-[720px]">
-            <Link
-              href="/learn/topics"
-              className="text-sm font-medium text-aqua-dark underline underline-offset-2"
-            >
-              ← 解説記事一覧へ
-            </Link>
-          </p>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { ResourceLead } from "@/components/ResourceLead";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import {
   getAllOrdinanceSupplementSlugs,
   getOrdinanceSupplementBySlug,
@@ -124,6 +125,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
             requiresLegalCaveat={entry.requiresLegalCaveat}
             ordinanceDraftFinalizeNote
           />
+          <ToolkitFooterBackNav href="/toolkit/ordinance" label="← 条例ひな型へ戻る" />
         </div>
       </div>
     </div>
