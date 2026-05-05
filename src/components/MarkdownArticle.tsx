@@ -169,6 +169,23 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
   };
 }
 
+/** 同じ脚注を本文で複数回使ったとき、↩ が複数並ぶ（それぞれ別の参照へ戻る）。上付きの²は「2か所目」の意味 */
+function footnoteBackContentJa(
+  _referenceIndex: number,
+  rereferenceIndex: number,
+): { type: "text"; value: string }[] {
+  if (rereferenceIndex <= 1) return [{ type: "text", value: "↩" }];
+  return [
+    { type: "text", value: "↩" },
+    { type: "text", value: `（${String(rereferenceIndex)}か所目）` },
+  ];
+}
+
+function footnoteBackLabelJa(referenceIndex: number, rereferenceIndex: number): string {
+  const ordinal = referenceIndex + 1;
+  return `本文で「注${ordinal}」を使っている${rereferenceIndex}か所目の位置へ戻る`;
+}
+
 type MarkdownArticleProps = {
   markdown: string;
   className?: string;
@@ -200,6 +217,8 @@ export function MarkdownArticle({
               "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-xl font-semibold text-text-primary",
             ],
           },
+          footnoteBackContent: footnoteBackContentJa,
+          footnoteBackLabel: footnoteBackLabelJa,
         }}
         components={markdownComponents}
       >

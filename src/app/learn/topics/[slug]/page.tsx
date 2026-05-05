@@ -133,9 +133,9 @@ export default async function TopicDetailPage({ params }: Props) {
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-3">
               <Link
                 href="/learn/topics"
-                className="inline-flex items-center px-1 py-2 text-sm font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua sm:py-2.5"
+                className="inline-flex items-center rounded-lg border border-border bg-white px-4 py-2.5 text-sm font-semibold text-aqua-dark shadow-sm transition-colors hover:border-wakakusa/35 hover:bg-wakakusa-light/30"
               >
-                ← 解説記事一覧へ
+                ← 解説記事一覧へ戻る
               </Link>
               {episodeNav?.next ? (
                 <Link

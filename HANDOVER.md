@@ -5,6 +5,11 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+**直近更新**: 2026-05-06 — **ナビゲーション（「戻る」）統一**  
+- **ルール確定**：資料室の詳細ページ（`/policy/[slug]`・`/learn/topics/[slug]`・`/learn/glossary/[slug]` など）は **ページ末尾フッターに `ToolkitFooterBackNav` を1個だけ**置く。文言は `← [上位ページ名]へ戻る` で統一。スタイルは `border-border / bg-white / text-aqua-dark`（コンポーネントが担う）。  
+- **今回の修正**：① `/learn/topics/[slug]` — テキストリンク → ボタン形式、`← 解説記事一覧へ戻る` に変更。② `/learn/glossary/[slug]` — `← 一覧に戻る`（wakakusa色ボタン）→ `ToolkitFooterBackNav`（`← 環境用語集へ戻る`）に置換。③ `/policy/[slug]` — 戻るリンクが丸ごとなかったので追加（カテゴリページへ、3パターン全て）。  
+- **新規ページ追加時の必須チェック**：`ToolkitFooterBackNav` import済みか／上位ページへのパスと文言が上記ルールに沿っているか／ヘッダー帯内に別スタイルの「戻る」が重複していないか。
+
 **直近更新**: 2026-05-04 — **Markdown脚注（MarkdownArticle）＋パブコメ回答ひな型（qa-public）**
 
 - **`src/components/MarkdownArticle.tsx`**（政策・条例補助資料など共通）：GFM脚注の参照側 `<a>` に **`id="user-content-fnref-…"`** が必要なのに、カスタム **`a`** が **`href`／`children` だけ転送していた**ため **本文番号 ⇄ ↩ がリンク切れ**。**対応**：`id`・`data-*`・`aria-*` を含め **`...rest` で継続**、`react-markdown` の **`node` は DOM に出さない**（`node="[object Object]"` 防止）。**見出し**（`h1`/`h2`/`h3`）は **`footnote-label` 等、HAST 側の明示 `id` を GitHub slug より優先**。**脚注セクション見出し**：`remarkRehypeOptions` で **`footnoteLabel`** を **注・出典** にし、**`footnoteLabelProperties`** で画面上に見えるスタイルを付与（英語 "**Footnotes**" の既定ラベルを置換）。

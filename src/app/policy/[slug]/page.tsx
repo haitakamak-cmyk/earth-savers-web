@@ -9,6 +9,7 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import { extractMarkdownHeadingToc } from "@/lib/markdown-toc";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -149,6 +150,11 @@ export default async function PolicyDetailPage({ params }: Props) {
               <div className="mt-10 space-y-4">
                 <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
               </div>
+              <ToolkitFooterBackNav
+                href={kindHref(policy.kind)}
+                label={`← ${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+                navAriaLabel={`${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+              />
             </div>
           </div>
         ) : policy.body ? (
@@ -162,6 +168,11 @@ export default async function PolicyDetailPage({ params }: Props) {
             <div className="mt-10 space-y-4">
               <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
             </div>
+            <ToolkitFooterBackNav
+              href={kindHref(policy.kind)}
+              label={`← ${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+              navAriaLabel={`${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+            />
           </>
         ) : (
           <>
@@ -169,6 +180,11 @@ export default async function PolicyDetailPage({ params }: Props) {
             <div className="mt-10 space-y-4">
               <ContentDisclaimer requiresLegalCaveat={policy.requiresLegalCaveat} />
             </div>
+            <ToolkitFooterBackNav
+              href={kindHref(policy.kind)}
+              label={`← ${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+              navAriaLabel={`${POLICY_KIND_LABEL[policy.kind]}へ戻る`}
+            />
           </>
         )}
       </div>

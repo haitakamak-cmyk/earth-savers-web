@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
@@ -7,6 +6,7 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { DefinedTermJsonLd } from "@/components/DefinedTermJsonLd";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
+import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import { buildGlossaryRelated } from "@/lib/related-resources";
 import {
   getAllGlossarySlugs,
@@ -124,15 +124,11 @@ export default async function GlossaryTermPage({ params }: Props) {
             </section>
           ) : null}
 
-          <p className="mt-10">
-            <Link
-              href="/learn/glossary"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-wakakusa/35 bg-white px-4 py-2.5 text-sm font-medium text-wakakusa-dark shadow-sm transition hover:border-wakakusa/60 hover:bg-wakakusa-light/40"
-            >
-              <span aria-hidden>←</span>
-              一覧に戻る
-            </Link>
-          </p>
+          <ToolkitFooterBackNav
+            href="/learn/glossary"
+            label="← 環境用語集へ戻る"
+            navAriaLabel="環境用語集一覧へ戻る"
+          />
 
           <RelatedLinks items={related} />
           <div className="mt-10">
