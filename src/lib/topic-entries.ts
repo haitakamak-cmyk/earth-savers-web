@@ -32,7 +32,7 @@ export const TOPIC_SERIES_LIST: readonly TopicSeriesListItem[] = [
     key: "dam-and-rivers",
     title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
     overview:
-      "2018年、熊本県の荒瀬ダムが撤去された。翌年から球磨川の干潟に砂が戻り、川底の生物種が10年前の7倍に増えた。日本には河川法上のダムだけで約1,500基。竣工50年を超えたものが2割を占め、堆砂で洪水調節容量を失いつつあるものは300基を超える。世界では欧州・米国が撤去を戦略として進め、日本は制度のないまま構造物だけが老いていく。この連載は、3,000基を流域の水循環と安全から問い直す記録だ。",
+      "2018年、熊本県の荒瀬ダムが撤去された。翌年から球磨川の干潟に砂が戻り、川底の生物種が10年前の7倍に増えた。日本には河川法上のダムだけで約1,500基。竣工50年を超えたものが2割を占め、堆砂で洪水調節容量を失いつつあるものは300基を超える。世界では欧州・米国が撤去を戦略として進め、一方で日本はダム再生ビジョンに「撤去」という語すらない。この連載で老朽化・堆砂・既得構造・制度案までをたどり、3,000基を流域の水循環と安全から問い直す記録とした。",
     episodeSlugs: [
       "dam-reassessment",
       "dam-reassessment-2",
@@ -111,6 +111,19 @@ export const TOPICS: TopicEntry[] = [
     publishedAt: "2026-05-05",
     updatedAt: "2026-05-05",
     contentPath: "src/content/topics/dam-reassessment-3.md",
+    relatedGlossarySlugs: ["water-cycle-basic-act", "ecosystem-services"],
+    category: "water",
+    requiresLegalCaveat: true,
+  },
+  {
+    slug: "dam-reassessment-4",
+    title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
+    subtitle: "第4話｜「撤去しない」を支える構造——そして、変えるための仕組み",
+    shortDescription:
+      "「ダム再生ビジョン」に「撤去」の二文字はない。公共事業の経済圏・発電ダムという資産・水利権の既得構造——三つの壁が「撤去しない」を支える。評価制度・積立制度・合意形成プロセスの整備を連載の結論として提案する。",
+    publishedAt: "2026-05-05",
+    updatedAt: "2026-05-05",
+    contentPath: "src/content/topics/dam-reassessment-4.md",
     relatedGlossarySlugs: ["water-cycle-basic-act", "ecosystem-services"],
     category: "water",
     requiresLegalCaveat: true,
