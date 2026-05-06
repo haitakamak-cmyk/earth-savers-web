@@ -41,8 +41,8 @@ const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
       "医療法人 徳治会 MOTOKI DENTAL CLINIC",
       "マイク",
       "株式会社ナファ生活研究所",
-      "三好隆元（ミヨシリュウゲン）,
-      "もりとくらしOKAYAMA"],
+      "三好隆元（ミヨシリュウゲン）",
+      "もりとくらしOKAYAMA",
     ],
   },
 ];
@@ -142,6 +142,7 @@ export default function MembersPage() {
               </div>
             ))}
           </div>
+          <p className="mt-6 text-right text-xs text-text-muted">順不同・敬称略</p>
         </div>
       </section>
     </>
