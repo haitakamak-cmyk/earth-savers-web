@@ -123,7 +123,7 @@ export function Header() {
                 aria-expanded={false}
                 aria-haspopup="menu"
               >
-                アプリ・SNS
+                SNS
                 <ChevronDownIcon className="h-3.5 w-3.5 opacity-70" />
               </button>
               <ul
@@ -256,7 +256,7 @@ export function Header() {
             <details className="group rounded-lg">
               <summary className="cursor-pointer list-none px-4 py-3 text-base font-medium text-text-secondary marker:hidden [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center justify-between">
-                  アプリ・SNS
+                  SNS
                   <ChevronDownIcon className="h-4 w-4 opacity-60 transition-transform group-open:rotate-180" />
                 </span>
               </summary>

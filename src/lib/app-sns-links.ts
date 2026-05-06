@@ -1,6 +1,4 @@
-import { APP_EXTERNAL_LINKS_READY } from "./site";
-
-/** ヘッダー・フッター共通：アプリ紹介（内部）＋ SNS（外部） */
+/** ヘッダー・フッター共通：SNS リンク */
 export type AppSnsNavLink = {
   id: string;
   label: string;
@@ -14,13 +12,6 @@ export type AppSnsNavLink = {
 };
 
 export const appSnsLinks: AppSnsNavLink[] = [
-  {
-    id: "app-intro",
-    label: APP_EXTERNAL_LINKS_READY ? "公式アプリ紹介" : "公式アプリ紹介（準備中）",
-    href: "/app-intro",
-    external: false,
-    disabled: !APP_EXTERNAL_LINKS_READY,
-  },
   {
     id: "sns-instagram",
     label: "Instagram",
