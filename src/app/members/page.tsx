@@ -41,7 +41,8 @@ const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
       "医療法人 徳治会 MOTOKI DENTAL CLINIC",
       "マイク",
       "株式会社ナファ生活研究所",
-      "三好隆元（ミヨシリュウゲン）",
+      "三好隆元（ミヨシリュウゲン）,
+      "もりとくらしOKAYAMA"],
     ],
   },
 ];
@@ -111,7 +112,7 @@ export default function MembersPage() {
           </p>
 
           <div className="mt-10 flex flex-col gap-6">
-            {ambassadorRanks.map((tier) => (
+            {ambassadorRanks.filter((tier) => tier.names.length > 0).map((tier) => (
               <div
                 key={tier.rank}
                 className="rounded-2xl border border-border bg-white p-5 shadow-sm sm:p-6"
