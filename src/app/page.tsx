@@ -459,60 +459,37 @@ export default function Home() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {/* 寄付・サポーター（2枠分） */}
             <Link
               href="/join#donation"
-              className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-wakakusa/30 transition-all"
+              className="group sm:col-span-2 bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-wakakusa/30 transition-all flex flex-col sm:flex-row sm:items-center sm:gap-8"
             >
-              <div className="w-14 h-14 mx-auto bg-wakakusa-light rounded-full flex items-center justify-center group-hover:bg-wakakusa/20 transition-colors">
-                <svg
-                  className="w-7 h-7 text-wakakusa"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
+              <div className="flex flex-col items-center sm:items-start sm:shrink-0">
+                <div className="w-14 h-14 bg-wakakusa-light rounded-full flex items-center justify-center group-hover:bg-wakakusa/20 transition-colors">
+                  <svg
+                    className="w-7 h-7 text-wakakusa"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-text-primary sm:whitespace-nowrap">
+                  寄付・サポーターになる
+                </h3>
               </div>
-              <h3 className="mt-4 text-lg font-bold text-text-primary">
-                寄付する
-              </h3>
-              <p className="mt-2 text-sm text-text-secondary">
-                水源地の取得や里山再生の活動資金にあてられます。
+              <p className="mt-2 sm:mt-0 text-sm text-text-secondary leading-relaxed">
+                一回の寄付も、継続サポートも。水源地の保全・里山再生の活動を、あなたの力で支えてください。
               </p>
             </Link>
 
-            <Link
-              href="/join#donation"
-              className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-aqua/30 transition-all"
-            >
-              <div className="w-14 h-14 mx-auto bg-aqua-light rounded-full flex items-center justify-center group-hover:bg-aqua/20 transition-colors">
-                <svg
-                  className="w-7 h-7 text-aqua"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mt-4 text-lg font-bold text-text-primary">
-                サポーターになる
-              </h3>
-              <p className="mt-2 text-sm text-text-secondary">
-                継続的に活動を応援してくださる会員を募集しています。
-              </p>
-            </Link>
-
+            {/* ボランティア参加（1枠分） */}
             <Link
               href="/join#volunteer"
               className="group bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-border hover:border-accent-gold/30 transition-all"

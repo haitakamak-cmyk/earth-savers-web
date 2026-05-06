@@ -72,11 +72,7 @@ export default function LearnHubPage() {
             学ぶ
           </h1>
           <ResourceLead>
-            「知る」を支えるコンテンツを集約します。
-            <Link href="/policy" className="text-aqua-dark underline underline-offset-2">
-              政策提言
-            </Link>
-            で述べる主張と、この「学ぶ」コーナーで整理する法令・背景知識の役割分担を はっきりさせ、読者が迷わない導線にします。
+            水源地の保全・生態系・法制度など、活動の背景にある知識を深めるコーナーです。解説記事と用語集を組み合わせながら、自分のペースで読み進めてください。
           </ResourceLead>
           <ul className="grid gap-3 sm:grid-cols-2">
             {cards.map((card) => (

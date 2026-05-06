@@ -2,50 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { APP_EXTERNAL_LINKS_READY } from "@/lib/site";
-
 export const metadata: Metadata = {
   title: "支援・参加する",
   description:
     "寄付やサポーター登録、ボランティア活動への参加方法、オンラインショップでの応援など、水と森の未来を守るための参画方法をご案内します。",
 };
 
-const APP_DONATE_URL = "https://app.earth-savers.org/donate";
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
 /** For Good クラウドファンディング（リリース直前にプロジェクト継続中・ID を再確認すること） */
 const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
-function ExternalLinkIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-      />
-    </svg>
-  );
-}
 
 const monthlyPlan = {
-  name: "マンスリーサポーター（アプリ）",
+  name: "マンスリーサポーター",
   amount: "月額 1,000円〜",
   description: "毎月の継続支援で、活動を安定的に支えてくださる方",
-  features: [
-    "公式サイト・アプリでの活動報告閲覧",
-  ],
 };
-
-const oneTimeBankFeatures = [
-  "公式サイト・アプリでの活動報告閲覧",
-];
 
 function ArrowCircleIcon({ className }: { className?: string }) {
   return (
@@ -179,47 +151,12 @@ export default function JoinPage() {
               <p className="mt-3 text-sm text-text-secondary">
                 {monthlyPlan.description}
               </p>
-              <ul className="mt-5 space-y-2.5">
-                {monthlyPlan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-2 text-sm text-text-secondary"
-                  >
-                    <svg
-                      className="h-4 w-4 shrink-0 text-wakakusa"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              {APP_EXTERNAL_LINKS_READY ? (
-                <a
-                  href={APP_DONATE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
-                >
-                  サポーターになる
-                  <ExternalLinkIcon className="h-4 w-4 shrink-0 opacity-90" />
-                </a>
-              ) : (
-                <p
-                  className="mt-6 rounded-full border border-border bg-ivory-warm py-3 text-center text-sm font-semibold text-text-secondary"
-                  role="status"
-                >
-                  アプリからのお申し込みは準備中です
-                </p>
-              )}
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+              >
+                サポーター登録のお問い合わせ
+              </Link>
             </div>
 
             {/* 都度寄付 → 銀行振込・郵便振替 */}
@@ -254,38 +191,10 @@ export default function JoinPage() {
                 </Link>
               </div>
 
-              <ul className="mt-6 space-y-2.5">
-                {oneTimeBankFeatures.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-center gap-2 text-sm text-text-secondary"
-                  >
-                    <svg
-                      className="h-4 w-4 shrink-0 text-wakakusa"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
           <p className="mt-6 text-center text-xs text-text-muted">
-            ※
-            {APP_EXTERNAL_LINKS_READY
-              ? "マンスリーサポーターは公式アプリからお申し込みいただけます。"
-              : "マンスリーサポーターは、公式アプリ公開後にアプリからお申し込みいただける予定です（現在準備中）。"}
-            <br />
             ※ 都度寄付は銀行振込のみです。振込先は
             <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
               銀行振込のご案内ページ
