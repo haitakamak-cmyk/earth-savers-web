@@ -46,7 +46,6 @@ export default function LearnTopicsIndexPage() {
           <ResourceLead>
             当団体が作成する制度解説・政策解説の長尺記事です。環境用語集の用語とあわせて読むと、全体像をつかみやすくなります。
           </ResourceLead>
-          <ContentDisclaimer />
           <ul className="mt-10 space-y-4">
             {hubRows.map((row) =>
               row.kind === "series" ? (
@@ -144,6 +143,9 @@ export default function LearnTopicsIndexPage() {
           <p className="mt-8 text-xs text-text-muted">
             {ORGANIZATION_NAME}
           </p>
+          <div className="mt-8">
+            <ContentDisclaimer />
+          </div>
         </div>
       </div>
     </div>

@@ -46,39 +46,18 @@ const ambassadorRanks: { rank: string; reading: string; names: string[] }[] = [
   },
 ];
 
-function RosterTable({ rows }: { rows: { role: string; name: string }[] }) {
+function CompactRoster({ rows }: { rows: { role: string; name: string }[] }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-border bg-white shadow-sm">
-      <table className="w-full min-w-[280px] text-left text-sm sm:text-base">
-        <thead>
-          <tr className="border-b border-border bg-ivory-warm">
-            <th
-              scope="col"
-              className="whitespace-nowrap px-4 py-3 font-semibold text-text-primary sm:px-6"
-            >
-              役職
-            </th>
-            <th
-              scope="col"
-              className="px-4 py-3 font-semibold text-text-primary sm:px-6"
-            >
-              氏名
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-foreground">
-          {rows.map((r, i) => (
-            <tr key={`${r.role}-${r.name}-${i}`} className="border-b border-border last:border-0">
-              <td className="whitespace-nowrap px-4 py-3 font-medium sm:px-6">
-                {r.role}
-              </td>
-              <td className="px-4 py-3 font-semibold sm:px-6">
-                {r.name}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="grid grid-cols-2 gap-3">
+      {rows.map((r, i) => (
+        <div
+          key={`${r.role}-${r.name}-${i}`}
+          className="rounded-xl border border-border bg-white px-4 py-3 shadow-sm"
+        >
+          <p className="text-xs text-text-muted">{r.role}</p>
+          <p className="mt-0.5 font-semibold text-text-primary">{r.name}</p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -106,33 +85,23 @@ export default function MembersPage() {
         </div>
       </section>
 
-      <section id="board" className="bg-ivory py-16 sm:py-24">
+      <section id="board" className="bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
-            理事会・監事
+            役員・評議員
           </h2>
-          <p className="mt-3 text-center text-sm text-text-secondary">
-            代表理事、理事・事務局長、理事、監事
-          </p>
-          <div className="mt-10">
-            <RosterTable rows={boardRows} />
+          <div className="mt-8">
+            <p className="mb-3 text-sm font-semibold text-text-secondary">理事会・監事</p>
+            <CompactRoster rows={boardRows} />
+          </div>
+          <div className="mt-6">
+            <p className="mb-3 text-sm font-semibold text-text-secondary">評議員会</p>
+            <CompactRoster rows={councilRows} />
           </div>
         </div>
       </section>
 
-      <section id="council" className="border-y border-border bg-ivory-warm py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
-            評議員会
-          </h2>
-          <p className="mt-3 text-center text-sm text-text-secondary">評議員</p>
-          <div className="mt-10">
-            <RosterTable rows={councilRows} />
-          </div>
-        </div>
-      </section>
-
-      <section id="ambassadors" className="bg-ivory py-16 sm:py-24">
+      <section id="ambassadors" className="border-t border-border bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
             アンバサダー
