@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 const APP_DONATE_URL = "https://app.earth-savers.org/donate";
-const APP_CLUBS_URL = "https://app.earth-savers.org/clubs";
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
 /** For Good クラウドファンディング（リリース直前にプロジェクト継続中・ID を再確認すること） */
 const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
@@ -30,25 +29,6 @@ function ExternalLinkIcon({ className }: { className?: string }) {
         strokeLinejoin="round"
         strokeWidth={2}
         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-      />
-    </svg>
-  );
-}
-
-function AppClubIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
       />
     </svg>
   );
@@ -87,9 +67,8 @@ function ArrowCircleIcon({ className }: { className?: string }) {
 
 const volunteerActivities = [
   {
-    title: "里山整備ボランティア",
-    description: "竹林整備や間伐作業など、里山を再生する活動",
-    schedule: "月1〜2回（土日）",
+    title: "里山オーガニック再生",
+    description: "竹林整備・間伐・大地の再生の視点で、水脈と通気を回復しながら里山をよみがえらせる活動",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -99,7 +78,6 @@ const volunteerActivities = [
   {
     title: "530（ゴミゼロ）活動",
     description: "地域のゴミ拾い、池そうじ、お花植えなどの美化活動",
-    schedule: "毎月開催",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -109,7 +87,6 @@ const volunteerActivities = [
   {
     title: "生態系復活プロジェクト",
     description: "水質調査や浄化装置の設置・管理など",
-    schedule: "不定期",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -119,7 +96,6 @@ const volunteerActivities = [
   {
     title: "事務局サポート",
     description: "SNS運営、イベント企画、資料作成など",
-    schedule: "リモート可",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -404,43 +380,23 @@ export default function JoinPage() {
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                   {activity.description}
                 </p>
-                <p className="mt-3 text-xs text-text-muted">
-                  開催頻度: {activity.schedule}
-                </p>
-                {APP_EXTERNAL_LINKS_READY ? (
-                  <a
-                    href={APP_CLUBS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-2.5 text-sm font-semibold text-white transition-colors hover:bg-wakakusa-dark"
-                  >
-                    <AppClubIcon className="h-5 w-5 shrink-0" />
-                    アプリで参加する
-                  </a>
-                ) : (
-                  <p
-                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-ivory-warm py-2.5 text-sm font-semibold text-text-secondary ring-1 ring-border"
-                    role="status"
-                  >
-                    <AppClubIcon className="h-5 w-5 shrink-0 opacity-70" />
-                    アプリで参加する（準備中）
-                  </p>
-                )}
+                <Link
+                  href="/contact"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-wakakusa/40 bg-white py-2.5 text-sm font-semibold text-wakakusa-dark transition-colors hover:bg-wakakusa-light/40"
+                >
+                  参加・主催について問い合わせる
+                </Link>
               </div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
             <p className="text-sm text-text-muted">
-              {APP_EXTERNAL_LINKS_READY
-                ? "公式アプリの「部活動」から参加したい部を選び、お気軽にご参加ください。"
-                : "部活動への参加は、公式アプリ公開後にアプリからお申し込みいただける予定です（現在準備中）。"}
-              <br />
-              ご質問は{" "}
+              参加方法・開催スケジュール・主催のご相談は、
               <Link href="/contact" className="text-wakakusa underline">
-                お問い合わせ
-              </Link>{" "}
-              からどうぞ。
+                お問い合わせフォーム
+              </Link>
+              からお気軽にご連絡ください。
             </p>
           </div>
         </div>
