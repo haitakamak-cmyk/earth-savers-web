@@ -22,7 +22,7 @@
 
 ## 2. 狙っているのは「小さな堰」
 
-542基の内訳を見る。カルバート（暗渠）が45パーセント、堰が43パーセント。高さ5メートルを超えるような構造物は全体の1パーセントしかない。65パーセントは高さ2メートル未満だ[^2]。
+542基の内訳を見る。カルバート（暗渠）が45パーセント、堰が43パーセント。高さ5メートルを超えるような構造物は全体の1パーセントしかない。65パーセントは高さ2メートル未満だ[^2](同上。撤去対象の構造的内訳・高さ別統計。)。
 
 巨大ダムをひとつ撤去するには莫大な資金と何年もの政治的合意が要る。一方、水源地帯を分断している小さなカルバートや老朽堰を潰す方が、低コストで広い範囲の河川を再接続できる。2024年だけで再接続された河川延長は2,900キロメートル以上[^1]。東京から鹿児島まで往復してなお余る距離だ。
 
@@ -90,25 +90,23 @@ SXSWでドキュメンタリー観客賞を獲り、Netflixで配信され、結
 
 3,000基の一つひとつについて「いま必要か」「いつまで持つか」「壊す場合にいくらかかるか」を問い直す。その問いを立てることを許す仕組みを作る。欧米から持ち込むべきは結論ではない。判断を可能にする制度の方だ。
 
-[^1]: Dam Removal Europe, *Dam Removal Progress 2024* (Mouchlianitis, 2025). https://damremoval.eu/wp-content/uploads/2025/05/Mouchlianitis-F.A.-2025.-Dam-Removal-Progress-2024.pdf
+[^1]: Dam Removal Europe, *Dam Removal Progress 2024* (Mouchlianitis, 2025). [https://damremoval.eu/wp-content/uploads/2025/05/Mouchlianitis-F.A.-2025.-Dam-Removal-Progress-2024.pdf](https://damremoval.eu/wp-content/uploads/2025/05/Mouchlianitis-F.A.-2025.-Dam-Removal-Progress-2024.pdf)
 
-[^2]: 同上。撤去対象の構造的内訳・高さ別統計。
+[^3]: Dam Removal Europe, *Progress Report 2023*. [https://damremoval.eu/wp-content/uploads/2024/04/Web-version_DRE-Report-2023.pdf](https://damremoval.eu/wp-content/uploads/2024/04/Web-version_DRE-Report-2023.pdf)
 
-[^3]: Dam Removal Europe, *Progress Report 2023*. https://damremoval.eu/wp-content/uploads/2024/04/Web-version_DRE-Report-2023.pdf
+[^4]: NOAA Fisheries, "Dam Removals on the Elwha River". [https://www.fisheries.noaa.gov/west-coast/science-data/dam-removals-elwha-river](https://www.fisheries.noaa.gov/west-coast/science-data/dam-removals-elwha-river)
 
-[^4]: NOAA Fisheries, "Dam Removals on the Elwha River". https://www.fisheries.noaa.gov/west-coast/science-data/dam-removals-elwha-river
+[^5]: Washington Conservation Action, "Celebrating 10 years of dam removal…on the Lower Elwha". [https://waconservationaction.org/celebrating-10-years-of-dam-removal-and-community-resiliency-on-the-lower-elwha/](https://waconservationaction.org/celebrating-10-years-of-dam-removal-and-community-resiliency-on-the-lower-elwha/)
 
-[^5]: Washington Conservation Action, "Celebrating 10 years of dam removal…on the Lower Elwha". https://waconservationaction.org/celebrating-10-years-of-dam-removal-and-community-resiliency-on-the-lower-elwha/
+[^6]: U.S. GAO, RCED-91-104: *Hydroelectric Dams—Costs and Alternatives for Restoring Fisheries in the Elwha River* (1991). [https://www.gao.gov/assets/rced-91-104.pdf](https://www.gao.gov/assets/rced-91-104.pdf)
 
-[^6]: U.S. GAO, RCED-91-104: *Hydroelectric Dams—Costs and Alternatives for Restoring Fisheries in the Elwha River* (1991). https://www.gao.gov/assets/rced-91-104.pdf
+[^7]: Wikipedia, "Restoration of the Elwha River". [https://en.wikipedia.org/wiki/Restoration_of_the_Elwha_River](https://en.wikipedia.org/wiki/Restoration_of_the_Elwha_River)
 
-[^7]: Wikipedia, "Restoration of the Elwha River". https://en.wikipedia.org/wiki/Restoration_of_the_Elwha_River
+[^8]: Wikipedia, "DamNation". [https://en.wikipedia.org/wiki/DamNation](https://en.wikipedia.org/wiki/DamNation)
 
-[^8]: Wikipedia, "DamNation". https://en.wikipedia.org/wiki/DamNation
+[^9]: Patagonia Works, "DamNation now on Netflix" (2014). [https://www.patagoniaworks.com/press/2014/11/11/damnation-now-on-netflix](https://www.patagoniaworks.com/press/2014/11/11/damnation-now-on-netflix)
 
-[^9]: Patagonia Works, "DamNation now on Netflix" (2014). https://www.patagoniaworks.com/press/2014/11/11/damnation-now-on-netflix
-
-[^10]: 国土交通省 水管理・国土保全局「ダム再生」. https://www.mlit.go.jp/river/dam/
+[^10]: 国土交通省 水管理・国土保全局「ダム再生」. [https://www.mlit.go.jp/river/dam/](https://www.mlit.go.jp/river/dam/)
 
 ---
 

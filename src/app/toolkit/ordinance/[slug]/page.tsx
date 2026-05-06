@@ -78,7 +78,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
         items={[
           { name: "HOME", path: "/" },
           { name: "ひな形・資料", path: "/toolkit" },
-          { name: "条例ひな型", path: "/toolkit/ordinance" },
+          { name: "補助資料一覧", path: "/toolkit/supplements" },
           { name: entry.title, path: pagePath },
         ]}
       />
@@ -125,7 +125,7 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
             requiresLegalCaveat={entry.requiresLegalCaveat}
             ordinanceDraftFinalizeNote
           />
-          <ToolkitFooterBackNav href="/toolkit/ordinance" label="← 条例ひな型へ戻る" />
+          <ToolkitFooterBackNav href="/toolkit/supplements" label="← 補助資料一覧へ戻る" />
         </div>
       </div>
     </div>
