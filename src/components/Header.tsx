@@ -23,6 +23,7 @@ const navItemsAfterResource: { label: string; href: string }[] = [];
 
 /** お問い合わせはヘッダーからは外し、フッター等からご案内（メニュー圧迫と「下げる」要望のため） */
 const navItemsAfterAppSns = [
+  { label: "お知らせ", href: "/news" },
   { label: "買って応援", href: "/shop" },
   { label: "メディア・実績", href: "/media" },
 ];

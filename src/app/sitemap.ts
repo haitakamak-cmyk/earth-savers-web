@@ -18,16 +18,17 @@ import { POLICY_KIND_PATH } from "./policy/policy-kind-path";
 const CORE_PATHS = [
   "/",
   "/about",
+  "/about/disclosure",
   "/members",
   "/activities",
   "/join",
   "/join/bank-donation",
+  "/news",
   "/shop",
   "/media",
   "/contact",
   "/privacy",
   "/terms",
-  "/app-intro",
 ] as const;
 
 const RESOURCE_STATIC = [

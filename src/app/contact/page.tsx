@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 
+import { ORGANIZATION_NAME_HEADER_LINE } from "@/lib/site";
+
 import { ContactFaqSection } from "./ContactFaqSection";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    "財団法人地球防衛群への一般お問い合わせ、寄付・取材のご相談はフォームから。設立初期であり公益認定を目指して活動しています。メガソーラー・乱開発の相談窓口（駆け込み寺）は準備中。よくある質問（FAQ）もご覧ください。",
+    `${ORGANIZATION_NAME_HEADER_LINE}への一般お問い合わせ、寄付・取材のご相談はフォームから。設立初期であり公益認定を目指して活動しています。メガソーラー・乱開発の相談窓口（駆け込み寺）は準備中。よくある質問（FAQ）もご覧ください。`,
 };
 
 const BANK_DONATION_MESSAGE = `都度寄付（銀行振込・郵便振替）です。受領証明書の発行や、振込先を記載したメールでのご案内を希望します。
