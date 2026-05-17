@@ -9,7 +9,7 @@ import { ContactForm } from "./ContactForm";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    `${ORGANIZATION_NAME_HEADER_LINE}への一般お問い合わせ、寄付・取材のご相談はフォームから。環境・再エネ開発に関するご相談は「駆け込み寺」ページおよびフォームの種別「環境相談（駆け込み寺）」からも受け付けています。よくある質問（FAQ）もご覧ください。`,
+    `${ORGANIZATION_NAME_HEADER_LINE}への一般お問い合わせ、寄付・取材のご相談はフォームから。環境・再エネ開発に関するご相談は「環境相談」ページおよびフォームの種別「環境相談」からも受け付けています。よくある質問（FAQ）もご覧ください。`,
 };
 
 const BANK_DONATION_MESSAGE = `都度寄付（銀行振込・郵便振替）です。受領証明書の発行や、振込先を記載したメールでのご案内を希望します。
@@ -81,7 +81,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               />
             </div>
 
-            {/* Help Desk — 駆け込み寺 */}
+            {/* Help Desk — 環境相談 */}
             <div
               id="helpdesk"
               className="rounded-2xl border-2 border-aqua/40 bg-white p-6 shadow-sm sm:p-8"
@@ -104,7 +104,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-text-primary">
-                    駆け込み寺（環境トラブル相談）
+                    環境相談（環境トラブル）
                   </h2>
                   <p className="text-xs font-medium text-aqua">
                     メガソーラー・乱開発でお困りの方へ
@@ -119,24 +119,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     href="/consultation"
                     className="mx-1 font-semibold text-aqua underline underline-offset-2 hover:text-aqua-dark"
                   >
-                    駆け込み寺（環境相談窓口）
+                    環境相談窓口
                   </Link>
                   のページをご覧ください。
                 </p>
                 <p>
                   ご相談は左のフォームからお送りいただけます。お問い合わせ種別で「
-                  <strong className="text-text-primary">環境相談（駆け込み寺）</strong>
+                  <strong className="text-text-primary">環境相談</strong>
                   」を選択してください。
-                </p>
-                <p className="text-xs text-text-muted">
-                  お急ぎの場合は{" "}
-                  <a
-                    href="mailto:info@earth-savers.org"
-                    className="font-medium text-aqua underline underline-offset-2"
-                  >
-                    info@earth-savers.org
-                  </a>{" "}
-                  までメールでご連絡ください。
                 </p>
               </div>
             </div>

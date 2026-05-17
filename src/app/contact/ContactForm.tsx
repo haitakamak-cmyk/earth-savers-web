@@ -92,7 +92,7 @@ export function ContactForm({
         <p className="font-semibold text-text-primary">
           {submitIntent === "bank-donation"
             ? "お申込みを受け付けました。"
-            : "お問い合わせを受け付けました。担当者よりご連絡いたします。"}
+            : "お問い合わせを受け付けました。担当者より内容を確認のうえご連絡いたします。"}
         </p>
         <p className="mt-3 text-sm text-text-secondary leading-relaxed">
           {submitIntent === "bank-donation"
@@ -178,7 +178,7 @@ export function ContactForm({
           <option value="donation">寄付・支援について</option>
           <option value="volunteer">ボランティアについて</option>
           <option value="media">取材・メディアについて</option>
-          <option value="environment-consultation">環境相談（駆け込み寺）</option>
+          <option value="environment-consultation">環境相談</option>
           <option value="other">その他</option>
         </select>
       </div>

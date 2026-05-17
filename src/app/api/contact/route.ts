@@ -23,7 +23,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   donation: "寄付・支援について",
   volunteer: "ボランティアについて",
   media: "取材・メディアについて",
-  "environment-consultation": "環境相談（駆け込み寺）",
+  "environment-consultation": "環境相談",
   other: "その他",
 };
 

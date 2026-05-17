@@ -16,7 +16,7 @@ const FAQ_ITEMS: FaqItem[] = [
     question:
       "メガソーラーや山林の乱開発で困っています。相談できますか？",
     answerForSchema:
-      "はい。環境相談窓口「駆け込み寺」のページで概要を確認し、お問い合わせフォームの種別から「環境相談（駆け込み寺）」を選んで送信できます。弁護士との個別対応が必要な場合はご案内します。お急ぎの場合は info@earth-savers.org までメールでご連絡ください。",
+      "はい。環境相談窓口のページで概要を確認し、お問い合わせフォームの種別から「環境相談」を選んで送信できます。内容を確認のうえご連絡します。弁護士との個別対応が必要な場合はご案内します。",
     body: (
       <>
         はい。
@@ -24,18 +24,11 @@ const FAQ_ITEMS: FaqItem[] = [
           href="/consultation"
           className="mx-1 font-semibold text-aqua underline underline-offset-2"
         >
-          駆け込み寺（環境相談窓口）
+          環境相談窓口
         </Link>
         のページで流れと留意事項をご確認のうえ、お問い合わせフォームの種別から「
-        <strong>環境相談（駆け込み寺）</strong>
-        」を選んでご送信ください。お急ぎの場合は{" "}
-        <a
-          href="mailto:info@earth-savers.org"
-          className="font-semibold text-aqua underline"
-        >
-          info@earth-savers.org
-        </a>{" "}
-        までメールでご連絡ください。
+        <strong>環境相談</strong>
+        」を選んでご送信ください。ご連絡は内容を確認のうえ順次いたします。
       </>
     ),
   },

@@ -4,29 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { appSnsLinks } from "@/lib/app-sns-links";
 import { RESOURCE_NAV_LINKS } from "@/lib/resource-nav";
 import { ORGANIZATION_NAME_HEADER_LINE } from "@/lib/site";
 
-const navItemsBeforeResource = [
-  { label: "HOME", href: "/" },
+const navItemsBeforeResource = [{ label: "HOME", href: "/" }];
+
+/** デスクトップ「財団について」／モバイル「財団について」ドロップダウン共通 */
+const ABOUT_NAV_LINKS = [
   { label: "財団について", href: "/about" },
   { label: "メンバー", href: "/members" },
   { label: "活動内容", href: "/activities" },
-];
+  { label: "メディア・実績", href: "/media" },
+] as const;
 
-/**
- * 「支援・参加する」テキストリンクは削除済み（緑CTA「支援する」と同じ `/join` で完全重複だったため）。
- * 将来また間に項目を入れたいときはここに足す。
- */
 const navItemsAfterResource: { label: string; href: string }[] = [];
 
-/** お問い合わせはヘッダーからは外し、フッター等からご案内（メニュー圧迫と「下げる」要望のため） */
 const navItemsAfterAppSns = [
-  { label: "お知らせ", href: "/news" },
-  { label: "駆け込み寺", href: "/consultation" },
+  { label: "環境相談", href: "/consultation" },
   { label: "買って応援", href: "/shop" },
-  { label: "メディア・実績", href: "/media" },
 ];
 
 function ChevronDownIcon({ className }: { className?: string }) {
@@ -59,7 +54,6 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-ivory/95 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20 sm:gap-4 sm:py-2.5">
-          {/* Logo + 法人名（ヘッダーは「一般」を省いた表記。正式名は site.ts の ORGANIZATION_NAME） */}
           <Link
             href="/"
             className="flex shrink-0 flex-col items-start gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wakakusa/50 focus-visible:ring-offset-2"
@@ -77,13 +71,39 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden items-center gap-0.5 md:flex lg:gap-1">
             {navItemsBeforeResource.map((item) => (
               <Link key={item.href} href={item.href} className={navLinkClassDesktop()}>
                 {item.label}
               </Link>
             ))}
+
+            <div className="group relative">
+              <button
+                type="button"
+                className={`${navLinkClassDesktop()} inline-flex items-center gap-0.5`}
+                aria-haspopup="menu"
+              >
+                財団について
+                <ChevronDownIcon className="h-3.5 w-3.5 opacity-70" />
+              </button>
+              <ul
+                role="menu"
+                className="invisible absolute right-0 top-full z-50 mt-1 min-w-[13rem] translate-y-1 rounded-xl border border-border bg-white py-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+              >
+                {ABOUT_NAV_LINKS.map((link) => (
+                  <li key={link.href} role="none">
+                    <Link
+                      role="menuitem"
+                      href={link.href}
+                      className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className="group relative">
               <button
@@ -118,54 +138,6 @@ export function Header() {
               </Link>
             ))}
 
-            <div className="group relative">
-              <button
-                type="button"
-                className={`${navLinkClassDesktop()} inline-flex items-center gap-0.5`}
-                aria-expanded={false}
-                aria-haspopup="menu"
-              >
-                SNS
-                <ChevronDownIcon className="h-3.5 w-3.5 opacity-70" />
-              </button>
-              <ul
-                role="menu"
-                className="invisible absolute right-0 top-full z-50 mt-1 min-w-[13rem] translate-y-1 rounded-xl border border-border bg-white py-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
-              >
-                {appSnsLinks.map((link) => (
-                  <li key={link.id} role="none">
-                    {link.disabled ? (
-                      <span
-                        role="menuitem"
-                        aria-disabled="true"
-                        className="block cursor-default px-4 py-2.5 text-sm text-text-muted"
-                      >
-                        {link.label}
-                      </span>
-                    ) : link.external ? (
-                      <a
-                        role="menuitem"
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        role="menuitem"
-                        href={link.href}
-                        className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {navItemsAfterAppSns.map((item) => (
               <Link key={item.href} href={item.href} className={navLinkClassDesktop()}>
                 {item.label}
@@ -179,7 +151,6 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -208,7 +179,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Nav */}
       {isOpen && (
         <div className="border-t border-border bg-ivory md:hidden">
           <nav className="space-y-1 px-4 py-3">
@@ -222,6 +192,27 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+
+            <details className="group rounded-lg">
+              <summary className="cursor-pointer list-none px-4 py-3 text-base font-medium text-text-secondary marker:hidden [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center justify-between">
+                  財団について
+                  <ChevronDownIcon className="h-4 w-4 opacity-60 transition-transform group-open:rotate-180" />
+                </span>
+              </summary>
+              <div className="ml-2 mt-1 space-y-0.5 border-l-2 border-wakakusa/25 pl-3">
+                {ABOUT_NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </details>
 
             <details className="group rounded-lg">
               <summary className="cursor-pointer list-none px-4 py-3 text-base font-medium text-text-secondary marker:hidden [&::-webkit-details-marker]:hidden">
@@ -254,47 +245,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-
-            <details className="group rounded-lg">
-              <summary className="cursor-pointer list-none px-4 py-3 text-base font-medium text-text-secondary marker:hidden [&::-webkit-details-marker]:hidden">
-                <span className="flex items-center justify-between">
-                  SNS
-                  <ChevronDownIcon className="h-4 w-4 opacity-60 transition-transform group-open:rotate-180" />
-                </span>
-              </summary>
-              <div className="ml-2 mt-1 space-y-0.5 border-l-2 border-wakakusa/25 pl-3">
-                {appSnsLinks.map((link) =>
-                  link.disabled ? (
-                    <span
-                      key={link.id}
-                      className="block cursor-default rounded-lg px-3 py-2.5 text-sm text-text-muted"
-                    >
-                      {link.label}
-                    </span>
-                  ) : link.external ? (
-                    <a
-                      key={link.id}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setIsOpen(false)}
-                      className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.id}
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"
-                    >
-                      {link.label}
-                    </Link>
-                  ),
-                )}
-              </div>
-            </details>
 
             {navItemsAfterAppSns.map((item) => (
               <Link

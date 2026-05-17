@@ -529,7 +529,7 @@ export default function Home() {
           <p className="mt-3 text-text-secondary">
             メガソーラー計画や乱開発でお悩みの地域の方へ。
             <br className="hidden sm:block" />
-            私たちの「駆け込み寺」にご相談ください。
+            私たちの「環境相談」窓口にご相談ください。
           </p>
           <Link
             href="/contact#helpdesk"

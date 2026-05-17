@@ -46,7 +46,7 @@ const footerLinks = [
       })),
       { label: "買って応援", href: "/shop" },
       { label: "メディア・実績", href: "/media" },
-      { label: "駆け込み寺（環境相談）", href: "/consultation" },
+      { label: "環境相談", href: "/consultation" },
       { label: "お知らせ", href: "/news" },
       { label: "お問い合わせ", href: "/contact" },
     ],

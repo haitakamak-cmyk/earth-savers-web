@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "駆け込み寺（環境相談窓口）",
+  title: "環境相談窓口",
   description:
     "メガソーラーや風力発電など再エネ開発から地域・自然を守りたい方へ。" +
     `${ORGANIZATION_NAME}が弁護士と連携し、条例づくり・開発阻止の相談に応じます。`,
@@ -18,35 +18,55 @@ const concerns = [
   "条例で開発を止められるか法的に確認したい",
 ];
 
-const steps = [
+type Step = {
+  step: string;
+  title: string;
+  body: string;
+  link?: { label: string; href: string };
+};
+
+const steps: Step[] = [
   {
     step: "01",
-    title: "フォームから相談内容を送る",
-    body: "お名前・地域・開発計画の概要を記入してください。個人情報は厳重に管理します。",
+    title: "事例を読んで学ぶ",
+    body: "まずは全国の事例を読み、あなたの地域と似た状況がないか確認してください。条例運用・行政手続き・住民の動きなど、具体的な対応が記録されています。",
+    link: {
+      label: "事例集を読む →",
+      href: "/learn/topics/solar-wind-opposition-cases",
+    },
   },
   {
     step: "02",
-    title: "担当者から連絡",
-    body: "内容を確認のうえ、数日以内にメールでご連絡します。案件によっては連携弁護士を交えた相談に進みます。",
+    title: "近隣の仲間を集めて相談する",
+    body: "一人で動くより、近隣の住民と情報を共有し、状況を整理することが第一歩です。自治体への情報公開請求や議会への請願は、複数人で取り組むと効果的です。",
   },
   {
     step: "03",
-    title: "一緒に方針を考える",
-    body: "条例制定・パブコメ・住民説明会・法的手段など、地域の状況に合った選択肢を整理します。",
+    title: "事例をもとに対応を検討する",
+    body: "事例集の計画段階別対応表や、活動ツールキットを参考に、今の段階で打てる手を検討してください。",
+    link: { label: "活動ツールキット →", href: "/toolkit" },
+  },
+  {
+    step: "04",
+    title: "それでもわからないことがあれば相談する",
+    body: "自分たちで検討した上で、方法が見つからない・法的な判断が必要な場合は、環境相談窓口にお問い合わせください。連携する弁護士・専門家とともに対応を検討します。",
+    link: {
+      label: "相談フォームへ →",
+      href: "/contact?category=environment-consultation",
+    },
   },
 ];
 
 export default function ConsultationPage() {
   return (
     <>
-      {/* Hero */}
       <section className="relative overflow-hidden bg-wakakusa-dark py-14 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="mb-3 text-sm font-semibold tracking-widest text-wakakusa-light/80 uppercase">
             環境相談窓口
           </p>
           <h1 className="font-serif text-3xl font-bold text-white drop-shadow-sm sm:text-4xl">
-            駆け込み寺
+            環境相談窓口
           </h1>
           <p className="mt-2 text-sm font-medium tracking-wide text-white/75">
             Environmental consultation desk
@@ -58,7 +78,6 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* こんな悩みありませんか */}
       <section className="bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
@@ -79,16 +98,13 @@ export default function ConsultationPage() {
                     />
                   </svg>
                 </span>
-                <span className="text-sm leading-relaxed text-text-secondary sm:text-base">
-                  {c}
-                </span>
+                <span className="text-sm leading-relaxed text-text-secondary sm:text-base">{c}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* 実績・事例へのリンク */}
       <section className="border-y border-wakakusa/15 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -117,7 +133,6 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* 相談の流れ */}
       <section className="bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
@@ -129,9 +144,17 @@ export default function ConsultationPage() {
                 <span className="font-mono text-2xl font-bold text-wakakusa/30 leading-none">
                   {s.step}
                 </span>
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-semibold text-text-primary">{s.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-text-secondary">{s.body}</p>
+                  {s.link ? (
+                    <Link
+                      href={s.link.href}
+                      className="mt-2 inline-block text-sm font-semibold text-wakakusa hover:text-wakakusa-dark"
+                    >
+                      {s.link.label}
+                    </Link>
+                  ) : null}
                 </div>
               </div>
             ))}
@@ -139,7 +162,6 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* 注意書き */}
       <section className="bg-ivory pb-2">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="rounded-xl border border-border bg-white p-4 text-xs leading-relaxed text-text-muted">
@@ -153,15 +175,13 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
-            まずは相談してみてください
+            自分たちで調べて、動いて、それでも困ったら
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-            一人で悩まずに、現状を教えてください。<br className="hidden sm:block" />
-            どんな小さな疑問でも構いません。
+            事例を読み、仲間と相談し、できることを試した上で、それでも方法が見つからないときはご連絡ください。
           </p>
           <Link
             href="/contact?category=environment-consultation"
@@ -173,7 +193,7 @@ export default function ConsultationPage() {
             </svg>
           </Link>
           <p className="mt-4 text-xs text-text-muted">
-            お問い合わせ種別で「環境相談（駆け込み寺）」を選択してください。
+            お問い合わせ種別で「環境相談」を選択してください。
           </p>
         </div>
       </section>
