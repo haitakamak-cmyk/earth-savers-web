@@ -178,6 +178,7 @@ export function ContactForm({
           <option value="donation">寄付・支援について</option>
           <option value="volunteer">ボランティアについて</option>
           <option value="media">取材・メディアについて</option>
+          <option value="environment-consultation">環境相談（駆け込み寺）</option>
           <option value="other">その他</option>
         </select>
       </div>

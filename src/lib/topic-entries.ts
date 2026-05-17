@@ -55,6 +55,24 @@ export type TopicSeriesHubCard = TopicSeriesListItem & {
 
 export const TOPICS: TopicEntry[] = [
   {
+    slug: "solar-wind-opposition-cases",
+    title: "再生可能エネルギー開発計画と地域対応の事例整理",
+    subtitle: "主要事案にみる制度運用と地域調整の実際",
+    shortDescription:
+      "大規模太陽光・風力発電の開発計画をめぐり、各地で論点となった条例運用、行政付随許可、協議体制、訴訟・告発の経緯を公開資料に基づいて整理する。",
+    publishedAt: "2026-05-16",
+    updatedAt: "2026-05-16",
+    contentPath: "src/content/topics/solar-wind-opposition-cases.md",
+    relatedGlossarySlugs: [
+      "nature-coexistence-site",
+      "oecm",
+      "fit-fip",
+      "biodiversity-promotion-act",
+    ],
+    category: "energy",
+    requiresLegalCaveat: true,
+  },
+  {
     slug: "oecm-30by30",
     title: "OECMと30by30——日本の生物多様性戦略と民間主体の役割",
     subtitle: "保護地域だけでは守れない、これからの自然保全のかたち",

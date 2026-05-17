@@ -24,6 +24,7 @@ const CORE_PATHS = [
   "/join",
   "/join/bank-donation",
   "/news",
+  "/consultation",
   "/shop",
   "/media",
   "/contact",
