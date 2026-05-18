@@ -61,7 +61,7 @@ export const TOPICS: TopicEntry[] = [
     shortDescription:
       "大規模太陽光・風力発電の開発計画をめぐり、各地で論点となった条例運用、行政付随許可、協議体制、訴訟・告発の経緯を公開資料に基づいて整理する。",
     publishedAt: "2026-05-16",
-    updatedAt: "2026-05-16",
+    updatedAt: "2026-05-19",
     contentPath: "src/content/topics/solar-wind-opposition-cases.md",
     relatedGlossarySlugs: [
       "nature-coexistence-site",
@@ -70,6 +70,20 @@ export const TOPICS: TopicEntry[] = [
       "biodiversity-promotion-act",
     ],
     category: "energy",
+    requiresLegalCaveat: true,
+  },
+  {
+    slug: "water-source-land-acquisition",
+    title: "外資等による水源地周辺の土地取得と制度的対応の整理",
+    shortDescription:
+      "外国法人等による森林・水源地周辺の土地取得をめぐる林野庁調査の経年データと、森林法・重要土地等調査法・水循環基本法・自治体条例による制度的対応の現状を、公開資料に基づいて整理する。",
+    publishedAt: "2026-05-19",
+    updatedAt: "2026-05-19",
+    contentPath: "src/content/topics/water-source-land-acquisition.md",
+    relatedGlossarySlugs: [
+      "water-cycle-basic-act",
+    ],
+    category: "water",
     requiresLegalCaveat: true,
   },
   {
