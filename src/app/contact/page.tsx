@@ -128,6 +128,30 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   <strong className="text-text-primary">環境相談</strong>
                   」を選択してください。
                 </p>
+
+                {/* よくあるご相談 */}
+                <div className="mt-2 rounded-lg bg-aqua-light/30 p-4">
+                  <p className="mb-2 text-xs font-semibold text-aqua">
+                    よくあるご相談
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-text-muted">
+                    <li>・ 開発計画の情報を入手したが、何から手をつけるべきか</li>
+                    <li>・ 条例の有無や行政への働きかけ方がわからない</li>
+                    <li>・ 住民同士で勉強会を始めたが、次のステップが見えない</li>
+                    <li>・ 許可が出てしまった後にできることはあるか</li>
+                  </ul>
+                </div>
+
+                {/* 事例集への誘導 */}
+                <p className="text-xs text-text-muted">
+                  過去の事例を先にご覧いただくと、相談時の論点整理がスムーズです。
+                </p>
+                <Link
+                  href="/learn/topics/solar-wind-opposition-cases"
+                  className="inline-block text-sm font-semibold text-aqua hover:text-aqua-dark"
+                >
+                  事例集を読む →
+                </Link>
               </div>
             </div>
           </div>
