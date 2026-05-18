@@ -166,7 +166,7 @@ export default function ConsultationPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="rounded-xl border border-border bg-white p-4 text-xs leading-relaxed text-text-muted">
             <p>
-              ※ 本相談窓口は法律相談ではありません。弁護士との個別相談が必要と判断した場合は、連携弁護士をご紹介します。
+              ※ 本相談窓口は法律相談ではありません。ご相談内容は担当者が確認し、法的対応が有効と判断した案件については、連携弁護士のご紹介を検討します。
             </p>
             <p className="mt-1">
               ※ 相談内容は、{ORGANIZATION_NAME}の活動改善のために匿名・統計的に利用することがあります。
