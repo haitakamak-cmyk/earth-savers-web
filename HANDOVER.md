@@ -5,6 +5,8 @@
 **リポジトリ内パス**: `Web/earth-savers-web/`  
 **メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
 
+> **過去の指示書・v0ドラフト**はリポジトリ外の `/Volumes/HSSD/backup/_archive/web3-lab/Web/` に移動済み（一覧は [ARCHIVE.md](./ARCHIVE.md)）。
+
 **直近更新**: 2026-05-06 — **ナビゲーション（「戻る」）統一**  
 - **ルール確定**：資料室の詳細ページ（`/policy/[slug]`・`/learn/topics/[slug]`・`/learn/glossary/[slug]` など）は **ページ末尾フッターに `ToolkitFooterBackNav` を1個だけ**置く。文言は `← [上位ページ名]へ戻る` で統一。スタイルは `border-border / bg-white / text-aqua-dark`（コンポーネントが担う）。  
 - **今回の修正**：① `/learn/topics/[slug]` — テキストリンク → ボタン形式、`← 解説記事一覧へ戻る` に変更。② `/learn/glossary/[slug]` — `← 一覧に戻る`（wakakusa色ボタン）→ `ToolkitFooterBackNav`（`← 環境用語集へ戻る`）に置換。③ `/policy/[slug]` — 戻るリンクが丸ごとなかったので追加（カテゴリページへ、3パターン全て）。  

@@ -18,7 +18,7 @@ export type NewsEntry = {
 export const newsEntries: NewsEntry[] = [
   {
     id: "founding-crowdfunding-2025",
-    date: "2025-10-01", // 設立日が確定したら差し替え
+    date: "2026-4-23", // 設立日が確定したら差し替え
     category: "重要",
     title: "一般財団法人「地球防衛群」設立およびクラウドファンディング開始のお知らせ",
     href: "https://for-good.net/project/1003493",
