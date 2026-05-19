@@ -6,10 +6,10 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          // {
-          //   key: "Content-Security-Policy",
-          //   value: "...",
-          // },
+          {
+            key: "Content-Security-Policy",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; font-src 'self' data:; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';",
+          },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",

@@ -64,6 +64,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${zenMaru.variable} ${notoSerif.variable}`}>
+      <head>
+        {/* 過去のService Workerが残っている場合に自動解除する */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(reg){reg.unregister()})})}`,
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <OrganizationJsonLd />
         <Header />
