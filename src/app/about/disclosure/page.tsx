@@ -34,12 +34,12 @@ const docSections: DocSection[] = [
     title: "事業計画・報告",
     items: [
       {
-        label: "設立初年度 事業計画書（PDF）",
-        href: "/documents/jigyokeikaku-2025.pdf",
+        label: "設立初年度 事業計画書",
+        note: "現在作成中です。完成次第公開いたします。",
       },
       {
-        label: "設立初年度 収支予算書（PDF）",
-        href: "/documents/yosansho-2025.pdf",
+        label: "設立初年度 収支予算書",
+        note: "現在作成中です。完成次第公開いたします。",
       },
       {
         label: "第1期 事業報告書",
