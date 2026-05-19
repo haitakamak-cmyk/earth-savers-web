@@ -13,6 +13,7 @@ const navItemsBeforeResource = [{ label: "HOME", href: "/" }];
 const ABOUT_NAV_LINKS = [
   { label: "財団について", href: "/about" },
   { label: "メンバー", href: "/members" },
+  { label: "アンバサダー", href: "/members#ambassadors" },
   { label: "活動内容", href: "/activities" },
   { label: "メディア・実績", href: "/media" },
 ] as const;
