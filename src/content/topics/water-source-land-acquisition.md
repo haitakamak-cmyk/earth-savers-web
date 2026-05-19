@@ -74,6 +74,6 @@
 
 [^8]: 北海道水資源の保全に関する条例（平成24年北海道条例第40号、平成24年4月1日施行。土地取引の事前届出制は同年10月運用開始）。北海道庁「水資源保全地域一覧」https://www.pref.hokkaido.lg.jp/ss/stt/mizusigen/mizusigen_hozentiiki.html
 
-[^9]: 北海道庁「条例に係る施行状況の検討結果について」（令和4年度点検）https://www.pref.hokkaido.lg.jp/ss/stt/mizusigen/sekoujyoukyou.html／日本テレビ系（STV）報道「水資源条例の運用改正 悪質な売主や事業者名の公表が迅速化 北海道」。
+[^9]: 北海道庁「条例に係る施行状況の検討結果について」（令和4年度点検）[https://www.pref.hokkaido.lg.jp/ss/stt/mizusigen/sekoujyoukyou.html](https://www.pref.hokkaido.lg.jp/ss/stt/mizusigen/sekoujyoukyou.html) ／日本テレビ系（STV）報道「水資源条例の運用改正 悪質な売主や事業者名の公表が迅速化 北海道」。
 
-[^10]: 地方自治研究機構「水源地域保全条例」整理ページ（条例の動き）https://www.rilg.or.jp/htdocs/img/reiki/042_conservation_of_water_source_area.htm／内閣府地方分権改革推進室「事例21・水資源保全条例」資料。
+[^10]: 地方自治研究機構「水源地域保全条例」整理ページ（条例の動き）[https://www.rilg.or.jp/htdocs/img/reiki/042_conservation_of_water_source_area.htm](https://www.rilg.or.jp/htdocs/img/reiki/042_conservation_of_water_source_area.htm) ／内閣府地方分権改革推進室「事例21・水資源保全条例」資料。
