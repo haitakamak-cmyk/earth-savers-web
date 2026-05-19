@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import HeroSlider from "@/components/HeroSlider";
-import { getSortedNewsEntries } from "@/lib/news-entries";
+import { formatNewsDate, getSortedNewsEntries } from "@/lib/news-entries";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 /** トップ：AI・検索向けに事実ベースの要約（キャッチコピーは H1 で人間向けに表示） */
@@ -48,43 +48,39 @@ export default function Home() {
             <ul className="divide-y divide-border">
               {latestNews.map((entry) => (
                 <li key={entry.id} className="py-4 first:pt-0 last:pb-0">
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-4">
-                    <div className="flex shrink-0 items-center gap-2">
-                      <time
-                        className="text-xs text-text-muted tabular-nums"
-                        dateTime={entry.date}
-                      >
-                        {entry.date}
-                      </time>
-                      <span className="rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold text-wakakusa">
-                        {entry.category}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      {entry.href ? (
-                        entry.external ? (
-                          <a
-                            href={entry.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
-                          >
-                            {entry.title}
-                          </a>
-                        ) : (
-                          <Link
-                            href={entry.href}
-                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
-                          >
-                            {entry.title}
-                          </Link>
-                        )
-                      ) : (
-                        <span className="text-sm font-medium text-text-primary">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 sm:gap-x-4">
+                    <time
+                      className="shrink-0 text-xs leading-none text-text-muted tabular-nums"
+                      dateTime={entry.date}
+                    >
+                      {formatNewsDate(entry.date)}
+                    </time>
+                    <span className="shrink-0 rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold leading-none text-wakakusa">
+                      {entry.category}
+                    </span>
+                    {entry.href ? (
+                      entry.external ? (
+                        <a
+                          href={entry.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-dark sm:basis-auto"
+                        >
                           {entry.title}
-                        </span>
-                      )}
-                    </div>
+                        </a>
+                      ) : (
+                        <Link
+                          href={entry.href}
+                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-dark sm:basis-auto"
+                        >
+                          {entry.title}
+                        </Link>
+                      )
+                    ) : (
+                      <span className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary sm:basis-auto">
+                        {entry.title}
+                      </span>
+                    )}
                   </div>
                 </li>
               ))}

@@ -77,6 +77,8 @@ const CATEGORY_BY_SLUG: Record<string, GlossaryCategory> = {
   "fit-fip": "national-law",
   "amended-renewable-energy-act": "national-law",
   "important-land-survey-act": "national-law",
+  "biodiversity-maintenance-agreement": "national-law",
+  "designated-conservation-species": "national-law",
   "fujikawaguchiko-precedent": "precedent",
   "co-regulation": "legal-theory",
   "groundwater-publicness": "legal-theory",

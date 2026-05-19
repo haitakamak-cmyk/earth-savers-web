@@ -18,16 +18,23 @@ export type NewsEntry = {
 export const newsEntries: NewsEntry[] = [
   {
     id: "founding-crowdfunding-2025",
-    date: "2026-4-23", // 設立日が確定したら差し替え
+    date: "2026-04-23",
     category: "重要",
     title: "一般財団法人「地球防衛群」設立およびクラウドファンディング開始のお知らせ",
     href: "https://for-good.net/project/1003493",
     external: true,
-    lead: "日本の「命の水と森」を七世代先の子どもたちへ残すことを目的として、一般財団法人「地球防衛群」を設立いたしました。設立に伴い、初期活動資金および水源地・山林防衛のためのクラウドファンディングを「For Good」にて開始しています。",
+    lead: "日本の「命の水と森」を七世代先の子どもたちへ残すことを目的として、一般財団法人「地球防衛群」を設立いたします。設立に伴い、初期活動資金および水源地・山林防衛のためのクラウドファンディングを「For Good」にて開始しています。",
   },
 ];
 
 /** 日付の降順でソートしたエントリを返す */
 export function getSortedNewsEntries(): NewsEntry[] {
   return [...newsEntries].sort((a, b) => b.date.localeCompare(a.date));
+}
+
+/** 表示用 YYYY.M.D（先頭ゼロなし） */
+export function formatNewsDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split("-");
+  if (!y || !m || !d) return dateStr;
+  return `${y}.${Number(m)}.${Number(d)}`;
 }

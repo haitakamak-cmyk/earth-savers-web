@@ -1,7 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { getSortedNewsEntries, type NewsCategory } from "@/lib/news-entries";
+import {
+  formatNewsDate,
+  getSortedNewsEntries,
+  type NewsCategory,
+} from "@/lib/news-entries";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,11 +20,6 @@ const categoryColors: Record<NewsCategory, string> = {
   イベント: "bg-aqua-light text-aqua",
   メディア掲載: "bg-amber-100 text-amber-700",
 };
-
-function formatDate(dateStr: string): string {
-  const [y, m, d] = dateStr.split("-");
-  return `${y}.${m}.${d}`;
-}
 
 export default function NewsPage() {
   const entries = getSortedNewsEntries();
@@ -50,7 +49,7 @@ export default function NewsPage() {
                   <div className="rounded-2xl border border-border bg-white p-5 shadow-sm transition-colors hover:border-wakakusa/30 sm:p-6">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="font-mono text-xs text-text-muted">
-                        {formatDate(entry.date)}
+                        {formatNewsDate(entry.date)}
                       </span>
                       <span
                         className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${colorClass}`}
