@@ -31,19 +31,68 @@ export default function Home() {
         岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器『B-369』を用いた環境改善や、伝統的な『大地の再生』メソッドによる保全活動を実践しています。
       </div>
 
-      {/* ===== News Ticker ===== */}
-      <section className="bg-wakakusa-light border-y border-wakakusa/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-4 overflow-hidden">
-          <span className="shrink-0 bg-wakakusa text-white text-xs font-semibold px-3 py-1 rounded-full">
-            最新情報
-          </span>
-          <div className="flex gap-8 text-sm text-text-secondary overflow-x-auto whitespace-nowrap">
-            <span>2026/4/23 [水質環境改善] 香南市にてナノバブル発生器 『B-369』 導入・稼働開始</span>
-            <span>2026/4/20 クラウドファンディング開始</span>
-            <span>2026/4/18 衆楽園池そうじ実施</span>
+      {latestNews.length > 0 ? (
+        <section className="border-y border-border bg-ivory py-10 sm:py-12">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
+            <div className="mb-6 flex items-center justify-between sm:mb-8">
+              <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
+                お知らせ
+              </h2>
+              <Link
+                href="/news"
+                className="text-sm font-medium text-wakakusa hover:text-wakakusa-dark"
+              >
+                一覧を見る →
+              </Link>
+            </div>
+            <ul className="divide-y divide-border">
+              {latestNews.map((entry) => (
+                <li key={entry.id} className="py-4 first:pt-0 last:pb-0">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-4">
+                    <div className="flex shrink-0 items-center gap-2">
+                      <time
+                        className="text-xs text-text-muted tabular-nums"
+                        dateTime={entry.date}
+                      >
+                        {entry.date}
+                      </time>
+                      <span className="rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold text-wakakusa">
+                        {entry.category}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      {entry.href ? (
+                        entry.external ? (
+                          <a
+                            href={entry.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
+                          >
+                            {entry.title}
+                          </a>
+                        ) : (
+                          <Link
+                            href={entry.href}
+                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
+                          >
+                            {entry.title}
+                          </Link>
+                        )
+                      ) : (
+                        <span className="text-sm font-medium text-text-primary">
+                          {entry.title}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
+
 
       {/* ===== Mission Statement ===== */}
       <section className="py-16 sm:py-24 bg-ivory">
@@ -555,65 +604,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {latestNews.length > 0 ? (
-        <section className="bg-ivory py-12 sm:py-16">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
-                お知らせ
-              </h2>
-              <Link
-                href="/news"
-                className="text-sm font-medium text-wakakusa hover:text-wakakusa-dark"
-              >
-                一覧を見る →
-              </Link>
-            </div>
-            <ul className="divide-y divide-border">
-              {latestNews.map((entry) => (
-                <li key={entry.id} className="py-4 first:pt-0 last:pb-0">
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-4">
-                    <div className="flex shrink-0 items-center gap-2">
-                      <time className="text-xs text-text-muted tabular-nums" dateTime={entry.date}>
-                        {entry.date}
-                      </time>
-                      <span className="rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold text-wakakusa">
-                        {entry.category}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      {entry.href ? (
-                        entry.external ? (
-                          <a
-                            href={entry.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
-                          >
-                            {entry.title}
-                          </a>
-                        ) : (
-                          <Link
-                            href={entry.href}
-                            className="text-sm font-medium text-text-primary hover:text-wakakusa-dark"
-                          >
-                            {entry.title}
-                          </Link>
-                        )
-                      ) : (
-                        <span className="text-sm font-medium text-text-primary">
-                          {entry.title}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
     </>
   );
 }

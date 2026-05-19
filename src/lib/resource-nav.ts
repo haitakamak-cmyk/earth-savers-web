@@ -3,4 +3,5 @@ export const RESOURCE_NAV_LINKS = [
   { label: "政策提言", href: "/policy" },
   { label: "ひな形・資料", href: "/toolkit" },
   { label: "学ぶ", href: "/learn" },
+  { label: "全国マップ", href: "/learn/map" },
 ] as const;

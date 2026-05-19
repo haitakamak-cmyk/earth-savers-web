@@ -44,15 +44,25 @@ export function loadTopicRawMarkdown(entry: TopicEntry): string {
   return readFileSync(abs, "utf-8");
 }
 
-/** `# タイトル` とメタ行・最初の `---` までを除去 */
+const TOPIC_SOURCE_HEADER_SCAN_LINES = 15;
+
+/** `# タイトル` とメタ行・直後の `---` までを除去（本文中の `---` は対象外） */
 export function stripTopicSourceHeader(raw: string): string {
   const lines = raw.split("\n");
   let i = 0;
-  if (lines[i]?.startsWith("# ")) i += 1;
-  while (i < lines.length && lines[i]?.trim() !== "---") i += 1;
-  if (i < lines.length && lines[i]?.trim() === "---") i += 1;
-  while (i < lines.length && lines[i]?.trim() === "") i += 1;
-  return lines.slice(i).join("\n").trimStart();
+  const hasSourceTitle = lines[i]?.startsWith("# ");
+  if (hasSourceTitle) i += 1;
+  const headerEnd = Math.min(lines.length, i + TOPIC_SOURCE_HEADER_SCAN_LINES);
+  let j = i;
+  while (j < headerEnd && lines[j]?.trim() !== "---") j += 1;
+  if (j >= headerEnd || lines[j]?.trim() !== "---") {
+    return hasSourceTitle
+      ? lines.slice(i).join("\n").trimStart()
+      : raw.trimStart();
+  }
+  j += 1;
+  while (j < lines.length && lines[j]?.trim() === "") j += 1;
+  return lines.slice(j).join("\n").trimStart();
 }
 
 /** ``` で囲まれた範囲（コードフェンス）を検出。用語自動リンクはフェンス内を対象外とする。 */

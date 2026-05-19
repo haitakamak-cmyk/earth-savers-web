@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "環境相談窓口",
   description:
     "メガソーラーや風力発電など再エネ開発から地域・自然を守りたい方へ。" +
-    `${ORGANIZATION_NAME}が弁護士と連携し、条例づくり・開発阻止の相談に応じます。`,
+    `事例集・活動ツールキットで自走したうえで、状況整理が必要なときに${ORGANIZATION_NAME}の環境相談窓口がご相談を受け付けます。`,
 };
 
 const concerns = [
@@ -72,8 +72,11 @@ export default function ConsultationPage() {
             Environmental consultation desk
           </p>
           <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
-            再エネ開発から地域と自然を守りたい方へ。<br className="hidden sm:block" />
-            弁護士と連携し、あなたの地域に合った方法を一緒に考えます。
+            再エネ開発から地域と自然を守りたい方へ。
+            <br className="hidden sm:block" />
+            まずは事例やツールをもとに、地域の仲間と一緒に動いてみてください。
+            <br className="hidden sm:block" />
+            それでも道筋が見えないときに、環境相談窓口へご連絡ください。
           </p>
         </div>
       </section>
