@@ -7,9 +7,10 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 import {
   CATEGORY_META,
-  hrefForMapCaseTopic,
+  hrefForMapCase,
   MAP_CASES,
   type MapCase,
+  type MapCaseCategory,
 } from "@/lib/map-cases";
 
 import "leaflet/dist/leaflet.css";
@@ -31,10 +32,13 @@ function createCategoryIcon(hex: string): L.DivIcon {
 
 function CasePopupContent({ caseItem }: { caseItem: MapCase }) {
   const meta = CATEGORY_META[caseItem.category];
+  const href = hrefForMapCase(caseItem);
+  const isTopicCase = !!caseItem.topicAnchor;
   return (
     <div className="min-w-[200px] max-w-[260px] text-sm text-text-primary">
       <p className="text-xs text-text-muted">
-        {caseItem.sectionRef} · {caseItem.prefecture}
+        {caseItem.sectionRef ? `${caseItem.sectionRef} · ` : ""}
+        {caseItem.prefecture}
         {caseItem.city}
       </p>
       <p className="mt-1 font-semibold leading-snug">{caseItem.title}</p>
@@ -43,12 +47,24 @@ function CasePopupContent({ caseItem }: { caseItem: MapCase }) {
       </p>
       <p className="mt-2 text-xs leading-relaxed text-text-secondary">{caseItem.summary}</p>
       <p className="mt-1 text-[11px] text-text-muted">{meta.label}</p>
-      <Link
-        href={hrefForMapCaseTopic(caseItem)}
-        className="mt-3 inline-block text-sm font-medium text-wakakusa-dark underline-offset-2 hover:underline"
-      >
-        事例集で詳しく読む →
-      </Link>
+      {href && isTopicCase && (
+        <Link
+          href={href}
+          className="mt-3 inline-block text-sm font-medium text-wakakusa-dark underline-offset-2 hover:underline"
+        >
+          事例集で詳しく読む →
+        </Link>
+      )}
+      {href && !isTopicCase && (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block text-sm font-medium text-wakakusa-dark underline-offset-2 hover:underline"
+        >
+          {caseItem.sourceLabel ? `出典: ${caseItem.sourceLabel} ↗` : "出典を見る ↗"}
+        </a>
+      )}
     </div>
   );
 }
@@ -76,7 +92,7 @@ function MapLegend() {
     >
       <p className="mb-1.5 text-xs font-semibold text-text-primary">凡例</p>
       <ul className="space-y-1">
-        {(Object.keys(CATEGORY_META) as MapCase["category"][]).map((key) => {
+        {(Object.keys(CATEGORY_META) as MapCaseCategory[]).map((key) => {
           const meta = CATEGORY_META[key];
           return (
             <li key={key} className="flex items-center gap-2 text-xs text-text-secondary">

@@ -1,29 +1,50 @@
+export type MapCaseCategory =
+  | "solar"
+  | "wind"
+  | "ordinance-tax"
+  | "infrastructure"
+  | "nature"
+  | "water-source";
+
 export type MapCase = {
   id: string;
-  /** 事例集内の見出し番号（例: "3.1"） */
+  /** 事例集内の見出し番号（例: "3.1"）。事例集外は空文字 */
   sectionRef: string;
   prefecture: string;
   city: string;
   title: string;
   lat: number;
   lng: number;
-  category: "solar" | "wind" | "ordinance-tax";
+  category: MapCaseCategory;
   /** 中立的ステータス */
   status: string;
-  /** 事例集のアンカーリンク用（セクション見出しのslug） */
+  /** 事例集のアンカーリンク用（事例集外は空文字） */
   topicAnchor: string;
-  /** 一言サマリ（ポップアップ表示用、50文字以内） */
+  /** 一言サマリ（ポップアップ表示用） */
   summary: string;
+  /** 事例集外の場合、出典URLを設定 */
+  sourceUrl?: string;
+  /** 出典ラベル */
+  sourceLabel?: string;
 };
 
 /** 事例集ページの slug（アンカーリンクのベース） */
 export const MAP_TOPIC_SLUG = "solar-wind-opposition-cases";
+/** 水源地トピックの slug */
+export const MAP_WATER_TOPIC_SLUG = "water-source-land-acquisition";
 
-export function hrefForMapCaseTopic(caseItem: MapCase): string {
-  return `/learn/topics/${MAP_TOPIC_SLUG}#${caseItem.topicAnchor}`;
+export function hrefForMapCase(caseItem: MapCase): string | null {
+  if (caseItem.topicAnchor) {
+    return `/learn/topics/${MAP_TOPIC_SLUG}#${caseItem.topicAnchor}`;
+  }
+  if (caseItem.category === "water-source" && MAP_WATER_TOPIC_SLUG) {
+    return `/learn/topics/${MAP_WATER_TOPIC_SLUG}`;
+  }
+  return caseItem.sourceUrl ?? null;
 }
 
-export const MAP_CASES: MapCase[] = [
+/** 事例集掲載の事案 */
+export const MAP_CASES_TOPIC: MapCase[] = [
   {
     id: "ito",
     sectionRef: "3.1",
@@ -143,12 +164,177 @@ export const MAP_CASES: MapCase[] = [
   },
 ];
 
+/** サイト内トピックと関連する参考事案（事例集には未掲載） */
+export const MAP_CASES_REFERENCE: MapCase[] = [
+  {
+    id: "kushiro-solar",
+    sectionRef: "",
+    prefecture: "北海道",
+    city: "釧路市周辺",
+    title: "釧路湿原周辺メガソーラー",
+    lat: 43.109,
+    lng: 144.331,
+    category: "solar",
+    status: "道・自治体が規制条例等を検討中",
+    topicAnchor: "",
+    summary: "湿原周辺で太陽光施設建設が相次ぎ、タンチョウ等の生息環境が懸念されている",
+    sourceUrl: "https://www.city.kushiro.lg.jp/kurashi/kankyou/1009175/1009513.html",
+    sourceLabel: "釧路市（再エネ条例）",
+  },
+  {
+    id: "kami-wind",
+    sectionRef: "",
+    prefecture: "宮城県",
+    city: "加美町",
+    title: "加美町 陸上風力発電計画",
+    lat: 38.573,
+    lng: 140.758,
+    category: "wind",
+    status: "議論継続中",
+    topicAnchor: "",
+    summary: "最大150基規模の風車計画に対し、森林伐採や水源への影響が懸念されている",
+    sourceUrl: "https://www.town.kami.miyagi.jp/",
+    sourceLabel: "加美町公式",
+  },
+  {
+    id: "hakkoda-wind",
+    sectionRef: "",
+    prefecture: "青森県",
+    city: "八甲田周辺",
+    title: "八甲田周辺 陸上風力計画",
+    lat: 40.655,
+    lng: 140.876,
+    category: "wind",
+    status: "自治体が見直し要望",
+    topicAnchor: "",
+    summary: "景観や自然環境への影響懸念から、周辺自治体が白紙撤回を求めている",
+    sourceUrl: "https://www.pref.aomori.lg.jp/soshiki/kankyo/kankyo/saiene_furyoku.html",
+    sourceLabel: "青森県（再エネ関連）",
+  },
+  {
+    id: "yuza-offshore",
+    sectionRef: "",
+    prefecture: "山形県",
+    city: "遊佐町沖",
+    title: "遊佐町沖 洋上風力",
+    lat: 39.019,
+    lng: 139.873,
+    category: "wind",
+    status: "国の促進区域指定",
+    topicAnchor: "",
+    summary: "洋上風力に対し住民団体が反対署名。漁業・低周波音・景観が論点",
+    sourceUrl:
+      "https://www.enecho.meti.go.jp/category/saving_and_new/saiene/yojo_furyoku/dl/public/yamagata_yuza_opinion.pdf",
+    sourceLabel: "資源エネルギー庁",
+  },
+  {
+    id: "yura-wind",
+    sectionRef: "",
+    prefecture: "和歌山県",
+    city: "由良町",
+    title: "由良町 風力発電",
+    lat: 33.963,
+    lng: 135.114,
+    category: "wind",
+    status: "県議会等で議論",
+    topicAnchor: "",
+    summary: "稼働後に低周波音の健康影響が懸念されている事案",
+    sourceUrl: "https://www.pref.wakayama.lg.jp/gijiroku/p041509.html",
+    sourceLabel: "和歌山県議会会議録",
+  },
+  {
+    id: "linear-shizuoka",
+    sectionRef: "",
+    prefecture: "静岡県",
+    city: "大井川流域",
+    title: "リニア中央新幹線 静岡工区",
+    lat: 35.483,
+    lng: 138.183,
+    category: "infrastructure",
+    status: "水資源補償の合意あり・対話継続",
+    topicAnchor: "",
+    summary: "トンネル工事による大井川水系の水量・地下水への影響が懸念されている",
+    sourceUrl:
+      "https://www.pref.shizuoka.jp/kurashikankyo/kankyo/1040554/1002001/1068405/index.html",
+    sourceLabel: "静岡県公式",
+  },
+  {
+    id: "jingu-gaien",
+    sectionRef: "",
+    prefecture: "東京都",
+    city: "新宿区・港区",
+    title: "神宮外苑再開発",
+    lat: 35.674,
+    lng: 139.718,
+    category: "nature",
+    status: "住民訴訟・議論継続",
+    topicAnchor: "",
+    summary: "再開発に伴う多数の樹木伐採計画が論点となっている",
+    sourceUrl: "https://www.metro.tokyo.lg.jp/tosei/hodohappyo/press/2024/03/29/20.html",
+    sourceLabel: "東京都",
+  },
+  {
+    id: "niseko-water",
+    sectionRef: "",
+    prefecture: "北海道",
+    city: "ニセコ町等",
+    title: "ニセコ周辺 水源地・森林取得",
+    lat: 42.804,
+    lng: 140.687,
+    category: "water-source",
+    status: "国・自治体資料で取得継続確認",
+    topicAnchor: "",
+    summary: "外国法人等による森林取得が多数確認され、水源涵養林の管理が課題に",
+    sourceUrl: "https://www.rinya.maff.go.jp/j/press/keikaku/240719.html",
+    sourceLabel: "林野庁",
+  },
+  {
+    id: "myoko-water",
+    sectionRef: "",
+    prefecture: "新潟県",
+    city: "妙高市",
+    title: "妙高市 森林取得",
+    lat: 36.985,
+    lng: 138.214,
+    category: "water-source",
+    status: "国資料で取得確認",
+    topicAnchor: "",
+    summary: "シンガポール法人等による森林取得が林野庁調査で確認されている",
+    sourceUrl: "https://www.rinya.maff.go.jp/j/press/keikaku/240719.html",
+    sourceLabel: "林野庁",
+  },
+  {
+    id: "beppu-geothermal",
+    sectionRef: "",
+    prefecture: "大分県",
+    city: "別府市",
+    title: "別府温泉 地熱発電と温度低下",
+    lat: 33.283,
+    lng: 131.492,
+    category: "nature",
+    status: "県が新たな掘削規制地域を指定",
+    topicAnchor: "",
+    summary: "地熱発電等の影響で源泉温度の低下がデータで確認されている",
+    sourceUrl: "https://www.pref.oita.jp/soshiki/13550/onsen-kisei.html",
+    sourceLabel: "大分県（温泉掘削規制）",
+  },
+];
+
+/** 全事案（地図表示用） */
+export const MAP_CASES: MapCase[] = [
+  ...MAP_CASES_TOPIC,
+  ...MAP_CASES_REFERENCE,
+];
+
 /** カテゴリ表示名とピンカラー */
 export const CATEGORY_META: Record<
-  MapCase["category"],
+  MapCaseCategory,
   { label: string; color: string; hex: string }
 > = {
   solar: { label: "太陽光発電", color: "yellow", hex: "#EAB308" },
   wind: { label: "風力発電", color: "lightblue", hex: "#38BDF8" },
   "ordinance-tax": { label: "条例・税制", color: "orange", hex: "#F97316" },
+  infrastructure: { label: "巨大構造物・水資源", color: "blue", hex: "#3B82F6" },
+  nature: { label: "自然環境・景観", color: "green", hex: "#22C55E" },
+  "water-source": { label: "水源地取得", color: "purple", hex: "#A855F7" },
 };
