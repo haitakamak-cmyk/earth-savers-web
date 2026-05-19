@@ -174,6 +174,19 @@ export const MAP_CASES_TOPIC: MapCase[] = [
     topicAnchor: "39-高知県四万十市四万十川流域メガソーラー",
     summary: "条例規制の実体的適法性が認められた判決事案",
   },
+  {
+    id: "kamogawa",
+    sectionRef: "3.10",
+    prefecture: "千葉県",
+    city: "鴨川市",
+    title: "鴨川市田原地区メガソーラー",
+    lat: 35.114,
+    lng: 140.099,
+    category: "solar",
+    status: "FIT認定失効",
+    topicAnchor: "310-千葉県鴨川市田原地区メガソーラーfit認定失効に至った事例",
+    summary: "146haの山林造成計画に対し58回の行政指導、FIT認定が失効に至った事案",
+  },
 ];
 
 /** サイト内トピックと関連する参考事案（事例集には未掲載） */
@@ -314,21 +327,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     summary: "シンガポール法人等による森林取得が林野庁調査で確認されている",
     sourceUrl: "https://www.rinya.maff.go.jp/j/press/keikaku/240719.html",
     sourceLabel: "林野庁",
-  },
-  {
-    id: "kamogawa-solar",
-    sectionRef: "",
-    prefecture: "千葉県",
-    city: "鴨川市",
-    title: "鴨川市 大規模太陽光発電",
-    lat: 35.114,
-    lng: 140.099,
-    category: "solar",
-    status: "住民反対・行政指導中",
-    topicAnchor: "",
-    summary: "東京ドーム約31個分の山林造成計画に対し、住民集会に600人以上が参加",
-    sourceUrl: "https://www.pref.chiba.lg.jp/kansei/saiene/taiyokosyoseido.html",
-    sourceLabel: "千葉県（太陽光諸制度）",
   },
   {
     id: "aso-solar",
