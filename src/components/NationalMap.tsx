@@ -8,6 +8,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import {
   CATEGORY_META,
   hrefForMapCase,
+  hrefForWaterTopic,
   MAP_CASES,
   type MapCase,
   type MapCaseCategory,
@@ -64,6 +65,14 @@ function CasePopupContent({ caseItem }: { caseItem: MapCase }) {
         >
           {caseItem.sourceLabel ? `出典: ${caseItem.sourceLabel} ↗` : "出典を見る ↗"}
         </a>
+      )}
+      {hrefForWaterTopic(caseItem) && (
+        <Link
+          href={hrefForWaterTopic(caseItem)!}
+          className="mt-1 block text-xs text-text-muted underline-offset-2 hover:underline"
+        >
+          関連記事: 水源地取得の制度整理 →
+        </Link>
       )}
     </div>
   );

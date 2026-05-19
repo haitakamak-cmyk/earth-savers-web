@@ -37,10 +37,22 @@ export function hrefForMapCase(caseItem: MapCase): string | null {
   if (caseItem.topicAnchor) {
     return `/learn/topics/${MAP_TOPIC_SLUG}#${caseItem.topicAnchor}`;
   }
+  // sourceUrl があればそちらを優先（水源地含む）
+  if (caseItem.sourceUrl) {
+    return caseItem.sourceUrl;
+  }
   if (caseItem.category === "water-source" && MAP_WATER_TOPIC_SLUG) {
     return `/learn/topics/${MAP_WATER_TOPIC_SLUG}`;
   }
-  return caseItem.sourceUrl ?? null;
+  return null;
+}
+
+/** 水源地トピック記事へのリンク（ポップアップでサブリンクとして使用） */
+export function hrefForWaterTopic(caseItem: MapCase): string | null {
+  if (caseItem.category === "water-source" && MAP_WATER_TOPIC_SLUG) {
+    return `/learn/topics/${MAP_WATER_TOPIC_SLUG}`;
+  }
+  return null;
 }
 
 /** 事例集掲載の事案 */
@@ -178,8 +190,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "道・自治体が規制条例等を検討中",
     topicAnchor: "",
     summary: "湿原周辺で太陽光施設建設が相次ぎ、タンチョウ等の生息環境が懸念されている",
-    sourceUrl: "https://www.city.kushiro.lg.jp/kurashi/kankyou/1009175/1009513.html",
-    sourceLabel: "釧路市（再エネ条例）",
+    sourceUrl: "https://www.city.kushiro.lg.jp/machi/kankyou/1017276/1017277.html",
+    sourceLabel: "釧路市（太陽光条例）",
   },
   {
     id: "kami-wind",
@@ -193,8 +205,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "議論継続中",
     topicAnchor: "",
     summary: "最大150基規模の風車計画に対し、森林伐採や水源への影響が懸念されている",
-    sourceUrl: "https://www.town.kami.miyagi.jp/",
-    sourceLabel: "加美町公式",
+    sourceUrl: "https://www.pref.miyagi.jp/soshiki/kankyo-t/assess-list/hou-huuryoku-3.html",
+    sourceLabel: "宮城県（宮城加美風力アセス）",
   },
   {
     id: "hakkoda-wind",
@@ -208,8 +220,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "自治体が見直し要望",
     topicAnchor: "",
     summary: "景観や自然環境への影響懸念から、周辺自治体が白紙撤回を求めている",
-    sourceUrl: "https://www.pref.aomori.lg.jp/soshiki/kankyo/kankyo/saiene_furyoku.html",
-    sourceLabel: "青森県（再エネ関連）",
+    sourceUrl: "https://www.pref.aomori.lg.jp/soshiki/kankyo/kankyo/reene_kyousei_jyourei_seido.html",
+    sourceLabel: "青森県（再エネ共生条例）",
   },
   {
     id: "yuza-offshore",
@@ -270,8 +282,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "住民訴訟・議論継続",
     topicAnchor: "",
     summary: "再開発に伴う多数の樹木伐採計画が論点となっている",
-    sourceUrl: "https://www.metro.tokyo.lg.jp/tosei/hodohappyo/press/2024/03/29/20.html",
-    sourceLabel: "東京都",
+    sourceUrl: "https://www.toshiseibi.metro.tokyo.lg.jp/machizukuri/machi_project/toshi_saisei/saisei07",
+    sourceLabel: "東京都（都市整備局）",
   },
   {
     id: "niseko-water",
@@ -304,6 +316,36 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     sourceLabel: "林野庁",
   },
   {
+    id: "kamogawa-solar",
+    sectionRef: "",
+    prefecture: "千葉県",
+    city: "鴨川市",
+    title: "鴨川市 大規模太陽光発電",
+    lat: 35.114,
+    lng: 140.099,
+    category: "solar",
+    status: "住民反対・行政指導中",
+    topicAnchor: "",
+    summary: "東京ドーム約31個分の山林造成計画に対し、住民集会に600人以上が参加",
+    sourceUrl: "https://www.pref.chiba.lg.jp/kansei/saiene/taiyokosyoseido.html",
+    sourceLabel: "千葉県（太陽光諸制度）",
+  },
+  {
+    id: "aso-solar",
+    sectionRef: "",
+    prefecture: "熊本県",
+    city: "阿蘇地域",
+    title: "阿蘇外輪山 メガソーラー",
+    lat: 32.884,
+    lng: 131.084,
+    category: "solar",
+    status: "国立公園拡張・規制強化",
+    topicAnchor: "",
+    summary: "世界文化遺産登録を目指す草原にパネル設置が進み、国立公園拡張で規制強化",
+    sourceUrl: "https://www.pref.kumamoto.jp/soshiki/67/241509.html",
+    sourceLabel: "熊本県（阿蘇太陽光抑制エリア）",
+  },
+  {
     id: "beppu-geothermal",
     sectionRef: "",
     prefecture: "大分県",
@@ -315,8 +357,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "県が新たな掘削規制地域を指定",
     topicAnchor: "",
     summary: "地熱発電等の影響で源泉温度の低下がデータで確認されている",
-    sourceUrl: "https://www.pref.oita.jp/soshiki/13550/onsen-kisei.html",
-    sourceLabel: "大分県（温泉掘削規制）",
+    sourceUrl: "https://www.pref.oita.jp/site/onsen/onsen-flow.html",
+    sourceLabel: "大分県（温泉手続）",
   },
 ];
 
