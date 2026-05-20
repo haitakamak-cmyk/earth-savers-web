@@ -4,20 +4,110 @@ import Link from "next/link";
 import NationalMapLoader from "@/components/NationalMapLoader";
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
-import { MAP_TOPIC_SLUG } from "@/lib/map-cases";
+import {
+  CATEGORY_META,
+  hrefForMapCase,
+  MAP_CASES,
+  MAP_TOPIC_SLUG,
+  type MapCase,
+  type MapCaseCategory,
+} from "@/lib/map-cases";
+
+/** ページ内メタ情報（更新時にここだけ変える） */
+const MAP_META = {
+  lastUpdated: "2026年5月20日",
+  caseCount: MAP_CASES.length,
+  dataVersion: "v1.0",
+} as const;
 
 export const metadata: Metadata = {
   title: "全国マップ｜自然・水源・地域合意をめぐる事例",
   description:
-    "大規模太陽光・風力発電の開発計画をめぐる主要事案の所在地を地図上にプロットし、事例集へのリンクとともに概要を表示します。",
+    "自然環境、水源、森林、地域合意に関わる開発・環境事案の所在地を、公開情報と事例集へのリンクとともに地図上で確認できます。",
   alternates: { canonical: "/learn/map" },
   openGraph: {
     title: "全国マップ｜自然・水源・地域合意をめぐる事例",
-    description: "主要事案の所在地を地図で確認できます。",
+    description:
+      "自然環境、水源、森林、地域合意に関わる事案の所在地を地図で確認できます。",
     url: "/learn/map",
   },
 };
 
+/* ------------------------------------------------------------------ */
+/*  一覧表コンポーネント                                                */
+/* ------------------------------------------------------------------ */
+function CaseListTable({ cases }: { cases: MapCase[] }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-left text-sm">
+        <thead>
+          <tr className="border-b border-wakakusa/25 text-xs text-text-muted">
+            <th className="whitespace-nowrap py-2 pr-3 font-medium">地域</th>
+            <th className="whitespace-nowrap py-2 pr-3 font-medium">分類</th>
+            <th className="py-2 pr-3 font-medium">事案名</th>
+            <th className="whitespace-nowrap py-2 pr-3 font-medium">ステータス</th>
+            <th className="whitespace-nowrap py-2 font-medium">詳細</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-wakakusa/10">
+          {cases.map((c) => {
+            const meta = CATEGORY_META[c.category];
+            const href = hrefForMapCase(c);
+            const isInternal = !!c.topicAnchor;
+            return (
+              <tr key={c.id} className="text-text-secondary">
+                <td className="whitespace-nowrap py-2 pr-3">
+                  {c.prefecture}
+                  {c.city}
+                </td>
+                <td className="whitespace-nowrap py-2 pr-3">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span
+                      className="inline-block h-2.5 w-2.5 shrink-0 rounded-full border border-white shadow-sm"
+                      style={{ backgroundColor: meta.hex }}
+                    />
+                    {meta.label}
+                  </span>
+                </td>
+                <td className="py-2 pr-3 font-medium text-text-primary">{c.title}</td>
+                <td className="whitespace-nowrap py-2 pr-3">
+                  <span className="rounded bg-wakakusa-light/50 px-1.5 py-0.5 text-xs text-wakakusa-dark">
+                    {c.status}
+                  </span>
+                </td>
+                <td className="whitespace-nowrap py-2">
+                  {href && isInternal && (
+                    <Link
+                      href={href}
+                      className="text-wakakusa-dark underline-offset-2 hover:underline"
+                    >
+                      事例集&nbsp;→
+                    </Link>
+                  )}
+                  {href && !isInternal && (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-wakakusa-dark underline-offset-2 hover:underline"
+                    >
+                      {c.sourceLabel ?? "出典"}&nbsp;↗
+                    </a>
+                  )}
+                  {!href && <span className="text-text-muted">—</span>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  ページ本体                                                         */
+/* ------------------------------------------------------------------ */
 export default function LearnMapPage() {
   return (
     <div className="bg-ivory pb-16">
@@ -38,7 +128,7 @@ export default function LearnMapPage() {
             自然・水源・地域合意をめぐる全国マップ
           </h1>
           <ResourceLead>
-            事例集で整理した主要事案の所在地を、日本地図上で概略的に確認できます。マーカーをクリックすると概要と事例集へのリンクが表示されます。
+            このマップは、自然環境・水源・森林・地域合意に関わる開発事案について、公開情報に基づき所在地を概略的に示したものです。各事案の評価や判断ではなく、地域で生じている論点を知るための入口としてご覧ください。
           </ResourceLead>
 
           <aside className="mt-6 border-l-4 border-wakakusa bg-wakakusa-light/20 py-3 pl-4">
@@ -56,6 +146,9 @@ export default function LearnMapPage() {
             <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-text-secondary">
               <li>掲載対象は事例集およびサイト内トピック記事で取り上げた事案、またはそれらと関連する公開報道に基づく事案です</li>
               <li>
+                掲載内容は、各事案についての賛否を示すものではなく、公開情報に基づき地域で生じている論点を整理するものです
+              </li>
+              <li>
                 各マーカーの情報は要約であり、最新の状況は各記事本文および出典を参照してください
               </li>
               <li>特定の事業者・個人を非難する目的のものではありません</li>
@@ -72,6 +165,22 @@ export default function LearnMapPage() {
 
       <div className="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
         <NationalMapLoader />
+
+        {/* 更新情報 */}
+        <p className="mt-3 text-right text-xs text-text-muted">
+          最終更新：{MAP_META.lastUpdated}　／　掲載件数：{MAP_META.caseCount}件　／　データ版：{MAP_META.dataVersion}
+        </p>
+
+        {/* 一覧表 */}
+        <section className="mt-10">
+          <h2 className="font-serif text-xl font-bold text-text-primary">掲載事案一覧</h2>
+          <p className="mt-1 text-sm text-text-muted">
+            地図が表示されない環境でも、以下の一覧から各事案を確認できます。
+          </p>
+          <div className="mt-4 rounded-xl border border-wakakusa/25 bg-white p-4 shadow-sm sm:p-6">
+            <CaseListTable cases={MAP_CASES} />
+          </div>
+        </section>
 
         <p className="mt-8 text-center">
           <Link
