@@ -187,6 +187,20 @@ export const MAP_CASES_TOPIC: MapCase[] = [
     topicAnchor: "310-千葉県鴨川市田原地区メガソーラーfit認定失効に至った事例",
     summary: "146haの山林造成計画に対し58回の行政指導、FIT認定が失効に至った事案",
   },
+  {
+    id: "fukushima-solar",
+    sectionRef: "3.11",
+    prefecture: "福島県",
+    city: "福島市",
+    title: "福島市「ノーモア メガソーラー」宣言",
+    lat: 37.75,
+    lng: 140.468,
+    category: "solar",
+    status: "宣言発出・条例施行済",
+    topicAnchor: "311-福島県福島市ノーモア-メガソーラー宣言と条例化に至った事例",
+    summary:
+      "山間部へのメガソーラー建設が相次ぎ、市長が宣言を発出。ガイドライン改正を経て条例を制定・施行した事案",
+  },
 ];
 
 /** サイト内トピックと関連する参考事案（事例集には未掲載） */
@@ -374,23 +388,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
       "防災拠点予定地の県有地活用をめぐり大規模太陽光発電を含む計画が示されたが、地元反発や条例制定を背景に県は計画を事実上断念したと報じられている",
     sourceUrl: "https://www.pref.nara.lg.jp/n002/65482.html",
     sourceLabel: "奈良県（知事記者会見）",
-  },
-  {
-    id: "fukushima-solar",
-    sectionRef: "",
-    prefecture: "福島県",
-    city: "福島市",
-    title: "福島市 ノーモアメガソーラー宣言",
-    lat: 37.75,
-    lng: 140.468,
-    category: "solar",
-    status: "市が景観保全方針を宣言",
-    topicAnchor: "",
-    summary:
-      "吾妻山麓等で太陽光発電施設の建設が相次ぎ、反射光や泥水流出が問題となったことから、市が「ノーモア メガソーラー宣言」を発出",
-    sourceUrl:
-      "https://www.city.fukushima.fukushima.jp/soshiki/8/1034/2/4/index.html",
-    sourceLabel: "福島市公式",
   },
   {
     id: "kannami-solar",
