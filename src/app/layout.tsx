@@ -68,7 +68,7 @@ export default function RootLayout({
         {/* 過去のService Workerが残っている場合に自動解除する */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(reg){reg.unregister()})})}`,
+            __html: `if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}`,
           }}
         />
       </head>
