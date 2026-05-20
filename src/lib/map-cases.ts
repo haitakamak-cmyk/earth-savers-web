@@ -535,10 +535,10 @@ export const CATEGORY_META: Record<
   MapCaseCategory,
   { label: string; color: string; hex: string }
 > = {
-  solar: { label: "太陽光発電", color: "yellow", hex: "#EAB308" },
-  wind: { label: "風力発電", color: "lightblue", hex: "#38BDF8" },
-  "ordinance-tax": { label: "条例・税制", color: "orange", hex: "#F97316" },
-  infrastructure: { label: "巨大構造物・水資源", color: "blue", hex: "#3B82F6" },
-  nature: { label: "自然環境・景観", color: "green", hex: "#22C55E" },
-  "water-source": { label: "水源地取得", color: "purple", hex: "#A855F7" },
+  solar: { label: "太陽光発電", color: "yellow", hex: "#F4B400" },
+  wind: { label: "風力発電", color: "lightblue", hex: "#2BB3D9" },
+  "ordinance-tax": { label: "制度・条例", color: "brown", hex: "#B7791F" },
+  infrastructure: { label: "ダム・大型土木・水資源", color: "blue", hex: "#2563EB" },
+  nature: { label: "森林・自然環境・景観", color: "green", hex: "#22C55E" },
+  "water-source": { label: "土地・水源地取得", color: "purple", hex: "#8B5CF6" },
 };

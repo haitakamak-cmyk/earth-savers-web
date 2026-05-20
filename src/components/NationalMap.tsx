@@ -16,8 +16,12 @@ import {
 
 import "leaflet/dist/leaflet.css";
 
-const JAPAN_CENTER: L.LatLngExpression = [36.5, 137.0];
+const JAPAN_CENTER: L.LatLngExpression = [37.5, 137.5];
 const INITIAL_ZOOM = 5;
+const MAX_BOUNDS: L.LatLngBoundsExpression = [
+  [20, 118],
+  [48, 150],
+];
 
 function createCategoryIcon(hex: string): L.DivIcon {
   return L.divIcon({
@@ -120,11 +124,14 @@ function MapLegend() {
 
 export default function NationalMap() {
   return (
-    <div className="relative h-[60vh] w-full overflow-hidden rounded-xl border border-wakakusa/25 sm:h-[70vh]">
+    <div className="relative h-[65vh] min-h-[420px] w-full overflow-hidden rounded-xl border border-wakakusa/25 sm:h-[70vh] sm:min-h-[520px]">
       <MapContainer
         center={JAPAN_CENTER}
         zoom={INITIAL_ZOOM}
         scrollWheelZoom
+        maxBounds={MAX_BOUNDS}
+        maxBoundsViscosity={0.8}
+        minZoom={4}
         className="h-full w-full"
       >
         <TileLayer
