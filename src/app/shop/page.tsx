@@ -78,6 +78,9 @@ export default function ShopPage() {
             <p className="mt-3 text-xs text-text-muted">
               外部サイト (back-nature-store.com) へ移動します
             </p>
+            <p className="mt-2 text-[11px] leading-relaxed text-text-muted">
+              本ショップは外部事業者が運営するサイトです。商品購入、配送、返品、決済、個人情報の取扱いについては、移動先サイトの規約およびプライバシーポリシーをご確認ください。対象商品の売上の一部または運営者からの協賛金が、一般財団法人地球防衛群の活動支援に充てられます。
+            </p>
           </div>
         </div>
       </section>

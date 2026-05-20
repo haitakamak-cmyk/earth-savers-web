@@ -50,7 +50,7 @@ export const ORGANIZATION_FOUNDING_DATE_ISO = "2026-04";
 
 /** メタディスクリプション・OG 等で共通化する一段説明（`SITE_ALLOW_SEARCH_INDEXING` が true のときに使用） */
 export const SITE_ORGANIZATION_DESCRIPTION =
-  "水源地の保全・里山の再生・生態系の回復・環境教育に取り組む一般財団法人 地球防衛群（earth savers）。岡山を拠点に、乱開発から水と森を守り、次世代へつなぐ現場の活動・会員募集・寄付受付をご案内します。";
+  "水源地の保全・里山の再生・生態系の回復・環境教育に取り組む一般財団法人 地球防衛群（earth savers）。岡山を拠点に、地域環境への影響が懸念される開発から水と森を守り、次世代へつなぐ現場の活動・会員募集・寄付受付をご案内します。";
 
 /** 構造化データ・短文向け */
 export const SITE_ORGANIZATION_DESCRIPTION_SHORT =

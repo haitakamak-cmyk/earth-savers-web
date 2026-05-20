@@ -66,6 +66,27 @@ export default function PrivacyPage() {
             等）の提供者に、送信処理に必要な範囲でデータが預託されることがあります。その場合、当財団は委託先の選定と適切な監督に努めます。
           </p>
 
+          <h3 className="mt-6 text-base font-bold text-text-primary">
+            3-2. 環境相談における第三者情報の取扱い
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed">
+            環境相談において、相談者以外の第三者に関する情報（事業者名、土地所有者名、行政関係者名、資料画像等）が含まれる場合があります。当財団は、相談対応に必要な範囲でこれらを取り扱い、法令に基づく場合または本人の同意がある場合を除き、外部に公開しません。
+          </p>
+
+          <h3 className="mt-6 text-base font-bold text-text-primary">
+            3-3. 弁護士・専門家との情報共有
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed">
+            ご相談内容について、専門的助言が必要と判断される場合、相談者の同意を得たうえで、弁護士、研究者、技術専門家その他の協力者に必要最小限の情報を共有することがあります。
+          </p>
+
+          <h3 className="mt-6 text-base font-bold text-text-primary">
+            3-4. 匿名統計利用
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed">
+            当財団は、個人または特定の事業者・地域が識別されない形に加工したうえで、相談傾向の分析、活動改善、政策提言、啓発資料の作成に利用することがあります。
+          </p>
+
           <h2 className="mt-10 text-lg font-bold text-text-primary">
             4. 保管期間
           </h2>

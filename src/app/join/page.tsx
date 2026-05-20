@@ -194,16 +194,27 @@ export default function JoinPage() {
             </div>
           </div>
 
-          <p className="mt-6 text-center text-xs text-text-muted">
-            ※ 都度寄付は銀行振込のみです。振込先は
-            <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
-              銀行振込のご案内ページ
-            </Link>
-            をご覧ください。
-            <br />
-            ※
-            ご支援いただいた資金は、水源地の取得・保全、里山再生、生態系復活プロジェクトなど現場の活動に、責任を持って活用いたします（振込手数料・決済に係る費用などが発生する場合があります）。
-          </p>
+          <div className="mx-auto mt-6 max-w-xl text-xs leading-relaxed text-text-muted">
+            <p>
+              ※ 都度寄付は銀行振込のみです。振込先は
+              <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
+                銀行振込のご案内ページ
+              </Link>
+              をご覧ください。
+            </p>
+            <p className="mt-1">
+              ※ ご寄付は、水源地・山林の保全、里山再生、生態系回復、環境教育、調査研究、広報、法人運営その他当財団の目的達成に必要な活動に活用します（振込手数料・決済に係る費用などが発生する場合があります）。
+            </p>
+            <p className="mt-1">
+              ※ 一度お受けしたご寄付は、法令上必要な場合または当財団が特に認める場合を除き、原則として返金いたしかねます。
+            </p>
+            <p className="mt-1">
+              ※ 当財団は、反社会的勢力またはその関係者からの寄付、法令または公序良俗に反する目的による寄付をお受けしません。受領後にこれらが判明した場合、受領を取り消すことがあります。
+            </p>
+            <p className="mt-1">
+              ※ 当財団は、特定の政党、政治団体、宗教団体の利益を目的として寄付金を使用することはありません。
+            </p>
+          </div>
         </div>
       </section>
 

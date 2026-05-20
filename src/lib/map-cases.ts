@@ -105,9 +105,9 @@ export const MAP_CASES_TOPIC: MapCase[] = [
     lat: 33.584,
     lng: 134.354,
     category: "wind",
-    status: "住民運動・議論継続",
+    status: "環境影響評価手続上の廃止公告済み",
     topicAnchor: "34-徳島県海陽町風力発電",
-    summary: "住民説明会と条例対応が論点となっている事案",
+    summary: "住民説明会と条例対応が論点となり、環境影響評価手続上の廃止公告に至った事案",
   },
   {
     id: "heguri",
