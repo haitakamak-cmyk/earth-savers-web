@@ -44,7 +44,7 @@ function CaseListTable({ cases }: { cases: MapCase[] }) {
           <tr className="border-b border-wakakusa/25 text-xs text-text-muted">
             <th className="whitespace-nowrap py-2 pr-3 font-medium">地域</th>
             <th className="whitespace-nowrap py-2 pr-3 font-medium">分類</th>
-            <th className="py-2 pr-3 font-medium">事案名</th>
+            <th className="whitespace-nowrap py-2 pr-3 font-medium">事案名</th>
             <th className="whitespace-nowrap py-2 pr-3 font-medium">ステータス</th>
             <th className="whitespace-nowrap py-2 font-medium">詳細</th>
           </tr>
@@ -69,7 +69,7 @@ function CaseListTable({ cases }: { cases: MapCase[] }) {
                     {meta.label}
                   </span>
                 </td>
-                <td className="py-2 pr-3 font-medium text-text-primary">{c.title}</td>
+                <td className="min-w-[8rem] py-2 pr-3 font-medium text-text-primary">{c.title}</td>
                 <td className="whitespace-nowrap py-2 pr-3">
                   <span className="rounded bg-wakakusa-light/50 px-1.5 py-0.5 text-xs text-wakakusa-dark">
                     {c.status}

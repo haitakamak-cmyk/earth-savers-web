@@ -43,7 +43,7 @@ export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
     slug: "qa-council",
     title: "議会想定問答集",
     shortDescription:
-      "条例案の議会審議で想定される質疑35問への答弁例。条例の必要性・再エネとの整合性・財産権・既存施設対応・実効性・住民保護・他制度との関係の7カテゴリ。",
+      "条例案の議会審議で想定される質疑42問への答弁例。条例の必要性・再エネとの整合性・財産権・既存施設対応・実効性・住民保護・他制度との関係・追加想定質問の8カテゴリ。",
     contentPath: "src/content/ordinance-supplements/qa-council.md",
     publishedAt: "2026-05-03",
     updatedAt: "2026-05-03",
@@ -54,7 +54,7 @@ export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
     slug: "qa-public",
     title: "パブリックコメント回答集",
     shortDescription:
-      "パブリックコメントで想定される事業者・住民からの意見30種類への定型回答のひな型。対応区分（反映・既盛込・参考・対応困難・関係なし）別の整理。",
+      "パブリックコメントで想定される事業者・住民からの意見35種類への定型回答のひな型。対応区分（反映・既盛込・参考・対応困難・関係なし）別の整理。",
     contentPath: "src/content/ordinance-supplements/qa-public.md",
     publishedAt: "2026-05-03",
     updatedAt: "2026-05-03",

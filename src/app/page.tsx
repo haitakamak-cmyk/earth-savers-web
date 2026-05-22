@@ -28,7 +28,7 @@ export default function Home() {
       
       {/* ===== LLM / Search Definition ===== */}
       <div className="sr-only">
-        岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器『B-369』を用いた環境改善や、伝統的な『大地の再生』メソッドによる保全活動を実践しています。
+        岡山県津山市を拠点に、水源地の恒久保全、里山再生、生態系復活に取り組む一般財団法人。独自開発のナノバブル発生器「B-369」を用いた水質改善や、「大地の再生」の考え方に学ぶ水脈・通気・土壌環境の回復を通じた保全活動を実践しています。
       </div>
 
       {latestNews.length > 0 ? (
@@ -139,7 +139,7 @@ export default function Home() {
                   水源地・山林の保全
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  外部資本による水源地の買収を防ぎ、日本の豊かな水源を恒久的に保全する取り組みを行っています。
+                  地域との関係が薄い外部資本による水源地取得や、環境への影響が懸念される開発から、日本の豊かな水源を守る取り組みを行っています。
                 </p>
                 <Link
                   href="/activities#conservation"
@@ -181,7 +181,7 @@ export default function Home() {
                   生態系復活プロジェクト
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  水から生態系を蘇らせる。ナノバブルの力を活かした水質改善で、河川や池のいのちを取り戻します。
+                  独自開発のナノバブル発生器「B-369」を活用し、溶存酸素量や水質指標の改善を目指します。継続的な観測と検証を通じて、水環境の回復に取り組んでいます。
                 </p>
                 <Link
                   href="/activities#ecosystem"
@@ -223,7 +223,7 @@ export default function Home() {
                   里山オーガニック再生
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  放置された森に光を。大地の再生の手法で水脈を回復し、里山の復活を行っています。
+                  「大地の再生」に学びながら、水脈・通気・土壌環境の回復を重視した里山再生に取り組んでいます。
                 </p>
                 <Link
                   href="/activities#satoyama"
@@ -406,10 +406,10 @@ export default function Home() {
               </div>
               <div className="p-5 sm:p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-text-primary">
-                  乱開発と外部資本による買収
+                  水源地周辺の開発と土地取得の課題
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
-                  メガソーラーの無秩序な建設と、外部資本による水源地の買収。<br />
+                  メガソーラーの無秩序な建設と、外部資本による水源地の取得。<br />
                   山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
               </div>

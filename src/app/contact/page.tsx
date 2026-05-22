@@ -124,7 +124,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   のページをご覧ください。
                 </p>
                 <p>
-                  ご相談は左のフォームからお送りいただけます。お問い合わせ種別で「
+                  ご相談はお問い合わせフォームからお送りいただけます。お問い合わせ種別で「
                   <strong className="text-text-primary">環境相談</strong>
                   」を選択してください。
                 </p>

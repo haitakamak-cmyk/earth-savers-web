@@ -43,10 +43,10 @@ export const ORGANIZATION_REPRESENTATIVE_TITLE = "代表理事";
 export const ORGANIZATION_REPRESENTATIVE_NAME = "杉山 孔太";
 
 /** 法人概要の「設立」表示用（登記の年月まで） */
-export const ORGANIZATION_FOUNDED_LABEL = "2026年4月";
+export const ORGANIZATION_FOUNDED_LABEL = "2026年4月25日";
 
 /** JSON-LD `foundingDate`（ISO 8601 の年月） */
-export const ORGANIZATION_FOUNDING_DATE_ISO = "2026-04";
+export const ORGANIZATION_FOUNDING_DATE_ISO = "2026-04-25";
 
 /** メタディスクリプション・OG 等で共通化する一段説明（`SITE_ALLOW_SEARCH_INDEXING` が true のときに使用） */
 export const SITE_ORGANIZATION_DESCRIPTION =

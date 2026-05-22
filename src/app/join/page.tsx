@@ -228,7 +228,7 @@ export default function JoinPage() {
             財団法人「地球防衛群」設立プロジェクト
           </h2>
           <p className="mt-3 text-text-secondary">
-            財団設立のための初期資金を募っています。
+            財団設立および初期活動のための資金を募っています。
             <br className="hidden sm:block" />
             詳しくはクラウドファンディングページをご覧ください。
           </p>
