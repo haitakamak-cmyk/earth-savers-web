@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ORGANIZATION_NAME_HEADER_LINE } from "@/lib/site";
+import { ORGANIZATION_NAME, ORGANIZATION_NAME_HEADER_LINE } from "@/lib/site";
 
 import { ContactFaqSection } from "./ContactFaqSection";
 import { ContactForm } from "./ContactForm";
@@ -154,6 +154,29 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 公益姿勢・訂正受付 */}
+      <section className="border-t border-border bg-ivory py-10 sm:py-14">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 space-y-4">
+          <div className="rounded-xl border border-wakakusa/20 bg-wakakusa-light/20 p-5 text-sm leading-relaxed text-text-secondary">
+            <p className="font-semibold text-text-primary">
+              当財団の基本姿勢
+            </p>
+            <p className="mt-2">
+              {ORGANIZATION_NAME}は、公開情報・判例・行政公表資料に基づき、市民の知る権利と公益的情報アクセスを支える立場から、誠実な事実情報の提供に努めております。同時に、健全な再生可能エネルギー産業の発展と地域の自然環境保全の両立を支援する公益的活動として、対話による合意形成を最も重要な価値と位置付けています。
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-white p-5 text-sm leading-relaxed text-text-secondary">
+            <p className="font-semibold text-text-primary">
+              記述内容に関するご指摘について
+            </p>
+            <p className="mt-2">
+              当財団は、対話を通じた事実関係の確認と適切な訂正を最優先します。当サイトの記述内容に事実誤認・解釈の不適切な点等がある場合は、上記フォームよりご指摘ください。ご指摘いただいた事項については、当財団内で精査のうえ、根拠資料に基づき必要な対応を検討し、速やかに訂正いたします。
+            </p>
           </div>
         </div>
       </section>

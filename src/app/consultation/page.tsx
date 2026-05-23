@@ -166,7 +166,35 @@ export default function ConsultationPage() {
       </section>
 
       <section className="bg-ivory pb-2">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 space-y-4">
+          {/* 公益的ポジショニング */}
+          <div className="rounded-xl border border-wakakusa/20 bg-wakakusa-light/20 p-4 text-sm leading-relaxed text-text-secondary">
+            <p className="font-semibold text-text-primary">
+              当財団の基本姿勢
+            </p>
+            <p className="mt-2">
+              {ORGANIZATION_NAME}は、公開情報・判例・行政公表資料に基づき、市民の知る権利と公益的情報アクセスを支える立場から、誠実な事実情報の提供に努めております。同時に、健全な再生可能エネルギー産業の発展と地域の自然環境保全の両立を支援する公益的活動として、対話による合意形成を最も重要な価値と位置付けています。
+            </p>
+          </div>
+
+          {/* 訂正受付・対話姿勢 */}
+          <div className="rounded-xl border border-border bg-white p-4 text-sm leading-relaxed text-text-secondary">
+            <p className="font-semibold text-text-primary">
+              記述内容に関するご指摘について
+            </p>
+            <p className="mt-2">
+              当財団は、対話を通じた事実関係の確認と適切な訂正を最優先します。当サイトの記述内容に事実誤認・解釈の不適切な点等がある場合は、
+              <Link
+                href="/contact"
+                className="font-semibold text-wakakusa underline underline-offset-2 hover:text-wakakusa-dark"
+              >
+                お問い合わせフォーム
+              </Link>
+              よりご指摘ください。ご指摘いただいた事項については、当財団内で精査のうえ、根拠資料に基づき必要な対応を検討し、速やかに訂正いたします。
+            </p>
+          </div>
+
+          {/* 既存免責事項 */}
           <div className="rounded-xl border border-border bg-white p-4 text-xs leading-relaxed text-text-muted">
             <p>
               ※ 本相談窓口は、地域における環境・防災・住民合意形成に関する一般的な情報整理を支援するものであり、弁護士法に基づく法律相談、代理交渉、訴訟代理その他の法的業務を行うものではありません。
