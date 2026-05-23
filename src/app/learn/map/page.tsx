@@ -159,6 +159,16 @@ export default function LearnMapPage() {
             <p className="mt-3 text-sm text-text-secondary">
               事案ごとの詳細な経緯と出典は事例集をご覧ください。
             </p>
+            <p className="mt-2 text-sm text-text-secondary">
+              掲載内容に事実と異なる点がある場合は、
+              <Link
+                href="/contact"
+                className="font-medium text-wakakusa-dark underline-offset-2 hover:underline"
+              >
+                お問い合わせフォーム
+              </Link>
+              よりご連絡ください。確認の上、合理的な期間内に修正・補記等の対応を行います。
+            </p>
           </aside>
         </div>
       </div>
