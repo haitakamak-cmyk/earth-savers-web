@@ -24,6 +24,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   volunteer: "ボランティアについて",
   media: "取材・メディアについて",
   "environment-consultation": "環境相談",
+  correction: "記述内容の訂正・ご指摘",
   other: "その他",
 };
 

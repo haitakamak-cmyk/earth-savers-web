@@ -104,17 +104,17 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </div>
                 <div>
                   <h2 className="text-lg font-bold text-text-primary">
-                    環境相談（環境トラブル）
+                    環境相談
                   </h2>
                   <p className="text-xs font-medium text-aqua">
-                    メガソーラー・乱開発でお困りの方へ
+                    地域の自然環境や水源と開発計画の調和にお悩みの方へ
                   </p>
                 </div>
               </div>
 
               <div className="space-y-4 text-sm leading-relaxed text-text-secondary">
                 <p>
-                  相談の流れ・留意事項は
+                  相談の流れ・免責事項は
                   <Link
                     href="/consultation"
                     className="mx-1 font-semibold text-aqua underline underline-offset-2 hover:text-aqua-dark"
@@ -135,10 +135,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     よくあるご相談
                   </p>
                   <ul className="space-y-1.5 text-xs text-text-muted">
-                    <li>・ 開発計画の情報を入手したが、何から手をつけるべきか</li>
-                    <li>・ 条例の有無や行政への働きかけ方がわからない</li>
-                    <li>・ 住民同士で勉強会を始めたが、次のステップが見えない</li>
-                    <li>・ 許可が出てしまった後にできることはあるか</li>
+                    <li>・ 開発計画の情報を入手したが、何を確認すればよいかわからない</li>
+                    <li>・ 条例の有無や行政上の手続について情報を整理したい</li>
+                    <li>・ 近隣住民と情報共有を始めたが、次のステップが見えない</li>
+                    <li>・ 専門家への相談が必要か判断に迷っている</li>
                   </ul>
                 </div>
 

@@ -82,7 +82,7 @@ const faqItems = [
   },
   {
     q: "メガソーラー問題にはどう関わっていますか？",
-    a: "山林の乱開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じた法的アドバイスなど、今後は環境相談としての支援が行えるように準備を進めています。",
+    a: "環境への影響が懸念される開発や不適切な造成によるリスクを調査し、住民や自治体への情報提供、専門家の紹介、必要に応じて弁護士等の専門家への相談につなぐなど、今後は環境相談としての支援が行えるように準備を進めています。",
   },
   {
     q: "水源地保全とは具体的に何をする活動ですか？",
@@ -90,7 +90,7 @@ const faqItems = [
   },
   {
     q: "取材依頼や講演依頼はどうすればよいですか？",
-    a: "サイトのお問い合わせフォームよりご連絡ください。代表理事の杉山をはじめ、専門スタッフが対応させていただきます。",
+    a: "サイトのお問い合わせフォームからご連絡ください。代表理事の杉山をはじめ、専門スタッフが対応させていただきます。",
   },
 ];
 
@@ -261,7 +261,7 @@ export default function AboutPage() {
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">
                       <span className="w-2 h-2 rounded-full bg-coral" />
                     </span>
-                    外部資本による水源地の買収と、メガソーラー等による山林の乱開発
+                    地域との合意形成が不十分な水源地取得と、環境への配慮を欠いた大規模開発
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="shrink-0 w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center mt-0.5">

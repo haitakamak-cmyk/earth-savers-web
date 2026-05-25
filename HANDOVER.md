@@ -3,9 +3,16 @@
 # 公式サイト earth-savers-web — 引き継ぎ（HANDOVER）
 
 **リポジトリ内パス**: `Web/earth-savers-web/`  
-**メンバーアプリ**（別デプロイ）との共通メモは `earth-savers-app/HANDOVER.md`。**公開サイトの実装詳細は本ファイルを正**とする（齟齬時はこちらを優先）。
+**メンバーアプリ `earth-savers-app` は 2026-05-23 中止**（GitHub/Vercel 削除済。ローカルは HSSD 退避参照）。旧 HANDOVER は `earth-savers-app/HANDOVER.md`（参照のみ）。**公開サイトの実装詳細は本ファイルを正**とする。
 
 > **過去の指示書・v0ドラフト**はリポジトリ外の `/Volumes/HSSD/backup/_archive/web3-lab/Web/` に移動済み（一覧は [ARCHIVE.md](./ARCHIVE.md)）。
+
+**直近更新**: 2026-05-25 — **Web直送 Stripe サブスク v0 実装**  
+- `/join/subscribe`、`/api/stripe/checkout`、`/join/subscribe/success`、`/join/subscribe/cancel`、`/join/manage`、`/api/stripe/portal`、`/api/stripe/webhook` を追加。6プランは **種の友 ¥1,000/月、緑の友 ¥5,000/月、水の守人 ¥10,000/月、森の番人 ¥30,000/月、山の守護者 ¥50,000/月、七世代の大使 ¥100,000/月**。環境変数は `STRIPE_PRICE_TANE` / `MIDORI` / `MIZU` / `MORI` / `YAMA` / `NANA`。
+- Checkout は `billing_address_collection: "required"`、`shipping_address_collection: { allowed_countries: ["JP"] }`、`phone_number_collection: { enabled: true }`。subscription mode では Customer が自動作成されるため `customer_creation` は指定しない。
+- Portal は **メールだけで API セッションを作らない**。Stripe の no-code Customer Portal login link を `NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL` に設定し、`prefilled_email` を付けてリダイレクトする。理由: Stripe 公式が「請求メールをログイン資格情報として使わない」ことを推奨しているため。
+- Webhook は `checkout.session.completed` / `customer.subscription.updated` / `customer.subscription.deleted` / `customer.updated` / `invoice.paid` / `invoice.payment_failed` を処理し、`memberships` を service role で同期する。住所は Phase 1 では Supabase の正本にせず Stripe 側を正とする。
+- 検証: `npx tsc --noEmit --incremental false` 成功、`npm run lint` エラー0（既存警告3件）、`npm run build` 成功。ローカル `http://localhost:3001/join/subscribe` と `/join/manage` 表示確認済み。
 
 **直近更新**: 2026-05-06 — **ナビゲーション（「戻る」）統一**  
 - **ルール確定**：資料室の詳細ページ（`/policy/[slug]`・`/learn/topics/[slug]`・`/learn/glossary/[slug]` など）は **ページ末尾フッターに `ToolkitFooterBackNav` を1個だけ**置く。文言は `← [上位ページ名]へ戻る` で統一。スタイルは `border-border / bg-white / text-aqua-dark`（コンポーネントが担う）。  
@@ -327,4 +334,3 @@
 
 - メンバーアプリ・インフラ・DB: `earth-savers-app/HANDOVER.md`（その中の「公式 Web」節は本ファイルへの入口）。
 - エージェント向け短い指示: 同ディレクトリ `AGENTS.md`。
-

@@ -102,7 +102,7 @@ export default function Home() {
               命の源である「水」と「森」を次世代へつなぐために活動しています。
             </p>
             <p>
-              外部資本による水源地取得、過剰な造成を伴う開発、里山の放置。<br className="hidden sm:block" />
+              地域との合意形成が不十分な水源地取得、環境への配慮を欠いた開発、里山の放置。<br className="hidden sm:block" />
               いま各地で、水と森の循環を脅かす課題が進行しています。<br className="hidden sm:block" />
               私たちはこの現実に向き合い、七世代先まで見据えた保全と再生に取り組んでいます。
             </p>
@@ -139,7 +139,7 @@ export default function Home() {
                   水源地・山林の保全
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed">
-                  地域との関係が薄い外部資本による水源地取得や、環境への影響が懸念される開発から、日本の豊かな水源を守る取り組みを行っています。
+                  地域との合意形成や環境影響への配慮が不十分な開発・土地取得から、日本の豊かな水源を守る取り組みを行っています。
                 </p>
                 <Link
                   href="/activities#conservation"
@@ -409,7 +409,7 @@ export default function Home() {
                   水源地周辺の開発と土地取得の課題
                 </h3>
                 <p className="mt-2 text-sm text-text-secondary leading-relaxed mb-4">
-                  メガソーラーの無秩序な建設と、外部資本による水源地の取得。<br />
+                  地域との合意形成が不十分な大規模開発と、水源地周辺の土地取得。<br />
                   山林の保水力が失われることで、自然災害のリスクが高まっています。
                 </p>
               </div>
@@ -575,7 +575,7 @@ export default function Home() {
             環境トラブルでお困りですか？
           </h2>
           <p className="mt-3 text-text-secondary">
-            メガソーラー計画や乱開発でお悩みの地域の方へ。
+            大規模開発計画と地域の自然環境との調和にお悩みの方へ。
             <br className="hidden sm:block" />
             私たちの「環境相談」窓口にご相談ください。
           </p>

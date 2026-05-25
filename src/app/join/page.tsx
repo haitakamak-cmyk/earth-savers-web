@@ -152,10 +152,16 @@ export default function JoinPage() {
                 {monthlyPlan.description}
               </p>
               <Link
-                href="/contact"
+                href="/join/subscribe"
                 className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
               >
-                サポーター登録のお問い合わせ
+                Stripe でサポーター登録
+              </Link>
+              <Link
+                href="/join/manage"
+                className="mt-3 block text-center text-xs text-wakakusa underline"
+              >
+                すでに登録済みの方：サブスク管理
               </Link>
             </div>
 
