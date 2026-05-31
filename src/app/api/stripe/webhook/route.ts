@@ -167,6 +167,7 @@ async function handleCheckoutCompleted(
     console.info("[stripe/webhook] skipped stale checkout.session.completed", customerId);
     return null;
   }
+  if (result !== "applied") return null;
 
   return {
     action: "completed",
