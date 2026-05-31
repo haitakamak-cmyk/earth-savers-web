@@ -80,6 +80,8 @@ export async function POST(req: NextRequest) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
+    submit_type: "donate",
+    locale: "ja",
     line_items: [{ price: priceId, quantity: 1 }],
     customer_email: email,
     allow_promotion_codes: true,
