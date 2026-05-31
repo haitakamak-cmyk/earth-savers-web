@@ -22,6 +22,9 @@ function collectAllowedOrigins(host: string | null): Set<string> {
   const nextPublic = normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL);
   if (nextPublic) origins.add(nextPublic);
 
+  const vercelProduction = normalizeOrigin(process.env.VERCEL_PROJECT_PRODUCTION_URL);
+  if (vercelProduction) origins.add(vercelProduction);
+
   // 本番では Host ヘッダー由来の origin を許可しない（CSRF 厳格化）
   if (process.env.NODE_ENV !== "production" && host) {
     const httpOrigin = normalizeOrigin(`http://${host}`);

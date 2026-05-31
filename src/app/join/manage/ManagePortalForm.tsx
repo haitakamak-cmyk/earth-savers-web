@@ -68,7 +68,7 @@ export function ManagePortalForm() {
           placeholder="example@email.com"
         />
         <p className="mt-3 text-xs leading-relaxed text-text-muted">
-          毎月の寄付額、支払い方法、停止手続き、必要時の送付先情報などを確認・変更できます。
+          毎月の寄付額、支払い方法、停止手続きなどを確認・変更できます。
           登録済みのメールアドレス宛に、確認リンクが届きます。
         </p>
       </div>

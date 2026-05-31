@@ -183,7 +183,6 @@ export function SubscribeCheckoutForm() {
         </button>
 
         <p className="text-center text-xs text-text-muted">
-          お礼の品などをお送りする場合は、必要に応じて送付先登録をご案内します。
           毎月寄付の確認・変更・停止は
           <Link href="/join/manage" className="text-wakakusa underline">
             寄付内容の確認・変更ページ
