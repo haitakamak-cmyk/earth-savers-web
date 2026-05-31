@@ -9,6 +9,10 @@ import {
   updateMembershipBySubscriptionIdIfEventNewer,
   upsertMembershipFromCheckout,
 } from "@/lib/memberships/db";
+import {
+  sendStripeAdminNotification,
+  type StripeAdminNotification,
+} from "@/lib/stripe/admin-notifications";
 import { getStripe } from "@/lib/stripe/client";
 import {
   mapStripeSubscriptionStatus,
@@ -21,6 +25,52 @@ import { createServiceSupabase, isSupabaseConfigured } from "@/lib/supabase/admi
 export const runtime = "nodejs";
 
 const MAX_WEBHOOK_BODY_BYTES = 1024 * 1024;
+
+function customerIdFromSubscription(subscription: Stripe.Subscription): string | null {
+  const customer = subscription.customer;
+  if (typeof customer === "string") return customer;
+  if (customer && !customer.deleted) return customer.id;
+  return null;
+}
+
+async function customerContactFromSubscription(subscription: Stripe.Subscription): Promise<{
+  email: string | null;
+  name: string | null;
+}> {
+  const customer = subscription.customer;
+  if (typeof customer === "string") {
+    const stripe = getStripe();
+    const retrieved = await stripe.customers.retrieve(customer);
+    if (retrieved.deleted) return { email: null, name: null };
+    return {
+      email: retrieved.email?.toLowerCase() ?? null,
+      name: retrieved.name ?? null,
+    };
+  }
+
+  if (customer && !customer.deleted) {
+    return {
+      email: customer.email?.toLowerCase() ?? null,
+      name: customer.name ?? null,
+    };
+  }
+
+  return { email: null, name: null };
+}
+
+function hasCustomerFacingSubscriptionChange(event: Stripe.Event): boolean {
+  const previous = event.data.previous_attributes as
+    | Record<string, unknown>
+    | undefined;
+  if (!previous) return false;
+
+  return (
+    "items" in previous ||
+    "cancel_at" in previous ||
+    "cancel_at_period_end" in previous ||
+    "canceled_at" in previous
+  );
+}
 
 function subscriptionIdFromInvoice(invoice: Stripe.Invoice): string | null {
   const parent = invoice.parent;
@@ -63,8 +113,9 @@ function periodEndFromSubscription(sub: Stripe.Subscription): Date | null {
 async function handleCheckoutCompleted(
   session: Stripe.Checkout.Session,
   eventCreatedAt: number,
-) {
-  if (session.mode !== "subscription") return;
+  event: Stripe.Event,
+): Promise<StripeAdminNotification | null> {
+  if (session.mode !== "subscription") return null;
 
   const customerId =
     typeof session.customer === "string"
@@ -75,12 +126,12 @@ async function handleCheckoutCompleted(
       ? session.subscription
       : session.subscription?.id;
 
-  if (!customerId || !subscriptionId) return;
+  if (!customerId || !subscriptionId) return null;
 
   const email =
     session.customer_details?.email?.toLowerCase() ??
     session.customer_email?.toLowerCase();
-  if (!email) return;
+  if (!email) return null;
 
   const stripe = getStripe();
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
@@ -114,13 +165,28 @@ async function handleCheckoutCompleted(
 
   if (result === "skipped_stale") {
     console.info("[stripe/webhook] skipped stale checkout.session.completed", customerId);
+    return null;
   }
+
+  return {
+    action: "completed",
+    email,
+    name: donorName,
+    planCode,
+    status: mapStripeSubscriptionStatus(subscription.status),
+    stripeCustomerId: customerId,
+    stripeSubscriptionId: subscriptionId,
+    stripeEventId: event.id,
+    stripeEventType: event.type,
+    occurredAt: new Date(eventCreatedAt * 1000),
+  };
 }
 
 async function handleSubscriptionUpdated(
   subscription: Stripe.Subscription,
   eventCreatedAt: number,
-) {
+  event: Stripe.Event,
+): Promise<StripeAdminNotification | null> {
   const subscriptionId = subscription.id;
   const priceId = subscription.items.data[0]?.price.id;
   const planCode = resolvePlanCode(subscription.metadata?.plan_code, priceId);
@@ -139,13 +205,34 @@ async function handleSubscriptionUpdated(
 
   if (result === "skipped_stale") {
     console.info("[stripe/webhook] skipped stale subscription.updated", subscriptionId);
+    return null;
   }
+
+  if (result !== "applied" || !hasCustomerFacingSubscriptionChange(event)) {
+    return null;
+  }
+
+  const contact = await customerContactFromSubscription(subscription);
+
+  return {
+    action: "changed",
+    email: contact.email,
+    name: contact.name,
+    planCode,
+    status: mapStripeSubscriptionStatus(subscription.status),
+    stripeCustomerId: customerIdFromSubscription(subscription),
+    stripeSubscriptionId: subscriptionId,
+    stripeEventId: event.id,
+    stripeEventType: event.type,
+    occurredAt: new Date(eventCreatedAt * 1000),
+  };
 }
 
 async function handleSubscriptionDeleted(
   subscription: Stripe.Subscription,
   eventCreatedAt: number,
-) {
+  event: Stripe.Event,
+): Promise<StripeAdminNotification | null> {
   const supabase = createServiceSupabase();
   const result = await updateMembershipBySubscriptionIdIfEventNewer({
     supabase,
@@ -156,7 +243,27 @@ async function handleSubscriptionDeleted(
 
   if (result === "skipped_stale") {
     console.info("[stripe/webhook] skipped stale subscription.deleted", subscription.id);
+    return null;
   }
+
+  if (result !== "applied") return null;
+
+  const priceId = subscription.items.data[0]?.price.id;
+  const planCode = resolvePlanCode(subscription.metadata?.plan_code, priceId);
+  const contact = await customerContactFromSubscription(subscription);
+
+  return {
+    action: "canceled",
+    email: contact.email,
+    name: contact.name,
+    planCode,
+    status: "canceled",
+    stripeCustomerId: customerIdFromSubscription(subscription),
+    stripeSubscriptionId: subscription.id,
+    stripeEventId: event.id,
+    stripeEventType: event.type,
+    occurredAt: new Date(eventCreatedAt * 1000),
+  };
 }
 
 async function handleCustomerUpdated(
@@ -284,24 +391,28 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Processing in progress" }, { status: 500 });
   }
 
+  let adminNotification: StripeAdminNotification | null = null;
   try {
     switch (event.type) {
       case "checkout.session.completed":
-        await handleCheckoutCompleted(
+        adminNotification = await handleCheckoutCompleted(
           event.data.object as Stripe.Checkout.Session,
           eventCreatedAt,
+          event,
         );
         break;
       case "customer.subscription.updated":
-        await handleSubscriptionUpdated(
+        adminNotification = await handleSubscriptionUpdated(
           event.data.object as Stripe.Subscription,
           eventCreatedAt,
+          event,
         );
         break;
       case "customer.subscription.deleted":
-        await handleSubscriptionDeleted(
+        adminNotification = await handleSubscriptionDeleted(
           event.data.object as Stripe.Subscription,
           eventCreatedAt,
+          event,
         );
         break;
       case "customer.updated":
@@ -332,6 +443,10 @@ export async function POST(request: NextRequest) {
     }
     console.error("[stripe/webhook]", event.type, err);
     return NextResponse.json({ error: "Processing failed" }, { status: 500 });
+  }
+
+  if (adminNotification) {
+    await sendStripeAdminNotification(adminNotification);
   }
 
   return NextResponse.json({ received: true });
