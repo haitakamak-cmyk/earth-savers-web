@@ -47,6 +47,9 @@ export default function PrivacyPage() {
             本サイトの閲覧にあたり、サーバーアクセスログとして IP
             アドレス、ブラウザ種別、日時等が自動的に記録されることがあります。
           </p>
+          <p className="mt-3 text-sm leading-relaxed">
+            継続寄付のお申し込み、寄付内容の確認・変更・停止手続きにあたり、決済サービスを通じて、お名前、メールアドレス、寄付プラン、決済状況、決済に関する識別子等を取得または参照する場合があります。
+          </p>
 
           <h2 className="mt-10 text-lg font-bold text-text-primary">
             2. 利用目的
@@ -54,6 +57,7 @@ export default function PrivacyPage() {
           <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed">
             <li>お問い合わせへの対応、連絡のため</li>
             <li>お問い合わせ受付の確認メール（自動返信）の送信のため</li>
+            <li>継続寄付の受付、確認、変更、停止、決済状況の管理および運営上の控えの送信のため</li>
             <li>本サイトの運営・改善、不正利用の防止のため</li>
             <li>法令に基づく対応のため</li>
           </ul>
@@ -64,6 +68,10 @@ export default function PrivacyPage() {
           <p className="mt-3 text-sm leading-relaxed">
             当財団は、法令に基づく場合を除き、ご本人の同意なく個人情報を第三者に提供しません。お問い合わせメールの送信にあたり、当財団が利用するメール配信サービス（例：Resend
             等）の提供者に、送信処理に必要な範囲でデータが預託されることがあります。その場合、当財団は委託先の選定と適切な監督に努めます。
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">
+            継続寄付の決済および寄付内容の管理には、当財団が利用する決済サービス（例：Stripe
+            等）を使用します。また、継続寄付の受付、変更、停止等の運営控えの送信にあたり、メール配信サービスの提供者に、送信処理に必要な範囲で氏名、メールアドレス、寄付プラン、決済状況等が預託されることがあります。
           </p>
 
           <h3 className="mt-6 text-base font-bold text-text-primary">

@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 
+import { sanitizeText } from "@/lib/sanitize";
 import { findPlan, formatYen, type PlanCode } from "@/lib/stripe/plans";
 
 const DEFAULT_FROM = "地球防衛群 <info@earth-savers.org>";
@@ -54,13 +55,15 @@ export async function sendStripeAdminNotification(
     ? `${plan.name}（${formatYen(plan.amountMonthly)} / 月）`
     : "未取得";
   const label = actionLabel(notification.action);
+  const name = notification.name ? sanitizeText(notification.name) : null;
+  const email = notification.email ? sanitizeText(notification.email) : null;
 
   const body = [
     `種別: ${label}`,
     `発生日時: ${notification.occurredAt.toISOString()}`,
     "",
-    `お名前: ${notification.name || "未入力"}`,
-    `メールアドレス: ${notification.email || "未取得"}`,
+    `お名前: ${name || "未入力"}`,
+    `メールアドレス: ${email || "未取得"}`,
     `プラン: ${planLine}`,
     `ステータス: ${notification.status || "未取得"}`,
     "",
