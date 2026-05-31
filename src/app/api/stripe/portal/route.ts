@@ -11,7 +11,7 @@ const bodySchema = z.object({
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for") || "anonymous";
-  if (!(await rateLimitAllow(`stripe-portal:${ip}`, 10, 60 * 1000))) {
+  if (!(await rateLimitAllow(`stripe-portal:${ip}`, 3, 60 * 60 * 1000))) {
     return NextResponse.json(
       { error: "リクエストが多すぎます。しばらくしてから再度お試しください。" },
       { status: 429 },
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   const portalUrl = getStripeCustomerPortalLoginUrl();
   if (!portalUrl) {
     return NextResponse.json(
-      { error: "サブスク管理機能は現在準備中です" },
+      { error: "寄付内容の確認・変更機能は現在準備中です" },
       { status: 503 },
     );
   }
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     url = new URL(portalUrl);
   } catch {
     return NextResponse.json(
-      { error: "サブスク管理機能の設定に誤りがあります" },
+      { error: "寄付内容の確認・変更機能の設定に誤りがあります" },
       { status: 500 },
     );
   }

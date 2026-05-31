@@ -1,5 +1,5 @@
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 /**
  * プロセス内メモリのみ。サーバーレス（Vercel 等）ではインスタンスごとに独立したカウンタになり、
@@ -8,7 +8,6 @@ import { Redis } from '@upstash/redis';
  * なければ従来のインメモリ方式でベストエフォートの制限を行う。
  */
 
-// Upstash Redis クライアントの初期化（環境変数がある場合のみ）
 const redis =
   process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
     ? new Redis({
@@ -17,22 +16,40 @@ const redis =
       })
     : null;
 
-// Upstash Ratelimit インスタンス（Redis がある場合）
-const ratelimit = redis
-  ? new Ratelimit({
-      redis,
-      limiter: Ratelimit.slidingWindow(5, '60 s'), // ウェブサイト用（例: お問い合わせは1分間に5回まで）
-      analytics: true,
-    })
-  : null;
+const ratelimitCache = new Map<string, Ratelimit>();
 
-// 従来のインメモリバケット（Redis がない場合のフォールバック）
+function windowMsToDuration(windowMs: number): `${number} s` {
+  const seconds = Math.max(1, Math.ceil(windowMs / 1000));
+  return `${seconds} s`;
+}
+
+function getRatelimit(max: number, windowMs: number): Ratelimit | null {
+  if (!redis) return null;
+
+  const cacheKey = ratelimitInstanceCacheKey(max, windowMs);
+  const cached = ratelimitCache.get(cacheKey);
+  if (cached) return cached;
+
+  const instance = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(max, windowMsToDuration(windowMs)),
+    analytics: true,
+  });
+  ratelimitCache.set(cacheKey, instance);
+  return instance;
+}
+
 const buckets = new Map<string, number[]>();
+
+/** Redis モードで max/windowMs ごとに別インスタンスを使うためのキャッシュキー */
+export function ratelimitInstanceCacheKey(max: number, windowMs: number): string {
+  return `${max}:${windowMs}`;
+}
 
 /**
  * 指定したキーに対してレート制限をチェックする。
  * @param key 制限の識別子（例: "contact:ip_address"）
- * @param max 指定期間内の最大リクエスト数（Redis 使用時は現在は無視され Ratelimit インスタンスのデフォルトが優先される可能性あり）
+ * @param max 指定期間内の最大リクエスト数
  * @param windowMs 期間（ミリ秒）
  * @returns 許可される場合は true
  */
@@ -41,17 +58,16 @@ export async function rateLimitAllow(
   max: number,
   windowMs: number,
 ): Promise<boolean> {
-  // 1. Upstash Redis が利用可能な場合
+  const ratelimit = getRatelimit(max, windowMs);
   if (ratelimit) {
     try {
       const result = await ratelimit.limit(key);
       return result.success;
     } catch (e) {
-      console.error('Rate limit error (Upstash):', e);
+      console.error("Rate limit error (Upstash):", e);
     }
   }
 
-  // 2. インメモリフォールバック（または Redis がない場合）
   const now = Date.now();
   const stamps = buckets.get(key) ?? [];
   const pruned = stamps.filter((t) => now - t < windowMs);

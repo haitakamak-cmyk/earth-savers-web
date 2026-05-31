@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "支援・参加する",
   description:
-    "寄付やサポーター登録、ボランティア活動への参加方法、オンラインショップでの応援など、水と森の未来を守るための参画方法をご案内します。",
+    "寄付や毎月の継続寄付、ボランティア活動への参加方法、オンラインショップでの応援など、水と森の未来を守るための参画方法をご案内します。",
 };
 
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
@@ -14,7 +14,7 @@ const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
 
 const monthlyPlan = {
-  name: "マンスリーサポーター",
+  name: "毎月の寄付",
   amount: "月額 1,000円〜",
   description: "毎月の継続支援で、活動を安定的に支えてくださる方",
 };
@@ -124,7 +124,7 @@ export default function JoinPage() {
       <section id="donation" className="py-16 sm:py-24 bg-ivory-warm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary text-center font-serif">
-            寄付・サポーター登録
+            寄付・継続支援
           </h2>
           <p className="mt-3 text-center text-text-muted">
             あなたのご支援が、活動を支えます
@@ -134,7 +134,7 @@ export default function JoinPage() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* マンスリー → アプリ */}
+            {/* 毎月の寄付 */}
             <div
               id="supporter"
               className="rounded-2xl border-2 border-wakakusa bg-white p-6 shadow-sm transition-colors sm:p-8"
@@ -155,13 +155,13 @@ export default function JoinPage() {
                 href="/join/subscribe"
                 className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
               >
-                Stripe でサポーター登録
+                毎月の寄付を申し込む
               </Link>
               <Link
                 href="/join/manage"
                 className="mt-3 block text-center text-xs text-wakakusa underline"
               >
-                すでに登録済みの方：サブスク管理
+                毎月寄付の確認・変更
               </Link>
             </div>
 

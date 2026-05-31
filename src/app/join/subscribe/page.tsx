@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import { SubscribeCheckoutForm } from "./SubscribeCheckoutForm";
 
 export const metadata: Metadata = {
-  title: "マンスリーサポーター（Stripe）",
+  title: "毎月の寄付",
   description:
-    "Stripe Checkout による月額サブスク寄付。会員登録不要。プラン選択後、安全な決済ページへ進みます。",
+    "毎月の継続寄付のお申し込みページです。会員登録不要。プラン選択後、安全な決済ページへ進みます。",
 };
 
 export default function SubscribePage() {
@@ -21,7 +21,7 @@ export default function SubscribePage() {
             ← 支援・参加に戻る
           </Link>
           <h1 className="mt-4 font-serif text-3xl font-bold text-text-primary">
-            マンスリーサポーター（Stripe）
+            毎月の寄付
           </h1>
           <p className="mt-3 text-text-secondary">
             毎月の継続支援で、水と森の再生活動を支えてください。アカウント登録は不要です。

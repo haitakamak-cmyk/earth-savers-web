@@ -83,11 +83,7 @@ export async function POST(req: NextRequest) {
     line_items: [{ price: priceId, quantity: 1 }],
     customer_email: email,
     allow_promotion_codes: true,
-    billing_address_collection: "required",
-    phone_number_collection: { enabled: true },
-    shipping_address_collection: {
-      allowed_countries: ["JP"],
-    },
+    billing_address_collection: "auto",
     success_url: `${siteUrl}/join/subscribe/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/join/subscribe/cancel`,
     metadata: {

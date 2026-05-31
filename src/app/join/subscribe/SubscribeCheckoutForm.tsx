@@ -65,103 +65,132 @@ export function SubscribeCheckoutForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {SUBSCRIPTION_PLANS.map((plan) => {
-          const active = selected === plan.code;
-          return (
-            <label
-              key={plan.code}
-              className={`cursor-pointer rounded-2xl border-2 p-5 transition-colors ${
-                active
-                  ? "border-wakakusa bg-wakakusa-light/30"
-                  : "border-border bg-white hover:border-wakakusa/40"
-              }`}
-            >
-              <input
-                type="radio"
-                name="plan"
-                value={plan.code}
-                checked={active}
-                onChange={() => setSelected(plan.code)}
-                className="sr-only"
-              />
-              <div className="flex items-start gap-3">
-                <span className="text-2xl" aria-hidden>
-                  {plan.icon}
-                </span>
-                <div>
-                  <p className="font-bold text-text-primary">{plan.name}</p>
-                  <p className="mt-1 text-lg font-semibold text-wakakusa">
-                    {formatYen(plan.amountMonthly)} / 月
-                  </p>
-                  <p className="mt-2 text-sm text-text-secondary">
-                    {plan.description}
-                  </p>
-                </div>
-              </div>
-            </label>
-          );
-        })}
-      </div>
-
-      <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-text-primary">お申し込み情報</h2>
-        <p className="mt-2 text-sm text-text-secondary">
-          会員登録（アカウント作成）は不要です。Stripe の安全な決済ページへ進みます。
-        </p>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm font-medium text-text-primary">
-              メールアドレス <span className="text-red-600">*</span>
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="mt-1 w-full rounded-lg border border-border px-3 py-2.5 text-text-primary"
-              placeholder="example@email.com"
+    <>
+      {status === "submitting" ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ivory/85 px-4 backdrop-blur-[2px]"
+          role="status"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <div className="max-w-sm rounded-2xl border border-border bg-white px-6 py-8 text-center shadow-sm">
+            <div
+              className="mx-auto h-8 w-8 rounded-full border-2 border-wakakusa/25 border-t-wakakusa motion-reduce:animate-none motion-safe:animate-spin"
+              aria-hidden
             />
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="name" className="block text-sm font-medium text-text-primary">
-              お名前（任意）
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              className="mt-1 w-full rounded-lg border border-border px-3 py-2.5 text-text-primary"
-              placeholder="山田 太郎"
-            />
+            <p className="mt-4 font-medium text-text-primary">
+              安全な決済ページを準備しています
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-text-muted">
+              しばらくお待ちください。安全な決済ページへ移動します。
+            </p>
           </div>
         </div>
-      </div>
-
-      {errorMessage ? (
-        <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
-          {errorMessage}
-        </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
-      >
-        {status === "submitting" ? "Stripe へ移動中…" : "Stripe でサブスクを申し込む"}
-      </button>
+      <form onSubmit={onSubmit} className="space-y-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {SUBSCRIPTION_PLANS.map((plan) => {
+            const active = selected === plan.code;
+            return (
+              <label
+                key={plan.code}
+                className={`cursor-pointer rounded-2xl border-2 p-5 transition-colors ${
+                  active
+                    ? "border-wakakusa bg-wakakusa-light/30"
+                    : "border-border bg-white hover:border-wakakusa/40"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="plan"
+                  value={plan.code}
+                  checked={active}
+                  onChange={() => setSelected(plan.code)}
+                  className="sr-only"
+                  disabled={status === "submitting"}
+                />
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl" aria-hidden>
+                    {plan.icon}
+                  </span>
+                  <div>
+                    <p className="font-bold text-text-primary">{plan.name}</p>
+                    <p className="mt-1 text-lg font-semibold text-wakakusa">
+                      {formatYen(plan.amountMonthly)} / 月
+                    </p>
+                    <p className="mt-2 text-sm text-text-secondary">
+                      {plan.description}
+                    </p>
+                  </div>
+                </div>
+              </label>
+            );
+          })}
+        </div>
 
-      <p className="text-center text-xs text-text-muted">
-        サブスクの変更・解約は
-        <Link href="/join/manage" className="text-wakakusa underline">
-          サブスク管理ページ
-        </Link>
-        から（Stripe Customer Portal）。
-      </p>
-    </form>
+        <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+          <h2 className="text-lg font-bold text-text-primary">お申し込み情報</h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            会員登録（アカウント作成）は不要です。寄付内容の確認・変更は、
+            ご登録メールアドレス宛に届く確認リンクから行えます。
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="sm:col-span-2">
+              <label htmlFor="email" className="block text-sm font-medium text-text-primary">
+                メールアドレス <span className="text-red-600">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                disabled={status === "submitting"}
+                className="mt-1 w-full rounded-lg border border-border px-3 py-2.5 text-text-primary disabled:opacity-60"
+                placeholder="example@email.com"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="name" className="block text-sm font-medium text-text-primary">
+                お名前（任意）
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                disabled={status === "submitting"}
+                className="mt-1 w-full rounded-lg border border-border px-3 py-2.5 text-text-primary disabled:opacity-60"
+                placeholder="山田 太郎"
+              />
+            </div>
+          </div>
+        </div>
+
+        {errorMessage ? (
+          <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+            {errorMessage}
+          </p>
+        ) : null}
+
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
+        >
+          {status === "submitting" ? "決済ページへ移動中…" : "毎月の寄付を申し込む"}
+        </button>
+
+        <p className="text-center text-xs text-text-muted">
+          お礼の品などをお送りする場合は、必要に応じて送付先登録をご案内します。
+          毎月寄付の確認・変更・停止は
+          <Link href="/join/manage" className="text-wakakusa underline">
+            寄付内容の確認・変更ページ
+          </Link>
+          から行えます。
+        </p>
+      </form>
+    </>
   );
 }

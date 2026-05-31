@@ -7,12 +7,15 @@
 
 > **過去の指示書・v0ドラフト**はリポジトリ外の `/Volumes/HSSD/backup/_archive/web3-lab/Web/` に移動済み（一覧は [ARCHIVE.md](./ARCHIVE.md)）。
 
-**直近更新**: 2026-05-25 — **Web直送 Stripe サブスク v0 実装**  
+**直近更新**: 2026-05-31 — **Stripe 寄付サブスク Phase 1 完了 + 住所任意運用 + 本番移行前チェック**
 - `/join/subscribe`、`/api/stripe/checkout`、`/join/subscribe/success`、`/join/subscribe/cancel`、`/join/manage`、`/api/stripe/portal`、`/api/stripe/webhook` を追加。6プランは **種の友 ¥1,000/月、緑の友 ¥5,000/月、水の守人 ¥10,000/月、森の番人 ¥30,000/月、山の守護者 ¥50,000/月、七世代の大使 ¥100,000/月**。環境変数は `STRIPE_PRICE_TANE` / `MIDORI` / `MIZU` / `MORI` / `YAMA` / `NANA`。
-- Checkout は `billing_address_collection: "required"`、`shipping_address_collection: { allowed_countries: ["JP"] }`、`phone_number_collection: { enabled: true }`。subscription mode では Customer が自動作成されるため `customer_creation` は指定しない。
-- Portal は **メールだけで API セッションを作らない**。Stripe の no-code Customer Portal login link を `NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL` に設定し、`prefilled_email` を付けてリダイレクトする。理由: Stripe 公式が「請求メールをログイン資格情報として使わない」ことを推奨しているため。
-- Webhook は `checkout.session.completed` / `customer.subscription.updated` / `customer.subscription.deleted` / `customer.updated` / `invoice.paid` / `invoice.payment_failed` を処理し、`memberships` を service role で同期する。住所は Phase 1 では Supabase の正本にせず Stripe 側を正とする。
-- 検証: `npx tsc --noEmit --incremental false` 成功、`npm run lint` エラー0（既存警告3件）、`npm run build` 成功。ローカル `http://localhost:3001/join/subscribe` と `/join/manage` 表示確認済み。
+- Checkout 初回導線は **メール・名前・カード中心**。住所・電話・配送先は必須取得しない（`billing_address_collection: "auto"`、`shipping_address_collection` / `phone_number_collection` は未指定）。お礼の品・紙の会報誌など送付が必要になった時点で、登録者へ案内し Customer Portal で任意更新してもらう運用。
+- Portal は **自社DBで登録有無を判定しない**。Stripe の no-code Customer Portal login link を `NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL_URL` に設定し、valid email なら常に `prefilled_email` 付き URL へリダイレクトする。登録有無の判定・メール送信は Stripe 側へ委譲し、自社 API から寄付者メールの列挙を漏らさない。
+- Webhook は `checkout.session.completed` / `customer.subscription.updated` / `customer.subscription.deleted` / `customer.updated` / `invoice.paid` / `invoice.payment_failed` を処理し、`memberships` を service role で同期。`stripe_events` で冪等化（status / stale processing 再 claim）。`memberships.last_stripe_event_created_at` と atomic RPC で、古い Stripe event による先祖返りを防ぐ。
+- Stripe client は **`apiVersion: 2026-03-25.dahlia`** 固定（`src/lib/stripe/client.ts` の `STRIPE_API_VERSION`）。`getSiteBaseUrl()` は production で `SITE_URL` / `NEXT_PUBLIC_SITE_URL` の固定 origin のみを許可し、localhost や Host header 由来にフォールバックしない。
+- Supabase migration（新規環境・順序）: `20260524000000` → `20260524100000` → `20260525000000` → `20260525100000` → `20260525110000` → `20260525120000` → `20260530100000` → `20260530110000`。共有DB `earth-savers-db` には 2026-05-31 時点で適用・repair 済み。
+- ローカルE2E: Checkout で住所・電話・配送先が出ないこと、Success の支援カード表示、Webhook 200、Supabase `memberships` 反映、stale RPC が `skipped_stale` になることを確認済み。
+- 本番前の最低検証: `npx tsc --noEmit --incremental false` / `npm run lint` / `npm run build` / `npm run verify-ratelimit`。lint は既存警告のみ許容。
 
 **直近更新**: 2026-05-06 — **ナビゲーション（「戻る」）統一**  
 - **ルール確定**：資料室の詳細ページ（`/policy/[slug]`・`/learn/topics/[slug]`・`/learn/glossary/[slug]` など）は **ページ末尾フッターに `ToolkitFooterBackNav` を1個だけ**置く。文言は `← [上位ページ名]へ戻る` で統一。スタイルは `border-border / bg-white / text-aqua-dark`（コンポーネントが担う）。  

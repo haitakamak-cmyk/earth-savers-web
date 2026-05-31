@@ -36,7 +36,7 @@ const footerLinks = [
     title: "支援・参加",
     links: [
       { label: "寄付する", href: "/join#donation" },
-      { label: "サポーター登録", href: "/join#supporter" },
+      { label: "毎月の寄付", href: "/join#supporter" },
       { label: "ボランティア", href: "/join#volunteer" },
       { label: "買って応援", href: "/shop" },
     ],

@@ -37,16 +37,15 @@ export function ManagePortalForm() {
         error?: string;
       };
 
-      if (!res.ok || !data.url) {
-        setErrorMessage(
-          data.error ??
-            "管理ページを開けませんでした。登録時と同じメールアドレスかご確認ください。",
-        );
-        setStatus("error");
+      if (res.ok && data.url) {
+        window.location.href = data.url;
         return;
       }
 
-      window.location.href = data.url;
+      setErrorMessage(
+        data.error ?? "管理ページを開けませんでした。しばらくしてから再度お試しください。",
+      );
+      setStatus("error");
     } catch {
       setErrorMessage("通信エラーが発生しました。再度お試しください。");
       setStatus("error");
@@ -69,8 +68,8 @@ export function ManagePortalForm() {
           placeholder="example@email.com"
         />
         <p className="mt-3 text-xs leading-relaxed text-text-muted">
-          Stripe Customer Portal で、支払い方法の変更・プラン変更・解約などが行えます。
-          Portal の設定は Stripe Dashboard で事前に有効化してください。
+          毎月の寄付額、支払い方法、停止手続き、必要時の送付先情報などを確認・変更できます。
+          登録済みのメールアドレス宛に、確認リンクが届きます。
         </p>
       </div>
 
@@ -85,11 +84,11 @@ export function ManagePortalForm() {
         disabled={status === "submitting"}
         className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa px-6 py-3.5 font-semibold text-white hover:bg-wakakusa-dark disabled:opacity-60"
       >
-        {status === "submitting" ? "Portal へ移動中…" : "サブスク管理ページを開く"}
+        {status === "submitting" ? "管理ページへ移動中…" : "寄付内容を確認・変更する"}
       </button>
 
       <p className="text-center text-sm text-text-muted">
-        新規お申し込みは
+        新規のお申し込みは
         <Link href="/join/subscribe" className="text-wakakusa underline">
           こちら
         </Link>

@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
 
 import {
-  updateMembershipByCustomerId,
-  updateMembershipBySubscriptionId,
+  claimStripeWebhookEvent,
+  failStripeWebhookEventClaim,
+  markStripeWebhookEventProcessed,
+  updateMembershipByCustomerIdIfEventNewer,
+  updateMembershipBySubscriptionIdIfEventNewer,
   upsertMembershipFromCheckout,
 } from "@/lib/memberships/db";
 import { getStripe } from "@/lib/stripe/client";
@@ -16,6 +19,8 @@ import {
 import { createServiceSupabase, isSupabaseConfigured } from "@/lib/supabase/admin";
 
 export const runtime = "nodejs";
+
+const MAX_WEBHOOK_BODY_BYTES = 1024 * 1024;
 
 function subscriptionIdFromInvoice(invoice: Stripe.Invoice): string | null {
   const parent = invoice.parent;
@@ -38,12 +43,13 @@ function resolvePlanCode(
   metadataPlan: string | undefined,
   priceId: string | undefined,
 ): PlanCode | null {
+  if (priceId) {
+    const fromPrice = planCodeFromPriceId(priceId);
+    if (fromPrice) return fromPrice;
+  }
   if (metadataPlan) {
     const parsed = planCodeSchema.safeParse(metadataPlan);
     if (parsed.success) return parsed.data;
-  }
-  if (priceId) {
-    return planCodeFromPriceId(priceId);
   }
   return null;
 }
@@ -54,7 +60,10 @@ function periodEndFromSubscription(sub: Stripe.Subscription): Date | null {
   return new Date(end * 1000);
 }
 
-async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
+async function handleCheckoutCompleted(
+  session: Stripe.Checkout.Session,
+  eventCreatedAt: number,
+) {
   if (session.mode !== "subscription") return;
 
   const customerId =
@@ -91,7 +100,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     null;
 
   const supabase = createServiceSupabase();
-  await upsertMembershipFromCheckout({
+  const result = await upsertMembershipFromCheckout({
     supabase,
     stripeCustomerId: customerId,
     stripeSubscriptionId: subscriptionId,
@@ -100,65 +109,102 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     planCode,
     status: mapStripeSubscriptionStatus(subscription.status),
     currentPeriodEnd: periodEndFromSubscription(subscription),
+    stripeEventCreatedAt: eventCreatedAt,
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale checkout.session.completed", customerId);
+  }
 }
 
-async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
+async function handleSubscriptionUpdated(
+  subscription: Stripe.Subscription,
+  eventCreatedAt: number,
+) {
   const subscriptionId = subscription.id;
   const priceId = subscription.items.data[0]?.price.id;
   const planCode = resolvePlanCode(subscription.metadata?.plan_code, priceId);
 
   const supabase = createServiceSupabase();
-  await updateMembershipBySubscriptionId({
+  const result = await updateMembershipBySubscriptionIdIfEventNewer({
     supabase,
     stripeSubscriptionId: subscriptionId,
+    stripeEventCreatedAt: eventCreatedAt,
     patch: {
       status: mapStripeSubscriptionStatus(subscription.status),
       ...(planCode ? { plan_code: planCode } : {}),
       current_period_end: periodEndFromSubscription(subscription)?.toISOString() ?? null,
     },
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale subscription.updated", subscriptionId);
+  }
 }
 
-async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
+async function handleSubscriptionDeleted(
+  subscription: Stripe.Subscription,
+  eventCreatedAt: number,
+) {
   const supabase = createServiceSupabase();
-  await updateMembershipBySubscriptionId({
+  const result = await updateMembershipBySubscriptionIdIfEventNewer({
     supabase,
     stripeSubscriptionId: subscription.id,
+    stripeEventCreatedAt: eventCreatedAt,
     patch: { status: "canceled" },
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale subscription.deleted", subscription.id);
+  }
 }
 
-async function handleCustomerUpdated(customer: Stripe.Customer) {
+async function handleCustomerUpdated(
+  customer: Stripe.Customer,
+  eventCreatedAt: number,
+) {
   const customerId = customer.id;
   const email = customer.email?.toLowerCase() ?? null;
   const name = customer.name ?? null;
   if (!email && !name) return;
 
   const supabase = createServiceSupabase();
-  await updateMembershipByCustomerId({
+  const result = await updateMembershipByCustomerIdIfEventNewer({
     supabase,
     stripeCustomerId: customerId,
+    stripeEventCreatedAt: eventCreatedAt,
     patch: {
       ...(email ? { email } : {}),
       ...(name ? { name } : {}),
     },
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale customer.updated", customerId);
+  }
 }
 
-async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
+async function handleInvoicePaymentFailed(
+  invoice: Stripe.Invoice,
+  eventCreatedAt: number,
+) {
   const subId = subscriptionIdFromInvoice(invoice);
   if (!subId) return;
 
   const supabase = createServiceSupabase();
-  await updateMembershipBySubscriptionId({
+  const result = await updateMembershipBySubscriptionIdIfEventNewer({
     supabase,
     stripeSubscriptionId: subId,
+    stripeEventCreatedAt: eventCreatedAt,
     patch: { status: "past_due" },
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale invoice.payment_failed", subId);
+  }
 }
 
-async function handleInvoicePaid(invoice: Stripe.Invoice) {
+async function handleInvoicePaid(invoice: Stripe.Invoice, eventCreatedAt: number) {
   const subId = subscriptionIdFromInvoice(invoice);
   if (!subId) return;
 
@@ -168,15 +214,20 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
   const planCode = resolvePlanCode(subscription.metadata?.plan_code, priceId);
 
   const supabase = createServiceSupabase();
-  await updateMembershipBySubscriptionId({
+  const result = await updateMembershipBySubscriptionIdIfEventNewer({
     supabase,
     stripeSubscriptionId: subId,
+    stripeEventCreatedAt: eventCreatedAt,
     patch: {
       status: mapStripeSubscriptionStatus(subscription.status),
       ...(planCode ? { plan_code: planCode } : {}),
       current_period_end: periodEndFromSubscription(subscription)?.toISOString() ?? null,
     },
   });
+
+  if (result === "skipped_stale") {
+    console.info("[stripe/webhook] skipped stale invoice.paid", subId);
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -194,7 +245,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing signature" }, { status: 400 });
   }
 
+  const contentLengthHeader = request.headers.get("content-length");
+  if (contentLengthHeader) {
+    const contentLength = Number.parseInt(contentLengthHeader, 10);
+    if (
+      Number.isFinite(contentLength) &&
+      contentLength > MAX_WEBHOOK_BODY_BYTES
+    ) {
+      return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+    }
+  }
+
   const rawBody = await request.text();
+  if (Buffer.byteLength(rawBody, "utf8") > MAX_WEBHOOK_BODY_BYTES) {
+    return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+  }
+
   const stripe = getStripe();
 
   let event: Stripe.Event;
@@ -204,36 +270,66 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
+  const eventCreatedAt = event.created;
+  const supabase = createServiceSupabase();
+  const claim = await claimStripeWebhookEvent({
+    supabase,
+    eventId: event.id,
+    eventType: event.type,
+  });
+  if (claim === "already_processed") {
+    return NextResponse.json({ received: true });
+  }
+  if (claim === "in_progress") {
+    return NextResponse.json({ error: "Processing in progress" }, { status: 500 });
+  }
+
   try {
     switch (event.type) {
       case "checkout.session.completed":
         await handleCheckoutCompleted(
           event.data.object as Stripe.Checkout.Session,
+          eventCreatedAt,
         );
         break;
       case "customer.subscription.updated":
         await handleSubscriptionUpdated(
           event.data.object as Stripe.Subscription,
+          eventCreatedAt,
         );
         break;
       case "customer.subscription.deleted":
         await handleSubscriptionDeleted(
           event.data.object as Stripe.Subscription,
+          eventCreatedAt,
         );
         break;
       case "customer.updated":
-        await handleCustomerUpdated(event.data.object as Stripe.Customer);
+        await handleCustomerUpdated(
+          event.data.object as Stripe.Customer,
+          eventCreatedAt,
+        );
         break;
       case "invoice.paid":
-        await handleInvoicePaid(event.data.object as Stripe.Invoice);
+        await handleInvoicePaid(event.data.object as Stripe.Invoice, eventCreatedAt);
         break;
       case "invoice.payment_failed":
-        await handleInvoicePaymentFailed(event.data.object as Stripe.Invoice);
+        await handleInvoicePaymentFailed(
+          event.data.object as Stripe.Invoice,
+          eventCreatedAt,
+        );
         break;
       default:
         break;
     }
+
+    await markStripeWebhookEventProcessed({ supabase, eventId: event.id });
   } catch (err) {
+    try {
+      await failStripeWebhookEventClaim({ supabase, eventId: event.id });
+    } catch (releaseErr) {
+      console.error("[stripe/webhook] failed to release event claim", releaseErr);
+    }
     console.error("[stripe/webhook]", event.type, err);
     return NextResponse.json({ error: "Processing failed" }, { status: 500 });
   }

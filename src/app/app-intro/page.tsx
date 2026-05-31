@@ -82,9 +82,9 @@ const features = [
     ),
   },
   {
-    title: "マンスリーサポーター",
+    title: "毎月の寄付",
     description:
-      "月額1,000円〜の継続寄付。アプリから簡単に登録・変更・停止できます。",
+      "月額1,000円〜の継続寄付。アプリから簡単に申し込み・変更・停止できます。",
     icon: (
       <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
@@ -154,7 +154,7 @@ export default function AppIntroPage() {
             「地球防衛群のメンバーが集まる場所」
           </h2>
           <p className="mt-4 leading-relaxed text-text-secondary">
-            活動投稿・ランキング・部活動・マンスリーサポーター登録をひとつのアプリで。
+            活動投稿・ランキング・部活動・毎月の寄付をひとつのアプリで。
             <br />
             仲間と一緒に、水と森を守る活動を続けよう。
           </p>

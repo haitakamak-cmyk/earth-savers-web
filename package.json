@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "verify-deploy": "bash scripts/verify-deploy-ready.sh"
+    "verify-deploy": "bash scripts/verify-deploy-ready.sh",
+    "verify-ratelimit": "npx tsx scripts/verify-ratelimit-separation.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
