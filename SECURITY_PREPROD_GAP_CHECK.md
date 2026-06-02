@@ -15,6 +15,18 @@
 | Stripe Phase 1 セキュリティ | **done** | CSRF / rate-limit / webhook 冪等 / DB 硬化 / portal 列挙対策 / atomic RPC |
 | Stripe UI | **done** | Checkout overlay / Success 検証 |
 | Sentry SDK | **コード導入済** | `@sentry/nextjs` + PII scrub + `/api/internal/sentry-test`。**DSN 未設定のため受信未確認** |
+
+### Sentry Preview 受信確認手順（マスター承認後）
+
+Vercel Preview は `NODE_ENV=production` のため、test route 有効化に **両方** 必要:
+
+1. `SENTRY_DSN`（Preview env）
+2. `SENTRY_ENABLE_TEST_ROUTE=1`（Preview env）
+
+確認: `GET https://<preview-url>/api/internal/sentry-test` → 200 + Sentry ダッシュボードにイベント。  
+（route 内で `captureException` 後に `await Sentry.flush(2000)` 済み）
+
+Production への DSN / ENABLE は **別ゲート（マスター承認必須）**。
 | GitHub Dependabot | **earth-savers-web ON** | alerts + security updates enabled（2026-06-01） |
 | GitHub Secret Scanning | **earth-savers-web ON** | push protection enabled |
 | Cloudflare | **未導入（PMO フェーズ2保留）** | |
@@ -56,7 +68,7 @@
 
 | 項目 | 優先度 | 状態 |
 | --- | --- | --- |
-| Sentry SDK + `beforeSend` PII フィルタ | 高 | **完了**（DSN 設定後に `/api/internal/sentry-test` で受信確認） |
+| Sentry SDK + `beforeSend` PII フィルタ | 高 | **完了**（Preview: `SENTRY_DSN` + `SENTRY_ENABLE_TEST_ROUTE=1` 設定後に test route 確認） |
 | Cloudflare 前段化時 IP / Webhook WAF 除外 | 中（フェーズ2） | 未着手（PMO 保留） |
 | asset copy path audit | 低 | todo |
 
@@ -130,7 +142,7 @@
 
 ## 7. 次アクション
 
-1. **マスター**: Sentry アカウント + Preview `SENTRY_DSN` → `/api/internal/sentry-test` 確認
+1. **マスター**: Sentry アカウント + Preview env に `SENTRY_DSN` と `SENTRY_ENABLE_TEST_ROUTE=1` → test route 確認 → ジュウゾー検証
 2. **マスター**: Stripe Live env + migration G5 + Live E2E
 3. **ロクロー**: team-sanada-ai-work の GitHub Security 再確認 / n8n-skills はマスター依頼
 4. **サスケ**: Cloudflare 一次情報審査（フェーズ2）
