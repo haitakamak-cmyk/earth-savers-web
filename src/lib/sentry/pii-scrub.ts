@@ -3,12 +3,34 @@ import type { ErrorEvent, EventHint } from "@sentry/nextjs";
 const SENSITIVE_KEY =
   /email|password|token|secret|authorization|cookie|stripe|customer|session|phone|name|address/i;
 
+function tryParseJsonString(value: string): unknown | null {
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("{") && !trimmed.startsWith("[")) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(trimmed) as unknown;
+  } catch {
+    return null;
+  }
+}
+
+function scrubStringValue(value: string): unknown {
+  const parsed = tryParseJsonString(value);
+  if (parsed !== null) {
+    return JSON.stringify(scrubValue(parsed));
+  }
+
+  if (value.includes("@")) return "[Filtered Email]";
+  if (/^(sk|pk|rk|whsec)_/i.test(value)) return "[Filtered Stripe Key]";
+  if (/^eyJ/.test(value)) return "[Filtered JWT]";
+  return value.length > 256 ? `${value.slice(0, 64)}…[truncated]` : value;
+}
+
 function scrubValue(value: unknown): unknown {
   if (typeof value === "string") {
-    if (value.includes("@")) return "[Filtered Email]";
-    if (/^(sk|pk|rk|whsec)_/i.test(value)) return "[Filtered Stripe Key]";
-    if (/^eyJ/.test(value)) return "[Filtered JWT]";
-    return value.length > 256 ? `${value.slice(0, 64)}…[truncated]` : value;
+    return scrubStringValue(value);
   }
   if (Array.isArray(value)) {
     return value.map(scrubValue);
