@@ -11,6 +11,7 @@
     "verify-ratelimit": "npx tsx scripts/verify-ratelimit-separation.ts"
   },
   "dependencies": {
+    "@sentry/nextjs": "^10.55.0",
     "@supabase/supabase-js": "^2.106.1",
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.37.0",
