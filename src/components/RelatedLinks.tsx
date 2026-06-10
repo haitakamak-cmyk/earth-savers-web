@@ -6,7 +6,7 @@ export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
   return (
     <section className="mt-12" aria-labelledby="related-links-heading">
       <div className="flex items-baseline gap-3">
-        <span aria-hidden className="h-px w-8 shrink-0 bg-wakakusa/70" />
+        <span aria-hidden className="h-px w-8 shrink-0 bg-wakakusa/60" />
         <h2
           id="related-links-heading"
           className="font-serif text-lg font-semibold tracking-tight text-text-primary"
@@ -25,7 +25,7 @@ export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
             >
               <span
                 aria-hidden
-                className="mt-1.5 h-4 w-px shrink-0 bg-border transition-[background-color,height] group-hover:bg-wakakusa motion-safe:group-hover:h-5"
+                className="mt-1.5 h-4 w-px shrink-0 bg-border transition-all group-hover:bg-wakakusa motion-safe:group-hover:h-5"
               />
               <span className="min-w-0">
                 <span className="flex items-center gap-1.5 font-medium text-text-primary">
