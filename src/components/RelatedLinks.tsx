@@ -16,10 +16,10 @@ export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
           id="related-links-heading"
           className="font-serif text-lg font-semibold tracking-tight text-text-primary"
         >
-          次に読む
+          関連する資料
         </h2>
       </div>
-      <p className="mt-1 pl-11 text-xs text-text-muted">この記事と地続きの話題</p>
+      <p className="mt-1 pl-11 text-xs text-text-muted">この記事とあわせて確認できます</p>
 
       <ul className="mt-5 divide-y divide-border/60">
         {items.map((item) => (
