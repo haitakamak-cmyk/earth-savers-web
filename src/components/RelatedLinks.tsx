@@ -1,10 +1,15 @@
+import Link from "next/link";
+
 import type { RelatedNavItem } from "@/lib/related-resources";
 
 export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="mt-12" aria-labelledby="related-links-heading">
+    <section
+      className="relative z-10 isolate mt-12"
+      aria-labelledby="related-links-heading"
+    >
       <div className="flex items-baseline gap-3">
         <span aria-hidden className="h-px w-8 shrink-0 bg-wakakusa/60" />
         <h2
@@ -19,9 +24,9 @@ export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
       <ul className="mt-5 divide-y divide-border/60">
         {items.map((item) => (
           <li key={item.href}>
-            <a
+            <Link
               href={item.href}
-              className="group -mx-2 flex items-start gap-3 rounded-md px-2 py-3 outline-none transition-colors hover:bg-wakakusa-light/40 focus-visible:bg-wakakusa-light/50 focus-visible:ring-2 focus-visible:ring-wakakusa/50"
+              className="group flex min-h-11 touch-manipulation items-start gap-3 rounded-md px-3 py-3 outline-none transition-colors hover:bg-wakakusa-light/40 focus-visible:bg-wakakusa-light/50 focus-visible:ring-2 focus-visible:ring-wakakusa/50 focus-visible:ring-offset-2"
             >
               <span
                 aria-hidden
@@ -43,7 +48,7 @@ export function RelatedLinks({ items }: { items: RelatedNavItem[] }) {
                   </span>
                 ) : null}
               </span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

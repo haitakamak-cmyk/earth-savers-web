@@ -144,7 +144,7 @@ export default async function PolicyDetailPage({ params }: Props) {
         {markdown ? (
           <div id="policy-doc-main" className="lg:flex lg:gap-10">
             <TopicToc items={toc} />
-            <div className="min-w-0 flex-1">
+            <div className="relative z-10 min-w-0 flex-1">
               <MarkdownArticle markdown={markdown} narrowProse />
               <RelatedLinks items={related} />
               <div className="mt-10 space-y-4">

@@ -77,13 +77,15 @@ export function TopicToc({ items }: TopicTocProps) {
         </button>
         {open ? <div className="mt-3 border-t border-border pt-3">{list}</div> : null}
       </nav>
-      <nav
-        className="sticky top-28 hidden max-h-[calc(100vh-8rem)] w-56 shrink-0 overflow-y-auto border-l border-wakakusa/30 pl-4 text-sm lg:block"
-        aria-label="目次"
-      >
-        <p className="mb-2 font-serif text-sm font-semibold text-text-primary">目次</p>
-        {list}
-      </nav>
+      <div className="hidden w-56 shrink-0 lg:block">
+        <nav
+          className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto border-l border-wakakusa/30 pl-4 text-sm"
+          aria-label="目次"
+        >
+          <p className="mb-2 font-serif text-sm font-semibold text-text-primary">目次</p>
+          {list}
+        </nav>
+      </div>
     </>
   );
 }
