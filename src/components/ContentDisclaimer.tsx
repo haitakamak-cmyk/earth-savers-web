@@ -31,9 +31,18 @@ export function ContentDisclaimer(props: ContentDisclaimerProps) {
         </div>
       ) : null}
       {props.ordinanceDraftFinalizeNote ? (
-        <p className="mt-4 border-t border-border pt-4 text-text-secondary">
-          本資料は条例制定の参考であり、各自治体の法務担当・顧問弁護士のレビューを経たうえで最終化してください。
-        </p>
+        <div className="mt-4 border-t border-border pt-4 text-[13px] text-text-secondary space-y-2">
+          <p className="font-semibold text-text-primary">【条例ひな型・補助資料の取り扱いについて】</p>
+          <p>
+            本ひな型及び各種補助資料は、自治体が条例を検討する際の<strong>参考資料</strong>として提供するものであり、特定の自治体や個別事案に対する<strong>法的助言ではありません</strong>。
+          </p>
+          <p>
+            条例の採用、修正、及び運用に関する最終的な意思決定は、各<strong>自治体の自主的な判断</strong>に基づいて行ってください。
+          </p>
+          <p>
+            導入にあたっては、必ず各自治体の法務担当部署や顧問弁護士等の専門家への確認及び協議を行ってください。
+          </p>
+        </div>
       ) : null}
     </aside>
   );

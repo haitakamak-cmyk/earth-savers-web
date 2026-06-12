@@ -17,13 +17,19 @@ export type NewsEntry = {
 
 export const newsEntries: NewsEntry[] = [
   {
-    id: "founding-crowdfunding-2025",
-    date: "2026-04-23",
-    category: "重要",
-    title: "一般財団法人「地球防衛群」設立およびクラウドファンディング開始のお知らせ",
+    id: "crowdfunding-next-goal-2026-05",
+    date: "2026-05-31",
+    category: "活動報告",
+    title: "クラウドファンディング ネクストゴール達成！",
     href: "https://for-good.net/project/1003493",
     external: true,
-    lead: "日本の「命の水と森」を七世代先の子どもたちへ残すことを目的として、一般財団法人「地球防衛群」を設立いたします。設立に伴い、初期活動資金および水源地・山林防衛のためのクラウドファンディングを「For Good」にて開始しています。",
+  },
+  {
+    id: "corporate-registration-2026-05",
+    date: "2026-05-15",
+    category: "重要",
+    title: "一般財団法人 地球防衛群 法人登記完了！",
+    href: "/about",
   },
 ];
 

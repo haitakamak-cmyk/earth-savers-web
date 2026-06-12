@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import { ORGANIZATION_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "環境相談窓口",
+  title: "環境相談",
   description:
     "地域の自然環境や水源を守りながら、再エネ開発への対応を考えたい方へ。" +
-    `事例集・活動ツールキットで状況を整理したうえで、${ORGANIZATION_NAME}の環境相談窓口が情報整理のご案内を行います。`,
+    `まず事例集・活動ツールキットを確認し、必要に応じて一般的な情報整理の入口として${ORGANIZATION_NAME}に情報提供できます。`,
 };
 
 const concerns = [
@@ -48,8 +48,8 @@ const steps: Step[] = [
   },
   {
     step: "04",
-    title: "それでもわからないことがあれば相談する",
-    body: "自分たちで検討した上で、方法が見つからない場合や、専門家への相談が必要か判断に迷う場合は、環境相談窓口にお問い合わせください。内容を確認のうえ、一般的な情報整理又は専門家への相談の必要性についてご案内します。",
+    title: "必要に応じて情報を提供する",
+    body: "自分たちで検討した上で、参考にできる資料や制度の探し方がわからない場合は、環境相談フォームから状況をお知らせください。内容を確認のうえ、一般的な資料や公的窓口の探し方をご案内します。",
     link: {
       label: "お問い合わせフォームへ →",
       href: "/contact?category=environment-consultation",
@@ -63,10 +63,10 @@ export default function ConsultationPage() {
       <section className="relative overflow-hidden bg-wakakusa-dark py-14 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="mb-3 text-sm font-semibold tracking-widest text-wakakusa-light/80 uppercase">
-            環境相談窓口
+            まずは事例から
           </p>
           <h1 className="font-serif text-3xl font-bold text-white drop-shadow-sm sm:text-4xl">
-            環境相談窓口
+            環境相談
           </h1>
           <p className="mt-2 text-sm font-medium tracking-wide text-white/75">
             Environmental consultation desk
@@ -76,7 +76,7 @@ export default function ConsultationPage() {
             <br className="hidden sm:block" />
             まずは事例やツールをもとに、地域の方々と情報を共有し、状況を整理してみてください。
             <br className="hidden sm:block" />
-            それでも道筋が見えないときに、環境相談窓口へご連絡ください。
+            必要に応じて、一般的な資料や公的窓口の探し方をご確認ください。
           </p>
         </div>
       </section>
@@ -227,7 +227,7 @@ export default function ConsultationPage() {
           <div className="mx-auto mt-6 max-w-xl rounded-lg border border-border bg-white p-4 text-xs leading-relaxed text-text-muted">
             <p className="font-semibold text-text-secondary">ご相談の前にご確認ください</p>
             <ul className="mt-2 list-disc space-y-1 pl-4">
-              <li>本窓口は、地域における環境・防災・住民合意形成に関する一般的な情報整理を支援するものです。弁護士法に基づく法律相談、代理交渉、行政手続の代理、訴訟代理その他の法的業務は行いません。</li>
+              <li>本フォームは、地域における環境・防災・住民合意形成に関する一般的な情報整理の入口です。弁護士法に基づく法律相談、代理交渉、行政手続の代理、訴訟代理その他の法的業務は行いません。</li>
               <li>当財団が、相談者に代わって事業者、行政機関、議会、裁判所その他第三者と交渉し、又は申入れを行うことはありません。</li>
               <li>本窓口への相談により、開発計画の中止、行政判断の変更、紛争解決その他特定の結果を保証するものではありません。</li>
               <li>法定期限、工事着手予定日、説明会開催日、審査請求期間など期限が迫っている場合は、速やかに弁護士又は関係行政機関へ直接ご相談ください。</li>
@@ -239,7 +239,7 @@ export default function ConsultationPage() {
               href="/contact?category=environment-consultation"
               className="inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
             >
-              お問い合わせフォームへ
+              情報提供フォームへ
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

@@ -572,18 +572,19 @@ export default function Home() {
       <section className="py-12 sm:py-16 bg-aqua-light border-y border-aqua/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary font-serif">
-            環境トラブルでお困りですか？
+            環境相談について
           </h2>
           <p className="mt-3 text-text-secondary">
-            大規模開発計画と地域の自然環境との調和にお悩みの方へ。
+            大規模開発計画と地域の自然環境との調和について、
+            まずは公開資料や事例集をもとに状況を整理してみてください。
             <br className="hidden sm:block" />
-            私たちの「環境相談」窓口にご相談ください。
+            個別の法的判断や代理交渉ではなく、一般的な情報整理の入口をご用意しています。
           </p>
           <Link
-            href="/contact#helpdesk"
+            href="/consultation"
             className="mt-6 inline-flex items-center px-8 py-3.5 bg-aqua hover:bg-aqua-dark text-white font-semibold rounded-full text-base transition-colors shadow-lg"
           >
-            相談窓口はこちら
+            環境相談の流れを見る
             <svg
               className="ml-2 w-5 h-5"
               fill="none"
