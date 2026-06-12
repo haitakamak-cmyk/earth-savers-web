@@ -70,6 +70,9 @@ function CasePopupContent({ caseItem }: { caseItem: MapCase }) {
           {caseItem.sourceLabel ? `出典: ${caseItem.sourceLabel} ↗` : "出典を見る ↗"}
         </a>
       )}
+      {!href && caseItem.sourceLabel && (
+        <p className="mt-3 text-xs text-text-muted">出典: {caseItem.sourceLabel}</p>
+      )}
       {hrefForWaterTopic(caseItem) && (
         <Link
           href={hrefForWaterTopic(caseItem)!}

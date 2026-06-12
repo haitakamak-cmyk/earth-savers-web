@@ -184,7 +184,7 @@ export const MAP_CASES_TOPIC: MapCase[] = [
     lng: 140.099,
     category: "solar",
     status: "FIT認定失効が公表",
-    topicAnchor: "310-千葉県鴨川市田原地区メガソーラーfit認定失効に至った事例",
+    topicAnchor: "310-千葉県鴨川市田原地区メガソーラーFIT認定失効に至った事例",
     summary: "大規模な山林造成計画をめぐり行政指導が継続する中、FIT認定が失効したと鴨川市が公表した事案",
   },
   {
@@ -418,9 +418,8 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "島の面積に対し大規模な太陽光発電計画が進められ、島嶼環境・地下水・景観・生態系への影響が論点となっている",
-    sourceUrl:
-      "https://www.nikkei.com/article/DGXZQOJC103DX0Q5A211C2000000/",
-    sourceLabel: "日本経済新聞",
+    sourceLabel:
+      "日本経済新聞「長崎・宇久島のメガソーラー、生態学者が環境保全を要望」",
   },
   {
     id: "ishiki-dam",
