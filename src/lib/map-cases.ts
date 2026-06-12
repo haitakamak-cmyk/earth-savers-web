@@ -450,8 +450,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "太陽光発電施設の造成工事に関連して土砂流出が報じられ、防災面での懸念が指摘されている",
-    sourceUrl:
-      "https://www.stv.jp/news/stvnews/kiji/stb54abd4b1f6f4e919718cf64f3372ecb.html",
     sourceLabel: "STV札幌テレビ",
   },
   /* ── 優先度B 追加事案 ─────────────────────── */
