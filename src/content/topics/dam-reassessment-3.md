@@ -100,7 +100,7 @@
 
 [^3]: 同上（目的別内訳：多目的570基・発電393基・農業427基・上水道77基等）。
 
-[^4]: 日本経済新聞「ダム、老いる国土インフラ　本体耐用年数は100年」（2014年9月）。[https://www.nikkei.com/article/DGKDZO77340600Q4A920C1MZ9000/](https://www.nikkei.com/article/DGKDZO77340600Q4A920C1MZ9000/)
+[^4]: 日本経済新聞「ダム、老いる国土インフラ　本体耐用年数は100年」（2014年9月）。
 
 [^5]: 福島県農業用ダム等安全性検証委員会「藤沼湖の決壊原因調査 報告書（要旨）」（平成24年1月）。死者7名・行方不明者1名、流出家屋11戸。[https://www.pref.fukushima.lg.jp/download/1/nosonkeikaku_kensyo_houkoku1-1.pdf](https://www.pref.fukushima.lg.jp/download/1/nosonkeikaku_kensyo_houkoku1-1.pdf)
 

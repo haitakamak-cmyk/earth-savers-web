@@ -94,7 +94,10 @@ function CaseListTable({ cases }: { cases: MapCase[] }) {
                       {c.sourceLabel ?? "出典"}&nbsp;↗
                     </a>
                   )}
-                  {!href && <span className="text-text-muted">—</span>}
+                  {!href && c.sourceLabel && (
+                    <span className="max-w-[12rem] text-xs text-text-muted">{c.sourceLabel}</span>
+                  )}
+                  {!href && !c.sourceLabel && <span className="text-text-muted">—</span>}
                 </td>
               </tr>
             );
