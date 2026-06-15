@@ -127,6 +127,9 @@ export default async function ToolkitOrdinancePage() {
         </div>
         <div className="mx-auto mt-12 max-w-3xl border-t border-border pt-10">
           <ContentDisclaimer ordinanceDraftFinalizeNote />
+          <p className="mt-4 text-sm leading-relaxed text-text-muted">
+            ※ 本ひな型は無償で公開しています。ご利用にあたって寄付や対価は必要ありません。
+          </p>
           <ToolkitFooterBackNav
             href="/toolkit"
             label="← ひな形・資料一覧へ戻る"

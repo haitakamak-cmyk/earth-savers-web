@@ -402,7 +402,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "町が条例に基づく措置を講じ、地域住民の反対を背景に事業中止・撤退に至ったと報じられている",
-    sourceUrl: "https://www.tokyo-np.co.jp/article/373679",
     sourceLabel: "東京新聞",
   },
   {
@@ -434,7 +433,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "治水・利水を目的としたダム事業をめぐり、土地収用や地域合意のあり方が長年にわたり論点となっている",
-    sourceUrl: "https://www.nagasaki-np.co.jp/feature/ishikidam/",
     sourceLabel: "長崎新聞（石木ダム特集）",
   },
   {
@@ -466,7 +464,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "蔵王の景観・観光資源・自然環境への影響懸念から、事業者が風力発電計画を撤回したと報じられている",
-    sourceUrl: "https://www.khb-tv.co.jp/news/14682329",
     sourceLabel: "khb東日本放送",
   },
   {
@@ -515,8 +512,6 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "ため池の水面に設置された太陽光発電施設をめぐり、水環境・景観・地域合意が論点となっている",
-    sourceUrl:
-      "https://www.asahi.com/articles/ASTDX416YTDXPLXB00GM.html",
     sourceLabel: "朝日新聞",
   },
 ];
