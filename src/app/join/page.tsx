@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";
-/** For Good クラウドファンディング（リリース直前にプロジェクト継続中・ID を再確認すること） */
+/** For Good クラウドファンディング（終了後の実施報告ページとして案内） */
 const CROWDFUNDING_URL = "https://for-good.net/project/1003493";
 
 
@@ -227,19 +227,19 @@ export default function JoinPage() {
         </div>
       </section>
 
-      {/* Crowdfunding */}
+      {/* Crowdfunding report */}
       <section className="py-12 sm:py-16 bg-accent-gold/10 border-y border-accent-gold/20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block bg-accent-gold text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
-            クラウドファンディング実施中
+            クラウドファンディング終了のご報告
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary font-serif">
             財団法人「地球防衛群」設立プロジェクト
           </h2>
           <p className="mt-3 text-text-secondary">
-            財団設立および初期活動のための資金を募っています。
+            財団設立および初期活動のためのクラウドファンディングは終了しました。
             <br className="hidden sm:block" />
-            詳しくはクラウドファンディングページをご覧ください。
+            ご支援への御礼と実施報告は、クラウドファンディングページでご覧いただけます。
           </p>
           <a
             href={CROWDFUNDING_URL}
@@ -247,7 +247,7 @@ export default function JoinPage() {
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-sm"
           >
-            クラウドファンディングを見る
+            実施報告を見る
             <svg
               className="ml-2 w-5 h-5"
               fill="none"
