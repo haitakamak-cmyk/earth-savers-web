@@ -26,14 +26,14 @@ export const ORGANIZATION_NAME_HEADER_LINE = "財団法人 地球防衛群";
 /**
  * 法人概要・JSON-LD・規約・お問い合わせメールで共通化（表記ゆれ防止）
  */
-export const ORGANIZATION_POSTAL_CODE = "708-0006";
+export const ORGANIZATION_POSTAL_CODE = "708-0813";
 
 /** 構造化データ用（schema.org PostalAddress） */
 export const ORGANIZATION_ADDRESS_STRUCTURED = {
   postalCode: ORGANIZATION_POSTAL_CODE,
   addressRegion: "岡山県",
   addressLocality: "津山市",
-  streetAddress: "小田中1403",
+  streetAddress: "山方1919",
 } as const;
 
 /** 表示用1行（〒付きは別途） */
