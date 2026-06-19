@@ -154,7 +154,7 @@ export default function AboutPage() {
               </dd>
             </div>
             <div className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4 sm:py-5">
-              <dt className="text-sm font-semibold text-text-primary">所在地</dt>
+              <dt className="text-sm font-semibold text-text-primary">事務所所在地</dt>
               <dd className="text-sm leading-relaxed text-text-secondary">
                 <span className="whitespace-nowrap">〒{ORGANIZATION_POSTAL_CODE}</span>
                 <br />
