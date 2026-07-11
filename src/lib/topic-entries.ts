@@ -160,6 +160,20 @@ export const TOPICS: TopicEntry[] = [
     category: "water",
     requiresLegalCaveat: true,
   },
+  {
+    slug: "kagamino-wind-interview",
+    title:
+      "「反対」ではなく、「適切な開発を」——鏡野風力発電を考える会に聞く",
+    subtitle: "住民は計画をどう知り、どう動いたか",
+    shortDescription:
+      "撤退が報じられた鏡野町の大規模風力発電計画。住民組織「考える会」のメンバーに、計画を知った経緯、説明会での経験、記録と情報公開請求の活用、そして「反対ではなく適切な開発を求める」と決めた理由を聞いた。",
+    publishedAt: "2026-07-12",
+    updatedAt: "2026-07-12",
+    contentPath: "src/content/topics/kagamino-wind-interview.md",
+    relatedGlossarySlugs: ["fit-fip", "amended-renewable-energy-act"],
+    category: "energy",
+    requiresLegalCaveat: true,
+  },
 ];
 
 export function getAllTopicSlugs(): string[] {
