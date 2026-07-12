@@ -71,6 +71,10 @@ export default async function TopicDetailPage({ params }: Props) {
   const linkedMain = applyGlossaryLinksOnce(mainMarkdown);
   const toc = extractTopicToc(mainMarkdown);
   const episodeNav = getTopicSeriesEpisodeNeighbors(entry.slug);
+  const isFieldReport = entry.format === "field-report";
+  const categoryBreadcrumb = isFieldReport
+    ? { name: "フィールドから", path: "/learn/field-reports" }
+    : { name: "解説記事", path: "/learn/topics" };
 
   return (
     <div className="bg-ivory pb-16">
@@ -80,7 +84,9 @@ export default async function TopicDetailPage({ params }: Props) {
         description={entry.shortDescription}
         datePublished={entry.publishedAt}
         dateModified={entry.updatedAt}
-        articleSection="学ぶ（解説記事）"
+        articleSection={
+          isFieldReport ? "学ぶ（フィールドから）" : "学ぶ（解説記事）"
+        }
       />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -95,7 +101,7 @@ export default async function TopicDetailPage({ params }: Props) {
             items={[
               { name: "HOME", path: "/" },
               { name: "学ぶ", path: "/learn" },
-              { name: "解説記事", path: "/learn/topics" },
+              categoryBreadcrumb,
               { name: entry.title, path },
             ]}
           />

@@ -14,6 +14,8 @@ export type TopicEntry = {
     | "land-use"
     | "energy"
     | "governance";
+  /** 記事の形式軸。未指定は "explainer"（解説記事）扱い。 */
+  format?: "explainer" | "field-report";
   requiresLegalCaveat?: boolean;
 };
 
@@ -172,6 +174,7 @@ export const TOPICS: TopicEntry[] = [
     contentPath: "src/content/topics/kagamino-wind-interview.md",
     relatedGlossarySlugs: ["fit-fip", "amended-renewable-energy-act"],
     category: "energy",
+    format: "field-report",
     requiresLegalCaveat: true,
   },
 ];
@@ -244,14 +247,23 @@ export function getTopicSeriesHubCards(): TopicSeriesHubCard[] {
 
 export function getStandaloneTopicsForHubSorted(): TopicEntry[] {
   const bundled = topicSlugsBundledIntoSeries();
-  return [...TOPICS].filter((t) => !bundled.has(t.slug)).sort((a, b) => {
-    const d = b.publishedAt.localeCompare(a.publishedAt);
-    if (d !== 0) return d;
-    return a.slug.localeCompare(b.slug);
-  });
+  return [...TOPICS]
+    .filter((t) => !bundled.has(t.slug) && t.format !== "field-report")
+    .sort((a, b) => {
+      const d = b.publishedAt.localeCompare(a.publishedAt);
+      if (d !== 0) return d;
+      return a.slug.localeCompare(b.slug);
+    });
 }
 
-/** 一覧用：`publishedAt` 降順で連載カードと単話を混ぜる */
+/** `/learn/field-reports` 用：フィールドレポートを新しい順で返す */
+export function buildFieldReportEntries(): TopicEntry[] {
+  return TOPICS.filter((t) => t.format === "field-report").sort((a, b) =>
+    a.publishedAt < b.publishedAt ? 1 : -1,
+  );
+}
+
+/** 一覧用：`publishedAt` 降順で連載カードと単話を混ぜる（フィールドレポートは除外） */
 export function buildTopicHubRows(): (
   | { kind: "series"; card: TopicSeriesHubCard }
   | { kind: "topic"; topic: TopicEntry }
