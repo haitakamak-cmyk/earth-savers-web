@@ -102,6 +102,7 @@ export default async function PolicyDetailPage({ params }: Props) {
         pathname={pathname}
         description={policy.summary}
         datePublished={policy.datePublished}
+        dateModified={policy.datePublished}
         articleSection="政策提言"
       />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
