@@ -164,7 +164,7 @@ export const TOPICS: TopicEntry[] = [
     slug: "kagamino-wind-interview",
     title:
       "「反対」ではなく、「適切な開発を」——鏡野風力発電を考える会に聞く",
-    subtitle: "住民は計画をどう知り、どう動いたか",
+    subtitle: "住民が動き、事業が止まった2年半の記録",
     shortDescription:
       "撤退が報じられた鏡野町の大規模風力発電計画。住民組織「考える会」のメンバーに、計画を知った経緯、説明会での経験、記録と情報公開請求の活用、そして「反対ではなく適切な開発を求める」と決めた理由を聞いた。",
     publishedAt: "2026-07-12",
