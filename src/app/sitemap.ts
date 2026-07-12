@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { getAllArticleSlugs } from "@/lib/articles";
+import { getAllArticleSlugs, getArticleBySlug } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
-import { getAllPolicySlugs, policyKindsWithPublicEntries } from "@/lib/policies";
+import {
+  getAllPolicySlugs,
+  getPolicyBySlug,
+  policyKindsWithPublicEntries,
+} from "@/lib/policies";
 import { TOPICS } from "@/lib/topic-entries";
 import {
   ORDINANCE_SUPPLEMENTS,
@@ -40,7 +44,15 @@ const RESOURCE_STATIC = [
   "/learn/threats",
   "/learn/articles",
   "/learn/topics",
+  "/learn/field-reports",
+  "/learn/map",
 ] as const;
+
+function parseDateOrNow(value: string | undefined, fallback: Date): Date {
+  if (!value) return fallback;
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? fallback : d;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!SITE_ALLOW_SEARCH_INDEXING) return [];
@@ -89,16 +101,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const entry = GLOSSARY.find((e) => e.slug === slug);
     urls.push({
       url: `${SITE_URL}/learn/glossary/${slug}`,
-      lastModified: entry?.updatedAt ?? now,
+      lastModified: parseDateOrNow(entry?.updatedAt, now),
       changeFrequency: "monthly",
       priority: 0.7,
     });
   }
 
   for (const slug of getAllArticleSlugs()) {
+    const article = getArticleBySlug(slug);
     urls.push({
       url: `${SITE_URL}/learn/articles/${slug}`,
-      lastModified: now,
+      lastModified: parseDateOrNow(article?.datePublished, now),
       changeFrequency: "monthly",
       priority: 0.55,
     });
@@ -107,16 +120,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const entry of TOPICS) {
     urls.push({
       url: `${SITE_URL}/learn/topics/${entry.slug}`,
-      lastModified: new Date(entry.updatedAt),
+      lastModified: parseDateOrNow(entry.updatedAt, now),
       changeFrequency: "monthly",
       priority: 0.7,
     });
   }
 
   for (const slug of getAllPolicySlugs()) {
+    const policy = getPolicyBySlug(slug);
     urls.push({
       url: `${SITE_URL}/policy/${slug}`,
-      lastModified: now,
+      lastModified: parseDateOrNow(policy?.datePublished, now),
       changeFrequency: "monthly",
       priority: 0.58,
     });
@@ -125,7 +139,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const entry of ORDINANCE_SUPPLEMENTS) {
     urls.push({
       url: `${SITE_URL}/toolkit/ordinance/${entry.slug}`,
-      lastModified: new Date(entry.updatedAt),
+      lastModified: parseDateOrNow(entry.updatedAt, now),
       changeFrequency: "monthly",
       priority: 0.6,
     });

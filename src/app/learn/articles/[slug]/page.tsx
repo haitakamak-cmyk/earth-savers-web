@@ -52,6 +52,7 @@ export default async function ArticleDetailPage({ params }: Props) {
         pathname={path}
         description={article.summary}
         datePublished={article.datePublished}
+        dateModified={article.datePublished}
         articleSection="学ぶ（読み物）"
       />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">

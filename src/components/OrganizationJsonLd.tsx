@@ -13,7 +13,7 @@ const organizationJsonLd = {
   "@type": "NGO",
   name: ORGANIZATION_NAME,
   alternateName: ["Earth Savers", "地球防衛軍"],
-  logo: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/images/logo/yoko_c1.png`,
   image: [`${SITE_URL}/images/photos/representative.jpg`],
   address: {
     "@type": "PostalAddress",
