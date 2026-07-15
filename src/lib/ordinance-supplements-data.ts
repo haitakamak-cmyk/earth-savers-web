@@ -19,12 +19,12 @@ export type OrdinanceSupplementEntry = {
 export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
   {
     slug: "plain-guide",
-    title: "一般向け解説——まず知ってほしいこと",
+    title: "一般向け解説｜命の水と森を守る条例",
     shortDescription:
-      "法律の専門知識がない方向けに、条例ひな型の目的・8つの柱・できること／できないこと・条文の読み方ガイドを整理した。条例本文を読む前の入口として。",
+      "条例ひな型を、法律用語を使わずに解説します。8つの重要ポイント、住民から見た変化、よくある誤解、読み方ガイドを住民の視点で整理しました。",
     contentPath: "src/content/ordinance-supplements/plain-guide.md",
     publishedAt: "2026-07-15",
-    updatedAt: "2026-07-15",
+    updatedAt: "2026-07-16",
     audience: ["住民・一般の方", "地域団体", "議員"],
     requiresLegalCaveat: false,
   },
