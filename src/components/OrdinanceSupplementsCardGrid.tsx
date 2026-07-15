@@ -5,7 +5,7 @@ import {
   ORDINANCE_SUPPLEMENTS,
 } from "@/lib/ordinance-supplements-data";
 
-/** 補助資料4件のカードグリッド（条例ひな型ページ・補助資料ハブで共通） */
+/** 補助資料のカードグリッド（条例ひな型ページ・補助資料ハブで共通。件数は ORDINANCE_SUPPLEMENTS に追随） */
 export function OrdinanceSupplementsCardGrid() {
   const supplementEntries = ORDINANCE_SUPPLEMENT_LIST_ORDER.map((slug) =>
     ORDINANCE_SUPPLEMENTS.find((e) => e.slug === slug),
