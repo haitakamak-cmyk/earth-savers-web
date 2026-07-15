@@ -66,8 +66,22 @@ export default async function ToolkitOrdinancePage() {
             v2.1（2026年7月改訂）｜全74条構成（本則62条・附則12条／参入・運転・承継・出口の四段階規制と既設施設対応）
           </p>
           <ResourceLead>
-            「命の水と森を守る条例」の市町村向けひな形です。条文・逐条解説・別表案・既設施設の経過措置・活用ガイドまでを1本のMarkdownで公開しています。本ページとあわせて、施行規則骨子案・自治体導入ガイド・議会想定問答集・パブコメ回答集の補助資料も公開しています。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
+            「命の水と森を守る条例」の市町村向けひな形です。条文・逐条解説・別表案・既設施設の経過措置・活用ガイドまでを1本のMarkdownで公開しています。本ページとあわせて、一般向け解説・施行規則骨子案・自治体導入ガイド・議会想定問答集・パブコメ回答集の補助資料も公開しています。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
           </ResourceLead>
+          <div className="mb-4 rounded-xl border border-aqua/30 bg-aqua-light/20 px-5 py-4">
+            <p className="text-[15px] font-semibold text-text-primary">
+              初めて読む方へ——この条例ひな型は、再生可能エネルギーや開発を一律に禁止するためのものではありません。
+            </p>
+            <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
+              住民が計画を早い段階で知り、環境や暮らしへの影響を確認したうえで判断できるようにするための制度案です。条例本文（全74条）は専門的な文書のため、まずは目的・8つの柱・できること／できないことを平易に整理した一般向け解説からお読みください。
+            </p>
+            <Link
+              href="/toolkit/ordinance/plain-guide"
+              className="mt-2.5 inline-flex items-center text-sm font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua"
+            >
+              一般向け解説——まず知ってほしいこと →
+            </Link>
+          </div>
           <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-white px-4 py-4 text-sm shadow-sm">
             <a
               href={downloadHref}
@@ -119,7 +133,7 @@ export default async function ToolkitOrdinancePage() {
             >
               補助資料の一覧ページ
             </Link>
-            にも同じ4件への導線をまとめています。
+            にも同じ5件への導線をまとめています。
           </p>
           <div className="mt-8">
             <OrdinanceSupplementsCardGrid />

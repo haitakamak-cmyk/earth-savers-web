@@ -2,7 +2,7 @@
 export const ORDINANCE_SUPPLEMENTS_SECTION_TITLE = "条例導入を支える補助資料";
 
 export const ORDINANCE_SUPPLEMENTS_SECTION_INTRO =
-  "自治体が条例を導入・運用する各段階で活用できる4種の補助資料を提供します。いずれも参考資料であり、最終条文はご担当の法務・顧問弁護士レビューを前提としてください。";
+  "一般向け解説に加えて、自治体が条例を導入・運用する各段階で活用できる補助資料を提供します。いずれも参考資料であり、最終条文はご担当の法務・顧問弁護士レビューを前提としてください。";
 
 export type OrdinanceSupplementEntry = {
   slug: string;
@@ -17,6 +17,17 @@ export type OrdinanceSupplementEntry = {
 
 /** `/toolkit/ordinance/[slug]` 用（sitemap 等はこのファイルのみ import して fs を引かない） */
 export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
+  {
+    slug: "plain-guide",
+    title: "一般向け解説——まず知ってほしいこと",
+    shortDescription:
+      "法律の専門知識がない方向けに、条例ひな型の目的・8つの柱・できること／できないこと・条文の読み方ガイドを整理した。条例本文を読む前の入口として。",
+    contentPath: "src/content/ordinance-supplements/plain-guide.md",
+    publishedAt: "2026-07-15",
+    updatedAt: "2026-07-15",
+    audience: ["住民・一般の方", "地域団体", "議員"],
+    requiresLegalCaveat: false,
+  },
   {
     slug: "rules",
     title: "施行規則 骨子案",
@@ -63,8 +74,9 @@ export const ORDINANCE_SUPPLEMENTS: readonly OrdinanceSupplementEntry[] = [
   },
 ] as const;
 
-/** 一覧の表示順（導入ガイド優先など） */
+/** 一覧の表示順（一般向け解説を先頭に、次いで導入ガイド） */
 export const ORDINANCE_SUPPLEMENT_LIST_ORDER = [
+  "plain-guide",
   "adoption-guide",
   "qa-council",
   "qa-public",
