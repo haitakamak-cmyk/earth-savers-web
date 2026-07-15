@@ -63,25 +63,46 @@ export default async function ToolkitOrdinancePage() {
             条例ひな型
           </h1>
           <p className="mt-1 text-sm font-medium text-aqua-dark">
-            v2.1（2026年7月改訂）｜全74条構成（本則62条・附則12条／参入・運転・承継・出口の四段階規制と既設施設対応）
+            v2.1（2026年7月改訂）｜参入・運転・承継・出口の四段階規制と既設施設対応
           </p>
           <ResourceLead>
-            「命の水と森を守る条例」の市町村向けひな形です。条文・逐条解説・別表案・既設施設の経過措置・活用ガイドまでを1本のMarkdownで公開しています。本ページとあわせて、一般向け解説・施行規則骨子案・自治体導入ガイド・議会想定問答集・パブコメ回答集の補助資料も公開しています。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
+            「命の水と森を守る条例」の市町村向けひな形です。本資料は完成条例ではなく、自治体での検討用ひな型です。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
           </ResourceLead>
-          <div className="mb-4 rounded-xl border border-aqua/30 bg-aqua-light/20 px-5 py-4">
-            <p className="text-[15px] font-semibold text-text-primary">
-              初めて読む方へ——この条例ひな型は、再生可能エネルギーや開発を一律に禁止するためのものではありません。
-            </p>
-            <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
-              住民が計画を早い段階で知り、環境や暮らしへの影響を確認したうえで判断できるようにするための制度案です。条例本文（全74条）は専門的な文書のため、まずは目的・8つの柱・できること／できないことを平易に整理した一般向け解説からお読みください。
-            </p>
-            <Link
-              href="/toolkit/ordinance/plain-guide"
-              className="mt-2.5 inline-flex items-center text-sm font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua"
-            >
-              一般向け解説——まず知ってほしいこと →
-            </Link>
-          </div>
+          <nav
+            aria-label="この資料を読む"
+            className="mb-4 rounded-xl border border-aqua/30 bg-aqua-light/20 px-5 py-4"
+          >
+            <p className="text-sm font-semibold text-text-primary">この資料を読む</p>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-3">
+              <li>
+                <Link
+                  href="/toolkit/ordinance/plain-guide"
+                  className="flex h-full flex-col rounded-lg border border-aqua/40 bg-white px-3.5 py-3 text-sm hover:border-aqua hover:bg-ivory"
+                >
+                  <span className="font-semibold text-aqua-dark">はじめての方・一般向け解説</span>
+                  <span className="mt-1 text-xs leading-relaxed text-text-secondary">誤解Q&A・読み方ガイド付き</span>
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#3分でわかる命の水と森を守る条例"
+                  className="flex h-full flex-col rounded-lg border border-aqua/40 bg-white px-3.5 py-3 text-sm hover:border-aqua hover:bg-ivory"
+                >
+                  <span className="font-semibold text-aqua-dark">条例本文・逐条解説へ進む</span>
+                  <span className="mt-1 text-xs leading-relaxed text-text-secondary">3分サマリー→本則→附則の順</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#更新履歴"
+                  className="flex h-full flex-col rounded-lg border border-aqua/40 bg-white px-3.5 py-3 text-sm hover:border-aqua hover:bg-ivory"
+                >
+                  <span className="font-semibold text-aqua-dark">更新履歴を見る</span>
+                  <span className="mt-1 text-xs leading-relaxed text-text-secondary">v2.1／v1.2／v1.1</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
           <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-white px-4 py-4 text-sm shadow-sm">
             <a
               href={downloadHref}
