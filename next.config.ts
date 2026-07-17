@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/brief/ecosystem-restoration-k7m4q9x2p6v8",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet, noimageindex",
+          },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           {
