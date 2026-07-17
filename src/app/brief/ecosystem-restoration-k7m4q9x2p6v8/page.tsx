@@ -23,11 +23,71 @@ export const metadata: Metadata = {
   twitter: null,
 };
 
-const locations = [
-  "河川・湖沼",
-  "海域・ダム",
-  "源流域",
-  "浄水場・魚港",
+const installations = [
+  { prefecture: "岡山県", site: "新庄村 旭川源流 野土路川" },
+  { prefecture: "大阪府", site: "泉大津市 大阪湾" },
+  { prefecture: "奈良県", site: "吉野町 津風呂ダム" },
+  { prefecture: "岡山県", site: "鏡野町 羽出" },
+  { prefecture: "岡山県", site: "津山市 衆楽園池" },
+  { prefecture: "広島県", site: "湯来町 太田川源流 大谷川" },
+  { prefecture: "岡山県", site: "美作市 美作浄水場" },
+  { prefecture: "岡山県", site: "美作市 余野浄水場" },
+  { prefecture: "大阪府", site: "岸和田城堀" },
+  { prefecture: "兵庫県", site: "市川町 市川源流 岡部川" },
+  { prefecture: "高知県", site: "須崎市 浦ノ内湾" },
+  { prefecture: "大分県", site: "三隈川（筑後川源流）" },
+  { prefecture: "滋賀県", site: "近江八幡市 琵琶湖" },
+  { prefecture: "岡山県", site: "玉野市 胸上魚港" },
+  { prefecture: "長野県", site: "岡谷市 諏訪湖" },
+  { prefecture: "兵庫県", site: "南あわじ市 阿那賀（鳴門）" },
+  { prefecture: "静岡県", site: "富士宮市 芝川源流" },
+  { prefecture: "長野県", site: "安曇野市 信濃川源流 万水川" },
+  { prefecture: "高知県", site: "香宗川水系 清水川排水機場" },
+] as const;
+
+const videos = [
+  {
+    title: "大阪湾岸の記録映像 1",
+    description: "実績資料「大阪湾岸 浄化後 1年半後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/osaka-bay-01.mp4",
+    poster: "/images/ecosystem-brief/osaka-bay-01-poster.webp",
+  },
+  {
+    title: "大阪湾岸の記録映像 2",
+    description: "実績資料「大阪湾岸 浄化後 1年半後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/osaka-bay-02.mp4",
+    poster: "/images/ecosystem-brief/osaka-bay-02-poster.webp",
+  },
+  {
+    title: "大阪湾岸の記録映像 3",
+    description: "実績資料「大阪湾岸 浄化後 1年半後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/osaka-bay-03.mp4",
+    poster: "/images/ecosystem-brief/osaka-bay-03-poster.webp",
+  },
+  {
+    title: "大阪湾岸の記録映像 4",
+    description: "実績資料「大阪湾岸 浄化後 1年半後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/osaka-bay-04.mp4",
+    poster: "/images/ecosystem-brief/osaka-bay-04-poster.webp",
+  },
+  {
+    title: "大阪湾岸の記録映像 5",
+    description: "実績資料「大阪湾岸 浄化後 1年半後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/osaka-bay-05.mp4",
+    poster: "/images/ecosystem-brief/osaka-bay-05-poster.webp",
+  },
+  {
+    title: "琵琶湖の記録映像 1",
+    description: "実績資料「琵琶湖 浄化 3ヶ月後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/lake-biwa-01.mp4",
+    poster: "/images/ecosystem-brief/lake-biwa-01-poster.webp",
+  },
+  {
+    title: "琵琶湖の記録映像 2",
+    description: "実績資料「琵琶湖 浄化 3ヶ月後」に掲載された映像です。",
+    src: "/videos/ecosystem-brief/lake-biwa-02.mp4",
+    poster: "/images/ecosystem-brief/lake-biwa-02-poster.webp",
+  },
 ] as const;
 
 function SectionHeading({
@@ -166,49 +226,69 @@ export default function EcosystemRestorationBriefPage() {
 
         <section className="mx-auto max-w-6xl px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-            <SectionHeading eyebrow="METHOD" title="水中に酸素を供給し、微生物の働きに着目する">
+            <SectionHeading eyebrow="BENTEN B-369" title="水質浄化装置 BENTEN B-369">
               <p className="mt-6 text-base leading-8 text-text-secondary">
-                滝の原理を応用したナノバブル供給機により、水中に微細な気泡を供給します。資料では、水中に酸素を効率よく供給することで、微生物が有機物を分解できる環境づくりを目指す仕組みとして紹介されています。
+                BENTEN B-369は、滝の原理を応用してナノバブルを水中に供給する水質浄化装置です。資料では、水中に酸素を効率よく供給することで、微生物が有機物を分解できる環境づくりを目指す仕組みとして紹介されています。
               </p>
             </SectionHeading>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-7 border-l-2 border-wakakusa bg-wakakusa-light/55 p-7">
-              <div>
-                <dt className="text-sm font-bold text-text-secondary">バブル量</dt>
-                <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">19億個/cc</dd>
-              </div>
-              <div>
-                <dt className="text-sm font-bold text-text-secondary">月間処理能力</dt>
-                <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">約30,000t</dd>
-                <p className="mt-1 text-xs text-text-muted">B-369 1台あたり</p>
-              </div>
-              <div>
-                <dt className="text-sm font-bold text-text-secondary">吐出量</dt>
-                <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">40L/min</dd>
-              </div>
-              <div>
-                <dt className="text-sm font-bold text-text-secondary">設置条件</dt>
-                <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">100V</dd>
-                <p className="mt-1 text-xs text-text-muted">採水・排水可能な場所</p>
-              </div>
-            </dl>
+            <Photo src="/images/ecosystem-brief/benten-b369.webp" alt="水質浄化装置 BENTEN B-369の本体" />
           </div>
+          <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-wakakusa/35 bg-wakakusa/35 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">月間処理能力</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">約30,000t</dd>
+              <p className="mt-1 text-xs text-text-muted">B-369 1台あたり</p>
+            </div>
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">バブル量</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">19億個/cc</dd>
+            </div>
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">吐出量</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">40L/min</dd>
+            </div>
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">電源</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">100V</dd>
+            </div>
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">必要スペース</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">3m × 3m</dd>
+            </div>
+            <div className="bg-wakakusa-light/70 p-6">
+              <dt className="text-sm font-bold text-text-secondary">使用環境</dt>
+              <dd className="mt-1 font-serif text-3xl font-semibold text-wakakusa-dark">5〜40°C</dd>
+            </div>
+          </dl>
         </section>
 
         <section className="bg-text-primary text-ivory-warm">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
-            <SectionHeading eyebrow="RESULTS" title="全国19箇所での稼働実績">
+            <SectionHeading eyebrow="DEPLOYMENTS" title="全国19箇所の設置実績">
               <p className="mt-6 max-w-3xl text-base leading-8 text-ivory-warm/85">
-                資料では、河川・湖沼・海域・ダムなど、異なる水環境における19箇所の稼働実績が示されています。
+                実績資料には、河川・湖沼・海域・ダムなど全国19箇所の設置拠点が記載されています。資料記載時点では、全て稼働中とされています。
               </p>
             </SectionHeading>
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-text-secondary/50 bg-text-secondary/50 sm:grid-cols-2 lg:grid-cols-4">
-              {locations.map((location) => (
-                <div key={location} className="bg-text-primary p-6">
-                  <p className="text-sm font-bold text-wakakusa-light">稼働環境</p>
-                  <p className="mt-3 font-serif text-2xl font-semibold text-ivory">{location}</p>
-                </div>
-              ))}
+            <div className="mt-10 flex items-baseline gap-4 border-b border-ivory-warm/25 pb-8">
+              <p className="font-serif text-6xl font-semibold text-wakakusa-light">19</p>
+              <p className="text-base font-bold tracking-[0.12em] text-ivory-warm">設置拠点</p>
             </div>
+            <ol className="mt-8 grid overflow-hidden rounded-2xl border border-text-secondary/50 sm:grid-cols-2">
+              {installations.map((installation, index) => (
+                <li
+                  key={`${installation.prefecture}-${installation.site}`}
+                  className="flex gap-4 border-b border-text-secondary/50 p-5 last:border-b-0 sm:[&:nth-last-child(2)]:border-b-0"
+                >
+                  <span className="font-serif text-2xl font-semibold text-wakakusa-light">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="pt-1 text-base leading-7 text-ivory-warm">
+                    <span className="mr-2 font-bold text-ivory">{installation.prefecture}</span>
+                    {installation.site}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -230,6 +310,37 @@ export default function EcosystemRestorationBriefPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <Photo src="/images/ecosystem-brief/survey-fish.webp" alt="調査時に観察された川魚" />
               <Photo src="/images/ecosystem-brief/survey-frog.webp" alt="調査時に観察された緑色のカエル" />
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-aqua-light/45">
+          <div className="mx-auto max-w-6xl px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
+            <SectionHeading eyebrow="FIELD VIDEOS" title="現地の記録映像">
+              <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary">
+                実績資料に埋め込まれていた映像です。再生ボタンを押すと動画の読み込みを開始します。
+              </p>
+            </SectionHeading>
+            <div className="mt-10 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+              {videos.map((video) => (
+                <figure key={video.src} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+                  <video
+                    controls
+                    playsInline
+                    preload="none"
+                    poster={video.poster}
+                    className="aspect-video w-full bg-text-primary object-cover"
+                    aria-label={video.title}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    お使いのブラウザは動画の再生に対応していません。
+                  </video>
+                  <figcaption className="p-5">
+                    <h3 className="font-serif text-xl font-semibold text-text-primary">{video.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-text-secondary">{video.description}</p>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
