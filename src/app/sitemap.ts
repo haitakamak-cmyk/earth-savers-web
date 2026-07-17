@@ -25,6 +25,7 @@ const CORE_PATHS = [
   "/about/disclosure",
   "/members",
   "/activities",
+  "/activities/ecosystem-restoration",
   "/join",
   "/join/bank-donation",
   "/news",

@@ -58,9 +58,15 @@ const activities: Activity[] = [
     tagColor: "text-aqua bg-aqua-light",
     title: "ナノバブル発生器 『B-369』",
     description:
-      "独自開発のナノバブル発生器『B-369』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルの働きを活用し、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。",
+      "独自開発のナノバブル発生器『B-369』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルの働きを活用し、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。全国19箇所の設置実績と現地の観測記録は、実績ページで公開しています。",
     image: "/images/photos/ecosystem-river.jpeg",
     imageAlt: "生態系復活プロジェクトのナノバブル発生装置",
+    links: [
+      {
+        href: "/activities/ecosystem-restoration",
+        label: "設置実績・観測記録を見る",
+      },
+    ],
   },
   {
     id: "satoyama",
@@ -214,17 +220,21 @@ export default function ActivitiesPage() {
                   </p>
                   {activity.links && activity.links.length > 0 ? (
                     <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
-                      {activity.links.map((link) => (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
+                      {activity.links.map((link) => {
+                        const isExternal = /^https?:\/\//.test(link.href);
+                        return (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            {...(isExternal
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                          >
+                            {link.label}
+                          </a>
+                        );
+                      })}
                     </div>
                   ) : null}
                 </div>
