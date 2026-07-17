@@ -358,6 +358,30 @@ export default function EcosystemRestorationBriefPage() {
           </div>
         </section>
 
+        <section className="mx-auto max-w-6xl px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
+          <SectionHeading eyebrow="MEDIA & EVENTS" title="社会的評価と発信">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-text-secondary">
+              実績資料には、メディア掲載と大阪・関西万博の関連イベントでの登壇が記載されています。
+            </p>
+          </SectionHeading>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <article className="border-t-2 border-aqua bg-white p-7 shadow-sm">
+              <p className="text-sm font-bold tracking-[0.12em] text-aqua-dark">MEDIA</p>
+              <h3 className="mt-4 font-serif text-2xl font-semibold text-text-primary">山陽新聞「水の日」特集掲載</h3>
+              <p className="mt-4 text-base leading-8 text-text-secondary">
+                資料では、山陽新聞の「水の日」特集において、取り組みや水質浄化の成果が紹介されたと記載されています。
+              </p>
+            </article>
+            <article className="border-t-2 border-wakakusa bg-white p-7 shadow-sm">
+              <p className="text-sm font-bold tracking-[0.12em] text-wakakusa-dark">EVENT</p>
+              <h3 className="mt-4 font-serif text-2xl font-semibold text-text-primary">大阪・関西万博の関連イベントで登壇</h3>
+              <p className="mt-4 text-base leading-8 text-text-secondary">
+                資料では、日本の環境技術に関する取り組みとして、大阪・関西万博の関連イベントで登壇したと記載されています。
+              </p>
+            </article>
+          </div>
+        </section>
+
         <section className="bg-ivory-warm">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-8 sm:py-24 lg:px-10">
             <SectionHeading eyebrow="CASE 02" title="水質の変化を、現地で確認する">
