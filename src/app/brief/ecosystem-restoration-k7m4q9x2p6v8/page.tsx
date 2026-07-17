@@ -273,6 +273,19 @@ export default function EcosystemRestorationBriefPage() {
               <p className="font-serif text-6xl font-semibold text-wakakusa-light">19</p>
               <p className="text-base font-bold tracking-[0.12em] text-ivory-warm">設置拠点</p>
             </div>
+            <figure className="mx-auto mt-10 max-w-xl">
+              <Image
+                src="/images/ecosystem-brief/deployment-map.webp"
+                alt="全国19箇所の設置実績を示す日本地図。設置都道府県が青色で示されている"
+                width={900}
+                height={900}
+                sizes="(max-width: 640px) 100vw, 576px"
+                className="h-auto w-full"
+              />
+              <figcaption className="mt-4 text-center text-sm leading-6 text-ivory-warm/80">
+                全国展開マップ。設置都道府県を青色で示しています。
+              </figcaption>
+            </figure>
             <ol className="mt-8 grid overflow-hidden rounded-2xl border border-text-secondary/50 sm:grid-cols-2">
               {installations.map((installation, index) => (
                 <li
