@@ -63,7 +63,7 @@ export const TOPICS: TopicEntry[] = [
     shortDescription:
       "大規模太陽光・風力発電の開発計画をめぐり、各地で論点となった条例運用、行政付随許可、協議体制、訴訟・告発の経緯を公開資料に基づいて整理する。",
     publishedAt: "2026-05-16",
-    updatedAt: "2026-05-19",
+    updatedAt: "2026-07-20",
     contentPath: "src/content/topics/solar-wind-opposition-cases.md",
     relatedGlossarySlugs: [
       "nature-coexistence-site",
@@ -170,7 +170,7 @@ export const TOPICS: TopicEntry[] = [
     shortDescription:
       "撤退が報じられた鏡野町の大規模風力発電計画。住民組織「考える会」のメンバーに、計画を知った経緯、説明会での経験、記録と情報公開請求の活用、そして「反対ではなく適切な開発を求める」と決めた理由を聞いた。",
     publishedAt: "2026-07-12",
-    updatedAt: "2026-07-12",
+    updatedAt: "2026-07-20",
     contentPath: "src/content/topics/kagamino-wind-interview.md",
     relatedGlossarySlugs: ["fit-fip", "amended-renewable-energy-act"],
     category: "energy",
