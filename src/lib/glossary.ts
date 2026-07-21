@@ -76,6 +76,8 @@ const CATEGORY_BY_SLUG: Record<string, GlossaryCategory> = {
   "water-cycle-basic-act": "national-law",
   "fit-fip": "national-law",
   "amended-renewable-energy-act": "national-law",
+  "pv-recycling-act": "national-law",
+  "waste-disposal-plan-filing": "national-law",
   "important-land-survey-act": "national-law",
   "biodiversity-maintenance-agreement": "national-law",
   "designated-conservation-species": "national-law",
@@ -221,7 +223,7 @@ function parseGlossaryMarkdown(raw: string): GlossaryEntry[] {
 }
 
 /**
- * v0 の正本 Markdown（27語）から変換。
+ * v0 の正本 Markdown（29語）から変換。
  * 差し替えは `public/learn/glossary/用語集_v0_完成版.md` を更新すればよい。
  */
 export const GLOSSARY: readonly GlossaryEntry[] = parseGlossaryMarkdown(
