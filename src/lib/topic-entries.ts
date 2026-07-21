@@ -203,6 +203,30 @@ export const TOPICS: TopicEntry[] = [
     format: "explainer",
     requiresLegalCaveat: true,
   },
+  {
+    slug: "wind-birds-collision",
+    title:
+      "風車は鳥にとって何なのか——バードストライクと猛禽類保護の論点",
+    shortDescription:
+      "海ワシ類のバードストライク事例、絶滅危惧ⅠB類の猛禽類（イヌワシ・クマタカ）の個体群感受性、風車と鳥類生物多様性を扱った近年の査読研究の並置、環境影響評価法の風力対象閾値（2021年改正で50MW/37.5MW）と規模要件から外れる領域、事後調査の建付け（発電所アセス省令第31条）、地域独自の環境確認手続の意味までを、公的資料と査読研究に基づいて整理する。",
+    publishedAt: "2026-07-21",
+    updatedAt: "2026-07-21",
+    contentPath: "src/content/topics/wind-birds-collision.md",
+    relatedGlossarySlugs: [
+      "amended-renewable-energy-act",
+      "eia-first-second-class",
+      "post-project-monitoring-eia",
+    ],
+    relatedOrdinanceArticles: [
+      "第11条",
+      "第15条の2",
+      "第15条の3",
+      "第20条の2の2",
+    ],
+    category: "biodiversity",
+    format: "explainer",
+    requiresLegalCaveat: true,
+  },
 ];
 
 export function getAllTopicSlugs(): string[] {
