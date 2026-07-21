@@ -177,6 +177,32 @@ export const TOPICS: TopicEntry[] = [
     format: "field-report",
     requiresLegalCaveat: true,
   },
+  {
+    slug: "solar-panel-end-of-life",
+    title:
+      "太陽光パネルは、役目を終えた後どこへ行くのか——有害物質の溶出リスクと2030年代の廃棄問題",
+    shortDescription:
+      "太陽光パネルの含有物質と溶出リスクを4段階（含有→試験溶出→判定基準超過→実環境影響）で整理し、2026年6月公布の「太陽電池廃棄物の再資源化等の推進に関する法律」の三層構造（全廃棄者の努力義務／事業用の判断基準・指導助言／多量廃棄者の届出・排出制限・勧告命令・罰則）を条文に即して解説。設置段階から地域と自治体が確認できる論点まで接続する。",
+    publishedAt: "2026-07-21",
+    updatedAt: "2026-07-21",
+    contentPath: "src/content/topics/solar-panel-end-of-life.md",
+    relatedGlossarySlugs: [
+      "fit-fip",
+      "amended-renewable-energy-act",
+      "pv-recycling-act",
+      "waste-disposal-plan-filing",
+    ],
+    relatedOrdinanceArticles: [
+      "第18条",
+      "第18条の2",
+      "第18条の3",
+      "第20条の7",
+      "第20条の3",
+    ],
+    category: "energy",
+    format: "explainer",
+    requiresLegalCaveat: true,
+  },
 ];
 
 export function getAllTopicSlugs(): string[] {
