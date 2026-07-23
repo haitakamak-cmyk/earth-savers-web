@@ -5,7 +5,7 @@ export const SITE_URL = "https://earth-savers.org";
  * 検索エンジンに載せたくない間は **false**（全ページ `noindex`、Organization JSON-LD 非出力、`robots.txt` で `/` 拒否）。
  * 正式オープン時に **true** にし、Google Search Console で再クロールをリクエストすると反映が早まることが多い。
  */
-export const SITE_ALLOW_SEARCH_INDEXING = false;
+export const SITE_ALLOW_SEARCH_INDEXING = true;
 
 /**
  * 公式サイトをアプリより先に公開するときは false のままにする。

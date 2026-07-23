@@ -15,15 +15,13 @@ import {
   ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
 } from "@/lib/ordinance-supplements-data";
 import { OrdinanceSupplementsCardGrid } from "@/components/OrdinanceSupplementsCardGrid";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
 import {
   ORDINANCE_MARKDOWN_FILENAME,
   ORDINANCE_MARKDOWN_PATH,
 } from "./md-path";
 
 export const metadata: Metadata = {
-  title: `条例ひな型（v2.1） | ${ORGANIZATION_NAME}`,
+  title: "条例ひな型（v2.1）",
   description:
     "市町村向けひな形「命の水と森を守る条例」の全文 Markdown（条文・逐条解説・別表・経過措置）。施行規則骨子案・導入ガイド・議会問答・パブコメ回答の補助資料への導線付きです。",
   alternates: { canonical: "/toolkit/ordinance" },

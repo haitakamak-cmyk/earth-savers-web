@@ -3,7 +3,7 @@ import Link from "next/link";
 import { BankDonationForm } from "./BankDonationForm";
 
 export const metadata: Metadata = {
-  title: "銀行振込で寄付する | 財団法人 地球防衛群",
+  title: "銀行振込で寄付する",
   description:
     "銀行振込・郵便振替での都度寄付のお申し込みフォームです。送信後、振込先口座をメールでご案内いたします。",
 };

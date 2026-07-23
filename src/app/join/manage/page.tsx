@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "寄付内容の確認・変更",
   description:
     "毎月の寄付内容、支払い方法、停止手続きを確認・変更できます。",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function ManageSubscriptionPage() {

@@ -14,7 +14,7 @@ const PAGE_DESCRIPTION =
   "水質浄化装置 BENTEN B-369 を用いた全国19箇所の設置実績、岡山県新庄村での生物多様性調査、大阪湾・太田川源流での水質記録など、生態系復活プロジェクトの現場記録を公開しています。";
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | ${ORGANIZATION_NAME}`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   alternates: { canonical: PAGE_PATH },
   openGraph: {

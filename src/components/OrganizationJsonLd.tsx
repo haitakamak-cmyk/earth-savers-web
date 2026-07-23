@@ -12,7 +12,7 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "NGO",
   name: ORGANIZATION_NAME,
-  alternateName: ["Earth Savers", "地球防衛軍"],
+  alternateName: ["Earth Savers", "地球防衛群"],
   logo: `${SITE_URL}/images/logo/yoko_c1.png`,
   image: [`${SITE_URL}/images/photos/representative.jpg`],
   address: {

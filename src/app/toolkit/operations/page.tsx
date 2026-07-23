@@ -8,10 +8,8 @@ import { ResourceLead } from "@/components/ResourceLead";
 import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
 import { getToolkitSectionByHref } from "@/lib/toolkit-manifest";
 import { readToolkitPublicMarkdown } from "@/lib/toolkit-public-md";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
 export const metadata: Metadata = {
-  title: `実務チェックリスト | ${ORGANIZATION_NAME}`,
+  title: "実務チェックリスト",
   description:
     "条例施行後の窓口が止まらないよう、届出・手続の振り分け・受理・FAQ・案件管理・年次業務・エスカレーションを、引き継ぎメモのトーンで整理したガイドです。",
   alternates: { canonical: "/toolkit/operations" },

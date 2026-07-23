@@ -7,10 +7,8 @@ import {
   getToolkitSectionByHref,
   toolkitSectionHasPublishedContent,
 } from "@/lib/toolkit-manifest";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
 export const metadata: Metadata = {
-  title: `導入・訴訟事例 | ${ORGANIZATION_NAME}`,
+  title: "導入・訴訟事例",
   description:
     "全国の自治体における条例導入事例、裁判で条例の適法性が認められた判例、条例がなかったために開発を防げなかった事例をまとめています。",
   alternates: { canonical: "/toolkit/cases" },

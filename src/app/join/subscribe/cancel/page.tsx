@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "毎月の寄付のお申し込みを中断しました",
   description: "毎月の継続寄付のお申し込みは完了していません。",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function SubscribeCancelPage() {

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const path = `/toolkit/ordinance/${entry.slug}`;
   return {
-    title: `${entry.title} | 条例ひな型 補助資料 | ${ORGANIZATION_NAME}`,
+    title: `${entry.title} | 条例ひな型 補助資料`,
     description: entry.shortDescription,
     alternates: { canonical: path },
     openGraph: {

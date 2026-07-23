@@ -2,6 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   async redirects() {
     return [
       {
@@ -35,7 +36,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocations=(), interest-cohort=()",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
           {
             key: "Strict-Transport-Security",

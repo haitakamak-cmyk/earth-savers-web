@@ -10,10 +10,8 @@ import {
   ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
   ORDINANCE_SUPPLEMENTS_SECTION_TITLE,
 } from "@/lib/ordinance-supplements-data";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
 export const metadata: Metadata = {
-  title: `条例導入を支える補助資料 | ひな形・資料 | ${ORGANIZATION_NAME}`,
+  title: "条例導入を支える補助資料 | ひな形・資料",
   description: ORDINANCE_SUPPLEMENTS_SECTION_INTRO,
   alternates: { canonical: "/toolkit/supplements" },
   openGraph: {

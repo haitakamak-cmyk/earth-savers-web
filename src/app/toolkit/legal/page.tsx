@@ -7,10 +7,8 @@ import {
   getToolkitSectionByHref,
   toolkitSectionHasPublishedContent,
 } from "@/lib/toolkit-manifest";
-import { ORGANIZATION_NAME } from "@/lib/site";
-
 export const metadata: Metadata = {
-  title: `法律ガイド | ${ORGANIZATION_NAME}`,
+  title: "法律ガイド",
   description:
     "条例制定にあたって確認すべき上位法との関係、都道府県条例との調整手順、条例の適法性を支持した判例の要点をまとめています。",
   alternates: { canonical: "/toolkit/legal" },

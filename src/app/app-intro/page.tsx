@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "公式アプリ紹介",
   description:
     "地球防衛群の公式アプリ。ランキング・部活動・活動投稿・寄付機能を搭載。メンバーが環境活動をともに記録・応援するプラットフォームです。",
+  robots: APP_EXTERNAL_LINKS_READY
+    ? undefined
+    : {
+        index: false,
+        follow: false,
+      },
 };
 
 function ExternalLinkIcon({ className }: { className?: string }) {

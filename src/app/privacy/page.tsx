@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ORGANIZATION_ADDRESS_LINE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー | 財団法人 地球防衛群",
+  title: "プライバシーポリシー",
   description:
     "財団法人 地球防衛群（earth savers foundation）における個人情報の取扱いについて説明します。",
 };
@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             財団法人 地球防衛群（以下「当財団」）は、公式ウェブサイト（以下「本サイト」）における利用者の個人情報の重要性を認識し、個人情報の保護に関する法律（個人情報保護法）その他関連法令を遵守し、適切に取り扱います。
           </p>
           <p className="mt-2 text-xs text-text-muted">
-            最終更新日：2026年4月2日
+            最終更新日：2026年7月23日
           </p>
 
           <h2 className="mt-10 text-lg font-bold text-text-primary">

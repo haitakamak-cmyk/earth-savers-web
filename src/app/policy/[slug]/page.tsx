@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pathname = `/policy/${slug}`;
   const documentTitle = policyDocumentTitle(policy);
   return {
-    title: `${documentTitle} | 政策提言 | ${ORGANIZATION_NAME}`,
+    title: `${documentTitle} | 政策提言`,
     description: policy.summary,
     alternates: { canonical: pathname },
     openGraph: {

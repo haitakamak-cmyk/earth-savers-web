@@ -59,7 +59,7 @@ const NEWSPAPER_ITEMS = [
 
 const EXPO_HIGHLIGHT = {
   title: "大阪・関西万博での登壇",
-  body: "万博会場での登壇の様子です。生態系復活プロジェクトでの成果を発表しました。そ内容は地元新聞などでも紹介されました。",
+  body: "万博会場での登壇の様子です。生態系復活プロジェクトでの成果を発表しました。その内容は地元新聞などでも紹介されました。",
   imageFile: "expo-stage.jpg",
   imageAlt: "大阪・関西万博の会場で登壇している様子。",
 } as const;

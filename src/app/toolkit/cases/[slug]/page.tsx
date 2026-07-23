@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const path = `/toolkit/cases/${slug}`;
   return {
-    title: `${found.file.title} | 導入・訴訟事例 | ${ORGANIZATION_NAME}`,
+    title: `${found.file.title} | 導入・訴訟事例`,
     description: found.file.description,
     alternates: { canonical: path },
     openGraph: {

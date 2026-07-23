@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const path = `/learn/topics/${entry.slug}`;
   const description = entry.shortDescription;
   return {
-    title: `${entry.title} | 解説記事 | ${ORGANIZATION_NAME}`,
+    title: `${entry.title} | 解説記事`,
     description,
     alternates: { canonical: path },
     openGraph: {

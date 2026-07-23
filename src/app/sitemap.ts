@@ -28,6 +28,7 @@ const CORE_PATHS = [
   "/activities/ecosystem-restoration",
   "/join",
   "/join/bank-donation",
+  "/join/subscribe",
   "/news",
   "/consultation",
   "/shop",
@@ -49,22 +50,24 @@ const RESOURCE_STATIC = [
   "/learn/map",
 ] as const;
 
-function parseDateOrNow(value: string | undefined, fallback: Date): Date {
+function parseDateOrFallback(value: string | undefined, fallback: Date): Date {
   if (!value) return fallback;
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? fallback : d;
 }
 
+// 公開内容を実際に更新した日。デプロイ時刻を使うと毎回更新扱いになるため固定する。
+const STATIC_CONTENT_LAST_MODIFIED = new Date("2026-07-23T00:00:00+09:00");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!SITE_ALLOW_SEARCH_INDEXING) return [];
 
-  const now = new Date();
   const urls: MetadataRoute.Sitemap = [];
 
   for (const path of CORE_PATHS) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: path === "/" ? "weekly" : "monthly",
       priority: path === "/" ? 1 : path.split("/").length === 2 ? 0.85 : 0.7,
     });
@@ -73,7 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of RESOURCE_STATIC) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -83,7 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const path = `/policy/${POLICY_KIND_PATH[kind]}`;
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -92,7 +95,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of getToolkitSitemapHubPaths()) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -102,7 +105,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const entry = GLOSSARY.find((e) => e.slug === slug);
     urls.push({
       url: `${SITE_URL}/learn/glossary/${slug}`,
-      lastModified: parseDateOrNow(entry?.updatedAt, now),
+      lastModified: parseDateOrFallback(
+        entry?.updatedAt,
+        STATIC_CONTENT_LAST_MODIFIED,
+      ),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -112,7 +118,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const article = getArticleBySlug(slug);
     urls.push({
       url: `${SITE_URL}/learn/articles/${slug}`,
-      lastModified: parseDateOrNow(article?.datePublished, now),
+      lastModified: parseDateOrFallback(
+        article?.datePublished,
+        STATIC_CONTENT_LAST_MODIFIED,
+      ),
       changeFrequency: "monthly",
       priority: 0.55,
     });
@@ -121,7 +130,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const entry of TOPICS) {
     urls.push({
       url: `${SITE_URL}/learn/topics/${entry.slug}`,
-      lastModified: parseDateOrNow(entry.updatedAt, now),
+      lastModified: parseDateOrFallback(
+        entry.updatedAt,
+        STATIC_CONTENT_LAST_MODIFIED,
+      ),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -131,7 +143,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const policy = getPolicyBySlug(slug);
     urls.push({
       url: `${SITE_URL}/policy/${slug}`,
-      lastModified: parseDateOrNow(policy?.datePublished, now),
+      lastModified: parseDateOrFallback(
+        policy?.datePublished,
+        STATIC_CONTENT_LAST_MODIFIED,
+      ),
       changeFrequency: "monthly",
       priority: 0.58,
     });
@@ -140,7 +155,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const entry of ORDINANCE_SUPPLEMENTS) {
     urls.push({
       url: `${SITE_URL}/toolkit/ordinance/${entry.slug}`,
-      lastModified: parseDateOrNow(entry.updatedAt, now),
+      lastModified: parseDateOrFallback(
+        entry.updatedAt,
+        STATIC_CONTENT_LAST_MODIFIED,
+      ),
       changeFrequency: "monthly",
       priority: 0.6,
     });
@@ -149,7 +167,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of getAllToolkitMarkdownViewerPaths()) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: now,
+      lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.58,
     });

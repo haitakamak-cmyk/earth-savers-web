@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ORGANIZATION_ADDRESS_LINE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "利用規約 | 財団法人 地球防衛群",
+  title: "利用規約",
   description:
     "財団法人 地球防衛群（earth savers foundation）公式ウェブサイトのご利用条件です。",
 };
