@@ -14,7 +14,7 @@ import {
   type StripeAdminNotification,
 } from "@/lib/stripe/admin-notifications";
 import { getStripe } from "@/lib/stripe/client";
-import { sendStripeDonorThankYou } from "@/lib/stripe/donor-notifications";
+import { sendStripeDonorNotification } from "@/lib/stripe/donor-notifications";
 import {
   mapStripeSubscriptionStatus,
   planCodeFromPriceId,
@@ -450,7 +450,7 @@ export async function POST(request: NextRequest) {
   if (adminNotification) {
     await Promise.all([
       sendStripeAdminNotification(adminNotification),
-      sendStripeDonorThankYou(adminNotification),
+      sendStripeDonorNotification(adminNotification),
     ]);
   }
 
