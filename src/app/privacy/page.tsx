@@ -57,7 +57,7 @@ export default function PrivacyPage() {
           <ul className="mt-3 list-inside list-disc space-y-2 text-sm leading-relaxed">
             <li>お問い合わせへの対応、連絡のため</li>
             <li>お問い合わせ受付の確認メール（自動返信）の送信のため</li>
-            <li>継続寄付の受付、確認、変更、停止、決済状況の管理および運営上の控えの送信のため</li>
+            <li>継続寄付の受付、確認、変更、停止、決済状況の管理、寄付者へのお礼および運営上の控えの送信のため</li>
             <li>本サイトの運営・改善、不正利用の防止のため</li>
             <li>法令に基づく対応のため</li>
           </ul>
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-3 text-sm leading-relaxed">
             継続寄付の決済および寄付内容の管理には、当財団が利用する決済サービス（例：Stripe
-            等）を使用します。また、継続寄付の受付、変更、停止等の運営控えの送信にあたり、メール配信サービスの提供者に、送信処理に必要な範囲で氏名、メールアドレス、寄付プラン、決済状況等が預託されることがあります。
+            等）を使用します。また、継続寄付の受付確認、お礼、変更、停止等に関するメールの送信にあたり、メール配信サービスの提供者に、送信処理に必要な範囲で氏名、メールアドレス、寄付プラン、決済状況等が預託されることがあります。
           </p>
 
           <h3 className="mt-6 text-base font-bold text-text-primary">
