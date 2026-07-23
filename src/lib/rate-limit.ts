@@ -4,19 +4,32 @@ import { Redis } from "@upstash/redis";
 /**
  * プロセス内メモリのみ。サーバーレス（Vercel 等）ではインスタンスごとに独立したカウンタになり、
  * 厳密なグローバル制限には Redis 等が必要。
+ * Vercel Marketplace の KV_REST_API_URL/TOKEN、または従来の
  * UPSTASH_REDIS_REST_URL/TOKEN があれば Upstash Redis を使用し、
  * なければ従来のインメモリ方式でベストエフォートの制限を行う。
  */
 
-const redis =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-        retry: { retries: 0 },
-        signal: () => AbortSignal.timeout(2_000),
-      })
-    : null;
+const redisCredentials =
+  process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN
+    ? {
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN,
+      }
+    : process.env.UPSTASH_REDIS_REST_URL &&
+        process.env.UPSTASH_REDIS_REST_TOKEN
+      ? {
+          url: process.env.UPSTASH_REDIS_REST_URL,
+          token: process.env.UPSTASH_REDIS_REST_TOKEN,
+        }
+      : null;
+
+const redis = redisCredentials
+  ? new Redis({
+      ...redisCredentials,
+      retry: { retries: 0 },
+      signal: () => AbortSignal.timeout(2_000),
+    })
+  : null;
 
 const ratelimitCache = new Map<string, Ratelimit>();
 
