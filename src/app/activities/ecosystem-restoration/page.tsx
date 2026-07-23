@@ -380,6 +380,14 @@ export default function EcosystemRestorationPublicPage() {
           </SectionHeading>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <article className="border-t-2 border-aqua bg-white p-7 shadow-sm">
+              <Image
+                src="/images/media/newspaper-sanyo-shimbun.jpg"
+                alt="山陽新聞「水の日」特集に掲載された、旭川水系の資源保護に関する記事"
+                width={3602}
+                height={1874}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="mb-6 h-auto w-full rounded-lg"
+              />
               <p className="text-sm font-bold tracking-[0.12em] text-aqua-dark">MEDIA</p>
               <h3 className="mt-4 font-serif text-2xl font-semibold text-text-primary">山陽新聞「水の日」特集掲載</h3>
               <p className="mt-4 text-base leading-8 text-text-secondary">
@@ -387,6 +395,14 @@ export default function EcosystemRestorationPublicPage() {
               </p>
             </article>
             <article className="border-t-2 border-wakakusa bg-white p-7 shadow-sm">
+              <Image
+                src="/images/media/expo-stage-2.jpg"
+                alt="大阪・関西万博の関連イベントで水質改善プロジェクトを紹介する登壇の様子"
+                width={1272}
+                height={702}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="mb-6 h-auto w-full rounded-lg"
+              />
               <p className="text-sm font-bold tracking-[0.12em] text-wakakusa-dark">EVENT</p>
               <h3 className="mt-4 font-serif text-2xl font-semibold text-text-primary">大阪・関西万博の関連イベントで登壇</h3>
               <p className="mt-4 text-base leading-8 text-text-secondary">
