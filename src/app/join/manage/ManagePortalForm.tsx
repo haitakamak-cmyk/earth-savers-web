@@ -25,11 +25,15 @@ export function ManagePortalForm() {
     setErrorMessage(null);
     setStatus("submitting");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 10_000);
+
     try {
       const res = await fetch("/api/stripe/portal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
+        signal: controller.signal,
       });
 
       const data = (await res.json().catch(() => ({}))) as {
@@ -46,9 +50,15 @@ export function ManagePortalForm() {
         data.error ?? "管理ページを開けませんでした。しばらくしてから再度お試しください。",
       );
       setStatus("error");
-    } catch {
-      setErrorMessage("通信エラーが発生しました。再度お試しください。");
+    } catch (error) {
+      setErrorMessage(
+        error instanceof DOMException && error.name === "AbortError"
+          ? "管理ページの応答に時間がかかっています。再度お試しください。"
+          : "通信エラーが発生しました。再度お試しください。",
+      );
       setStatus("error");
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   }
 

@@ -30,6 +30,12 @@ export function SubscribeCheckoutForm() {
       return;
     }
 
+    if (!name) {
+      setErrorMessage("お名前または法人・団体名は必須です。");
+      setStatus("error");
+      return;
+    }
+
     setErrorMessage(null);
     setStatus("submitting");
 
@@ -40,7 +46,7 @@ export function SubscribeCheckoutForm() {
         body: JSON.stringify({
           plan_code: selected,
           email,
-          ...(name ? { name } : {}),
+          name,
         }),
       });
 
@@ -153,16 +159,18 @@ export function SubscribeCheckoutForm() {
             </div>
             <div className="sm:col-span-2">
               <label htmlFor="name" className="block text-sm font-medium text-text-primary">
-                お名前（任意）
+                お名前または法人・団体名 <span className="text-red-600">*</span>
               </label>
               <input
                 id="name"
                 name="name"
                 type="text"
+                required
+                maxLength={80}
                 autoComplete="name"
                 disabled={status === "submitting"}
                 className="mt-1 w-full rounded-lg border border-border px-3 py-2.5 text-text-primary disabled:opacity-60"
-                placeholder="山田 太郎"
+                placeholder="山田 太郎 / 株式会社〇〇"
               />
             </div>
           </div>

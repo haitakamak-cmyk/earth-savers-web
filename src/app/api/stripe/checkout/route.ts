@@ -15,7 +15,11 @@ import { isSupabaseConfigured } from "@/lib/supabase/admin";
 const bodySchema = z.object({
   plan_code: planCodeSchema,
   email: z.string().trim().email("正しいメールアドレスを入力してください"),
-  name: z.string().trim().max(80).optional(),
+  name: z
+    .string()
+    .trim()
+    .min(1, "お名前または法人・団体名は必須です")
+    .max(80, "お名前または法人・団体名は80文字以内で入力してください"),
 });
 
 export async function POST(req: NextRequest) {
@@ -74,7 +78,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const name = rawName ? sanitizeText(rawName) : undefined;
+  const name = sanitizeText(rawName);
+  if (!name) {
+    return NextResponse.json(
+      { error: "お名前または法人・団体名は必須です" },
+      { status: 400 },
+    );
+  }
+
   const siteUrl = getSiteBaseUrl();
   const stripe = getStripe();
 
@@ -90,12 +101,12 @@ export async function POST(req: NextRequest) {
     cancel_url: `${siteUrl}/join/subscribe/cancel`,
     metadata: {
       plan_code: planCode,
-      ...(name ? { donor_name: name } : {}),
+      donor_name: name,
     },
     subscription_data: {
       metadata: {
         plan_code: planCode,
-        ...(name ? { donor_name: name } : {}),
+        donor_name: name,
       },
     },
   });
