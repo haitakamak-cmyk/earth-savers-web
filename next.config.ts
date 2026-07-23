@@ -2,17 +2,17 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async headers() {
+  async redirects() {
     return [
       {
         source: "/brief/ecosystem-restoration-k7m4q9x2p6v8",
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex, nofollow, noarchive, nosnippet, noimageindex",
-          },
-        ],
+        destination: "/activities/ecosystem-restoration",
+        permanent: true,
       },
+    ];
+  },
+  async headers() {
+    return [
       {
         source: "/(.*)",
         headers: [
