@@ -35,6 +35,7 @@ export function ContactForm({
     const category = String(data.get("category") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
     const intent = String(data.get("intent") ?? "").trim();
+    const website = String(data.get("website") ?? "");
 
     if (!name || !email || !message) {
       setErrorMessage(
@@ -55,6 +56,7 @@ export function ContactForm({
           email,
           category,
           message,
+          website,
           ...(intent ? { intent } : {}),
         }),
       });
@@ -118,6 +120,28 @@ export function ContactForm({
       {submitIntent === "bank-donation" ? (
         <input type="hidden" name="intent" value="bank-donation" />
       ) : null}
+      {/* Honeypot: 視覚非表示。ボットが埋めやすい name=website */}
+      <div
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          opacity: 0,
+          overflow: "hidden",
+        }}
+      >
+        <label htmlFor="website">入力しないでください（自動投稿対策）</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          autoComplete="off"
+          tabIndex={-1}
+          aria-hidden="true"
+          defaultValue=""
+        />
+      </div>
       {status === "error" && errorMessage ? (
         <p
           className="rounded-lg bg-coral/10 px-3 py-2 text-sm text-coral"

@@ -35,6 +35,8 @@ const contactSchema = z.object({
   category: z.string().trim().optional(),
   message: z.string().trim().min(1, "メッセージを入力してください").max(2000, "メッセージは2000文字以内で入力してください"),
   intent: z.string().trim().optional(),
+  // Honeypot。値ありは上位で偽成功破棄するため、ここには空のみ到達する想定
+  website: z.string().max(0).optional(),
 });
 
 /** Resend のエラーを利用者・運営が次に取るべき行動が分かる日本語に変換 */
@@ -81,6 +83,28 @@ function userFacingResendError(err: {
 }
 
 export async function POST(req: NextRequest) {
+  // 0. ボディ取得（Honeypot 判定をレート制限より前に置くため先に読む）
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
+  }
+
+  // 0b. Honeypot: 隠しフィールドに値があれば偽成功で破棄（メール送信・レート枠消費なし）
+  const websiteRaw =
+    body && typeof body === "object" && "website" in body
+      ? (body as { website?: unknown }).website
+      : undefined;
+  const website =
+    typeof websiteRaw === "string" ? websiteRaw.trim() : websiteRaw != null ? String(websiteRaw).trim() : "";
+  if (website.length > 0) {
+    console.info("[contact] honeypot triggered", {
+      origin: req.headers.get("origin") ?? null,
+    });
+    return NextResponse.json({ ok: true });
+  }
+
   // 1. レート制限 (IP単位または固定キー)
   const ip = req.headers.get("x-forwarded-for") || "anonymous";
   if (!(await rateLimitAllow(`contact:${ip}`, 5, 60 * 1000))) {
@@ -108,14 +132,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // 2. 入力バリデーション
-  let body: unknown;
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
-  }
-
+  // 3. 入力バリデーション
   const result = contactSchema.safeParse(body);
   if (!result.success) {
     return NextResponse.json(

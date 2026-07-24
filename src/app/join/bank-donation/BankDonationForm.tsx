@@ -19,6 +19,7 @@ export function BankDonationForm() {
     const email = String(fd.get("email") ?? "").trim();
     const amount = String(fd.get("amount") ?? "").trim();
     const note = String(fd.get("note") ?? "").trim();
+    const website = String(fd.get("website") ?? "");
 
     if (!name || !email) {
       setErrorMessage("お名前とメールアドレスは必須です。");
@@ -49,6 +50,7 @@ export function BankDonationForm() {
           category: "donation",
           message,
           intent: "bank-donation",
+          website,
         }),
       });
 
@@ -105,12 +107,35 @@ export function BankDonationForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-5">
+    <form onSubmit={onSubmit} className="relative flex flex-col gap-5">
       {errorMessage && (
         <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {errorMessage}
         </div>
       )}
+
+      {/* Honeypot: 視覚非表示。ボットが埋めやすい name=website */}
+      <div
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          opacity: 0,
+          overflow: "hidden",
+        }}
+      >
+        <label htmlFor="bd-website">入力しないでください（自動投稿対策）</label>
+        <input
+          type="text"
+          id="bd-website"
+          name="website"
+          autoComplete="off"
+          tabIndex={-1}
+          aria-hidden="true"
+          defaultValue=""
+        />
+      </div>
 
       {/* お名前 */}
       <div className="flex flex-col gap-1.5">
