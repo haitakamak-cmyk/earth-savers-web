@@ -4,10 +4,7 @@ export type AppSnsNavLink = {
   label: string;
   href: string;
   external: boolean;
-  /**
-   * false のときはリンクにせず「準備中」表示のみ。
-   * サイト先行公開でアプリ（app.earth-savers.org）未リリースの間は true にしない。
-   */
+  /** false のときはリンクにせず「準備中」表示のみ。 */
   disabled?: boolean;
 };
 
