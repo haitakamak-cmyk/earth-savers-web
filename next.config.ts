@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         destination: "/activities/ecosystem-restoration",
         permanent: true,
       },
+      {
+        // 公式アプリ企画は廃案。旧ブックマーク向けにトップへ誘導する。
+        source: "/app-intro",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   async headers() {

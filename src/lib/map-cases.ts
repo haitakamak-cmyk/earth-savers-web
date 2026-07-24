@@ -293,9 +293,7 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "水資源補償の合意あり・対話継続",
     topicAnchor: "",
     summary: "トンネル工事による大井川水系の水量・地下水への影響が懸念されている",
-    sourceUrl:
-      "https://www.pref.shizuoka.jp/kurashikankyo/kankyo/1040554/1002001/1068405/index.html",
-    sourceLabel: "静岡県公式",
+    sourceLabel: "静岡県公式（個別ページURLは要再確認）",
   },
   {
     id: "jingu-gaien",
@@ -496,8 +494,7 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "沿岸部の埋立事業をめぐり、サンゴ礁や海洋生態系への影響と地域合意のあり方が論点となっている",
-    sourceUrl: "https://www.pref.okinawa.jp/site/chijiko/henoko/index.html",
-    sourceLabel: "沖縄県公式",
+    sourceLabel: "沖縄県公式（個別ページURLは要再確認）",
   },
   {
     id: "marugame-pond-solar",

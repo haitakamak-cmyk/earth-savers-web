@@ -8,13 +8,6 @@ export const SITE_URL = "https://earth-savers.org";
 export const SITE_ALLOW_SEARCH_INDEXING = true;
 
 /**
- * 公式サイトをアプリより先に公開するときは false のままにする。
- * アプリ（app.earth-savers.org）への誘導リンクを止め、準備中の表示にする。
- * リリース時に true に変更する。
- */
-export const APP_EXTERNAL_LINKS_READY = false;
-
-/**
  * サイト表記の法人名（公益財団法人の認定は実績後のため、現段階では「財団法人」表記とする）
  */
 export const ORGANIZATION_NAME = "一般財団法人 地球防衛群";
