@@ -82,7 +82,8 @@ const CATEGORY_BY_SLUG: Record<string, GlossaryCategory> = {
   "waste-disposal-plan-filing": "national-law",
   "important-land-survey-act": "national-law",
   "biodiversity-maintenance-agreement": "national-law",
-  "designated-conservation-species": "national-law",
+  /** 国制度ではなく自治体条例上の概念（例: 釧路市「特定保全種」） */
+  "designated-conservation-species": "precedent",
   "fujikawaguchiko-precedent": "precedent",
   "co-regulation": "legal-theory",
   "groundwater-publicness": "legal-theory",
