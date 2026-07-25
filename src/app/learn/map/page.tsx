@@ -15,9 +15,9 @@ import {
 
 /** ページ内メタ情報（更新時にここだけ変える） */
 const MAP_META = {
-  lastUpdated: "2026年5月20日",
+  lastUpdated: "2026年7月25日",
   caseCount: MAP_CASES.length,
-  dataVersion: "v2.0",
+  dataVersion: "v2.1",
 } as const;
 
 export const metadata: Metadata = {
