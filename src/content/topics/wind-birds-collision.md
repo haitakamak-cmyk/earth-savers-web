@@ -210,7 +210,7 @@ NACS-J はまた、2025年11月に「[大型陸上風力発電計画の自然環
 
 [^L4]: 環境省 環境影響評価情報支援ネットワーク・当該鏡野風力発電事業（方法書手続の事例詳細） https://assess.env.go.jp/2_jirei/2-2_search/result_houhou.html?jid=0000_2021_040-0-0&reassess=0 （総出力最大92,400kW／単機約4,200kW／最大25基／第一種事業）
 
-[^L5]: 環境省 環境影響評価情報支援ネットワーク「当該鏡野風力発電事業・事業廃止」 https://assess.env.go.jp/2_jirei/2-2_search/result_haishi.html?start=1&maxrows=20&keyword=&yy1=&yy2=&maxcount=4161&page=search_result&jid=0000_2021_040-0-0&reassess=0 ／KSB瀬戸内海放送「岡山・鏡野町の大規模風力発電計画　東京の企業が撤退決める『採算が取れないと判断』」 https://news.ksb.co.jp/article/15965727 （盛土規制区域の指定に伴って風車基数を大幅に削減する必要が生じ、採算確保が困難になったとの事業者説明を報道）
+[^L5]: 環境省 環境影響評価情報支援ネットワーク「当該鏡野風力発電事業・事業廃止」 https://assess.env.go.jp/2_jirei/2-2_search/result_haishi.html?start=1&maxrows=20&keyword=&yy1=&yy2=&maxcount=4161&page=search_result&jid=0000_2021_040-0-0&reassess=0 ／KSB瀬戸内海放送「岡山・鏡野町の大規模風力発電計画　東京の企業が撤退決める『採算が取れないと判断』」（盛土規制区域の指定に伴って風車基数を大幅に削減する必要が生じ、採算確保が困難になったとの事業者説明を報道）
 
 [^S1]: Lina Meng, Pengfei Liu, Yinggang Zhou, Yingdan Mei, "Blaming the wind? The impact of wind turbine on bird biodiversity," *Journal of Development Economics*, Vol. 172 (2025). https://doi.org/10.1016/j.jdeveco.2024.103402 （風車1SD増→郡単位で鳥個体数 −9.75%、種の豊富さ −12.2%。負の影響は渡り鳥・森林/都市/農地の鳥で有意。機構は生息地喪失。**著者は炭素削減効果を含めた純影響はプラスと結論**。中国郡単位・市民科学データ・計量経済分析）
 

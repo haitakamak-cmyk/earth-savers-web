@@ -330,34 +330,34 @@ FIT認定の失効により、36円/kWhの固定買取価格での売電権利�
 [^4]: 伊東市「審査結果報告書」 https://www.city.ito.shizuoka.jp/material/files/group/3/20211221houkokusyo2.pdf
 [^5]: 日経BP「メガソーラー裁判を読み解く、地裁の判断はなぜ覆ったのか」
 [^6]: 鏡野風力発電を考える会「速報！事業者が撤退を決定！！」 https://kagamino-fuhatu.jimdofree.com/2025/08/08/%E9%80%9F%E5%A0%B1-%E4%BA%8B%E6%A5%AD%E8%80%85%E3%81%8C%E6%92%A4%E9%80%80%E3%82%92%E6%B1%BA%E5%AE%9A/
-[^7]: KSB瀬戸内海放送「岡山・鏡野町の大規模風力発電計画 東京の企業が撤退決める」 https://news.ksb.co.jp/article/15965727
-[^8]: 山陽新聞「鏡野・風力発電事業計画 事業者が撤退決める」 https://www.sanyonews.jp/article/1776466
-[^9]: YouTube報道「鏡野町の国内最大級風力発電事業計画…東京の企業が撤退」 https://www.youtube.com/watch?v=EwVeh97Z9iw
-[^10]: 日本自然保護協会「『（仮称）鏡野風力発電事業』の計画中止報道についてのコメント」 https://www.nacsj.or.jp/report/55228/
+[^7]: KSB瀬戸内海放送「岡山・鏡野町の大規模風力発電計画 東京の企業が撤退決める」
+[^8]: 山陽新聞「鏡野・風力発電事業計画 事業者が撤退決める」
+[^9]: YouTube報道「鏡野町の国内最大級風力発電事業計画…東京の企業が撤退」
+[^10]: 日本自然保護協会「当該鏡野風力発電事業の計画中止報道についてのコメント」 https://www.nacsj.or.jp/report/55228/
 [^11]: 自然エネルギー財団「地域に歓迎される太陽光発電」 https://www.renewable-ei.org/pdfdownload/activities/REI_SolarPV_CoexistingWithLocalCommunity.pdf
 [^12]: 環境省「令和5年度後期 自然共生サイト 認定結果（中部地方）」 https://chubu.env.go.jp/content/000202314.pdf
-[^13]: 朝日新聞「メガソーラーが宅地隣に 話し合いで貴重な湿地守れた」 https://www.asahi.com/articles/ASP915FZRP6XPLBJ00G.html
+[^13]: 朝日新聞「メガソーラーが宅地隣に 話し合いで貴重な湿地守れた」
 [^14]: 環境省「大森奥山湿地群 自然共生サイト申請書」 https://policies.env.go.jp/nature/biodiversity/30by30alliance/documents/nintei/R5second34_OmoriOkuyamaWetlands.pdf
-[^15]: 長周新聞「徳島県海陽町 風力発電建設反対で住民が決起集会 水源や山林の荒廃させる乱開発」 https://www.chosyu-journal.jp/shakai/19604
+[^15]: 長周新聞「徳島県海陽町 風力発電建設反対で住民が決起集会 水源や山林の荒廃させる乱開発」
 [^16]: 徳島県「みどりの要覧」 https://www.pref.tokushima.lg.jp/file/attachment/848380.pdf
 [^17]: 日経クロステック「四国で地元反発の2事業を同時撤回、風力発電『中止ドミノ』」
 [^18]: 日経ビジネス「陸上風力発電のジレンマ 自然エネ開発が自然の脅威となるのか」
 [^19]: 奈良地裁判決（令和7年3月25日言渡） https://www.courts.go.jp/assets/hanrei/hanrei-pdf-94040.pdf https://www.courts.go.jp/assets/hanrei/hanrei-pdf-94041.pdf
-[^20]: 産経新聞「メガソーラー工事差し止め認めず奈良地裁、平群町民ら原告」 https://www.sankei.com/article/20250325-26SJ4QJCIRM3HCYSWW6PCJLT6Y/
-[^21]: TVN奈良「平群町メガソーラーの建設めぐり 許可取り消しなど」 https://www.naratv.co.jp/tvnnews/detail.html?id=765a64384933557a79682f2b56634f5a3839684f41673d3d
-[^22]: 奈良新聞「奈良県平群町のメガソーラー差し止め訴訟 大阪高裁で控訴審口頭弁論」 https://www.nara-np.co.jp/news/20260312210114.html
-[^23]: 東洋経済オンライン「工事はなぜ止めるのが難しいのか メガソーラー問題で浮かび上がる課題」 https://toyokeizai.net/articles/-/935407
-[^24]: TVN奈良「メガソーラー建設めぐり住民が刑事告発 平群町3度目の土砂流出」 https://www.naratv.co.jp/tvnnews/detail.html?id=6e76517436744546517878785052766752304f3362413d3d
+[^20]: 産経新聞「メガソーラー工事差し止め認めず奈良地裁、平群町民ら原告」
+[^21]: TVN奈良「平群町メガソーラーの建設めぐり 許可取り消しなど」
+[^22]: 奈良新聞「奈良県平群町のメガソーラー差し止め訴訟 大阪高裁で控訴審口頭弁論」
+[^23]: 東洋経済オンライン「工事はなぜ止めるのが難しいのか メガソーラー問題で浮かび上がる課題」
+[^24]: TVN奈良「メガソーラー建設めぐり住民が刑事告発 平群町3度目の土砂流出」
 [^25]: 北杜市「市内における太陽光発電設備設置許可手続等について」 https://www.city.hokuto.yamanashi.jp/fs/4/2/1/9/0/7/_/_____________________________6_4_1____.pdf
 [^26]: 太陽エネルギー学会誌「北杜市における太陽光発電設備設置の実状と自治体の対応」 https://www.jses-solar.jp/wp-content/uploads/journal251-pdf69-75.pdf
 [^27]: 美作市「事業用発電パネル税条例公布」 https://www.city.mimasaka.lg.jp/soshiki/shimin/zeimu/info/1640046400182.html
 [^28]: 美作市「事業用発電パネル税導入の理由」 https://www.city.mimasaka.lg.jp/material/files/group/15/paneruzeisiryou.pdf
 [^29]: 地方自治総合研究所「2026年5月 気になる地方自治トピックス」 https://jichisoken.jp/movement/202605/
-[^30]: 新エネルギー新聞「美作市『太陽光パネル税』めぐり市-事業者双方から聴取」 https://www.newenergy-news.com/?p=51045
+[^30]: 新エネルギー新聞「美作市『太陽光パネル税』めぐり市-事業者双方から聴取」
 [^31]: 毎日新聞「全国初の太陽光パネル税どうなった 条例制定4年、施行まだの背景」（2025年12月28日）
 [^32]: e-Gov法令検索「行政機関の保有する情報の公開に関する法律」 https://laws.e-gov.go.jp/law/411AC0000000042
 [^33]: 参議院「再生可能エネルギー発電事業者への課税条例制定の動き」 https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2023pdf/20231218073.pdf
-[^34]: KSB瀬戸内海放送「メガソーラー建設を許可しないよう嘆願 岡山市足守地区」 https://www.youtube.com/watch?v=jMZZif_TIRw
+[^34]: KSB瀬戸内海放送「メガソーラー建設を許可しないよう嘆願 岡山市足守地区」
 [^35]: 足守地域住民有志団体「足守・大井・粟井地区の太陽光発電所建設計画」 https://ashimoriyugakusha.com/pub/2018/05/19/magasolar_construction_project/
 [^36]: 住民団体「第3回メガソーラー反対活動 その後報告会」資料 https://satokatsuo2i.net/files/uploads/%E6%9C%AC%E7%95%AA%E7%94%A8190427%E7%AC%AC3%E5%9B%9E%E6%B4%BB%E5%8B%95%E7%B5%8C%E9%81%8E%E5%A0%B1%E5%91%8A%E4%BC%9A%EF%BC%88A4%E7%89%88%EF%BC%89.pdf
 [^37]: 日本共産党岡山市議団「足守太陽光反対の陳情は全会一致で採択」議会報告 No.235（2018年6月28日付） http://okjcp.jp/old/wp-content/uploads/2018/06/8b92e1eae5ecde398a242c673a492246.pdf
@@ -368,7 +368,7 @@ FIT認定の失効により、36円/kWhの固定買取価格での売電権利�
 [^41]: 高知新聞2024年2月8日「業者控訴せず判決確定　四万十川メガソーラー不許可」。
 [^42]: 長内論文前掲注39、10-11頁。
 [^43]: 日本経済新聞「千葉・鴨川のメガソーラー計画、FIT認定失効 期限延長に不備」（2026年1月）
-[^44]: 千葉日報「鴨川メガソーラー問題、千葉県の重要課題に浮上」 https://www.chibanippo.co.jp/articles/1551341
+[^44]: 千葉日報「鴨川メガソーラー問題、千葉県の重要課題に浮上」
 [^45]: 国際環境NGO FoE Japan「ついに着工、山を削り森林を切り開く鴨川メガソーラー」 https://foejapan.org/?post_type=staffblog&p=26302
 [^46]: 鴨川市公式「田原地区におけるメガソーラー計画のＦＩＴ認定の失効について」 https://www.city.kamogawa.lg.jp/site/megasolar/39830.html
 [^46a]: 鴨川の山と川と海を守る会「【東京新聞 WEB】『メガソーラー計画 広範囲の説明会を』鴨川市、調停申し立てへ」（2025年4月29日付記事の紹介） https://kamogawa-nature.com/?p=43
