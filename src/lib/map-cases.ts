@@ -214,7 +214,7 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     lat: 43.109,
     lng: 144.331,
     category: "solar",
-    status: "道・自治体が規制条例等を検討中",
+    status: "釧路市条例施行済・許可制度を運用",
     topicAnchor: "",
     summary: "湿原周辺で太陽光施設建設が相次ぎ、タンチョウ等の生息環境が懸念されている",
     sourceUrl: "https://www.city.kushiro.lg.jp/machi/kankyou/1017276/1017277.html",
@@ -293,7 +293,9 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     status: "水資源補償の合意あり・対話継続",
     topicAnchor: "",
     summary: "トンネル工事による大井川水系の水量・地下水への影響が懸念されている",
-    sourceLabel: "静岡県公式（個別ページURLは要再確認）",
+    sourceUrl:
+      "https://www.pref.shizuoka.jp/kurashikankyo/kankyo/1040554/1002001/index.html",
+    sourceLabel: "静岡県（リニア工事に伴う環境影響への対応）",
   },
   {
     id: "jingu-gaien",
@@ -494,7 +496,9 @@ export const MAP_CASES_REFERENCE: MapCase[] = [
     topicAnchor: "",
     summary:
       "沿岸部の埋立事業をめぐり、サンゴ礁や海洋生態系への影響と地域合意のあり方が論点となっている",
-    sourceLabel: "沖縄県公式（個別ページURLは要再確認）",
+    sourceUrl:
+      "https://www.pref.okinawa.jp/kurashikankyo/kankyo/1004287/1004343/1004384/1004385/1004392.html",
+    sourceLabel: "沖縄県（普天間飛行場代替施設建設事業・埋立事業）",
   },
   {
     id: "marugame-pond-solar",
