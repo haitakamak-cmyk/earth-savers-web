@@ -20,6 +20,8 @@ export type PolicyEntry = {
   contentPath?: string;
   /** ISO 8601 日付（Article JSON-LD 用） */
   datePublished?: string;
+  /** ISO 8601 日付（実質更新時のみ更新する） */
+  dateModified?: string;
   /** 制度・法令系の改正注意を出すか（個別ページ末尾の ContentDisclaimer 用） */
   requiresLegalCaveat?: boolean;
   relatedToolkitPaths?: readonly string[];
@@ -59,6 +61,7 @@ export const POLICIES: readonly PolicyEntry[] = [
     contentPath:
       "src/content/policies/landowner-beneficial-owner-disclosure.md",
     datePublished: "2026-05-04",
+    dateModified: "2026-07-25",
     requiresLegalCaveat: true,
     relatedToolkitPaths: ["/toolkit/ordinance"],
     relatedGlossarySlugs: [],

@@ -21,12 +21,12 @@ import {
 } from "./md-path";
 
 export const metadata: Metadata = {
-  title: "条例ひな型（v2.1）",
+  title: "条例ひな型（v2.1.1）",
   description:
     "市町村向けひな形「命の水と森を守る条例」の全文 Markdown（条文・逐条解説・別表・経過措置）。施行規則骨子案・導入ガイド・議会問答・パブコメ回答の補助資料への導線付きです。",
   alternates: { canonical: "/toolkit/ordinance" },
   openGraph: {
-    title: "条例ひな型（v2.1）| ひな形・資料",
+    title: "条例ひな型（v2.1.1）| ひな形・資料",
     description:
       "全74条構成（本則62条・附則12条）のひな形全文と補助資料。採用前に法務・議会での協議が必要です。",
     url: "/toolkit/ordinance",
@@ -61,7 +61,7 @@ export default async function ToolkitOrdinancePage() {
             条例ひな型
           </h1>
           <p className="mt-1 text-sm font-medium text-aqua-dark">
-            v2.1（2026年7月改訂）｜参入・運転・承継・出口の四段階規制と既設施設対応
+            v2.1.1（2026年7月25日改訂）｜参入・運転・承継・出口の四段階規制と既設施設対応
           </p>
           <ResourceLead>
             「命の水と森を守る条例」の市町村向けひな形です。本資料は完成条例ではなく、自治体での検討用ひな型です。採用に際しては、必ず法務担当・顧問弁護士・議会と協議してください。
@@ -96,7 +96,7 @@ export default async function ToolkitOrdinancePage() {
                   className="flex h-full flex-col rounded-lg border border-aqua/40 bg-white px-3.5 py-3 text-sm hover:border-aqua hover:bg-ivory"
                 >
                   <span className="font-semibold text-aqua-dark">更新履歴を見る</span>
-                  <span className="mt-1 text-xs leading-relaxed text-text-secondary">v2.1／v1.2／v1.1</span>
+                  <span className="mt-1 text-xs leading-relaxed text-text-secondary">v2.1.1／v2.1／v1.2／v1.1</span>
                 </a>
               </li>
             </ul>

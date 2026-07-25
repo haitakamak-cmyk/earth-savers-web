@@ -59,6 +59,18 @@ function parseDateOrFallback(value: string | undefined, fallback: Date): Date {
 // 公開内容を実際に更新した日。デプロイ時刻を使うと毎回更新扱いになるため固定する。
 const STATIC_CONTENT_LAST_MODIFIED = new Date("2026-07-23T00:00:00+09:00");
 
+// 更新対象のページだけ実質更新日を明示し、デプロイ日時をlastmodに使わない。
+const CONTENT_LAST_MODIFIED_BY_PATH: Readonly<Record<string, Date>> = {
+  "/learn/map": new Date("2026-07-25T00:00:00+09:00"),
+  "/policy": new Date("2026-07-25T00:00:00+09:00"),
+  "/policy/legislative": new Date("2026-07-25T00:00:00+09:00"),
+  "/toolkit/ordinance": new Date("2026-07-25T00:00:00+09:00"),
+};
+
+function contentLastModified(path: string): Date {
+  return CONTENT_LAST_MODIFIED_BY_PATH[path] ?? STATIC_CONTENT_LAST_MODIFIED;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!SITE_ALLOW_SEARCH_INDEXING) return [];
 
@@ -67,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of CORE_PATHS) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: STATIC_CONTENT_LAST_MODIFIED,
+      lastModified: contentLastModified(path),
       changeFrequency: path === "/" ? "weekly" : "monthly",
       priority: path === "/" ? 1 : path.split("/").length === 2 ? 0.85 : 0.7,
     });
@@ -76,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of RESOURCE_STATIC) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: STATIC_CONTENT_LAST_MODIFIED,
+      lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -86,7 +98,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const path = `/policy/${POLICY_KIND_PATH[kind]}`;
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: STATIC_CONTENT_LAST_MODIFIED,
+      lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -95,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const path of getToolkitSitemapHubPaths()) {
     urls.push({
       url: `${SITE_URL}${path}`,
-      lastModified: STATIC_CONTENT_LAST_MODIFIED,
+      lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
     });
@@ -144,7 +156,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     urls.push({
       url: `${SITE_URL}/policy/${slug}`,
       lastModified: parseDateOrFallback(
-        policy?.datePublished,
+        policy?.dateModified ?? policy?.datePublished,
         STATIC_CONTENT_LAST_MODIFIED,
       ),
       changeFrequency: "monthly",

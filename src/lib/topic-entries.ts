@@ -34,7 +34,7 @@ export const TOPIC_SERIES_LIST: readonly TopicSeriesListItem[] = [
     key: "dam-and-rivers",
     title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
     overview:
-      "2018年、熊本県の荒瀬ダムが撤去された。翌年から球磨川の干潟に砂が戻り、川底の生物種が10年前の7倍に増えた。日本には約3,000基のダムがある。竣工50年を超えたものが2割を占め、堆砂で洪水調節容量を失いつつあるものは300基を超える。世界では欧州・米国が撤去を戦略として進め、一方で日本はダム再生ビジョンに「撤去」という語すらない。この連載で老朽化・堆砂・既得構造・制度案までをたどり、3,000基を流域の水循環と安全から問い直す記録とした。",
+      "荒瀬ダムでは、2010年の発電停止・ゲート開放後に河口域や旧湛水区間で生態系回復の兆候が報告され、2018年に本体撤去が完了した。日本には約3,000基のダムがある。竣工50年を超えたものが2割を占め、堆砂で洪水調節容量を失いつつあるものは300基を超える。世界では欧州・米国が撤去を戦略として進め、一方で日本はダム再生ビジョンに「撤去」という語すらない。この連載で老朽化・堆砂・既得構造・制度案までをたどり、3,000基を流域の水循環と安全から問い直す記録とした。",
     episodeSlugs: [
       "dam-reassessment",
       "dam-reassessment-2",
@@ -63,7 +63,7 @@ export const TOPICS: TopicEntry[] = [
     shortDescription:
       "大規模太陽光・風力発電の開発計画をめぐり、各地で論点となった条例運用、行政付随許可、協議体制、訴訟・告発の経緯を公開資料に基づいて整理する。",
     publishedAt: "2026-05-16",
-    updatedAt: "2026-07-24",
+    updatedAt: "2026-07-25",
     contentPath: "src/content/topics/solar-wind-opposition-cases.md",
     relatedGlossarySlugs: [
       "nature-coexistence-site",
@@ -80,7 +80,7 @@ export const TOPICS: TopicEntry[] = [
     shortDescription:
       "外国法人等による森林・水源地周辺の土地取得をめぐる林野庁調査の経年データと、森林法・重要土地等調査法・水循環基本法・自治体条例による制度的対応の現状を、公開資料に基づいて整理する。",
     publishedAt: "2026-05-19",
-    updatedAt: "2026-05-19",
+    updatedAt: "2026-07-25",
     contentPath: "src/content/topics/water-source-land-acquisition.md",
     relatedGlossarySlugs: [
       "water-cycle-basic-act",
@@ -115,9 +115,9 @@ export const TOPICS: TopicEntry[] = [
     title: "ダムと川のこれから——3,000基の再評価と、日本の治水を問い直すとき",
     subtitle: "第1話｜荒瀬ダムが撤去された日",
     shortDescription:
-      "2018年、熊本県の荒瀬ダムが日本初の本格撤去を完了した。発電専用ダムが姿を消した翌年から、球磨川の生態系は予想を超える速度で回復し始める。3,000基とも言われる日本のダムを、流域の水循環と生態系を基準に再評価する——その出発点として、荒瀬ダムが示したものを記録する。",
+      "2018年、熊本県の荒瀬ダムが日本初の本格撤去を完了した。生態系回復の兆候は、2010年の発電停止・ゲート開放後から報告されている。3,000基とも言われる日本のダムを、流域の水循環と生態系を基準に再評価する——その出発点として、荒瀬ダムが示したものを記録する。",
     publishedAt: "2026-05-05",
-    updatedAt: "2026-05-05",
+    updatedAt: "2026-07-25",
     contentPath: "src/content/topics/dam-reassessment.md",
     relatedGlossarySlugs: ["water-cycle-basic-act", "ecosystem-services"],
     category: "water",

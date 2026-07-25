@@ -102,7 +102,7 @@ export default async function PolicyDetailPage({ params }: Props) {
         pathname={pathname}
         description={policy.summary}
         datePublished={policy.datePublished}
-        dateModified={policy.datePublished}
+        dateModified={policy.dateModified ?? policy.datePublished}
         articleSection="政策提言"
       />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
@@ -130,7 +130,12 @@ export default async function PolicyDetailPage({ params }: Props) {
           ) : null}
           <ResourceLead>{policy.summary}</ResourceLead>
           {policy.datePublished ? (
-            <p className="mt-2 text-sm text-text-muted">公開 {policy.datePublished}</p>
+            <p className="mt-2 text-sm text-text-muted">
+              公開 {policy.datePublished}
+              {policy.dateModified && policy.dateModified !== policy.datePublished
+                ? ` ・ 最終更新 ${policy.dateModified}`
+                : ""}
+            </p>
           ) : null}
         </div>
       </div>
