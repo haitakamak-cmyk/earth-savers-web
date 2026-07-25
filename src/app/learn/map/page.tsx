@@ -17,7 +17,7 @@ import {
 const MAP_META = {
   lastUpdated: "2026年7月25日",
   caseCount: MAP_CASES.length,
-  dataVersion: "v2.1",
+  dataVersion: "v2.2",
 } as const;
 
 export const metadata: Metadata = {
