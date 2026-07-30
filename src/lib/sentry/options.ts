@@ -5,7 +5,10 @@ import { sentryBeforeSend } from "./pii-scrub";
 type SentryInitOptions = NonNullable<Parameters<typeof Sentry.init>[0]>;
 
 export function getSentryOptions(): SentryInitOptions {
-  const dsn = process.env.SENTRY_DSN?.trim();
+  // ブラウザバンドルは NEXT_PUBLIC_* のみ露出する。サーバーは SENTRY_DSN でも可。
+  const dsn = (
+    process.env.NEXT_PUBLIC_SENTRY_DSN ?? process.env.SENTRY_DSN
+  )?.trim();
   const enabled = Boolean(dsn);
 
   return {
