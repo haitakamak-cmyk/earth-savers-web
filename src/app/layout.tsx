@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Zen_Maru_Gothic, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -32,6 +33,9 @@ const siteDescription = SITE_ALLOW_SEARCH_INDEXING
   ? SITE_ORGANIZATION_DESCRIPTION
   : SITE_ORGANIZATION_DESCRIPTION_PRELAUNCH;
 
+const googleSiteVerification =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -48,6 +52,10 @@ export const metadata: Metadata = {
         follow: false,
         googleBot: { index: false, follow: false },
       },
+  verification:
+    SITE_ALLOW_SEARCH_INDEXING && googleSiteVerification
+      ? { google: googleSiteVerification }
+      : undefined,
   openGraph: {
     title: defaultTitle,
     description: siteDescription,
@@ -73,6 +81,11 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col font-sans antialiased">
+        {SITE_ALLOW_SEARCH_INDEXING ? (
+          <GoogleAnalytics
+            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
+        ) : null}
         <OrganizationJsonLd />
         <Header />
         <main className="flex-1">{children}</main>

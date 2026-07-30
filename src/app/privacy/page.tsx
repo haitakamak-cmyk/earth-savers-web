@@ -113,19 +113,51 @@ export default function PrivacyPage() {
             6. Cookie（クッキー）等
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
-            本サイトでは、現時点で広告配信や行動ターゲティングを目的とした第三者によるトラッキング用
-            Cookie を設置していません。サイトの技術的な動作に伴い、セッション管理やセキュリティのために必要最小限の情報がブラウザに保存される場合があります。
+            本サイトでは、広告配信や行動ターゲティングを目的とした第三者によるトラッキング用
+            Cookie を設置していません。サイトの技術的な動作に伴い、セッション管理やセキュリティのために必要最小限の情報がブラウザに保存される場合があります。また、アクセス解析のためにGoogle Analyticsを利用する場合があります。詳細は次項をご確認ください。
           </p>
 
           <h2 className="mt-10 text-lg font-bold text-text-primary">
-            7. 本ポリシーの変更
+            7. 外部送信に関する公表（Google Analytics）
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed">
+            当財団は、本サイトの利用状況を把握し、内容や使いやすさを改善するため、Google LLCが提供するGoogle Analyticsを利用します。Google Analyticsの利用時には、Cookieその他これに類する識別子、アクセスしたページのURL・参照元、ブラウザ・端末に関する情報、IPアドレス、閲覧日時等が、利用者のブラウザからGoogle LLCへ送信される場合があります。
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">
+            当財団はこれらの情報を、利用状況の集計・分析および本サイトの改善のために利用します。Google LLCによる情報の取扱いについては、Googleのプライバシーポリシーをご確認ください。
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">
+            Google Analyticsによる情報収集を無効にしたい場合は、Googleが提供するGoogle Analyticsオプトアウト アドオンをご利用いただけます。
+          </p>
+          <p className="mt-3 text-sm leading-relaxed">
+            <a
+              href="https://policies.google.com/privacy?hl=ja"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Google プライバシーポリシー
+            </a>
+            {" / "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout?hl=ja"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Google Analytics オプトアウト アドオン
+            </a>
+          </p>
+
+          <h2 className="mt-10 text-lg font-bold text-text-primary">
+            8. 本ポリシーの変更
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
             当財団は、法令の改正や事業内容の変更等に応じて、本ポリシーを改定することがあります。改定後の内容は、本サイトに掲載した時点から効力を生じます。
           </p>
 
           <h2 className="mt-10 text-lg font-bold text-text-primary">
-            8. お問い合わせ窓口
+            9. お問い合わせ窓口
           </h2>
           <p className="mt-3 text-sm leading-relaxed">
             事務所所在地：{ORGANIZATION_ADDRESS_LINE}
