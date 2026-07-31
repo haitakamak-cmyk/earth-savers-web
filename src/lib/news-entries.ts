@@ -17,6 +17,14 @@ export type NewsEntry = {
 
 export const newsEntries: NewsEntry[] = [
   {
+    id: "official-site-open-2026-07-31",
+    date: "2026-07-31",
+    category: "重要",
+    title: "公式サイトをオープンしました",
+    href: "https://prtimes.jp/main/html/rd/p/000000002.000181844.html",
+    external: true,
+  },
+  {
     id: "crowdfunding-next-goal-2026-05",
     date: "2026-05-31",
     category: "活動報告",
