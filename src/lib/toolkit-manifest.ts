@@ -23,9 +23,16 @@ export type ToolkitSection = {
     | "/toolkit/ordinance"
     | "/toolkit/legal"
     | "/toolkit/operations"
+    | "/toolkit/disclosure-request"
     | "/toolkit/cases"
     | "/toolkit/supplements";
-  subdir: "ordinance" | "legal" | "operations" | "cases" | "supplements";
+  subdir:
+    | "ordinance"
+    | "legal"
+    | "operations"
+    | "disclosure"
+    | "cases"
+    | "supplements";
   description: string;
   files: readonly ToolkitFileEntry[];
 };
@@ -90,6 +97,22 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
         filename: "条例運用設計ガイド.md",
         description:
           "窓口フロー・届出チェックリスト・台帳・カレンダー・エスカレーション・FAQを、現場の引き継ぎを想定した書き方で整理したガイドです。",
+        status: "published",
+      },
+    ],
+  },
+  {
+    label: "情報公開・開示請求",
+    href: "/toolkit/disclosure-request",
+    subdir: "disclosure",
+    description:
+      "計画の中身を確かめ、議論の材料をそろえるために。開示請求の手順、請求書の書き方、資料の読み方、公表するときの注意までをまとめた実務ガイドです。",
+    files: [
+      {
+        title: "行政文書開示請求のはじめかた",
+        filename: "行政文書開示請求のはじめかた.md",
+        description:
+          "開示請求の手順から資料の読み方・公表時の注意まで。特定の事業・個人を名指ししない一般向けガイドです。",
         status: "published",
       },
     ],
