@@ -64,7 +64,7 @@ export default async function ToolkitDisclosureRequestPage() {
             {published.title}
           </h1>
           <ResourceLead>{section.description}</ResourceLead>
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-white px-4 py-4 text-sm shadow-sm">
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-white px-4 py-4 text-sm shadow-sm print:hidden">
             <a
               href={downloadHref}
               download={published.filename}
