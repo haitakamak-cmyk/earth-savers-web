@@ -151,18 +151,20 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
     ),
     tbody: ({ children }) => <tbody>{children}</tbody>,
     code: ({ className, children }) => {
-      const inline = !className;
-      if (inline) {
-        return (
-          <code className="rounded bg-ivory-warm px-1 py-px font-mono text-[0.9em] text-text-primary">
-            {children}
-          </code>
-        );
+      const text = String(children ?? "");
+      // language-xxx がある、または改行を含むならブロック（言語なしフェンス対策）
+      const isBlock = Boolean(className) || text.includes("\n");
+      if (isBlock) {
+        return <code className={className}>{children}</code>;
       }
-      return <code className={className}>{children}</code>;
+      return (
+        <code className="rounded bg-ivory-warm px-1 py-px font-mono text-[0.9em] text-text-primary">
+          {children}
+        </code>
+      );
     },
     pre: ({ children }) => (
-      <pre className="my-6 overflow-x-auto rounded-lg border border-border bg-text-primary p-4 font-mono text-[13px] leading-relaxed text-ivory-warm whitespace-pre-wrap">
+      <pre className="my-6 overflow-x-auto rounded-lg border border-border bg-text-primary p-4 font-mono text-[13px] leading-relaxed text-ivory-warm whitespace-pre-wrap [&_code]:rounded-none [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_code]:text-[inherit]">
         {children}
       </pre>
     ),
