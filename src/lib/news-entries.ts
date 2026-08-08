@@ -17,6 +17,14 @@ export type NewsEntry = {
 
 export const newsEntries: NewsEntry[] = [
   {
+    id: "aki-fuyu-vegetable-seeds-2026-08",
+    date: "2026-08-08",
+    category: "活動報告",
+    title: "秋冬野菜 ばら撒くっ種 発送！",
+    href: "https://www.facebook.com/groups/812053983073907/?multi_permalinks=2119122945700331",
+    external: true,
+  },
+  {
     id: "official-site-open-2026-07-31",
     date: "2026-07-31",
     category: "重要",
