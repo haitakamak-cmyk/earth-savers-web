@@ -65,6 +65,7 @@ const CONTENT_LAST_MODIFIED_BY_PATH: Readonly<Record<string, Date>> = {
   "/policy": new Date("2026-07-25T00:00:00+09:00"),
   "/policy/legislative": new Date("2026-07-25T00:00:00+09:00"),
   "/toolkit/ordinance": new Date("2026-07-25T00:00:00+09:00"),
+  "/toolkit/disclosure-request": new Date("2026-08-09T00:00:00+09:00"),
 };
 
 function contentLastModified(path: string): Date {
