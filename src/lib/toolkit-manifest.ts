@@ -106,7 +106,7 @@ export const TOOLKIT_SECTIONS: readonly ToolkitSection[] = [
     href: "/toolkit/disclosure-request",
     subdir: "disclosure",
     description:
-      "計画の中身を確かめ、議論の材料をそろえるために。開示請求の手順、請求書の書き方、資料の読み方、公表するときの注意までをまとめた実務ガイドです。",
+      "環境アセスメント・開発許認可の記録を確かめ、議論の材料をそろえるために。開示請求の手順、請求書の書き方、資料の読み方、公表するときの注意までをまとめた実務ガイドです。",
     files: [
       {
         title: "行政文書開示請求のはじめかた",
