@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "メンバー紹介",
   description:
     "財団法人 地球防衛群の理事会・監事・評議員、およびアンバサダーランクをご紹介します。",
+  alternates: { canonical: "/members" },
 };
 
 /** 理事会・監事（役職・氏名のみ） */

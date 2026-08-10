@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "毎月の寄付",
   description:
     "毎月の継続寄付のお申し込みページです。会員登録不要。プラン選択後、安全な決済ページへ進みます。",
+  alternates: { canonical: "/join/subscribe" },
 };
 
 export default function SubscribePage() {

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "支援・参加する",
   description:
     "寄付や毎月の継続寄付、ボランティア活動への参加方法、オンラインショップでの応援など、水と森の未来を守るための参画方法をご案内します。",
+  alternates: { canonical: "/join" },
 };
 
 const BANK_DONATION_INFO_HREF = "/join/bank-donation";

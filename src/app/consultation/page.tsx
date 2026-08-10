@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "地域の自然環境や水源を守りながら、再エネ開発への対応を考えたい方へ。" +
     `まず事例集・活動ツールキットを確認し、必要に応じて一般的な情報整理の入口として${ORGANIZATION_NAME}に情報提供できます。`,
+  alternates: { canonical: "/consultation" },
 };
 
 const concerns = [

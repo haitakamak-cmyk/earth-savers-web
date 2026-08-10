@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "保全活動・プロジェクト",
   description:
     "水源地の取得・恒久保全、B-369を用いた生態系復活、里山再生など、地球防衛群が現場で汗を流して取り組んでいる具体的なプロジェクト内容を詳しくご紹介します。",
+  alternates: { canonical: "/activities" },
 };
 
 /** `public` 直下のサブディレクトリ（例: images/ばら撒くっ種）に置いた画像を URL 一覧にする */

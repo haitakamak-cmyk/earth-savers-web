@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "買って応援",
   description:
     "地球防衛群ショップでのお買い物が、地球防衛群の活動支援につながります。自然に還るプロダクトで、毎日の暮らしから地球を守ろう。",
+  alternates: { canonical: "/shop" },
 };
 
 function ExternalLinkIcon({ className }: { className?: string }) {
