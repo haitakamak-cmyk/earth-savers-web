@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description:
     "財団法人 地球防衛群（earth savers foundation）における個人情報の取扱いについて説明します。",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

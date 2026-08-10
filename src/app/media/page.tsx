@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "メディア掲載・活動実績",
   description:
     "池・河川の生態系復活、水源地保全活動の様子をご紹介します。財団法人 地球防衛群のこれまでの活動実績と、新聞・雑誌・テレビ等のメディア掲載情報、大阪・関西万博への登壇実績などをまとめています。",
+  alternates: { canonical: "/media" },
 };
 
 /** `public/images/media/` に同名ファイルを置くと表示されます（jpg / png / webp など）。 */

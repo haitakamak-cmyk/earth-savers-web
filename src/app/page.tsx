@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: `${ORGANIZATION_NAME} | 日本の命の水と森を守る`,
   description:
     "水源地の保全・里山の再生・生態系の復活を通じて、命の源である「水」と「森」を次世代へつなぐ、一般財団法人 地球防衛群の公式サイト。ナノバブル発生器「B-369」を活用した現場の実践を通じて、七世代先の子どもたちへ美しい環境を引き継ぎます。",
+  alternates: { canonical: "/" },
   openGraph: {
     title: `${ORGANIZATION_NAME} | 命の水と森の未来を守る`,
     description:

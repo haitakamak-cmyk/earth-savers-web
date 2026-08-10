@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "お知らせ",
   description:
     `${ORGANIZATION_NAME}からのお知らせ、活動報告、イベント情報などをお届けします。`,
+  alternates: { canonical: "/news" },
 };
 
 const categoryColors: Record<NewsCategory, string> = {

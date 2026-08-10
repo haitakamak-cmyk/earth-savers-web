@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "情報公開",
   description:
     `${ORGANIZATION_NAME}の定款、事業計画書、収支予算書、役員名簿などの公開資料をまとめています。`,
+  alternates: { canonical: "/about/disclosure" },
 };
 
 type DocItem = {

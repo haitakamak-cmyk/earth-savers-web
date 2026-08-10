@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "利用規約",
   description:
     "財団法人 地球防衛群（earth savers foundation）公式ウェブサイトのご利用条件です。",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

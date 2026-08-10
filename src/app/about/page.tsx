@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: "理念・運営体制",
   description:
     "一般財団法人 地球防衛群の法人概要、設立趣旨、マニフェスト、クレド（行動信条）、運営体制をご紹介します。日本の水源地と山林を次世代へ引き継ぐ、私たちの揺るぎない決意をまとめています。",
+  alternates: { canonical: "/about" },
 };
 
 const credoItems = [

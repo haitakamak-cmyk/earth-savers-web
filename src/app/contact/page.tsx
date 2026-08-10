@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
     `${ORGANIZATION_NAME_HEADER_LINE}への一般お問い合わせ、寄付・取材のご相談はフォームから。環境・再エネ開発に関するご相談は「環境相談」ページおよびフォームの種別「環境相談」からも受け付けています。よくある質問（FAQ）もご覧ください。`,
+  alternates: { canonical: "/contact" },
 };
 
 const BANK_DONATION_MESSAGE = `都度寄付（銀行振込・郵便振替）です。受領証明書の発行や、振込先を記載したメールでのご案内を希望します。
