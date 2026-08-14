@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
 
@@ -9,6 +10,7 @@ import {
   updateMembershipBySubscriptionIdIfEventNewer,
   upsertMembershipFromCheckout,
 } from "@/lib/memberships/db";
+import { sendOpsAlert } from "@/lib/ops/alerts";
 import {
   sendStripeAdminNotification,
   type StripeAdminNotification,
@@ -342,10 +344,26 @@ async function handleInvoicePaid(invoice: Stripe.Invoice, eventCreatedAt: number
 export async function POST(request: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
   if (!webhookSecret) {
+    await sendOpsAlert({
+      key: "stripe-webhook-missing-secret",
+      subject: "Stripe Webhook: STRIPE_WEBHOOK_SECRET が未設定",
+      lines: [
+        "署名検証ができないため全てのイベントを 500 で拒否しています。",
+        "Vercel の Environment Variables を確認してください。",
+      ],
+    });
     return NextResponse.json({ error: "Misconfigured" }, { status: 500 });
   }
 
   if (!isSupabaseConfigured()) {
+    await sendOpsAlert({
+      key: "stripe-webhook-supabase-unconfigured",
+      subject: "Stripe Webhook: Supabase の環境変数が未設定",
+      lines: [
+        "NEXT_PUBLIC_SUPABASE_URL または SUPABASE_SERVICE_ROLE_KEY がありません。",
+        "全てのイベントを 500 で拒否しています。",
+      ],
+    });
     return NextResponse.json({ error: "Misconfigured" }, { status: 500 });
   }
 
@@ -380,12 +398,38 @@ export async function POST(request: NextRequest) {
   }
 
   const eventCreatedAt = event.created;
-  const supabase = createServiceSupabase();
-  const claim = await claimStripeWebhookEvent({
-    supabase,
-    eventId: event.id,
-    eventType: event.type,
-  });
+
+  // claim は try の外で throw すると 500 が無言で返るだけになる（2026-08 の障害）。
+  // DB 到達不能はここで検知して運営に通知する。
+  let supabase: SupabaseClient;
+  let claim: Awaited<ReturnType<typeof claimStripeWebhookEvent>>;
+  try {
+    supabase = createServiceSupabase();
+    claim = await claimStripeWebhookEvent({
+      supabase,
+      eventId: event.id,
+      eventType: event.type,
+    });
+  } catch (err) {
+    await sendOpsAlert({
+      key: "stripe-webhook-db-unreachable",
+      subject: "Stripe Webhook が DB に接続できません",
+      lines: [
+        "Stripe からのイベントを記録できず 500 を返しました。",
+        "このままだと Stripe は約 3 日で配信を停止し、寄付が取りこぼされます。",
+        "",
+        "まず Supabase プロジェクトが停止していないか確認してください。",
+        "https://supabase.com/dashboard/project/xtjidhyuprqpfhqdkgdk",
+        "",
+        `Stripe event: ${event.id}`,
+        `Webhook type: ${event.type}`,
+      ],
+      error: err,
+    });
+    console.error("[stripe/webhook] claim failed", err);
+    return NextResponse.json({ error: "Processing failed" }, { status: 500 });
+  }
+
   if (claim === "already_processed") {
     return NextResponse.json({ received: true });
   }
@@ -443,6 +487,18 @@ export async function POST(request: NextRequest) {
     } catch (releaseErr) {
       console.error("[stripe/webhook] failed to release event claim", releaseErr);
     }
+    await sendOpsAlert({
+      key: `stripe-webhook-handler-failed:${event.type}`,
+      subject: `Stripe Webhook の処理に失敗（${event.type}）`,
+      lines: [
+        "イベントの処理中に例外が発生し 500 を返しました。",
+        "Stripe は約 3 日リトライした後に配信を停止します。",
+        "",
+        `Stripe event: ${event.id}`,
+        `Webhook type: ${event.type}`,
+      ],
+      error: err,
+    });
     console.error("[stripe/webhook]", event.type, err);
     return NextResponse.json({ error: "Processing failed" }, { status: 500 });
   }
