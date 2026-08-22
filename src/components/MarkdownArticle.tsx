@@ -74,8 +74,10 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </h4>
       );
     },
+    // text-wrap:pretty は欧文の孤立語対策。日本語では行長を詰めて右端が空くうえ、
+    // エンジンごとに挙動が異なるため使わない（iOS Safari で右端が大きく空く事象）
     p: ({ children }) => (
-      <p className="mb-4 text-[15px] leading-[1.85] text-text-secondary [text-wrap:pretty]">{children}</p>
+      <p className="mb-4 text-[15px] leading-[1.85] text-text-secondary">{children}</p>
     ),
     ul: ({ children }) => (
       <ul className="mb-4 list-inside list-disc space-y-1 pl-2 text-[15px]">{children}</ul>
