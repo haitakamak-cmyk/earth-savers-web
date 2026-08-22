@@ -137,9 +137,14 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </a>
       );
     },
+    // 日本語のセルはどの文字でも折り返せるため、列が多いと1〜3文字幅まで潰れて読めなくなる。
+    // 5列以上の表に限りセルの最低幅を与え、親の overflow-x-auto で横スクロールさせる。
+    // 4列以下は従来どおり画面幅に収める（開示請求ガイド等の既存表を変えないため）。
     table: ({ children }) => (
       <div className="my-6 overflow-x-auto rounded-lg border border-border bg-white shadow-sm">
-        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-sm">{children}</table>
+        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-sm [&:has(tr>:nth-child(5))_td]:min-w-[6em] [&:has(tr>:nth-child(5))_th]:min-w-[6em]">
+          {children}
+        </table>
       </div>
     ),
     thead: ({ children }) => (
