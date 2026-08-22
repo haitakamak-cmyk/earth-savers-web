@@ -59,6 +59,10 @@ html {
   scroll-behavior: smooth;
   /* ブラウザ既定 16px 想定で約 18px 相当。見出し・ボタンも同率で少し大きくなる */
   font-size: 112.5%;
+  /* iOS Safari の本文自動拡大を止める。指定どおりの文字サイズで折り返させ、
+     日本語の行が想定より短くなって右端が空くのを防ぐ */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* 資料室ガイド等を窓口持参用に印刷するとき向けの最低限調整 */
