@@ -62,8 +62,8 @@ const STATIC_CONTENT_LAST_MODIFIED = new Date("2026-07-23T00:00:00+09:00");
 // 更新対象のページだけ実質更新日を明示し、デプロイ日時をlastmodに使わない。
 const CONTENT_LAST_MODIFIED_BY_PATH: Readonly<Record<string, Date>> = {
   "/learn/map": new Date("2026-07-25T00:00:00+09:00"),
-  "/policy": new Date("2026-07-25T00:00:00+09:00"),
-  "/policy/legislative": new Date("2026-07-25T00:00:00+09:00"),
+  "/policy": new Date("2026-08-22T00:00:00+09:00"),
+  "/policy/legislative": new Date("2026-08-22T00:00:00+09:00"),
   "/toolkit/ordinance": new Date("2026-07-25T00:00:00+09:00"),
   "/toolkit/disclosure-request": new Date("2026-08-09T00:00:00+09:00"),
 };
