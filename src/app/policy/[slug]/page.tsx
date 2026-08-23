@@ -89,9 +89,15 @@ export default async function PolicyDetailPage({ params }: Props) {
         path.join(process.cwd(), policy.contentPath),
         "utf-8",
       );
-    } catch {
+    } catch (error) {
+      // 実装側の原因は閲覧者に見せず、サーバーログにだけ残す
+      console.error(
+        "[policy] 政策提言 Markdown を読み込めませんでした: %s",
+        policy.contentPath,
+        error,
+      );
       markdown =
-        "> 政策提言 Markdown を読み込めませんでした。`src/content/policies/` にファイルがあるか確認してください。\n";
+        "> この提言は現在表示できません。時間をおいて再度お試しください。お急ぎの場合は[お問い合わせ](/contact)からご連絡ください。\n";
     }
   }
 

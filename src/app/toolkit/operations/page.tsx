@@ -25,10 +25,19 @@ export default async function ToolkitOperationsPage() {
   const section = getToolkitSectionByHref("/toolkit/operations");
   const published = section.files.find((f) => f.status === "published");
   if (!published) {
+    // 実装側の原因は閲覧者に見せず、サーバーログにだけ残す
+    console.error(
+      "[toolkit] 公開中の Markdown が manifest にありません: %s（src/lib/toolkit-manifest.ts を確認）",
+      "/toolkit/operations",
+    );
     return (
       <div className="bg-ivory px-4 py-12 sm:px-6">
         <p className="mx-auto max-w-3xl text-text-secondary">
-          公開中の Markdown が manifest にありません。`src/lib/toolkit-manifest.ts` を確認してください。
+          この資料は現在準備中です。公開までの間は{" "}
+          <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
+            ひな形・資料
+          </Link>
+          にある他の資料をご覧ください。
         </p>
       </div>
     );
