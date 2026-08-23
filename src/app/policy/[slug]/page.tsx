@@ -10,6 +10,7 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
 import { ToolkitFooterBackNav } from "@/components/ToolkitFooterBackNav";
+import { extractMarkdownCitations } from "@/lib/markdown-citations";
 import { extractMarkdownHeadingToc } from "@/lib/markdown-toc";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { ResourceLead } from "@/components/ResourceLead";
@@ -95,6 +96,7 @@ export default async function PolicyDetailPage({ params }: Props) {
   }
 
   const toc = markdown ? extractMarkdownHeadingToc(markdown) : [];
+  const citations = markdown ? extractMarkdownCitations(markdown) : [];
 
   return (
     <div className="bg-ivory pb-16">
@@ -105,6 +107,7 @@ export default async function PolicyDetailPage({ params }: Props) {
         datePublished={policy.datePublished}
         dateModified={policy.dateModified ?? policy.datePublished}
         articleSection="政策提言"
+        citations={citations}
       />
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">

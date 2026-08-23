@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { FaqJsonLd } from "@/components/FaqJsonLd";
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
@@ -15,6 +16,7 @@ import {
   getOrdinanceSupplementBySlug,
   ORDINANCE_SUPPLEMENTS,
 } from "@/lib/ordinance-supplements-data";
+import { extractMarkdownFaq } from "@/lib/markdown-faq";
 import {
   ORGANIZATION_NAME,
   SITE_ALLOW_SEARCH_INDEXING,
@@ -70,9 +72,12 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
 
   const pagePath = `/toolkit/ordinance/${entry.slug}`;
   const others = ORDINANCE_SUPPLEMENTS.filter((e) => e.slug !== slug);
+  // 想定問答形式の資料のみ Q&A が取れる。それ以外は空配列で FaqJsonLd が何も出さない。
+  const faqEntries = extractMarkdownFaq(markdown);
 
   return (
     <div className="bg-ivory pb-16">
+      <FaqJsonLd pathname={pagePath} entries={faqEntries} />
       <ResourceBreadcrumbs
         layout="ribbon"
         items={[

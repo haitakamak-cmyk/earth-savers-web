@@ -8,6 +8,7 @@ import { ContentDisclaimer } from "@/components/ContentDisclaimer";
 import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
 import { getGlossaryBySlug } from "@/lib/glossary";
+import { extractMarkdownCitations } from "@/lib/markdown-citations";
 import { getTopicSeriesEpisodeNeighbors } from "@/lib/topic-entries";
 import {
   applyGlossaryLinksOnce,
@@ -70,6 +71,10 @@ export default async function TopicDetailPage({ params }: Props) {
     splitTopicMarkdown(stripped);
   const linkedMain = applyGlossaryLinksOnce(mainMarkdown);
   const toc = extractTopicToc(mainMarkdown);
+  const citations = extractMarkdownCitations(stripped);
+  const aboutTerms = entry.relatedGlossarySlugs.flatMap(
+    (gSlug) => getGlossaryBySlug(gSlug)?.term ?? [],
+  );
   const episodeNav = getTopicSeriesEpisodeNeighbors(entry.slug);
   const isFieldReport = entry.format === "field-report";
   const categoryBreadcrumb = isFieldReport
@@ -87,6 +92,8 @@ export default async function TopicDetailPage({ params }: Props) {
         articleSection={
           isFieldReport ? "学ぶ（フィールドから）" : "学ぶ（解説記事）"
         }
+        citations={citations}
+        about={aboutTerms}
       />
       <div className="border-b border-wakakusa/25 bg-wakakusa-light/30 py-10 sm:py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
