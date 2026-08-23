@@ -1,9 +1,8 @@
 "use client";
 
 import GithubSlugger from "github-slugger";
+import type { Element, Nodes, RootContent } from "hast";
 import type { Components } from "react-markdown";
-import type { ReactNode } from "react";
-import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -26,24 +25,45 @@ function isFootnoteRefAnchorId(id: unknown): boolean {
   return typeof id === "string" && /^user-content-fnref-/.test(id);
 }
 
-function toPlainText(node: ReactNode): string {
-  if (node == null || typeof node === "boolean") return "";
-  if (typeof node === "string" || typeof node === "number") return String(node);
-  if (Array.isArray(node)) return node.map(toPlainText).join("");
-  if (typeof node === "object" && "props" in node) {
-    const props = (node as React.ReactElement<{ children?: ReactNode }>).props;
-    return toPlainText(props.children);
-  }
+const HEADING_TAG_NAMES = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
+
+function hastToPlainText(node: Nodes | RootContent): string {
+  if (node.type === "text") return node.value;
+  if ("children" in node) return node.children.map(hastToPlainText).join("");
   return "";
 }
 
-function buildMarkdownComponents(slugger: GithubSlugger): Components {
+/**
+ * 見出しの id を hast（HTML 変換後の木）の段階で確定させる rehype プラグイン。
+ *
+ * github-slugger は「同じ文字列が2回目なら -1 を付ける」可変カウンタを持つ。これを
+ * React の render 中に呼ぶと、StrictMode が見出しコンポーネントを2回呼び出す開発時に
+ * 2回目が `要旨-1` となり、SSR 側の `要旨` と食い違って hydration mismatch になる。
+ * 変換段階なら slugger は1パースにつき1つで完結し、render を純粋に保てる。
+ */
+function rehypeHeadingSlugIds() {
+  return (tree: Nodes) => {
+    const slugger = new GithubSlugger();
+    const visit = (node: Nodes | RootContent) => {
+      if (node.type === "element" && HEADING_TAG_NAMES.has(node.tagName)) {
+        const element = node as Element;
+        // 脚注ラベル（id="footnote-label"）など、既に id を持つ見出しは触らない
+        if (element.properties.id == null) {
+          const text = hastToPlainText(element).trim();
+          if (text) element.properties.id = slugger.slug(text, true);
+        }
+      }
+      if ("children" in node) node.children.forEach(visit);
+    };
+    visit(tree);
+  };
+}
+
+/** id は rehypeHeadingSlugIds が hast 上で確定済み。render 側は受け取るだけにして純粋に保つ */
+function buildMarkdownComponents(): Components {
   return {
     hr: () => <hr className="my-8 border-border" />,
-    h1: ({ children, id: explicitId }) => {
-      const text = toPlainText(children).trim();
-      const slugId = text ? slugger.slug(text, true) : undefined;
-      const id = explicitId ?? slugId;
+    h1: ({ children, id }) => {
       return (
         <h2
           id={id}
@@ -53,10 +73,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </h2>
       );
     },
-    h2: ({ children, id: explicitId }) => {
-      const text = toPlainText(children).trim();
-      const slugId = text ? slugger.slug(text, true) : undefined;
-      const id = explicitId ?? slugId;
+    h2: ({ children, id }) => {
       return (
         <h3
           id={id}
@@ -66,10 +83,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </h3>
       );
     },
-    h3: ({ children, id: explicitId }) => {
-      const text = toPlainText(children).trim();
-      const slugId = text ? slugger.slug(text, true) : undefined;
-      const id = explicitId ?? slugId;
+    h3: ({ children, id }) => {
       return (
         <h4 id={id} className="mt-6 scroll-mt-28 font-semibold text-text-primary">
           {children}
@@ -185,6 +199,8 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
   };
 }
 
+const markdownComponents = buildMarkdownComponents();
+
 /** 同じ脚注を本文で複数回使ったとき、↩ が複数並ぶ（それぞれ別の参照へ戻る）。上付きの²は「2か所目」の意味 */
 function footnoteBackContentJa(
   _referenceIndex: number,
@@ -218,10 +234,6 @@ export function MarkdownArticle({
   narrowProse = false,
   hideFontSizeControl = false,
 }: MarkdownArticleProps) {
-  const slugger = useMemo(() => new GithubSlugger(), []);
-  slugger.reset();
-  const markdownComponents = buildMarkdownComponents(slugger);
-
   return (
     <article
       className={`markdown-article text-text-secondary ${narrowProse ? "max-w-[720px]" : ""} ${className}`}
@@ -229,6 +241,7 @@ export function MarkdownArticle({
       {hideFontSizeControl ? null : <ArticleFontSizeControl />}
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHeadingSlugIds]}
         remarkRehypeOptions={{
           footnoteLabel: "注・出典",
           footnoteLabelTagName: "h2",
