@@ -7,6 +7,8 @@ import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+import { ArticleFontSizeControl } from "./ArticleFontSizeControl";
+
 function normalizeClassName(value: unknown): string | undefined {
   if (!value) return undefined;
   if (typeof value === "string") return value;
@@ -45,7 +47,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       return (
         <h2
           id={id}
-          className="scroll-mt-28 border-b border-wakakusa/35 pb-3 pt-2 font-serif text-2xl font-bold text-text-primary first:mt-0"
+          className="scroll-mt-28 border-b border-wakakusa/35 pb-3 pt-2 font-serif text-[1.8em] font-bold text-text-primary first:mt-0"
         >
           {children}
         </h2>
@@ -58,7 +60,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       return (
         <h3
           id={id}
-          className="mt-10 scroll-mt-28 font-serif text-xl font-semibold text-text-primary"
+          className="mt-10 scroll-mt-28 font-serif text-[1.5em] font-semibold text-text-primary"
         >
           {children}
         </h3>
@@ -77,13 +79,13 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
     // text-wrap:pretty は欧文の孤立語対策。日本語では行長を詰めて右端が空くうえ、
     // エンジンごとに挙動が異なるため使わない（iOS Safari で右端が大きく空く事象）
     p: ({ children }) => (
-      <p className="mb-4 text-[15px] leading-[1.85] text-text-secondary">{children}</p>
+      <p className="mb-4 text-[1em] leading-[1.85] text-text-secondary">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="mb-4 list-inside list-disc space-y-1 pl-2 text-[15px]">{children}</ul>
+      <ul className="mb-4 list-inside list-disc space-y-1 pl-2 text-[1em]">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="mb-4 list-inside list-decimal space-y-1 pl-2 text-[15px]">{children}</ol>
+      <ol className="mb-4 list-inside list-decimal space-y-1 pl-2 text-[1em]">{children}</ol>
     ),
     li: ({ children, id }) => (
       <li
@@ -101,7 +103,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       <strong className="font-semibold text-text-primary">{children}</strong>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-6 border-l-4 border-aqua bg-aqua-light/45 px-4 py-3 text-[14px] leading-relaxed text-text-secondary [&_p]:mb-2 [&_p:last-child]:mb-0">
+      <blockquote className="my-6 border-l-4 border-aqua bg-aqua-light/45 px-4 py-3 text-[0.93em] leading-relaxed text-text-secondary [&_p]:mb-2 [&_p:last-child]:mb-0">
         {children}
       </blockquote>
     ),
@@ -141,7 +143,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
     // （メディアクエリと段階指定が要るため、arbitrary variant では読めなくなる）
     table: ({ children }) => (
       <div className="my-6 overflow-x-auto rounded-lg border border-border bg-white shadow-sm">
-        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-sm">
+        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-[1.05em]">
           {children}
         </table>
       </div>
@@ -170,7 +172,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       );
     },
     pre: ({ children }) => (
-      <pre className="my-6 overflow-x-auto rounded-lg border border-border bg-text-primary p-4 font-mono text-[13px] leading-relaxed text-ivory-warm whitespace-pre-wrap [&_code]:rounded-none [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_code]:text-[inherit]">
+      <pre className="my-6 overflow-x-auto rounded-lg border border-border bg-text-primary p-4 font-mono text-[0.87em] leading-relaxed text-ivory-warm whitespace-pre-wrap [&_code]:rounded-none [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit [&_code]:text-[inherit]">
         {children}
       </pre>
     ),
@@ -199,6 +201,8 @@ type MarkdownArticleProps = {
   className?: string;
   /** 読みやすい行長（解説記事など） */
   narrowProse?: boolean;
+  /** 文字サイズ切替を出さない（短い断片を差し込む用途など） */
+  hideFontSizeControl?: boolean;
 };
 
 /** サイト内での長文化 Markdown 表示（表・見出しを含む）。見出しには GitHub 互換の id（日本語維持）を付与 */
@@ -206,6 +210,7 @@ export function MarkdownArticle({
   markdown,
   className = "",
   narrowProse = false,
+  hideFontSizeControl = false,
 }: MarkdownArticleProps) {
   const slugger = useMemo(() => new GithubSlugger(), []);
   slugger.reset();
@@ -215,6 +220,7 @@ export function MarkdownArticle({
     <article
       className={`markdown-article text-text-secondary ${narrowProse ? "max-w-[720px]" : ""} ${className}`}
     >
+      {hideFontSizeControl ? null : <ArticleFontSizeControl />}
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         remarkRehypeOptions={{
@@ -222,7 +228,7 @@ export function MarkdownArticle({
           footnoteLabelTagName: "h2",
           footnoteLabelProperties: {
             className: [
-              "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-xl font-semibold text-text-primary",
+              "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-[1.5em] font-semibold text-text-primary",
             ],
           },
           footnoteBackContent: footnoteBackContentJa,

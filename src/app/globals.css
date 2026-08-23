@@ -65,6 +65,13 @@ html {
   text-size-adjust: 100%;
 }
 
+/* 記事本文の基準文字サイズ。ArticleFontSizeControl が html 要素の --article-scale を
+   書き換えると、本文・見出し・表・引用がまとめて拡大縮小する（配下は em 指定）。
+   既定は 15px（従来の本文サイズ）。 */
+.markdown-article {
+  font-size: calc(15px * var(--article-scale, 1));
+}
+
 /* 本文中の表：スマートフォンでの最低幅
    日本語のセルはどの文字位置でも折り返せるため、列が多いと1行2〜3文字まで潰れ、
    1セルが30行を超える縦に間延びした表になる。5列以上の表に最低幅を与え、

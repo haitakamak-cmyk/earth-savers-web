@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
@@ -10,6 +9,7 @@ import {
   policiesByKind,
 } from "@/lib/policies";
 
+import { PolicyEntryCard } from "./PolicyEntryCard";
 import { POLICY_KIND_PATH } from "./policy-kind-path";
 
 export function PolicyKindPageShell({ kind }: { kind: PolicyKind }) {
@@ -39,23 +39,7 @@ export function PolicyKindPageShell({ kind }: { kind: PolicyKind }) {
           <ul className="space-y-4">
             {list.map((p) => (
               <li key={p.slug}>
-                <Link
-                  href={`/policy/${p.slug}`}
-                  className="flex flex-col rounded-xl border border-border bg-white px-4 py-4 shadow-sm transition-colors hover:border-aqua/35 hover:bg-aqua-light/25"
-                >
-                  <span className="font-serif text-lg font-semibold text-text-primary">
-                    {p.title}
-                  </span>
-                  {p.subtitle ? (
-                    <span className="mt-1 text-sm text-text-muted">{p.subtitle}</span>
-                  ) : null}
-                  <span className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-text-secondary">
-                    {p.summary}
-                  </span>
-                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4">
-                    提言を読む →
-                  </span>
-                </Link>
+                <PolicyEntryCard policy={p} />
               </li>
             ))}
           </ul>

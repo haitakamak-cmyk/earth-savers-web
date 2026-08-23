@@ -5,10 +5,12 @@ import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 import {
   POLICY_KIND_LABEL,
-  POLICY_KIND_PUBLIC_LEAD,
+  hasMultiplePublicPolicyKinds,
+  policiesByKind,
   policyKindsWithPublicEntries,
 } from "@/lib/policies";
 
+import { PolicyEntryCard } from "./PolicyEntryCard";
 import { POLICY_KIND_PATH } from "./policy-kind-path";
 
 export const metadata: Metadata = {
@@ -19,13 +21,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "政策提言（資料室）",
     description:
-      "国・都道府県への法改正・制度整備の提言。カテゴリ別に整理し、実務のひな型は別コーナーで提供します。",
+      "国・都道府県への法改正・制度整備の提言。実務のひな型は別コーナーで提供します。",
     url: "/policy",
   },
 };
 
 export default function PolicyHubPage() {
   const kinds = policyKindsWithPublicEntries();
+  // カテゴリが1つの間はカテゴリ見出しを出さず、提言をそのまま並べる
+  const showKindHeadings = hasMultiplePublicPolicyKinds();
   return (
     <div className="bg-ivory">
       <div className="border-b border-aqua/25 bg-aqua-light/35 py-10 sm:py-12">
@@ -45,32 +49,33 @@ export default function PolicyHubPage() {
             政策提言
           </h1>
           <ResourceLead>
-            条例のみでは済まない制度課題について、国や都道府県に求める見解や提言をカテゴリ別に載せています。実務で使うひな型や資料は{" "}
+            条例のみでは済まない制度課題について、国や都道府県に求める見解や提言を載せています。実務で使うひな型や資料は{" "}
             <Link href="/toolkit" className="text-aqua-dark underline underline-offset-2">
               ひな形・資料
             </Link>
             をご覧ください。
           </ResourceLead>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {kinds.map((kind) => (
-              <li key={kind}>
-                <Link
-                  href={`/policy/${POLICY_KIND_PATH[kind]}`}
-                  className="flex h-full flex-col rounded-xl border border-border bg-white px-4 py-4 shadow-sm transition-colors hover:border-aqua/35 hover:bg-aqua-light/25"
-                >
-                  <span className="font-serif text-lg font-semibold text-text-primary">
+          {kinds.map((kind) => (
+            <section key={kind} className={showKindHeadings ? "mt-8 first:mt-0" : ""}>
+              {showKindHeadings ? (
+                <h2 className="mb-3 font-serif text-xl font-semibold text-text-primary">
+                  <Link
+                    href={`/policy/${POLICY_KIND_PATH[kind]}`}
+                    className="underline-offset-4 hover:text-aqua-dark hover:underline"
+                  >
                     {POLICY_KIND_LABEL[kind]}
-                  </span>
-                  <span className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
-                    {POLICY_KIND_PUBLIC_LEAD[kind]}
-                  </span>
-                  <span className="mt-4 text-sm font-semibold text-aqua-dark underline-offset-4">
-                    一覧を見る →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </Link>
+                </h2>
+              ) : null}
+              <ul className="space-y-4">
+                {policiesByKind(kind).map((policy) => (
+                  <li key={policy.slug}>
+                    <PolicyEntryCard policy={policy} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </div>
       </div>
     </div>

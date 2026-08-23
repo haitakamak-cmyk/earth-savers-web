@@ -79,6 +79,13 @@ export default function RootLayout({
             __html: `if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(function(){})}`,
           }}
         />
+        {/* 記事本文の文字サイズ設定を描画前に反映する（読み込み後に切り替わるのを防ぐ）。
+            React の管理外である html 要素の style を触るため、hydration には影響しない */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var s=localStorage.getItem('article-font-scale');if(s)document.documentElement.style.setProperty('--article-scale',s)}catch(e){}`,
+          }}
+        />
       </head>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         {SITE_ALLOW_SEARCH_INDEXING ? (
