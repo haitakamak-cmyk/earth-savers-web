@@ -101,6 +101,16 @@ export function policyKindsWithPublicEntries(): readonly PolicyKind[] {
   return POLICY_HUB_KIND_ORDER.filter((k) => policiesByKind(k).length > 0);
 }
 
+/**
+ * 掲載のあるカテゴリが2つ以上あるか。
+ * 1つしかない間は、ハブでカテゴリ見出しを出さず提言を直接並べ、パンくずからも
+ * カテゴリ階層を省く（カード1枚だけの中継ページを挟まないため）。
+ * カテゴリが増えたら自動的に見出し付きの一覧へ戻る。
+ */
+export function hasMultiplePublicPolicyKinds(): boolean {
+  return policyKindsWithPublicEntries().length > 1;
+}
+
 export function getPolicyBySlug(slug: string): PolicyEntry | undefined {
   return POLICIES.find((p) => p.slug === slug);
 }

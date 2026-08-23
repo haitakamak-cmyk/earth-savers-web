@@ -65,6 +65,73 @@ html {
   text-size-adjust: 100%;
 }
 
+/* 記事本文の基準文字サイズ。ArticleFontSizeControl が html 要素の --article-scale を
+   書き換えると、本文・見出し・表・引用がまとめて拡大縮小する（配下は em 指定）。
+   既定は 15px（従来の本文サイズ）。 */
+.markdown-article {
+  font-size: calc(15px * var(--article-scale, 1));
+}
+
+/* 本文中の表を読みやすくする
+   ------------------------------------------------------------------
+   行の縞（全幅）。列数が多い表を横スクロールすると、目が行を見失いやすい。
+   1列目を固定するので、固定セルも同じ色になるよう行ごとに変数で持たせる。 */
+.markdown-article thead tr {
+  --row-bg: var(--wakakusa-light);
+}
+
+.markdown-article tbody tr {
+  --row-bg: #fff;
+  background-color: var(--row-bg);
+}
+
+.markdown-article tbody tr:nth-child(even) {
+  --row-bg: var(--ivory-warm);
+}
+
+/* スクロールの案内は、実際に横スクロールする4列以上の表だけに出す */
+.markdown-article .table-scroll-hint {
+  display: none;
+}
+
+/* スマートフォンでの最低幅と1列目の固定
+   日本語のセルはどの文字位置でも折り返せるため、列が多いと1行2〜3文字まで潰れ、
+   1セルが30行を超える縦に間延びした表になる。4列以上の表に最低幅を与え、
+   親の overflow-x-auto で横スクロールさせる。
+   最低幅は「表全体」に置く。セル個別に置くと全列が下限に張り付いて均等割りになり、
+   短い列が無駄に広く長い列が狭いままになる（実測：セル指定より表指定のほうが
+   幅・高さとも小さくなった）。表指定なら内容量に応じて列幅が配分される。
+   1列目は横スクロールしても残す。何の行かが判らないまま右を読むことになるため。
+   768px 以上では指定しない（現状はみ出していない表をスクロールさせないため）。 */
+@media (max-width: 767px) {
+  .markdown-article table:has(tr > :nth-child(4)) {
+    min-width: 40em;
+  }
+
+  .markdown-article table:has(tr > :nth-child(5)) {
+    min-width: 56em;
+  }
+
+  .markdown-article table:has(tr > :nth-child(4)) :is(td, th):first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    /* 「済」「①」等の短い見出しが1文字ずつ折り返さない程度 */
+    min-width: 4.5em;
+    background-color: var(--row-bg);
+    /* border-collapse では固定セルの右罫線が描かれないため影で代用し、
+       あわせて内容が下をくぐっていることを示す */
+    box-shadow:
+      1px 0 0 var(--border),
+      6px 0 6px -6px rgb(0 0 0 / 0.18);
+  }
+
+  /* :has() は入れ子にできないので、tr を直接見る（table-block 配下の tr は表の行のみ） */
+  .markdown-article .table-block:has(tr > :nth-child(4)) .table-scroll-hint {
+    display: block;
+  }
+}
+
 /* 資料室ガイド等を窓口持参用に印刷するとき向けの最低限調整 */
 @media print {
   header,

@@ -20,6 +20,7 @@ import {
   type PolicyKind,
   getAllPolicySlugs,
   getPolicyBySlug,
+  hasMultiplePublicPolicyKinds,
 } from "@/lib/policies";
 import {
   ORGANIZATION_NAME,
@@ -113,10 +114,15 @@ export default async function PolicyDetailPage({ params }: Props) {
             items={[
               { name: "HOME", path: "/" },
               { name: "政策提言", path: "/policy" },
-              {
-                name: POLICY_KIND_LABEL[policy.kind],
-                path: kindHref(policy.kind),
-              },
+              // カテゴリが1つの間はハブが提言を直接並べるため、階層を1段省く
+              ...(hasMultiplePublicPolicyKinds()
+                ? [
+                    {
+                      name: POLICY_KIND_LABEL[policy.kind],
+                      path: kindHref(policy.kind),
+                    },
+                  ]
+                : []),
               { name: documentTitle, path: pathname },
             ]}
           />
