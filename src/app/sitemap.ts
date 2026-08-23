@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
 
-import { getAllArticleSlugs, getArticleBySlug } from "@/lib/articles";
+import { ARTICLES, getAllArticleSlugs, getArticleBySlug } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
 import {
   getAllPolicySlugs,
   getPolicyBySlug,
   policyKindsWithPublicEntries,
 } from "@/lib/policies";
-import { TOPICS } from "@/lib/topic-entries";
+import { newsEntries } from "@/lib/news-entries";
+import { TOPICS, buildFieldReportEntries } from "@/lib/topic-entries";
 import {
   ORDINANCE_SUPPLEMENTS,
 } from "@/lib/ordinance-supplements-data";
@@ -57,19 +58,83 @@ function parseDateOrFallback(value: string | undefined, fallback: Date): Date {
 }
 
 // 公開内容を実際に更新した日。デプロイ時刻を使うと毎回更新扱いになるため固定する。
-const STATIC_CONTENT_LAST_MODIFIED = new Date("2026-07-23T00:00:00+09:00");
+const STATIC_CONTENT_LAST_MODIFIED = new Date("2026-07-23");
 
 // 更新対象のページだけ実質更新日を明示し、デプロイ日時をlastmodに使わない。
 const CONTENT_LAST_MODIFIED_BY_PATH: Readonly<Record<string, Date>> = {
-  "/learn/map": new Date("2026-07-25T00:00:00+09:00"),
-  "/policy": new Date("2026-08-22T00:00:00+09:00"),
-  "/policy/legislative": new Date("2026-08-22T00:00:00+09:00"),
-  "/toolkit/ordinance": new Date("2026-07-25T00:00:00+09:00"),
-  "/toolkit/disclosure-request": new Date("2026-08-09T00:00:00+09:00"),
+  "/learn/map": new Date("2026-07-25"),
+  "/policy": new Date("2026-08-22"),
+  "/policy/legislative": new Date("2026-08-22"),
+  "/toolkit/ordinance": new Date("2026-07-25"),
+  "/toolkit/disclosure-request": new Date("2026-08-09"),
 };
 
+/** 与えられた日付文字列のうち最も新しいものを返す（どれも無効なら base） */
+function latestDate(values: readonly (string | undefined)[], base: Date): Date {
+  let out = base;
+  for (const v of values) {
+    if (!v) continue;
+    const d = new Date(v);
+    if (!Number.isNaN(d.getTime()) && d > out) out = d;
+  }
+  return out;
+}
+
+/**
+ * 子コンテンツから実質更新日を導出できるハブ。
+ * 手書きの表（CONTENT_LAST_MODIFIED_BY_PATH）は更新漏れが起きるため、
+ * 導出できるものは導出し、手書きの値とは新しいほうを採る。
+ * `/media` はページ内に日付を持たないため導出対象外（手書きのまま）。
+ */
+function derivedHubLastModified(path: string): Date | undefined {
+  switch (path) {
+    case "/news":
+      return latestDate(
+        newsEntries.map((e) => e.date),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    case "/learn/topics":
+      return latestDate(
+        TOPICS.map((e) => e.updatedAt),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    case "/learn/field-reports":
+      return latestDate(
+        buildFieldReportEntries().map((e) => e.updatedAt),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    case "/learn/glossary":
+      return latestDate(
+        GLOSSARY.map((e) => e.updatedAt),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    case "/learn/articles":
+      return latestDate(
+        ARTICLES.map((e) => e.datePublished),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    case "/policy":
+      return latestDate(
+        getAllPolicySlugs().map((slug) => {
+          const p = getPolicyBySlug(slug);
+          return p?.dateModified ?? p?.datePublished;
+        }),
+        STATIC_CONTENT_LAST_MODIFIED,
+      );
+    default:
+      return undefined;
+  }
+}
+
 function contentLastModified(path: string): Date {
-  return CONTENT_LAST_MODIFIED_BY_PATH[path] ?? STATIC_CONTENT_LAST_MODIFIED;
+  const manual = CONTENT_LAST_MODIFIED_BY_PATH[path] ?? STATIC_CONTENT_LAST_MODIFIED;
+  const derived = derivedHubLastModified(path);
+  return derived && derived > manual ? derived : manual;
+}
+
+/** 末尾スラッシュを canonical（`https://earth-savers.org`）と揃える */
+function absoluteUrl(path: string): string {
+  return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -79,16 +144,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const path of CORE_PATHS) {
     urls.push({
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       lastModified: contentLastModified(path),
       changeFrequency: path === "/" ? "weekly" : "monthly",
       priority: path === "/" ? 1 : path.split("/").length === 2 ? 0.85 : 0.7,
     });
   }
 
-  for (const path of RESOURCE_STATIC) {
+  // 記事0件のうちは中身のないページなので出さない（ページ側も noindex）
+  const resourceStatic = RESOURCE_STATIC.filter(
+    (path) => path !== "/learn/articles" || ARTICLES.length > 0,
+  );
+
+  for (const path of resourceStatic) {
     urls.push({
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
@@ -98,7 +168,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const kind of policyKindsWithPublicEntries()) {
     const path = `/policy/${POLICY_KIND_PATH[kind]}`;
     urls.push({
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
@@ -107,7 +177,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const path of getToolkitSitemapHubPaths()) {
     urls.push({
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       lastModified: contentLastModified(path),
       changeFrequency: "monthly",
       priority: path.split("/").length <= 2 ? 0.75 : 0.6,
@@ -179,7 +249,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const path of getAllToolkitMarkdownViewerPaths()) {
     urls.push({
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       lastModified: STATIC_CONTENT_LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.58,

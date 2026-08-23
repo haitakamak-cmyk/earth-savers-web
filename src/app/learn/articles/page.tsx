@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     url: "/learn/articles",
     description: "読み物一覧です。",
   },
+  // 記事が0件のうちは中身のないページなので検索対象から外す（sitemap 側でも除外）
+  ...(ARTICLES.length === 0 ? { robots: { index: false, follow: true } } : {}),
 };
 
 export default function ArticlesIndexPage() {
@@ -32,17 +34,27 @@ export default function ArticlesIndexPage() {
           />
           <h1 className="font-serif text-3xl font-bold text-text-primary sm:text-4xl">読みもの</h1>
           <ResourceLead>
-            サイト内だけで読み切れる原則読みものを並べます。外部メディア掲載の紹介は{" "}
+            当法人が書き下ろした、サイト内で読み切れる読みものを並べます。新聞・テレビなどの
+            外部メディア掲載は{" "}
             <Link href="/media" className="text-aqua-dark underline underline-offset-2">
               メディア・実績
             </Link>
-            と重複しないよう体裁を変えていきます。
+            をご覧ください。
           </ResourceLead>
           {ARTICLES.length === 0 ? (
-            <p className="text-[15px] text-text-secondary">
-              現在公開中の読みものはありません。
-              <code className="mx-0.5 rounded bg-ivory-warm px-1 text-xs">src/lib/articles.ts</code>
-              に追加すると一覧・静的パラメータが自動生成されます。
+            <p className="text-[15px] leading-[1.85] text-text-secondary">
+              読みものは現在準備中です。公開までの間は{" "}
+              <Link href="/learn/topics" className="text-aqua-dark underline underline-offset-2">
+                解説記事
+              </Link>
+              や{" "}
+              <Link
+                href="/learn/field-reports"
+                className="text-aqua-dark underline underline-offset-2"
+              >
+                フィールドから
+              </Link>
+              をご覧ください。
             </p>
           ) : (
             <ul className="space-y-3">

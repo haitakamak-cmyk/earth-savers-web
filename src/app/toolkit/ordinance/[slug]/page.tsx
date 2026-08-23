@@ -65,9 +65,15 @@ export default async function OrdinanceSupplementPage({ params }: Props) {
       path.join(process.cwd(), entry.contentPath),
       "utf-8",
     );
-  } catch {
+  } catch (error) {
+    // 実装側の原因は閲覧者に見せず、サーバーログにだけ残す
+    console.error(
+      "[ordinance] 補助資料 Markdown を読み込めませんでした: %s",
+      entry.contentPath,
+      error,
+    );
     markdown =
-      "> 補助資料 Markdown を読み込めませんでした。`src/content/ordinance-supplements/` にファイルがあるか確認してください。\n";
+      "> この資料は現在表示できません。時間をおいて再度お試しください。お急ぎの場合は[お問い合わせ](/contact)からご連絡ください。\n";
   }
 
   const pagePath = `/toolkit/ordinance/${entry.slug}`;
