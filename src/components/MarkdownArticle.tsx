@@ -47,7 +47,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       return (
         <h2
           id={id}
-          className="scroll-mt-28 border-b border-wakakusa/35 pb-3 pt-2 font-serif text-[1.8em] font-bold text-text-primary first:mt-0"
+          className="scroll-mt-28 border-b border-wakakusa/35 pb-3 pt-2 font-serif text-[1.8em] leading-[1.33] font-bold text-text-primary first:mt-0"
         >
           {children}
         </h2>
@@ -60,7 +60,7 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
       return (
         <h3
           id={id}
-          className="mt-10 scroll-mt-28 font-serif text-[1.5em] font-semibold text-text-primary"
+          className="mt-10 scroll-mt-28 font-serif text-[1.5em] leading-[1.4] font-semibold text-text-primary"
         >
           {children}
         </h3>
@@ -139,13 +139,19 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </a>
       );
     },
-    // セルの最低幅は globals.css の .markdown-article 側で列数別に指定する
-    // （メディアクエリと段階指定が要るため、arbitrary variant では読めなくなる）
+    // 表の最低幅・1列目の固定・行の縞は globals.css の .markdown-article 側で指定する
+    // （メディアクエリと列数別の指定が要るため、arbitrary variant では読めなくなる）
+    // スクロールの案内は4列以上のときだけ CSS で表示する
     table: ({ children }) => (
-      <div className="my-6 overflow-x-auto rounded-lg border border-border bg-white shadow-sm">
-        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-[1.05em]">
-          {children}
-        </table>
+      <div className="table-block my-6">
+        <p className="table-scroll-hint mb-1 text-right text-xs text-text-muted print:hidden">
+          横にスクロールできます →
+        </p>
+        <div className="overflow-x-auto rounded-lg border border-border bg-white shadow-sm">
+          <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-[1.05em] leading-[1.43]">
+            {children}
+          </table>
+        </div>
       </div>
     ),
     thead: ({ children }) => (
@@ -228,7 +234,7 @@ export function MarkdownArticle({
           footnoteLabelTagName: "h2",
           footnoteLabelProperties: {
             className: [
-              "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-[1.5em] font-semibold text-text-primary",
+              "mt-12 scroll-mt-28 border-t border-border pt-8 font-serif text-[1.5em] leading-[1.4] font-semibold text-text-primary",
             ],
           },
           footnoteBackContent: footnoteBackContentJa,
