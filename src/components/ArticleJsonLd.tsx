@@ -1,5 +1,10 @@
 import type { MarkdownCitation } from "@/lib/markdown-citations";
-import { ORGANIZATION_NAME, SITE_ALLOW_SEARCH_INDEXING, SITE_URL } from "@/lib/site";
+import {
+  ORGANIZATION_NAME,
+  ORGANIZATION_SCHEMA_ID,
+  SITE_ALLOW_SEARCH_INDEXING,
+  SITE_URL,
+} from "@/lib/site";
 
 /** 画面にも存在する発行者ロゴ（OrganizationJsonLd と揃える） */
 const DEFAULT_PUBLISHER_LOGO_PATH = "/images/logo/yoko_c1.png";
@@ -41,13 +46,19 @@ export function ArticleJsonLd(props: ArticleJsonLdProps) {
       ? { datePublished: props.datePublished }
       : {}),
     ...(props.dateModified ? { dateModified: props.dateModified } : {}),
+    // 記事は財団の共同制作物のため著者は法人。`@id` でトップページの
+    // NGO エンティティを参照し、名前だけでは辿れない同定を可能にする。
     author: {
       "@type": "Organization",
+      "@id": ORGANIZATION_SCHEMA_ID,
       name: ORGANIZATION_NAME,
+      url: `${SITE_URL}/`,
     },
     publisher: {
       "@type": "Organization",
+      "@id": ORGANIZATION_SCHEMA_ID,
       name: ORGANIZATION_NAME,
+      url: `${SITE_URL}/`,
       logo: {
         "@type": "ImageObject",
         url: logoUrl,
