@@ -73,11 +73,17 @@ function buildMarkdownComponents(): Components {
         </h2>
       );
     },
-    h2: ({ children, id }) => {
+    // 脚注ラベル「注・出典」は footnoteLabelProperties で class を渡してくる。
+    // 既定値と混ぜると mt-10 と mt-12 のように打ち消し合う指定が並ぶため、
+    // 渡された場合はそちらを採用する（本文の見出しには class が付かない）
+    h2: ({ children, id, className }) => {
       return (
         <h3
           id={id}
-          className="mt-10 scroll-mt-28 font-serif text-[1.5em] leading-[1.4] font-semibold text-text-primary"
+          className={
+            normalizeClassName(className) ??
+            "mt-10 scroll-mt-28 font-serif text-[1.5em] leading-[1.4] font-semibold text-text-primary"
+          }
         >
           {children}
         </h3>
