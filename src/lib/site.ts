@@ -35,6 +35,18 @@ export const ORGANIZATION_ADDRESS_LINE = `${ORGANIZATION_ADDRESS_STRUCTURED.addr
 export const ORGANIZATION_REPRESENTATIVE_TITLE = "代表理事";
 export const ORGANIZATION_REPRESENTATIVE_NAME = "杉山 孔太";
 
+/**
+ * 構造化データ上の法人エンティティ ID。
+ *
+ * 記事の `author` / `publisher` からこの ID を参照することで、
+ * トップページの `NGO`（住所・代表理事・sameAs・knowsAbout を持つ）と
+ * 同一の団体であることを機械可読にする。名前だけでは同定できないため。
+ */
+export const ORGANIZATION_SCHEMA_ID = `${SITE_URL}/#organization`;
+
+/** 構造化データ上の代表理事エンティティ ID */
+export const ORGANIZATION_REPRESENTATIVE_SCHEMA_ID = `${SITE_URL}/#representative`;
+
 /** 法人概要の「設立」表示用（登記の年月まで） */
 export const ORGANIZATION_FOUNDED_LABEL = "2026年4月25日";
 

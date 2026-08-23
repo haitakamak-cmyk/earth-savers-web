@@ -3,7 +3,9 @@ import {
   ORGANIZATION_FOUNDING_DATE_ISO,
   ORGANIZATION_NAME,
   ORGANIZATION_REPRESENTATIVE_NAME,
+  ORGANIZATION_REPRESENTATIVE_SCHEMA_ID,
   ORGANIZATION_REPRESENTATIVE_TITLE,
+  ORGANIZATION_SCHEMA_ID,
   SITE_ALLOW_SEARCH_INDEXING,
   SITE_URL,
 } from "@/lib/site";
@@ -11,6 +13,7 @@ import {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "NGO",
+  "@id": ORGANIZATION_SCHEMA_ID,
   name: ORGANIZATION_NAME,
   alternateName: ["Earth Savers", "地球防衛群"],
   logo: `${SITE_URL}/images/logo/yoko_c1.png`,
@@ -30,6 +33,7 @@ const organizationJsonLd = {
   ],
   founder: {
     "@type": "Person",
+    "@id": ORGANIZATION_REPRESENTATIVE_SCHEMA_ID,
     name: ORGANIZATION_REPRESENTATIVE_NAME,
     jobTitle: ORGANIZATION_REPRESENTATIVE_TITLE,
     sameAs: ["https://x.com/ko_ta_sugiyama"],
