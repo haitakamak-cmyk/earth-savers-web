@@ -49,6 +49,22 @@ export function topicSlugsBundledIntoSeries(): ReadonlySet<string> {
   return new Set(TOPIC_SERIES_LIST.flatMap((s) => s.episodeSlugs));
 }
 
+/**
+ * `<title>` / OG に使う記事名。
+ *
+ * 連載は各話が同じ `title` を共有するため、そのままでは全話の `<title>` が
+ * 同一になり、検索側から重複と見なされる。話を識別する `subtitle`
+ * （「第2話｜…」）を先頭に置いて区別する。検索結果ではタイトルが途中で
+ * 省略されるため、識別語は後ろではなく先頭に置く必要がある。
+ *
+ * 連載でない記事は `title` が既に一意なので変更しない。
+ */
+export function topicDocumentTitle(entry: TopicEntry): string {
+  if (!entry.subtitle) return entry.title;
+  if (!topicSlugsBundledIntoSeries().has(entry.slug)) return entry.title;
+  return `${entry.subtitle} | ${entry.title}`;
+}
+
 export type TopicSeriesHubCard = TopicSeriesListItem & {
   publishedEpisodes: TopicEntry[];
   /** 並び順用・公開済み話のうち最新の日付（話が無いときは一覧の末尾寄りになるよう古い値） */

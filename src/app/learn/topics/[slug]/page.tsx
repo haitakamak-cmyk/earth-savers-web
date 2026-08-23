@@ -9,7 +9,10 @@ import { MarkdownArticle } from "@/components/MarkdownArticle";
 import { TopicToc } from "@/components/TopicToc";
 import { getGlossaryBySlug } from "@/lib/glossary";
 import { extractMarkdownCitations } from "@/lib/markdown-citations";
-import { getTopicSeriesEpisodeNeighbors } from "@/lib/topic-entries";
+import {
+  getTopicSeriesEpisodeNeighbors,
+  topicDocumentTitle,
+} from "@/lib/topic-entries";
 import {
   applyGlossaryLinksOnce,
   extractTopicToc,
@@ -39,12 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const path = `/learn/topics/${entry.slug}`;
   const description = entry.shortDescription;
+  // 連載は各話で `title` が同じため、話を識別する subtitle を先頭に置く
+  const documentTitle = topicDocumentTitle(entry);
   return {
-    title: `${entry.title} | 解説記事`,
+    title: `${documentTitle} | 解説記事`,
     description,
     alternates: { canonical: path },
     openGraph: {
-      title: entry.title,
+      title: documentTitle,
       description,
       url: `${SITE_URL}${path}`,
       siteName: ORGANIZATION_NAME,
@@ -84,7 +89,7 @@ export default async function TopicDetailPage({ params }: Props) {
   return (
     <div className="bg-ivory pb-16">
       <ArticleJsonLd
-        headline={entry.title}
+        headline={topicDocumentTitle(entry)}
         pathname={path}
         description={entry.shortDescription}
         datePublished={entry.publishedAt}
