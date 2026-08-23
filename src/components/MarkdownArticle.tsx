@@ -137,12 +137,11 @@ function buildMarkdownComponents(slugger: GithubSlugger): Components {
         </a>
       );
     },
-    // 日本語のセルはどの文字でも折り返せるため、列が多いと1〜3文字幅まで潰れて読めなくなる。
-    // 5列以上の表に限りセルの最低幅を与え、親の overflow-x-auto で横スクロールさせる。
-    // 4列以下は従来どおり画面幅に収める（開示請求ガイド等の既存表を変えないため）。
+    // セルの最低幅は globals.css の .markdown-article 側で列数別に指定する
+    // （メディアクエリと段階指定が要るため、arbitrary variant では読めなくなる）
     table: ({ children }) => (
       <div className="my-6 overflow-x-auto rounded-lg border border-border bg-white shadow-sm">
-        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-sm [&:has(tr>:nth-child(5))_td]:min-w-[6em] [&:has(tr>:nth-child(5))_th]:min-w-[6em]">
+        <table className="w-full min-w-[min(42rem,100%)] border-collapse text-left text-sm">
           {children}
         </table>
       </div>
@@ -214,7 +213,7 @@ export function MarkdownArticle({
 
   return (
     <article
-      className={`text-text-secondary ${narrowProse ? "max-w-[720px]" : ""} ${className}`}
+      className={`markdown-article text-text-secondary ${narrowProse ? "max-w-[720px]" : ""} ${className}`}
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
