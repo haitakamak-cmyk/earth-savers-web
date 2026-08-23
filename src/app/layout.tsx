@@ -71,7 +71,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${zenMaru.variable} ${notoSerif.variable}`}>
+    // 下の先読みスクリプトが html 要素に style="--article-scale" を付けるため、
+    // サーバーの HTML と食い違う。文字サイズの復元は意図した差分なので警告を抑える
+    // （ダークモード等でも使われる定石。抑止はこの要素の属性のみに効く）
+    <html
+      lang="ja"
+      className={`${zenMaru.variable} ${notoSerif.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* 過去のService Workerが残っている場合に自動解除する */}
         <script
@@ -80,7 +87,8 @@ export default function RootLayout({
           }}
         />
         {/* 記事本文の文字サイズ設定を描画前に反映する（読み込み後に切り替わるのを防ぐ）。
-            React の管理外である html 要素の style を触るため、hydration には影響しない */}
+            html 要素は React の hydration 対象なので、付与した style は不一致として
+            検出される。html 側に suppressHydrationWarning を付けて許容している */}
         <script
           dangerouslySetInnerHTML={{
             __html: `try{var s=localStorage.getItem('article-font-scale');if(s)document.documentElement.style.setProperty('--article-scale',s)}catch(e){}`,
