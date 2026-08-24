@@ -60,7 +60,7 @@ export const POLICIES: readonly PolicyEntry[] = [
       "農地は食料を生産すると同時に、雨水を貯留し、地下水を涵養し、生態系を支えている。しかしその機能は複数の制度と部局に分かれ、権限は国・県・市町村に割れ、全体を引き受ける主体がいない。本提言は、農地を国土インフラとして捉え直し、その公共機能に公が対価を支払う仕組みを求めるものである。設計の単位は流域に置き、時間軸は100年、動かす周期は20年とする。市区町村・都道府県・国のそれぞれに対して、現行制度で着手できることから順に提言する。",
     contentPath: "src/content/policies/farmland-food-water-resilience.md",
     datePublished: "2026-08-22",
-    dateModified: "2026-08-22",
+    dateModified: "2026-08-23",
     requiresLegalCaveat: true,
     relatedToolkitPaths: ["/toolkit/ordinance", "/toolkit/disclosure-request"],
     relatedGlossarySlugs: [],
