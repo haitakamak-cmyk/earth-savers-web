@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { ARTICLES, getAllArticleSlugs, getArticleBySlug } from "@/lib/articles";
 import { GLOSSARY, getAllGlossarySlugs } from "@/lib/glossary";
+import { isLearnPageInPreparation } from "@/lib/learn-preparation";
 import {
   getAllPolicySlugs,
   getPolicyBySlug,
@@ -151,9 +152,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 記事0件のうちは中身のないページなので出さない（ページ側も noindex）
+  // 中身のないページ・整備中のページは出さない（ページ側も noindex）
   const resourceStatic = RESOURCE_STATIC.filter(
-    (path) => path !== "/learn/articles" || ARTICLES.length > 0,
+    (path) =>
+      !isLearnPageInPreparation(path) &&
+      (path !== "/learn/articles" || ARTICLES.length > 0),
   );
 
   for (const path of resourceStatic) {
