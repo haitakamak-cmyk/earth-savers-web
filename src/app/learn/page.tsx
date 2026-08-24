@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
 import { ARTICLES } from "@/lib/articles";
+import { LEARN_PAGES_IN_PREPARATION } from "@/lib/learn-preparation";
 
 export const metadata: Metadata = {
   title: "学ぶ（資料室）",
@@ -19,8 +20,7 @@ export const metadata: Metadata = {
 
 /** コンテンツ整備までハブから非表示にするページ */
 const LEARN_HUB_HIDDEN_PATHS = new Set<string>([
-  "/learn/laws",
-  "/learn/threats",
+  ...LEARN_PAGES_IN_PREPARATION,
   // 読みものは0件のうちだけ隠す。記事を1本追加すれば自動で導線が戻る（sitemap も同様）
   ...(ARTICLES.length === 0 ? ["/learn/articles"] : []),
 ]);

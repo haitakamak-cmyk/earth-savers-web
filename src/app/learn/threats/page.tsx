@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ResourceBreadcrumbs } from "@/components/ResourceBreadcrumbs";
 import { ResourceLead } from "@/components/ResourceLead";
+import { PREPARATION_ROBOTS } from "@/lib/learn-preparation";
 
 export const metadata: Metadata = {
   title: "環境脅威のサマリ",
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
     url: "/learn/threats",
     description: "代表的な環境リスク区分の概要です。",
   },
+  // 整備中。サイト内から導線を出していないため検索対象からも外す
+  robots: PREPARATION_ROBOTS,
 };
 
 const threats = [
