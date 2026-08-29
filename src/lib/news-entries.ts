@@ -17,6 +17,14 @@ export type NewsEntry = {
 
 export const newsEntries: NewsEntry[] = [
   {
+    id: "policy-farmland-food-water-resilience-2026-08",
+    date: "2026-08-22",
+    category: "重要",
+    title: "政策提言「土と水は、誰が引き継ぐのか」を公開しました",
+    href: "/policy/farmland-food-water-resilience",
+    lead: "農地を食・水・生態系・防災の国土インフラとして捉え直し、公共機能への対価を求める提言です。",
+  },
+  {
     id: "aki-fuyu-vegetable-seeds-2026-08",
     date: "2026-08-08",
     category: "活動報告",
