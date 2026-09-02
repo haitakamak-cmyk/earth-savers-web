@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Zen_Maru_Gothic, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
@@ -12,28 +11,6 @@ import {
   SITE_ORGANIZATION_DESCRIPTION_PRELAUNCH,
   SITE_URL,
 } from "@/lib/site";
-
-// 日本語フォントは Google Fonts 側で100以上のサブセットに分割されている。
-// next/font の既定（preload: true）だと全サブセットに <link rel="preload"> が出るため、
-// 実測で 359本・247ファイル・4.1MB を初期表示で先読みし、ファーストビューを止めていた。
-// preload を切ると unicode-range により「実際に使う文字のサブセット」だけが落ちる。
-// display: "swap" で、フォント到着前も本文はフォールバックで即座に読める。
-const zenMaru = Zen_Maru_Gothic({
-  variable: "--font-zen-maru",
-  subsets: ["latin"],
-  // 300 は `font-light` も `font-weight: 300` も未使用のため読み込まない
-  weight: ["400", "500", "700"],
-  preload: false,
-  display: "swap",
-});
-
-const notoSerif = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  preload: false,
-  display: "swap",
-});
 
 const defaultTitle = SITE_ALLOW_SEARCH_INDEXING
   ? `${ORGANIZATION_NAME} | 水と森の未来を守る`
@@ -86,7 +63,6 @@ export default function RootLayout({
     // （ダークモード等でも使われる定石。抑止はこの要素の属性のみに効く）
     <html
       lang="ja"
-      className={`${zenMaru.variable} ${notoSerif.variable}`}
       suppressHydrationWarning
     >
       <head>

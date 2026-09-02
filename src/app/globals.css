@@ -1,6 +1,12 @@
+@import "./fonts.css";
 @import "tailwindcss";
 
 :root {
+  /* 自己ホストのフォント。未収録の文字は日本語システムフォントへ落ちる */
+  --font-zen-maru: "Zen Maru Gothic", "Zen Maru Gothic Fallback", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  --font-noto-serif-jp: "Noto Serif JP", "Noto Serif JP Fallback", "Hiragino Mincho ProN",
+    "Yu Mincho", "YuMincho", serif;
   --background: #faf8f5;
   --foreground: #2d3a2e;
   --wakakusa: #6db56d;

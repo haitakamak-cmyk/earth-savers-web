@@ -26,6 +26,18 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // 自己ホストのフォントはファイル名にハッシュが付かないため、
+        // パスに版（v1）を持たせたうえで長期キャッシュを明示する。
+        // 差し替えるときは v2 ディレクトリを作り、CSS の参照先を変える。
+        source: "/fonts/v1/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           {

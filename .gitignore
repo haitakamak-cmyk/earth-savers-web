@@ -44,3 +44,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# フォント生成の作業ディレクトリ（生成物は public/fonts/v1 と src/app/fonts.css）
+.fontwork/
