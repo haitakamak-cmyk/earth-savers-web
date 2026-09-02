@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    // AVIF を第一候補にする。対応ブラウザには WebP より 2〜3 割小さい画像が届き、
+    // 非対応ブラウザには従来どおり WebP が返る（見た目は変わらない）。
+    formats: ["image/avif", "image/webp"],
+  },
   async redirects() {
     return [
       {
