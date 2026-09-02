@@ -90,6 +90,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* GA4 は afterInteractive で読み込むため、接続確立を前倒しして待ち時間を削る
+            （PageSpeed Insights の "Preconnect to required origins" 317ms 相当） */}
+        {SITE_ALLOW_SEARCH_INDEXING ? (
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
+        ) : null}
         {/* 過去のService Workerが残っている場合に自動解除する */}
         <script
           dangerouslySetInnerHTML={{
