@@ -129,6 +129,7 @@ export default function Home() {
                   src="/images/photos/water-spring.jpeg"
                   alt="美しい水源地"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -171,6 +172,7 @@ export default function Home() {
                   src="/images/photos/ecosystem-river.jpeg"
                   alt="生態系復活プロジェクト"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -213,6 +215,7 @@ export default function Home() {
                   src="/images/photos/activity-bamboo.jpeg"
                   alt="里山整備活動"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -255,6 +258,7 @@ export default function Home() {
                   src="/images/photos/gomi530-group-vests.png"
                   alt="ゴミ拾い530運動に参加するメンバーと地域の子どもたちの集合写真"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -297,6 +301,7 @@ export default function Home() {
                   src="/images/ばら撒くっ種/baramaku-seeds-table.png"
                   alt="ばら撒くっ種の会で並べられた種子や実、モロヘイヤ・マリーゴールドなどのラベル付き袋"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -339,6 +344,7 @@ export default function Home() {
                   src="/images/photos/child-corn.jpeg"
                   alt="子どもと自然体験"
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -396,6 +402,7 @@ export default function Home() {
                   src="/images/photos/mega-solar.jpeg"
                   alt="山を覆うメガソーラー"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -423,6 +430,7 @@ export default function Home() {
                   src="/images/photos/crisis-satoyama-bamboo.png"
                   alt="放置竹林と渓流、荒廃する里山の様子"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
