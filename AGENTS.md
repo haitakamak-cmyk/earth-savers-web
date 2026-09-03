@@ -44,3 +44,19 @@ Claude Code の Browser pane（および同種のヘッドレス環境）には�
   - `useMemo` をやめて render ごとに `new GithubSlugger()` しても直らない。見出しコンポーネント自体が2回呼ばれるため。可変カウンタ・乱数・時刻を render 中に消費しないという一般則の一例。
 - **見出し id の規則を変えるときは `src/lib/markdown-toc.ts` の `extractMarkdownHeadingToc` も必ず揃える。** こちらは別の slugger で `^## ` 行だけを走査するため、`#` や `###` に同じ文字列の見出しがあると連番のズレ方が両者で食い違い、目次リンクが飛ばなくなる。
 - GFM 脚注の id（`user-content-fn-` / `user-content-fnref-`）と脚注ラベルの `footnote-label` は id 生成の対象外にすること。
+
+## フォント（自己ホストのサブセット）を触るとき
+
+日本語フォントは `scripts/build-fonts.py` が生成した woff2 を `public/fonts/v1/` に置き、`src/app/fonts.css` の `@font-face` + `unicode-range` で 9 グループに分けて配信している。**`src/app/fonts.css` は生成物なので直接編集しない。**
+
+- **`g0` を太らせない。** g0 は「共通UI（ヘッダー・ナビ・フッター）＋トップのファーストビューで必ず出る文字」だけを収め、全ページで preload している。記事本文の文字やページ固有の見出しを足すと、全訪問者のクリティカルパスが重くなり、preload の利点が消える。目安は1面あたり 100KB 未満。
+- **CSS の追加は `layout.tsx` から `import` する。** `globals.css` の中で `@import` すると、ローカルでは通るのに Vercel のビルドで黙って落ちることがある（2026-09-02 に本番のフォントが全消えした）。`npm run postbuild` の `scripts/assert-fonts-emitted.mjs` が、ビルド後の CSS に `@font-face` が30個未満ならビルドを落とす。
+- **フォントの preload は「最初に見える文字」だけに限る。** かつて全サブセット 359本を preload しており、モバイルの FCP が 10.9 秒だった（2026-09-03 に 1.0 秒へ改善）。
+- 画像は `priority` ではなく `fetchPriority="high"` + `loading="eager"` を使う（Next 16 で `priority` は非推奨）。
+
+### 速度を測るときの注意
+
+- **判断は PageSpeed Insights のモバイルで統一する。** ローカルの Lighthouse は同じ Moto G 相当の設定にしても本番の PSI を再現できず（FCP 2.1秒 vs 10.7秒）、スコアも 55〜94 と振れる。ローカルは差分の方向を見る補助にとどめる。
+- **単発の PSI で変更の効果を判断しない。** 2026-09-03 に、同一ビルド（コード無変更）で 35分のあいだに 97 / 56 / 50 と振れた実績がある。FCP も 1.0秒〜8.3秒。**必ず3回以上測り、中央値とレンジで比較する。**
+- 記録の残し方: スコア単体ではなく **FCP 中央値・LCP 中央値・CLS・最速〜最遅のレンジ**を残す。単発の最良値を成果として書かない。
+- 実測レンジ（2026-09-03、PSI モバイル・同一ビルド3回）: Performance 50〜97（中央値 56）/ FCP 1.0〜8.3秒（中央値 8.2秒）/ LCP 2.4〜11.9秒（中央値 10.0秒）/ CLS 0〜0.001。
