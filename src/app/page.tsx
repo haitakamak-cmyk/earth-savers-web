@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { preloadCriticalFonts } from "@/lib/font-preload";
 
 import HeroSlider from "@/components/HeroSlider";
 import { formatNewsDate, getSortedNewsEntries } from "@/lib/news-entries";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export function HomeContent() {
   const latestNews = getSortedNewsEntries().slice(0, 3);
 
   return (
@@ -612,4 +613,13 @@ export default function Home() {
       </section>
     </>
   );
+}
+
+/**
+ * トップページ。ファーストビュー用フォントの先読みはここで行う。
+ * 先読みの効果検証（A/B）のために、中身は HomeContent として切り出してある。
+ */
+export default function Home() {
+  preloadCriticalFonts();
+  return <HomeContent />;
 }

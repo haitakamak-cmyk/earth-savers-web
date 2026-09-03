@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { preload } from "react-dom";
 import "./fonts.css";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -54,32 +53,11 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * ファーストビューの文字だけを収めた小さなサブセット（g0）を先読みする。
- * フォントが遅れて届くとテキストが組み直され、ヒーローのボタンが動いていた
- * （PSI 実測 CLS 0.049 の原因）。ここだけ先に届けば組み直しが起きない。
- *
- * 以前フォントの全サブセット 359本を先読みして初期表示を壊したことがあるので、
- * **最初に見える3面ぶんだけ**に限定している（合計 約160KB）。
- * react-dom の preload を使うのは、JSX で <link> を書くと重複して出力されるため。
- */
-function preloadCriticalFonts() {
-  for (const href of [
-    "/fonts/v1/zen-400.g0.woff2",
-    "/fonts/v1/zen-700.g0.woff2",
-    "/fonts/v1/serif-700.g0.woff2",
-  ]) {
-    preload(href, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
-  }
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  preloadCriticalFonts();
-
   return (
     // 下の先読みスクリプトが html 要素に style="--article-scale" を付けるため、
     // サーバーの HTML と食い違う。文字サイズの復元は意図した差分なので警告を抑える
