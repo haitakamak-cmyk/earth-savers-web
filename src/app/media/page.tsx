@@ -144,7 +144,8 @@ function MediaPhoto({
             ? "(max-width: 768px) 100vw, 48rem"
             : "(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
         }
-        priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        loading={priority ? "eager" : "lazy"}
       />
     </div>
   );
@@ -198,7 +199,8 @@ export default function MediaPage() {
                 fill
                 className="object-contain object-center p-4 sm:p-6"
                 sizes="(max-width: 768px) 100vw, 42rem"
-                priority
+                fetchPriority="high"
+                loading="eager"
               />
             </div>
             <div className="border-t border-border p-6 sm:p-8">

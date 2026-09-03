@@ -64,7 +64,8 @@ export function Header() {
               alt="Earth Savers - 地球防衛群"
               width={180}
               height={48}
-              priority
+              fetchPriority="high"
+              loading="eager"
               className="h-9 w-auto sm:h-11"
             />
             <span className="font-serif text-[10px] font-semibold leading-snug text-text-primary sm:text-xs md:whitespace-nowrap">

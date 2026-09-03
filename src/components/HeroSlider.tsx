@@ -54,7 +54,8 @@ export default function HeroSlider() {
             src={slide.src}
             alt={slide.alt}
             fill
-            priority={i === 0}
+            fetchPriority={i === 0 ? "high" : "auto"}
+            loading={i === 0 ? "eager" : "lazy"}
             className={slide.imageClassName}
             sizes="100vw"
           />

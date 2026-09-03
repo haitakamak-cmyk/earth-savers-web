@@ -135,7 +135,8 @@ function Photo({
         alt={alt}
         width={1400}
         height={1050}
-        priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
+        loading={priority ? "eager" : "lazy"}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="h-auto w-full object-cover"
       />
@@ -151,7 +152,8 @@ export default function EcosystemRestorationPublicPage() {
           src="/images/ecosystem-brief/hero.webp"
           alt="空と水面が広がる風景"
           fill
-          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="100vw"
           className="-z-20 object-cover opacity-55"
         />

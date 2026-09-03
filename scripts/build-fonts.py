@@ -9,6 +9,7 @@
     .venv/bin/python scripts/build-fonts.py
 
 分割の考え方:
+  g0  ヘッダー・ヒーロー・フッターの文字（どのページでも最初に見える）。ここだけ preload する
   g1  かな・約物・英数（全ページで必ず要る）
   g2  高頻度漢字 上位500
   g3  次の500
@@ -48,11 +49,21 @@ FACES = [
     ("serif-700", "Noto Serif JP", "501 900"),
 ]
 # 宣言順。広いコード範囲を先に、具体的なグループを後に置く（後勝ちで優先させる）
-ORDER = ["g5", "g6", "g7", "g8", "g1", "g2", "g3", "g4"]
+ORDER = ["g5", "g6", "g7", "g8", "g1", "g2", "g3", "g4", "g0"]
 
 G1 = [(0x20, 0x7E), (0xA0, 0xFF), (0x2010, 0x201F), (0x2026, 0x2026), (0x2030, 0x2030),
       (0x203B, 0x203B), (0x3000, 0x303F), (0x3040, 0x309F), (0x30A0, 0x30FF),
       (0x31F0, 0x31FF), (0xFF00, 0xFFEF), (0x4E00, 0x4E00)]
+# g0: ヘッダー・ヒーロー・フッターなど「どのページでも最初に見える文字」。
+# 実測（2026-09-03、本番 DOM から抽出）。ここだけ preload するため小さく保つ。
+# サイトの共通部分と表紙の文言が変わったときだけ見直せばよく、記事追加では不要。
+G0_TEXT = (
+    ".026AESadeghilrstv©、。「」あいおきくぐけしすせたちっつてでとどなにのはばひぶへまもらりるわをアィイクサシダッテデドバプボポマメラリレン・ー七世人今介付代体保先全公内再利制加動参合命問営団国地報場境大子学守宝実室容寄山引形復循応情態提援撒支政教料日旨月未本来森概残毎水汗法活流源現球環生用相知私種立策系約紹継続績美群育衛要規言設談財買資趣運里開防（）"
+    " !\"#$%&'()*+,-./0123456789:;<=>?@"
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`"
+    "abcdefghijklmnopqrstuvwxyz{|}~"
+)
+
 G8 = [(0x2100, 0x214F), (0x2160, 0x217F), (0x2190, 0x21FF), (0x2200, 0x22FF),
       (0x2460, 0x24FF), (0x2500, 0x257F), (0x25A0, 0x25FF), (0x2600, 0x26FF), (0x3200, 0x33FF)]
 
@@ -116,9 +127,9 @@ def main() -> int:
     b1, b2 = ord(tail[len(tail) // 3]), ord(tail[2 * len(tail) // 3])
     spans = [(0x3400, b1 - 1), (b1, b2 - 1), (b2, 0x9FFF)]
 
-    chars = {"g1": expand(G1), "g8": expand(G8),
+    chars = {"g0": "".join(sorted(set(G0_TEXT))), "g1": expand(G1), "g8": expand(G8),
              "g2": "".join(sorted(g2)), "g3": "".join(sorted(g3)), "g4": "".join(sorted(g4))}
-    ranges = {"g1": fmt(G1), "g8": fmt(G8),
+    ranges = {"g0": fmt(collapse(set(G0_TEXT))), "g1": fmt(G1), "g8": fmt(G8),
               "g2": fmt(collapse(g2)), "g3": fmt(collapse(g3)), "g4": fmt(collapse(g4))}
     for i, key in enumerate(("g5", "g6", "g7")):
         lo, hi = spans[i]
@@ -154,12 +165,13 @@ def main() -> int:
     lines = [
         "/* ===== 自己ホストの日本語フォント（Zen Maru Gothic / Noto Serif JP）=====",
         " * このファイルは scripts/build-fonts.py の生成物。直接編集しない。",
-        " * JIS第1・第2水準を収録し、unicode-range で8グループに分割している。",
+        " * JIS第1・第2水準を収録し、unicode-range で9グループに分割している。",
         " * 記事を追加してもフォントの作り直しは不要。",
         " * ライセンス: SIL Open Font License 1.1（public/fonts/v1/OFL-*.txt）",
         " *",
         " * 宣言順に意味がある。g5-g7（低頻度・広いコード範囲）を先に置き、",
-        " * g1-g4/g8（高頻度・具体的）を後に置くことで、重なる文字は後者が優先される。",
+        " * g1-g4/g8 を次に、最後に g0（ファーストビューの文字）を置く。重なる文字は後勝ちで、",
+        " * 最初に見える文字は必ず g0（preload 済みの小さいファイル）から描画される。",
         " */",
     ]
     for key, family, weight in FACES:
