@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preloadCriticalFonts } from "@/lib/font-preload";
 import "./fonts.css";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -58,6 +59,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // ファーストビューの文字（g0）を先読みする。全ページ共通のヘッダー・フッターにも効く
+  preloadCriticalFonts();
+
   return (
     // 下の先読みスクリプトが html 要素に style="--article-scale" を付けるため、
     // サーバーの HTML と食い違う。文字サイズの復元は意図した差分なので警告を抑える
