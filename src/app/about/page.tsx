@@ -126,7 +126,8 @@ export default function AboutPage() {
           src="/images/photos/about-hero-group-pond.png"
           alt="水辺の環境活動後の集合写真。多世代のメンバーが水辺に集まる様子"
           fill
-          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="100vw"
           className="object-cover object-center"
         />

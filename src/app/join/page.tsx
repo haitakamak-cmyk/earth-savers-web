@@ -91,7 +91,8 @@ export default function JoinPage() {
           src="/images/photos/join-hero-stage-wide.png"
           alt="イベント会場の集合写真。ステージ前のメンバーと客席の参加者"
           fill
-          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="100vw"
           className="object-cover object-center"
         />

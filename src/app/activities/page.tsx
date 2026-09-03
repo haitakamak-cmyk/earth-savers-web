@@ -139,7 +139,8 @@ export default function ActivitiesPage() {
           src="/images/photos/activities-hero-community.png"
           alt="種や特産のシェア会の様子。参加メンバーの集合写真"
           fill
-          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="100vw"
           className="object-cover object-[center_44%] sm:object-[center_42%]"
         />

@@ -84,7 +84,8 @@ export default function MembersPage() {
           src="/images/photos/members-hero-group.png"
           alt="里山活動に参加するメンバーの集合"
           fill
-          priority
+          fetchPriority="high"
+          loading="eager"
           sizes="100vw"
           className="object-cover object-[center_32%] sm:object-[center_30%]"
         />
