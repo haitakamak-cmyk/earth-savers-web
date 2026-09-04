@@ -9,7 +9,7 @@
     "lint": "eslint",
     "verify-deploy": "bash scripts/verify-deploy-ready.sh",
     "verify-ratelimit": "npx tsx scripts/verify-ratelimit-separation.ts",
-    "postbuild": "node scripts/assert-fonts-emitted.mjs"
+    "postbuild": "node scripts/assert-fonts-emitted.mjs && node scripts/assert-color-tokens.mjs"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.55.0",
