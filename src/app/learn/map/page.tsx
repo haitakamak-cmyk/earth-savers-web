@@ -198,7 +198,7 @@ export default function LearnMapPage() {
         <p className="mt-8 text-center">
           <Link
             href={`/learn/topics/${MAP_TOPIC_SLUG}`}
-            className="inline-flex items-center justify-center rounded-lg border border-wakakusa bg-wakakusa px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-wakakusa-dark"
+            className="inline-flex items-center justify-center rounded-lg border border-wakakusa bg-wakakusa-dark px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-wakakusa-deep"
           >
             事例集を読む
           </Link>

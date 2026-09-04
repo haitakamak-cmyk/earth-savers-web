@@ -45,7 +45,7 @@ function ChevronDownIcon({ className }: { className?: string }) {
 }
 
 function navLinkClassDesktop() {
-  return "whitespace-nowrap rounded-lg px-2 py-2 text-xs font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark lg:px-3 lg:text-sm";
+  return "whitespace-nowrap rounded-lg px-2 py-2 text-xs font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep lg:px-3 lg:text-sm";
 }
 
 export function Header() {
@@ -98,7 +98,7 @@ export function Header() {
                     <Link
                       role="menuitem"
                       href={link.href}
-                      className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                      className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep"
                     >
                       {link.label}
                     </Link>
@@ -125,7 +125,7 @@ export function Header() {
                     <Link
                       role="menuitem"
                       href={link.href}
-                      className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                      className="block px-4 py-2.5 text-sm text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep"
                     >
                       {link.label}
                     </Link>
@@ -147,7 +147,7 @@ export function Header() {
             ))}
             <Link
               href="/join"
-              className="ml-2 rounded-full bg-wakakusa px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+              className="ml-2 rounded-full bg-wakakusa-dark px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep"
             >
               支援する
             </Link>
@@ -156,7 +156,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-lg p-2 text-text-secondary hover:text-wakakusa-dark md:hidden"
+            className="rounded-lg p-2 text-text-secondary hover:text-wakakusa-deep md:hidden"
             aria-expanded={isOpen}
             aria-label={isOpen ? "メニューを閉じる" : "メニューを開く"}
           >
@@ -189,7 +189,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep"
               >
                 {item.label}
               </Link>
@@ -208,7 +208,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                    className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-deep"
                   >
                     {link.label}
                   </Link>
@@ -229,7 +229,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                    className="block rounded-lg px-3 py-2.5 text-sm text-text-secondary hover:bg-wakakusa-light hover:text-wakakusa-deep"
                   >
                     {link.label}
                   </Link>
@@ -242,7 +242,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep"
               >
                 {item.label}
               </Link>
@@ -253,7 +253,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-dark"
+                className="block rounded-lg px-4 py-3 text-base font-medium text-text-secondary transition-colors hover:bg-wakakusa-light hover:text-wakakusa-deep"
               >
                 {item.label}
               </Link>
@@ -261,7 +261,7 @@ export function Header() {
             <Link
               href="/join"
               onClick={() => setIsOpen(false)}
-              className="mx-4 mt-3 block rounded-full bg-wakakusa py-3 text-center font-semibold text-white transition-colors hover:bg-wakakusa-dark"
+              className="mx-4 mt-3 block rounded-full bg-wakakusa-dark py-3 text-center font-semibold text-white transition-colors hover:bg-wakakusa-deep"
             >
               支援する
             </Link>

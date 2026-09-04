@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const categoryColors: Record<NewsCategory, string> = {
   重要: "bg-red-100 text-red-700",
   活動報告: "bg-wakakusa-light text-wakakusa-dark",
-  イベント: "bg-aqua-light text-aqua",
+  イベント: "bg-aqua-light text-aqua-dark",
   メディア掲載: "bg-amber-100 text-amber-700",
 };
 
@@ -28,7 +28,7 @@ export default function NewsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-wakakusa py-10 sm:py-14">
+      <section className="bg-wakakusa-dark py-10 sm:py-14">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h1 className="font-serif text-3xl font-bold text-white drop-shadow-sm sm:text-4xl">
             お知らせ

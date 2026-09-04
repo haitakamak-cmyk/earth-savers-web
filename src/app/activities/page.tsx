@@ -46,7 +46,7 @@ const activities: Activity[] = [
   {
     id: "conservation",
     tag: "水源保全",
-    tagColor: "text-aqua bg-aqua-light",
+    tagColor: "text-aqua-dark bg-aqua-light",
     title: "水源地・山林の取得と恒久保全",
     description:
       "地域外事業者等による水源地の取得や、地域環境への影響が懸念される開発から日本の豊かな水源を守っています。取得した山林は恒久的に保全。自ら現場を歩き、地下水脈の健康状態を調査・回復させる活動を続けています。",
@@ -56,7 +56,7 @@ const activities: Activity[] = [
   {
     id: "ecosystem",
     tag: "生態系復活",
-    tagColor: "text-aqua bg-aqua-light",
+    tagColor: "text-aqua-dark bg-aqua-light",
     title: "ナノバブル発生器 『B-369』",
     description:
       "独自開発のナノバブル発生器『B-369』を活用し、池や河川の水環境改善に取り組んでいます。ナノバブルの働きを活用し、溶存酸素量や水質指標の改善を目指します。導入地域では、継続的な観測と検証を行いながら、生態系の回復につなげています。全国19箇所の設置実績と現地の観測記録は、実績ページで公開しています。",
@@ -72,7 +72,7 @@ const activities: Activity[] = [
   {
     id: "satoyama",
     tag: "大地の再生",
-    tagColor: "text-wakakusa bg-wakakusa-light",
+    tagColor: "text-wakakusa-dark bg-wakakusa-light",
     title: "里山オーガニック再生",
     description:
       "現代のコンクリートは大地の水脈を塞ぎ、空気と水の循環を止めてしまいます。私たちは水脈や通気の流れを見直し、土壌環境の再生を図る「大地の再生」の視点を大切にしています。放置された森に光を入れ、人と動物が共に心地よく過ごせる環境を再構築しています。",
@@ -82,7 +82,7 @@ const activities: Activity[] = [
   {
     id: "gomi530",
     tag: "530運動",
-    tagColor: "text-accent-gold bg-amber-50",
+    tagColor: "text-accent-gold-dark bg-amber-50",
     title: "530（ゴミゼロ）運動",
     description:
       "地域のゴミ拾い、池そうじ、花植えなど、身近な環境改善活動を行っています。子どもから大人まで、楽しみながら「自分たちの手で街を調和させる」地域密着型の実践です。",
@@ -93,7 +93,7 @@ const activities: Activity[] = [
   {
     id: "baramaku",
     tag: "種のシェア",
-    tagColor: "text-accent-gold bg-amber-50",
+    tagColor: "text-accent-gold-dark bg-amber-50",
     title: "ばら撒くっ種",
     description:
       "在来種の種を仲間と分かち合い、地域に緑を広げるコミュニティ活動です。Facebook のグループで情報発信や交流を行っています。活動の様子や参加方法の詳細は、グループページをご覧ください。",
@@ -121,7 +121,7 @@ const activities: Activity[] = [
   {
     id: "education",
     tag: "環境教育",
-    tagColor: "text-wakakusa bg-wakakusa-light",
+    tagColor: "text-wakakusa-dark bg-wakakusa-light",
     title: "環境教育・次世代育成",
     description:
       "講演会や自然体験を通じて、水と森の大切さを次の世代にバトンタッチします。子どもたちが五感で自然のペースを感じ、深呼吸できる場を提供。自分たちが生きる土壌を自分たちの手で慈しみ育てる、豊かな感性を育む輪を広げていきます。",
@@ -231,7 +231,7 @@ export default function ActivitiesPage() {
                             {...(isExternal
                               ? { target: "_blank", rel: "noopener noreferrer" }
                               : {})}
-                            className="inline-flex items-center justify-center rounded-full bg-wakakusa px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                            className="inline-flex items-center justify-center rounded-full bg-wakakusa-dark px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep"
                           >
                             {link.label}
                           </a>
@@ -278,7 +278,7 @@ export default function ActivitiesPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/join#volunteer"
-              className="px-8 py-3.5 bg-wakakusa hover:bg-wakakusa-dark text-white font-semibold rounded-full transition-colors shadow-sm"
+              className="px-8 py-3.5 bg-wakakusa-dark hover:bg-wakakusa-deep text-white font-semibold rounded-full transition-colors shadow-sm"
             >
               ボランティアに参加する
             </a>

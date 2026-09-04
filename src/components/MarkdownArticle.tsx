@@ -140,7 +140,7 @@ function buildMarkdownComponents(): Components {
       const raw = typeof href === "string" ? href : "";
       const external = /^https?:\/\//i.test(raw);
       const proseDefault =
-        "break-words font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua";
+        "break-words font-medium text-aqua-dark underline underline-offset-2 hover:text-aqua-deep";
       const merged =
         normalizeClassName(className) === undefined ? proseDefault : `${proseDefault} ${normalizeClassName(className)}`;
       const footnoteScroll = isFootnoteRefAnchorId(id) ? " scroll-mt-28" : "";

@@ -41,7 +41,7 @@ export default function Home() {
               </h2>
               <Link
                 href="/news"
-                className="text-sm font-medium text-wakakusa hover:text-wakakusa-dark"
+                className="text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep"
               >
                 一覧を見る →
               </Link>
@@ -56,7 +56,7 @@ export default function Home() {
                     >
                       {formatNewsDate(entry.date)}
                     </time>
-                    <span className="shrink-0 rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold leading-none text-wakakusa">
+                    <span className="shrink-0 rounded-full bg-wakakusa/10 px-2 py-0.5 text-[10px] font-semibold leading-none text-wakakusa-dark">
                       {entry.category}
                     </span>
                     {entry.href ? (
@@ -65,14 +65,14 @@ export default function Home() {
                           href={entry.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-dark sm:basis-auto"
+                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-deep sm:basis-auto"
                         >
                           {entry.title}
                         </a>
                       ) : (
                         <Link
                           href={entry.href}
-                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-dark sm:basis-auto"
+                          className="min-w-0 flex-1 basis-full text-sm font-medium leading-snug text-text-primary hover:text-wakakusa-deep sm:basis-auto"
                         >
                           {entry.title}
                         </Link>
@@ -134,7 +134,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-aqua-dark bg-aqua-light px-2.5 py-1 rounded-full">
                   水源保全
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -145,7 +145,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#conservation"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -177,7 +177,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-aqua bg-aqua-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-aqua-dark bg-aqua-light px-2.5 py-1 rounded-full">
                   生態系復活
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -188,7 +188,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#ecosystem"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -220,7 +220,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-wakakusa bg-wakakusa-light px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-wakakusa-dark bg-wakakusa-light px-2.5 py-1 rounded-full">
                   大地の再生
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -231,7 +231,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#satoyama"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -263,7 +263,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-accent-gold-dark bg-amber-50 px-2.5 py-1 rounded-full">
                   530運動
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -274,7 +274,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#gomi530"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -306,7 +306,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-accent-gold-dark bg-amber-50 px-2.5 py-1 rounded-full">
                   種のシェア
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -317,7 +317,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#baramaku"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -349,7 +349,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-5 sm:p-6">
-                <span className="text-xs font-semibold text-accent-gold bg-amber-50 px-2.5 py-1 rounded-full">
+                <span className="text-xs font-semibold text-accent-gold-dark bg-amber-50 px-2.5 py-1 rounded-full">
                   環境教育
                 </span>
                 <h3 className="mt-3 text-lg font-bold text-text-primary">
@@ -361,7 +361,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/activities#education"
-                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa hover:text-wakakusa-dark transition-colors"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
                 >
                   詳しく見る
                   <svg
@@ -435,7 +435,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold text-white bg-accent-gold/90 px-3 py-1 rounded-full">
+                  <span className="text-xs font-semibold text-text-primary bg-accent-gold/90 px-3 py-1 rounded-full">
                     課題 02: 里山の荒廃と生態系の維持
                   </span>
                 </div>
@@ -481,7 +481,7 @@ export default function Home() {
               </p>
               <Link
                 href="/about#message"
-                className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa transition-colors"
+                className="mt-4 inline-flex items-center text-sm font-medium text-wakakusa-dark hover:text-wakakusa-deep transition-colors"
               >
                 全文を読む
                 <svg
@@ -524,7 +524,7 @@ export default function Home() {
               <div className="flex flex-col items-center sm:items-start sm:shrink-0">
                 <div className="w-14 h-14 bg-wakakusa-light rounded-full flex items-center justify-center group-hover:bg-wakakusa/20 transition-colors">
                   <svg
-                    className="w-7 h-7 text-wakakusa"
+                    className="w-7 h-7 text-wakakusa-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -553,7 +553,7 @@ export default function Home() {
             >
               <div className="w-14 h-14 mx-auto bg-amber-50 rounded-full flex items-center justify-center group-hover:bg-amber-100 transition-colors">
                 <svg
-                  className="w-7 h-7 text-accent-gold"
+                  className="w-7 h-7 text-accent-gold-dark"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -591,7 +591,7 @@ export default function Home() {
           </p>
           <Link
             href="/consultation"
-            className="mt-6 inline-flex items-center px-8 py-3.5 bg-aqua hover:bg-aqua-dark text-white font-semibold rounded-full text-base transition-colors shadow-lg"
+            className="mt-6 inline-flex items-center px-8 py-3.5 bg-aqua-dark hover:bg-aqua-deep text-white font-semibold rounded-full text-base transition-colors shadow-lg"
           >
             環境相談の流れを見る
             <svg

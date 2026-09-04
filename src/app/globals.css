@@ -9,18 +9,25 @@
   --background: #faf8f5;
   --foreground: #2d3a2e;
   --wakakusa: #6db56d;
-  --wakakusa-dark: #4a8f4a;
+  --wakakusa-dark: #407b40;
+  /* ホバー用。基準を満たしたまま「濃くなる」方向へ変化させるために使う */
+  --wakakusa-deep: #356635;
   --wakakusa-light: #e8f5e8;
   --aqua: #5ba4c9;
-  --aqua-dark: #3d7fa3;
+  --aqua-dark: #377394;
+  --aqua-deep: #2e5f7b;
   --aqua-light: #e3f2fa;
   --ivory: #faf8f5;
   --ivory-warm: #f5f0e8;
   --accent-gold: #c9a84c;
+  /* 金は装飾用に明るさを保つ。文字に使うときはこちら */
+  --accent-gold-dark: #896f29;
   --coral: #e07060;
   --text-primary: #2d3a2e;
   --text-secondary: #4a5a4c;
-  --text-muted: #8a9a8c;
+  --text-muted: #627264;
+  /* 暗い地（フッター等）用。muted を濃くすると暗い背景では逆に読めなくなるため */
+  --text-muted-on-dark: #9caa9e;
   --border: #d4ddd4;
 }
 
@@ -29,17 +36,21 @@
   --color-foreground: var(--foreground);
   --color-wakakusa: var(--wakakusa);
   --color-wakakusa-dark: var(--wakakusa-dark);
+  --color-wakakusa-deep: var(--wakakusa-deep);
   --color-wakakusa-light: var(--wakakusa-light);
   --color-aqua: var(--aqua);
   --color-aqua-dark: var(--aqua-dark);
+  --color-aqua-deep: var(--aqua-deep);
   --color-aqua-light: var(--aqua-light);
   --color-ivory: var(--ivory);
   --color-ivory-warm: var(--ivory-warm);
   --color-accent-gold: var(--accent-gold);
+  --color-accent-gold-dark: var(--accent-gold-dark);
   --color-coral: var(--coral);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
+  --color-text-muted-on-dark: var(--text-muted-on-dark);
   --color-border: var(--border);
   --font-sans: var(--font-zen-maru);
   --font-serif: var(--font-noto-serif-jp);

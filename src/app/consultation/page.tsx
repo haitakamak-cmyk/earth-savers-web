@@ -91,7 +91,7 @@ export default function ConsultationPage() {
             {concerns.map((c) => (
               <li key={c} className="flex items-start gap-3">
                 <span
-                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-wakakusa/20 text-wakakusa"
+                  className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-wakakusa/20 text-wakakusa-dark"
                   aria-hidden
                 >
                   <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
@@ -113,7 +113,7 @@ export default function ConsultationPage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-wakakusa">
+              <p className="text-xs font-semibold uppercase tracking-widest text-wakakusa-dark">
                 実績・事例
               </p>
               <h2 className="mt-1 font-serif text-lg font-bold text-text-primary sm:text-xl">
@@ -153,7 +153,7 @@ export default function ConsultationPage() {
                   {s.link ? (
                     <Link
                       href={s.link.href}
-                      className="mt-2 inline-block text-sm font-semibold text-wakakusa hover:text-wakakusa-dark"
+                      className="mt-2 inline-block text-sm font-semibold text-wakakusa-dark hover:text-wakakusa-deep"
                     >
                       {s.link.label}
                     </Link>
@@ -186,7 +186,7 @@ export default function ConsultationPage() {
               当財団は、対話を通じた事実関係の確認と適切な訂正を最優先します。当サイトの記述内容に事実誤認・解釈の不適切な点等がある場合は、
               <Link
                 href="/contact"
-                className="font-semibold text-wakakusa underline underline-offset-2 hover:text-wakakusa-dark"
+                className="font-semibold text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
               >
                 お問い合わせフォーム
               </Link>
@@ -238,7 +238,7 @@ export default function ConsultationPage() {
           <div className="mt-6 text-center">
             <Link
               href="/contact?category=environment-consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+              className="inline-flex items-center gap-2 rounded-full bg-wakakusa-dark px-8 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep"
             >
               情報提供フォームへ
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>

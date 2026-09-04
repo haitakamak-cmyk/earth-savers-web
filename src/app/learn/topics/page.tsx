@@ -71,7 +71,7 @@ export default function LearnTopicsIndexPage() {
                           <Link
                             key={slug}
                             href={`/learn/topics/${slug}`}
-                            className="text-sm font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua"
+                            className="text-sm font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua-deep"
                           >
                             {n}話→
                           </Link>

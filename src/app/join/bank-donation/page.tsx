@@ -17,7 +17,7 @@ export default function BankDonationPage() {
           <p className="text-center text-sm text-text-muted">
             <Link
               href="/join#donation"
-              className="text-wakakusa underline hover:text-wakakusa-dark"
+              className="text-wakakusa-dark underline hover:text-wakakusa-deep"
             >
               支援・参加する
             </Link>
@@ -45,7 +45,7 @@ export default function BankDonationPage() {
             ※ ご不明な点は{" "}
             <Link
               href="/contact"
-              className="text-wakakusa underline hover:text-wakakusa-dark"
+              className="text-wakakusa-dark underline hover:text-wakakusa-deep"
             >
               お問い合わせ
             </Link>

@@ -141,13 +141,13 @@ export default function JoinPage() {
               id="supporter"
               className="rounded-2xl border-2 border-wakakusa bg-white p-6 shadow-sm transition-colors sm:p-8"
             >
-              <span className="mb-4 inline-block rounded-full bg-wakakusa px-3 py-1 text-xs font-semibold text-white">
+              <span className="mb-4 inline-block rounded-full bg-wakakusa-dark px-3 py-1 text-xs font-semibold text-white">
                 おすすめ
               </span>
               <h3 className="text-xl font-bold text-text-primary">
                 {monthlyPlan.name}
               </h3>
-              <p className="mt-1 text-2xl font-semibold text-wakakusa">
+              <p className="mt-1 text-2xl font-semibold text-wakakusa-dark">
                 {monthlyPlan.amount}
               </p>
               <p className="mt-3 text-sm text-text-secondary">
@@ -155,13 +155,13 @@ export default function JoinPage() {
               </p>
               <Link
                 href="/join/subscribe"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-wakakusa-dark py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep"
               >
                 毎月の寄付を申し込む
               </Link>
               <Link
                 href="/join/manage"
-                className="mt-3 block text-center text-xs text-wakakusa underline"
+                className="mt-3 block text-center text-xs text-wakakusa-dark underline"
               >
                 毎月寄付の確認・変更
               </Link>
@@ -172,7 +172,7 @@ export default function JoinPage() {
               <h3 className="text-center text-xl font-bold text-text-primary">
                 都度寄付
               </h3>
-              <p className="mt-1 text-center text-2xl font-semibold text-wakakusa">
+              <p className="mt-1 text-center text-2xl font-semibold text-wakakusa-dark">
                 自由な金額
               </p>
               <p className="mt-2 text-center text-sm text-text-secondary">
@@ -205,7 +205,7 @@ export default function JoinPage() {
           <div className="mx-auto mt-6 max-w-xl text-xs leading-relaxed text-text-muted">
             <p>
               ※ 都度寄付は銀行振込のみです。振込先は
-              <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa underline">
+              <Link href={BANK_DONATION_INFO_HREF} className="text-wakakusa-dark underline">
                 銀行振込のご案内ページ
               </Link>
               をご覧ください。
@@ -232,7 +232,7 @@ export default function JoinPage() {
       {/* Crowdfunding report */}
       <section className="py-12 sm:py-16 bg-accent-gold/10 border-y border-accent-gold/20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-block bg-accent-gold text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
+          <span className="inline-block bg-accent-gold text-text-primary text-xs font-semibold px-3 py-1 rounded-full mb-4">
             クラウドファンディング終了のご報告
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary font-serif">
@@ -247,7 +247,7 @@ export default function JoinPage() {
             href={CROWDFUNDING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-white font-semibold rounded-full transition-colors shadow-sm"
+            className="mt-6 inline-flex items-center px-8 py-3.5 bg-accent-gold hover:bg-amber-600 text-text-primary font-semibold rounded-full transition-colors shadow-sm"
           >
             実施報告を見る
             <svg
@@ -270,7 +270,7 @@ export default function JoinPage() {
       {/* 買って応援バナー */}
       <section className="border-y border-aqua/20 bg-aqua-light/40 py-10 sm:py-14">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-          <p className="mb-2 text-sm font-semibold text-aqua">お買い物で応援</p>
+          <p className="mb-2 text-sm font-semibold text-aqua-dark">お買い物で応援</p>
           <h2 className="font-serif text-xl font-bold text-text-primary sm:text-2xl">
             地球防衛群ショップでの購入が支援につながります
           </h2>
@@ -279,7 +279,7 @@ export default function JoinPage() {
           </p>
           <Link
             href="/shop"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-aqua px-7 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-aqua-dark px-7 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
           >
             買って応援する →
           </Link>
@@ -302,7 +302,7 @@ export default function JoinPage() {
                 key={activity.title}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-border hover:border-wakakusa/30 transition-colors"
               >
-                <div className="w-12 h-12 bg-wakakusa-light rounded-full flex items-center justify-center text-wakakusa">
+                <div className="w-12 h-12 bg-wakakusa-light rounded-full flex items-center justify-center text-wakakusa-dark">
                   {activity.icon}
                 </div>
                 <h3 className="mt-4 text-base font-bold text-text-primary">
@@ -324,7 +324,7 @@ export default function JoinPage() {
           <div className="mt-10 text-center">
             <p className="text-sm text-text-muted">
               参加方法・開催スケジュール・主催のご相談は、
-              <Link href="/contact" className="text-wakakusa underline">
+              <Link href="/contact" className="text-wakakusa-dark underline">
                 お問い合わせフォーム
               </Link>
               からお気軽にご連絡ください。

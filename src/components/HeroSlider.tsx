@@ -80,7 +80,7 @@ export default function HeroSlider() {
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Link
             href="/join"
-            className="rounded-full bg-wakakusa px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-colors hover:bg-wakakusa-dark"
+            className="rounded-full bg-wakakusa-dark px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-colors hover:bg-wakakusa-deep"
           >
             今すぐ支援する
           </Link>
@@ -94,11 +94,13 @@ export default function HeroSlider() {
       </div>
 
       <div
-        className="absolute bottom-6 left-1/2 z-[3] flex -translate-x-1/2 gap-2"
+        className="absolute bottom-6 left-1/2 z-[3] flex -translate-x-1/2 gap-1"
         role="tablist"
         aria-label="スライドの選択"
       >
         {slides.map((slide, i) => (
+          // 押せる範囲は 24px 角（WCAG 2.2 の最小タップサイズ）を確保し、
+          // 見た目の丸は 10px のまま内側の span で描く
           <button
             key={`indicator-${slide.src}`}
             type="button"
@@ -106,12 +108,16 @@ export default function HeroSlider() {
             aria-selected={i === current}
             aria-label={`スライド ${i + 1} を表示`}
             onClick={() => setCurrent(i)}
-            className={`h-2.5 w-2.5 rounded-full transition-all ${
-              i === current
-                ? "scale-125 bg-white"
-                : "bg-white/50 hover:bg-white/70"
-            }`}
-          />
+            className="group grid h-6 w-6 place-items-center rounded-full"
+          >
+            <span
+              className={`h-2.5 w-2.5 rounded-full transition-all ${
+                i === current
+                  ? "scale-125 bg-white"
+                  : "bg-white/50 group-hover:bg-white/70"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

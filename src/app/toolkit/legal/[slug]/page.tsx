@@ -80,7 +80,7 @@ export default async function ToolkitLegalDocPage({ params }: Props) {
             <a
               href={downloadHref}
               download={file.filename}
-              className="inline-flex items-center rounded-lg bg-wakakusa px-4 py-2.5 font-semibold text-white hover:bg-wakakusa-dark"
+              className="inline-flex items-center rounded-lg bg-wakakusa-dark px-4 py-2.5 font-semibold text-white hover:bg-wakakusa-deep"
             >
               Markdown をダウンロード
             </a>

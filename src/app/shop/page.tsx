@@ -71,7 +71,7 @@ export default function ShopPage() {
               href={SHOP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-4 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-wakakusa-dark px-8 py-4 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
             >
               ショップを見る
               <ExternalLinkIcon className="h-4 w-4 shrink-0" />
@@ -94,7 +94,7 @@ export default function ShopPage() {
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
             {steps.map((text, i) => (
               <div key={text} className="text-center">
-                <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-wakakusa text-lg font-bold text-white">
+                <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-wakakusa-dark text-lg font-bold text-white">
                   {i + 1}
                 </div>
                 <p className="text-sm font-medium leading-relaxed text-text-secondary sm:text-base">

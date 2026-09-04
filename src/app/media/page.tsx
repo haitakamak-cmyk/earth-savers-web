@@ -216,7 +216,7 @@ export default function MediaPage() {
                   href={BOOK_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-wakakusa px-8 py-3.5 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-full bg-wakakusa-dark px-8 py-3.5 font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
                 >
                   地球防衛群ショップ で見る
                   <ExternalLinkIcon className="h-4 w-4 shrink-0" />
@@ -308,7 +308,7 @@ export default function MediaPage() {
 
           <p className="mt-10 text-center text-xs text-text-muted">
             クリップのコピーや掲載日の確認は{" "}
-            <Link href="/contact" className="text-wakakusa underline hover:text-wakakusa-dark">
+            <Link href="/contact" className="text-wakakusa-dark underline hover:text-wakakusa-deep">
               お問い合わせ
             </Link>
             からどうぞ。

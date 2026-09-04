@@ -52,7 +52,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <div className="mb-6 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-wakakusa-light">
                   <svg
-                    className="h-5 w-5 text-wakakusa"
+                    className="h-5 w-5 text-wakakusa-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <div className="mb-6 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-aqua-light">
                   <svg
-                    className="h-5 w-5 text-aqua"
+                    className="h-5 w-5 text-aqua-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   <h2 className="text-lg font-bold text-text-primary">
                     環境相談
                   </h2>
-                  <p className="text-xs font-medium text-aqua">
+                  <p className="text-xs font-medium text-aqua-dark">
                     地域の自然環境や水源と開発計画の調和にお悩みの方へ
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   相談の流れ・免責事項は
                   <Link
                     href="/consultation"
-                    className="mx-1 font-semibold text-aqua underline underline-offset-2 hover:text-aqua-dark"
+                    className="mx-1 font-semibold text-aqua-dark underline underline-offset-2 hover:text-aqua-deep"
                   >
                     環境相談窓口
                   </Link>
@@ -132,7 +132,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
                 {/* よくあるご相談 */}
                 <div className="mt-2 rounded-lg bg-aqua-light/30 p-4">
-                  <p className="mb-2 text-xs font-semibold text-aqua">
+                  <p className="mb-2 text-xs font-semibold text-aqua-dark">
                     よくあるご相談
                   </p>
                   <ul className="space-y-1.5 text-xs text-text-muted">
@@ -149,7 +149,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </p>
                 <Link
                   href="/learn/topics/solar-wind-opposition-cases"
-                  className="inline-block text-sm font-semibold text-aqua hover:text-aqua-dark"
+                  className="inline-block text-sm font-semibold text-aqua-dark hover:text-aqua-deep"
                 >
                   事例集を読む →
                 </Link>

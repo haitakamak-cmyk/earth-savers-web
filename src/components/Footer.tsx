@@ -109,7 +109,7 @@ export function Footer() {
               height={42}
               className="mb-4 h-10 w-auto"
             />
-            <p className="text-sm leading-relaxed text-text-muted">
+            <p className="text-sm leading-relaxed text-text-muted-on-dark">
               日本の命の源である「水」と「森」を守り、<br />
               七世代先の子どもたちへ、美しい環境を引き継ぐ。<br />
               私たちは「現場」で汗を流し、大地の循環を再生し続けます。
@@ -127,7 +127,7 @@ export function Footer() {
                   <li key={`${link.label}-${link.href}`}>
                     <Link
                       href={link.href}
-                      className="text-sm text-text-muted transition-colors hover:text-ivory-warm"
+                      className="text-sm text-text-muted-on-dark transition-colors hover:text-ivory-warm"
                     >
                       {link.label}
                     </Link>
@@ -148,7 +148,7 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-text-secondary/20 text-text-muted transition-colors hover:bg-wakakusa hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-text-secondary/20 text-text-muted-on-dark transition-colors hover:bg-wakakusa-dark hover:text-white"
                 aria-label={link.label}
               >
                 <SnsIcon id={link.id} />
@@ -159,11 +159,11 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-text-secondary/30 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start">
-            <p className="text-center text-xs text-text-muted sm:text-left">
+            <p className="text-center text-xs text-text-muted-on-dark sm:text-left">
               &copy; {new Date().getFullYear()} 財団法人 地球防衛群（Earth
               Savers） All rights reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-text-muted sm:justify-end">
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-text-muted-on-dark sm:justify-end">
               <Link
                 href="/consultation"
                 className="transition-colors hover:text-ivory-warm"

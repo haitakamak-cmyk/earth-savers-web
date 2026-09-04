@@ -122,7 +122,7 @@ export function SubscribeCheckoutForm() {
                   </span>
                   <div>
                     <p className="font-bold text-text-primary">{plan.name}</p>
-                    <p className="mt-1 text-lg font-semibold text-wakakusa">
+                    <p className="mt-1 text-lg font-semibold text-wakakusa-dark">
                       {formatYen(plan.amountMonthly)} / 月
                     </p>
                     <p className="mt-2 text-sm text-text-secondary">
@@ -185,14 +185,14 @@ export function SubscribeCheckoutForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa-dark px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-wakakusa-deep disabled:opacity-60"
         >
           {status === "submitting" ? "決済ページへ移動中…" : "毎月の寄付を申し込む"}
         </button>
 
         <p className="text-center text-xs text-text-muted">
           毎月寄付の確認・変更・停止は
-          <Link href="/join/manage" className="text-wakakusa underline">
+          <Link href="/join/manage" className="text-wakakusa-dark underline">
             寄付内容の確認・変更ページ
           </Link>
           から行えます。

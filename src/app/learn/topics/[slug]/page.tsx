@@ -104,7 +104,7 @@ export default async function TopicDetailPage({ params }: Props) {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <a
             href="#topic-main"
-            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-wakakusa focus:px-3 focus:py-2 focus:text-white"
+            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-wakakusa-dark focus:px-3 focus:py-2 focus:text-white"
           >
             本文へスキップ
           </a>
@@ -167,7 +167,7 @@ export default async function TopicDetailPage({ params }: Props) {
             {episodeNav?.prev ? (
               <Link
                 href={`/learn/topics/${episodeNav.prev.slug}`}
-                className="mt-3 inline-block px-1 text-sm font-medium text-text-secondary underline underline-offset-2 hover:text-aqua-dark"
+                className="mt-3 inline-block px-1 text-sm font-medium text-text-secondary underline underline-offset-2 hover:text-aqua-deep"
               >
                 ← {episodeNav.prev.subtitle}
               </Link>

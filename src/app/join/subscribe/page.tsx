@@ -17,7 +17,7 @@ export default function SubscribePage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <Link
             href="/join#supporter"
-            className="text-sm text-wakakusa underline"
+            className="text-sm text-wakakusa-dark underline"
           >
             ← 支援・参加に戻る
           </Link>
