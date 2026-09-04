@@ -228,7 +228,7 @@ export function ContactForm({
         送信により、
         <Link
           href="/privacy"
-          className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+          className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
         >
           プライバシーポリシー
         </Link>
@@ -237,7 +237,7 @@ export function ContactForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-wakakusa py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
+        className="w-full rounded-full bg-wakakusa-dark py-3 font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep disabled:opacity-60"
       >
         {status === "submitting" ? "送信中…" : "送信する"}
       </button>

@@ -111,7 +111,7 @@ export default async function GlossaryTermPage({ params }: Props) {
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-aqua-dark underline underline-offset-2 hover:text-aqua"
+                        className="text-aqua-dark underline underline-offset-2 hover:text-aqua-deep"
                       >
                         {source.label}
                       </a>

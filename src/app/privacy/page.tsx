@@ -38,7 +38,7 @@ export default function PrivacyPage() {
             当財団は、本サイトの「
             <Link
               href="/contact"
-              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
             >
               お問い合わせ
             </Link>
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
           <p className="mt-3 text-sm leading-relaxed">
             <a
               href="https://policies.google.com/privacy?hl=ja"
-              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
               rel="noreferrer"
               target="_blank"
             >
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
             {" / "}
             <a
               href="https://tools.google.com/dlpage/gaoptout?hl=ja"
-              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
               rel="noreferrer"
               target="_blank"
             >
@@ -167,7 +167,7 @@ export default function PrivacyPage() {
             個人情報の取扱いに関するお問い合わせは、
             <Link
               href="/contact"
-              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
             >
               お問い合わせフォーム
             </Link>

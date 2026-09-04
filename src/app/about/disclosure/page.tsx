@@ -63,7 +63,7 @@ const docSections: DocSection[] = [
 function DownloadIcon() {
   return (
     <svg
-      className="h-4 w-4 shrink-0 text-wakakusa"
+      className="h-4 w-4 shrink-0 text-wakakusa-dark"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ function DownloadIcon() {
 function LinkIcon() {
   return (
     <svg
-      className="h-4 w-4 shrink-0 text-wakakusa"
+      className="h-4 w-4 shrink-0 text-wakakusa-dark"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -102,7 +102,7 @@ export default function DisclosurePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-wakakusa py-10 sm:py-14">
+      <section className="bg-wakakusa-dark py-10 sm:py-14">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h1 className="font-serif text-3xl font-bold text-white drop-shadow-sm sm:text-4xl">
             情報公開
@@ -140,7 +140,7 @@ export default function DisclosurePage() {
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-3 rounded-xl border border-border bg-white px-4 py-3.5 text-sm font-medium text-text-secondary shadow-sm transition-colors hover:border-wakakusa/40 hover:text-wakakusa-dark"
+                            className="flex items-center gap-3 rounded-xl border border-border bg-white px-4 py-3.5 text-sm font-medium text-text-secondary shadow-sm transition-colors hover:border-wakakusa/40 hover:text-wakakusa-deep"
                           >
                             <DownloadIcon />
                             {item.label}
@@ -149,7 +149,7 @@ export default function DisclosurePage() {
                           /* 内部ページリンク */
                           <Link
                             href={item.href}
-                            className="flex items-center gap-3 rounded-xl border border-border bg-white px-4 py-3.5 text-sm font-medium text-text-secondary shadow-sm transition-colors hover:border-wakakusa/40 hover:text-wakakusa-dark"
+                            className="flex items-center gap-3 rounded-xl border border-border bg-white px-4 py-3.5 text-sm font-medium text-text-secondary shadow-sm transition-colors hover:border-wakakusa/40 hover:text-wakakusa-deep"
                           >
                             <LinkIcon />
                             {item.label}
@@ -175,7 +175,7 @@ export default function DisclosurePage() {
 
           <p className="mt-10 text-center text-xs text-text-muted">
             掲載資料に関するお問い合わせは{" "}
-            <Link href="/contact" className="text-wakakusa underline">
+            <Link href="/contact" className="text-wakakusa-dark underline">
               お問い合わせフォーム
             </Link>{" "}
             よりご連絡ください。

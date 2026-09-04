@@ -61,7 +61,7 @@ export default function PolicyHubPage() {
                 <h2 className="mb-3 font-serif text-xl font-semibold text-text-primary">
                   <Link
                     href={`/policy/${POLICY_KIND_PATH[kind]}`}
-                    className="underline-offset-4 hover:text-aqua-dark hover:underline"
+                    className="underline-offset-4 hover:text-aqua-deep hover:underline"
                   >
                     {POLICY_KIND_LABEL[kind]}
                   </Link>

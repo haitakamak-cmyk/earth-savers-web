@@ -424,7 +424,7 @@ export default function EcosystemRestorationPublicPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-wakakusa px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-wakakusa-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wakakusa-dark focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-wakakusa-dark px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-wakakusa-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wakakusa-dark focus-visible:ring-offset-2"
               >
                 お問い合わせはこちら
               </Link>

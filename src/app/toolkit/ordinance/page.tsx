@@ -105,7 +105,7 @@ export default async function ToolkitOrdinancePage() {
             <a
               href={downloadHref}
               download={ORDINANCE_MARKDOWN_FILENAME}
-              className="inline-flex items-center rounded-lg bg-wakakusa px-4 py-2.5 font-semibold text-white hover:bg-wakakusa-dark"
+              className="inline-flex items-center rounded-lg bg-wakakusa-dark px-4 py-2.5 font-semibold text-white hover:bg-wakakusa-deep"
             >
               Markdown をダウンロード
             </a>
@@ -119,7 +119,7 @@ export default async function ToolkitOrdinancePage() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <a
           href="#ordinance-doc-main"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-wakakusa focus:px-3 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-wakakusa-dark focus:px-3 focus:py-2 focus:text-white"
         >
           本文へスキップ
         </a>

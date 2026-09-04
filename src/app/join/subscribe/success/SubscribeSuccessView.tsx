@@ -53,7 +53,7 @@ export function DetailedSubscribeSuccess({
             </span>
             <div className="min-w-0 flex-1">
               <p className="font-bold text-text-primary">{checkout.planName}</p>
-              <p className="mt-1 text-xl font-semibold text-wakakusa">
+              <p className="mt-1 text-xl font-semibold text-wakakusa-dark">
                 {formatYen(checkout.amountMonthly)}
                 <span className="text-base font-medium text-text-secondary"> / 月</span>
               </p>
@@ -90,7 +90,7 @@ function SubscribeSuccessActions() {
     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
       <Link
         href="/join/manage"
-        className="inline-flex items-center justify-center rounded-full bg-wakakusa px-6 py-3 font-semibold text-white hover:bg-wakakusa-dark"
+        className="inline-flex items-center justify-center rounded-full bg-wakakusa-dark px-6 py-3 font-semibold text-white hover:bg-wakakusa-deep"
       >
         寄付内容を確認・変更する
       </Link>

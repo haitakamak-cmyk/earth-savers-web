@@ -22,7 +22,7 @@ const FAQ_ITEMS: FaqItem[] = [
         はい。
         <Link
           href="/consultation"
-          className="mx-1 font-semibold text-aqua underline underline-offset-2"
+          className="mx-1 font-semibold text-aqua-dark underline underline-offset-2"
         >
           環境相談窓口
         </Link>

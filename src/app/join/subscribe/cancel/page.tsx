@@ -34,7 +34,7 @@ export default function SubscribeCancelPage() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/join/subscribe"
-            className="inline-flex items-center justify-center rounded-full bg-wakakusa px-6 py-3 font-semibold text-white hover:bg-wakakusa-dark"
+            className="inline-flex items-center justify-center rounded-full bg-wakakusa-dark px-6 py-3 font-semibold text-white hover:bg-wakakusa-deep"
           >
             寄付額の選択に戻る
           </Link>

@@ -98,7 +98,7 @@ export default function TermsPage() {
             本規約に関するお問い合わせは、
             <Link
               href="/contact"
-              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa"
+              className="font-medium text-wakakusa-dark underline underline-offset-2 hover:text-wakakusa-deep"
             >
               お問い合わせフォーム
             </Link>

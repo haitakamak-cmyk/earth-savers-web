@@ -92,14 +92,14 @@ export function ManagePortalForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa px-6 py-3.5 font-semibold text-white hover:bg-wakakusa-dark disabled:opacity-60"
+        className="inline-flex w-full items-center justify-center rounded-full bg-wakakusa-dark px-6 py-3.5 font-semibold text-white hover:bg-wakakusa-deep disabled:opacity-60"
       >
         {status === "submitting" ? "管理ページへ移動中…" : "寄付内容を確認・変更する"}
       </button>
 
       <p className="text-center text-sm text-text-muted">
         新規のお申し込みは
-        <Link href="/join/subscribe" className="text-wakakusa underline">
+        <Link href="/join/subscribe" className="text-wakakusa-dark underline">
           こちら
         </Link>
       </p>

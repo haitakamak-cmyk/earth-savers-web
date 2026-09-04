@@ -182,7 +182,7 @@ export default function AboutPage() {
               <dd className="text-sm leading-relaxed text-text-secondary">
                 <Link
                   href="/contact"
-                  className="text-wakakusa underline decoration-wakakusa/40 underline-offset-2 hover:text-wakakusa-dark"
+                  className="text-wakakusa-dark underline decoration-wakakusa/40 underline-offset-2 hover:text-wakakusa-deep"
                 >
                   お問い合わせフォーム
                 </Link>
@@ -316,7 +316,7 @@ export default function AboutPage() {
                 key={item.icon}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-border hover:border-wakakusa/30 transition-colors"
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 bg-wakakusa text-white text-sm font-semibold rounded-full">
+                <span className="inline-flex items-center justify-center w-10 h-10 bg-wakakusa-dark text-white text-sm font-semibold rounded-full">
                   {item.icon}
                 </span>
                 <h3 className="mt-4 text-base font-bold text-text-primary">
@@ -355,7 +355,7 @@ export default function AboutPage() {
                 ) : (
                   <div className="w-[120px] h-[120px] rounded-full mx-auto bg-wakakusa-light flex items-center justify-center">
                     <svg
-                      className="w-12 h-12 text-wakakusa"
+                      className="w-12 h-12 text-wakakusa-dark"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -372,7 +372,7 @@ export default function AboutPage() {
                 <h3 className="mt-4 text-lg font-bold text-text-primary">
                   {member.name}
                 </h3>
-                <p className="text-sm font-medium text-wakakusa">
+                <p className="text-sm font-medium text-wakakusa-dark">
                   {member.role}
                 </p>
                 <p className="mt-3 text-sm text-text-secondary leading-relaxed text-left">
@@ -397,7 +397,7 @@ export default function AboutPage() {
                 className="bg-white rounded-xl p-6 shadow-sm border border-border"
               >
                 <h3 className="text-base font-bold text-text-primary flex gap-3">
-                  <span className="text-wakakusa shrink-0">Q.</span>
+                  <span className="text-wakakusa-dark shrink-0">Q.</span>
                   {item.q}
                 </h3>
                 <div className="mt-3 text-sm text-text-secondary leading-relaxed flex gap-3 border-t border-border pt-3">

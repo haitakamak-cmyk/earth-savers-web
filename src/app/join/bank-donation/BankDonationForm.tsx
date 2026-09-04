@@ -77,7 +77,7 @@ export function BankDonationForm() {
       <div className="flex flex-col items-center gap-4 py-8 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-wakakusa-light">
           <svg
-            className="h-7 w-7 text-wakakusa"
+            className="h-7 w-7 text-wakakusa-dark"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -218,7 +218,7 @@ export function BankDonationForm() {
         送信により、
         <Link
           href="/privacy"
-          className="text-wakakusa underline hover:text-wakakusa-dark"
+          className="text-wakakusa-dark underline hover:text-wakakusa-deep"
         >
           プライバシーポリシー
         </Link>
@@ -228,7 +228,7 @@ export function BankDonationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-1 flex h-14 w-full items-center justify-center rounded-full bg-wakakusa text-base font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-dark disabled:opacity-60"
+        className="mt-1 flex h-14 w-full items-center justify-center rounded-full bg-wakakusa-dark text-base font-semibold text-white shadow-sm transition-colors hover:bg-wakakusa-deep disabled:opacity-60"
       >
         {status === "submitting" ? (
           <span className="flex items-center gap-2">
