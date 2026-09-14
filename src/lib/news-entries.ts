@@ -17,6 +17,15 @@ export type NewsEntry = {
 
 export const newsEntries: NewsEntry[] = [
   {
+    id: "toyama-kansui-park-benten-2026-09",
+    date: "2026-09-14",
+    category: "活動報告",
+    title: "地元企業の協賛で、富岩運河環水公園の水環境保全へ",
+    href: "https://prtimes.jp/main/html/rd/p/000000004.000181844.html",
+    lead: "富山生態系復活プロジェクトが始動します。ナノバブル発生器「BENTEN B-369」を9月16日に設置予定です。",
+    external: true,
+  },
+  {
     id: "policy-farmland-food-water-resilience-2026-08",
     date: "2026-08-22",
     category: "重要",
