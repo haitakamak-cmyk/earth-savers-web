@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "メンバー紹介",
   description:
-    "財団法人 地球防衛群の理事会・監事・評議員、およびアンバサダーランクをご紹介します。",
+    "財団法人 地球防衛群の理事会・監事・評議員、顧問、およびアンバサダーランクをご紹介します。",
   alternates: { canonical: "/members" },
 };
 
@@ -23,6 +23,10 @@ const councilRows: { role: string; name: string }[] = [
   { role: "評議員", name: "杉山 公紀" },
   { role: "評議員", name: "杉山 麻依子" },
   { role: "評議員", name: "瀬戸山 裕一" },
+];
+
+const advisorRows: { role: string; name: string }[] = [
+  { role: "顧問", name: "内田 力" },
 ];
 
 /** アンバサダー：七世代の大使 → … → 水の守人の順（名前はランクごとに追記） */
@@ -103,7 +107,7 @@ export default function MembersPage() {
       <section id="board" className="bg-ivory py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="text-center font-serif text-2xl font-bold text-text-primary sm:text-3xl">
-            役員・評議員
+            役員・評議員・顧問
           </h2>
           <div className="mt-8">
             <p className="mb-3 text-sm font-semibold text-text-secondary">理事会・監事</p>
@@ -112,6 +116,10 @@ export default function MembersPage() {
           <div className="mt-6">
             <p className="mb-3 text-sm font-semibold text-text-secondary">評議員会</p>
             <CompactRoster rows={councilRows} />
+          </div>
+          <div id="advisors" className="mt-6">
+            <p className="mb-3 text-sm font-semibold text-text-secondary">顧問</p>
+            <CompactRoster rows={advisorRows} />
           </div>
         </div>
       </section>
