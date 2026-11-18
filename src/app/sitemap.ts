@@ -36,6 +36,7 @@ const CORE_PATHS = [
   "/shop",
   "/media",
   "/contact",
+  "/line",
   "/privacy",
   "/terms",
 ] as const;
